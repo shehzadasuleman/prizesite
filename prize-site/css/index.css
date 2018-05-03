@@ -1,0 +1,132 @@
+.main-content {
+    color: white;
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.main-content .actual-content h1 {
+    text-align: center;
+    margin-top: 6%;
+}
+
+.main-content .actual-content h2 {
+    text-align: center;
+    margin-top: 1%;
+}
+
+.main-content .user-info-content {
+    margin-top: 3%;
+    margin-bottom: 5%;
+    padding-left: 0%;
+}
+
+.main-content .user-info-content input {
+    color: black;
+    opacity: 0.9;
+}
+
+.main-content .user-info-button {
+    padding-top: 33px;
+}
+
+.main-content .user-info-button button {
+    color: black;
+    background-color: white;
+    border: 0px;
+    opacity: 0.9;
+}
+
+.input-content-mobile {
+    padding: 0%;
+}
+
+.user-info-chkbox {
+    margin-top: 1%;
+}
+
+.user-info-chkbox a {
+    color: white;
+    text-decoration: none;
+}
+
+.top-content {
+    margin: 0px;
+    margin-top: 4%;
+}
+
+.clients-content {
+    background-color: #ffffff;
+    color: #999999;
+}
+
+.terms-conditions input {
+    padding-left: 20%;
+}
+
+.terms-conditions a {
+    text-decoration: none;
+    color: white;
+}
+
+.middle-content {
+    margin: 0px;
+    margin-top: 5%;
+}
+
+.middle-content h2 {
+    color: black;
+}
+
+.middle-content img {
+    width: 100%;
+}
+
+.middle-content .each-content {
+    margin-bottom: 4%;
+}
+
+.middle-content .each-content .heading {
+    padding: 0%;
+}
+
+.middle-content .each-content .heading .heading-img {
+    margin-left: 0%;
+}
+
+.middle-content .each-content .heading .heading-data {
+    margin-right: 0%;
+}
+
+.middle-content .each-content p {
+    text-align: left;
+}
+
+.bottom-content {
+    margin: 0px;
+    margin-top: 2%;
+    background-color: #E0E0E0;
+    padding-bottom: 3%;
+}
+
+.bottom-content h1 {
+    text-align: center;
+    margin-top: 3%;
+    color: black;
+}
+
+.bottom-content h3 {
+    text-align: justify;
+    margin-top: 1%;
+    margin-bottom: 2%;
+}
+
+.bottom-content img {
+    width: 100%;
+}
+
+@media screen and (max-width: 992px) {
+    .main-content .user-info-button {
+        padding-left: 0%;
+    }
+}
