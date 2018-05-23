@@ -16,8 +16,6 @@
 <body <?php body_class(); ?> >
 <?php 
     $logo_url = get_template_directory_uri() . '/img/logo.png';
-    $winners_url = get_template_directory_uri() . '/winners.php';
-    $contactus_url = get_template_directory_uri() . '/contact-us.php';
 ?>
 <nav class="navbar navbar-expand-lg navbar-light bg-faded background-nav">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#nav-content" aria-controls="nav-content" aria-expanded="false" aria-label="Toggle navigation">

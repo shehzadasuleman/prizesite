@@ -1,7 +1,7 @@
 .main-content {
     color: white;
     background-position: center center;
-    background-size: cover;
+    background-size: 100% 175%;
     background-repeat: no-repeat;
 }
 
@@ -64,14 +64,18 @@
     padding-left: 20%;
 }
 
+.terms-conditions li {
+    list-style: none;
+    margin-top: -22px;
+}
+
 .terms-conditions a {
-    text-decoration: none;
     color: white;
 }
 
 .middle-content {
     margin: 0px;
-    margin-top: 5%;
+    margin-top: 2%;
 }
 
 .middle-content h2 {
@@ -96,6 +100,8 @@
 
 .middle-content .each-content .heading .heading-data {
     margin-right: 0%;
+    padding: 0%;
+    padding-left: 1%;
 }
 
 .middle-content .each-content p {
@@ -104,9 +110,8 @@
 
 .bottom-content {
     margin: 0px;
-    margin-top: 2%;
     background-color: #E0E0E0;
-    padding-bottom: 3%;
+    padding-bottom: 5%;
 }
 
 .bottom-content h1 {
@@ -118,15 +123,143 @@
 .bottom-content h3 {
     text-align: justify;
     margin-top: 1%;
-    margin-bottom: 2%;
 }
 
-.bottom-content img {
+.bottom-content .img-content {
     width: 100%;
+    height: 100%;
 }
 
 @media screen and (max-width: 992px) {
     .main-content .user-info-button {
         padding-left: 0%;
     }
+}
+
+.cover-ad-banner-parent {
+    margin: 0%;
+}
+
+.cover-ad-banner {
+    padding: 0%;
+}
+
+.cover-ad-banner h1 {
+    font-size: 150%;
+    margin-top: 1%;
+    margin-bottom: 2%;
+    text-align: justify;
+    color: black;
+}
+
+.cover-ad-banner h2 {
+    font-size: 110%;
+    color: #999999;
+    text-align: justify;
+}
+
+.cover-ad-banner li {
+    margin-bottom: 1%;
+}
+
+@media screen and (min-width: 576px) {
+    .footer-text-color {
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+    }
+}
+
+
+/*.winners-main-content {
+    color: white;
+}*/
+
+.winners-cover-ad-banner-parent {
+    margin: 0%;
+}
+
+.winners-cover-ad-banner {
+    padding: 0%;
+}
+
+.winners-cover-ad-banner p {
+    text-align: center;
+}
+
+.winners-cover-ad-banner img {
+    width: 100%;
+}
+
+.winners-middle-content-parent {
+    margin: 0%;
+    margin-bottom: 2%;
+}
+
+.winners-actual-content {
+    padding: 0%;
+}
+
+.winners-partitioned-actual-content {
+    margin: 0%;
+    padding-bottom: 50px;
+}
+
+.winners-partitioned-actual-content .img-content {
+    padding: 0%;
+}
+
+.winners-partitioned-actual-content .img-content p {
+    text-align: center;
+}
+
+.winners-partitioned-actual-content img {
+    width: 100%;
+}
+
+.recent-winners-content {
+    padding: 1%;
+}
+
+.recent-winners-content h1 {
+    text-align: center;
+    margin-bottom: 3%;
+    color: black;
+}
+
+.recent-winners-content th {
+    text-align: center;
+}
+
+.recent-winners-content td {
+    text-align: center;
+}
+
+.recent-winners-content .description {
+    padding-left: 4%;
+    padding-right: 4%;
+    color: black;
+}
+
+#danger-alert {
+    display: none;
+}
+
+::-webkit-input-placeholder {
+    opacity: 0.5 !important;
+    /* for older chrome versions. may no longer apply. */
+}
+
+:-moz-placeholder {
+    /* Firefox 18- */
+    opacity: 0.5 !important;
+}
+
+::-moz-placeholder {
+    /* Firefox 19+ */
+    opacity: 0.5 !important;
+}
+
+:-ms-input-placeholder {
+    opacity: 0.5 !important;
 }
