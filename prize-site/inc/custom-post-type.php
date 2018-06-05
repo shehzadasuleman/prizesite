@@ -14,7 +14,6 @@ if( @$contact == 1 ){
 	add_action( 'init', 'prizesite_contact_custom_post_type' );
 
 	add_filter( 'manage_prizesite-contact_posts_columns', 'prizesite_set_contact_columns' );
-	//add_action( 'manage_prizesite-contact_posts_custom_column', 'prizesite_contact_custom_column', 10, 2 );
 }
 
 /* CONTACT CPT */
@@ -44,7 +43,6 @@ function prizesite_contact_custom_post_type() {
 function prizesite_set_contact_columns( $columns ){
 	$newColumns = array();
 	$newColumns['title'] = 'Phone Number';
-	//$newColumns['email'] = 'Email';
 	$newColumns['date'] = 'Date';
 	return $newColumns;
 }
@@ -63,8 +61,11 @@ function prizesite_contact_custom_column( $column, $post_id ){
 
 add_action( 'init', 'prizesite_winners_custom_post_type' );
 add_filter( 'manage_prizesite-winners_posts_columns', 'prizesite_set_winners_columns' );
+add_action( 'manage_prizesite-winners_posts_custom_column', 'prizesite_winners_custom_column', 10, 2 );
+add_action( 'add_meta_boxes', 'prizesite_winners_add_meta_box' );
+add_action( 'save_post', 'bulk_save_winners_custom_fields', 10, 2);
 
-/* CONTACT CPT */
+/* WINNER CPT */
 function prizesite_winners_custom_post_type() {
 	$labels = array(
 		'name' 				=> 'Winners',
@@ -91,7 +92,8 @@ function prizesite_winners_custom_post_type() {
 function prizesite_set_winners_columns( $columns ){
 	$newColumns = array();
 	$newColumns['title'] = 'Phone Number';
-	//$newColumns['email'] = 'Email';
+	$newColumns['prizeamount'] = 'Prize Amount';
+	$newColumns['prizeclaimed'] = 'Prize Claimed';
 	$newColumns['date'] = 'Date';
 	return $newColumns;
 }
@@ -99,11 +101,141 @@ function prizesite_set_winners_columns( $columns ){
 function prizesite_winners_custom_column( $column, $post_id ){
 	
 	switch( $column ){
-			
-		case 'email' :
-			//email column
-			echo 'email address';
+		case 'prizeamount' :
+			echo implode(" ", get_post_meta( $post_id, '_winners_prizeamount_value_key'));
+			break;
+		case 'prizeclaimed' :
+			echo get_post_meta( $post_id, '_winners_prizeclaimed_value_key', true);
 			break;
 	}
 	
+}
+
+/* WINNERS META BOXES */
+function prizesite_winners_add_meta_box() {
+	add_meta_box( 'winners_prizeamount', 'Prize Amount', 'prizesite_winners_prizeamount_callback', 'prizesite-winners' );
+	add_meta_box( 'winners_prizeclaimed', 'Prize Claimed', 'prizesite_winners_prizeclaimed_callback', 'prizesite-winners' );
+}
+
+function prizesite_winners_prizeamount_callback( $post ) {
+	wp_nonce_field( 'bulk_save_winners_custom_fields', 'prizesite_winners_prizeamount_meta_box_nonce' );
+
+	$amount_value = get_post_meta( $post->ID, '_winners_prizeamount_value_key', true );
+	
+	echo '<label for="prizesite_winners_prizeamount_field">Prize Amount: </label>';
+	echo '<input type="text" id="prizesite_winners_prizeamount_field" name="prizesite_winners_prizeamount_field" value="' . esc_attr( $amount_value ) . '" size="25" />';
+}
+
+function prizesite_winners_prizeclaimed_callback( $post ) {
+	wp_nonce_field( 'bulk_save_winners_custom_fields', 'prizesite_winners_prizeclaimed_meta_box_nonce' );
+
+	//$claimed_value = get_post_meta( $post->ID, '_winners_prizeclaimed_value_key', true);
+	
+	echo '<label for="prizesite_winners_prizeclaimed_field">Prize Claimed: </label>';
+	echo '<input type="text" id="prizesite_winners_prizeclaimed_field" name="prizesite_winners_prizeclaimed_field" value="' . esc_attr( get_post_meta( $post->ID, '_winners_prizeclaimed_value_key', true) ) . '" size="25" />';
+}
+
+function bulk_save_winners_custom_fields( $post_id ) {
+	if( defined('DOING_AUTOSAVE') && DOING_AUTOSAVE ) {
+		return;
+	}
+
+	if( ! current_user_can( 'edit_post', $post_id )) {
+		return;
+	}
+
+	if( isset( $_POST['prizesite_winners_prizeamount_meta_box_nonce'] ) && isset( $_POST['prizesite_winners_prizeamount_field']) ) {
+		$my_data = sanitize_text_field( $_POST['prizesite_winners_prizeamount_field'] );
+
+		update_post_meta( $post_id, '_winners_prizeamount_value_key', $my_data );
+	}
+
+	if(isset( $_POST['prizesite_winners_prizeclaimed_meta_box_nonce'] ) && isset( $_POST['prizesite_winners_prizeclaimed_field']) ) {
+		$my_data = sanitize_text_field( $_POST['prizesite_winners_prizeclaimed_field'] );
+
+		update_post_meta( $post_id, '_winners_prizeclaimed_value_key', $my_data );
+	}
+}
+
+/* Prize Check CPT */
+
+add_action( 'init', 'prizesite_prizecheck_custom_post_type' );
+add_filter( 'manage_prizesite-prizecheck_posts_columns', 'prizesite_set_prizecheck_columns' );
+add_action( 'manage_prizesite-prizecheck_posts_custom_column', 'prizesite_prizecheck_custom_column', 10, 2 );
+add_action( 'add_meta_boxes', 'prizesite_prizecheck_add_meta_box' );
+add_action( 'save_post', 'prizesite_save_prizecheck_status_data');
+
+function prizesite_prizecheck_custom_post_type() {
+	$labels = array(
+		'name' 				=> 'Prize Checks',
+		'singular_name' 	=> 'Prize Check',
+		'menu_name'			=> 'Prize Checks',
+		'name_admin_bar'	=> 'Prize Check'
+	);
+	
+	$args = array(
+		'labels'			=> $labels,
+		'show_ui'			=> true,
+		'show_in_menu'		=> true,
+		'capability_type'	=> 'post',
+		'hierarchical'		=> false,
+		'menu_position'		=> 28,
+		'menu_icon'			=> 'data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjwhRE9DVFlQRSBzdmcgIFBVQkxJQyAnLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4nICAnaHR0cDovL3d3dy53My5vcmcvR3JhcGhpY3MvU1ZHLzEuMS9EVEQvc3ZnMTEuZHRkJz48c3ZnIGhlaWdodD0iMjUuNzU0cHgiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDMyIDI1Ljc1NDsiIHZlcnNpb249IjEuMSIgdmlld0JveD0iMCAwIDMyIDI1Ljc1NCIgd2lkdGg9IjMycHgiIHhtbDpzcGFjZT0icHJlc2VydmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiPjxnIGlkPSJMYXllcl8xIi8+PGcgaWQ9ImNoZWNrIj48Zz48cG9seWdvbiBwb2ludHM9IjExLjk0MSwyNS43NTQgMCwxMy44MTIgNS42OTUsOC4xMTcgMTEuOTQxLDE0LjM2MyAyNi4zMDUsMCAzMiw1LjY5NSAxMS45NDEsMjUuNzU0ICAgIiBzdHlsZT0iZmlsbDojNEU0RTUwOyIvPjwvZz48L2c+PC9zdmc+',
+		'supports'			=> array('title')
+	);
+	
+	register_post_type( 'prizesite-prizecheck', $args );
+	
+}
+
+function prizesite_set_prizecheck_columns( $columns ){
+	$newColumns = array();
+	$newColumns['title'] = 'Phone Number';
+	$newColumns['status'] = 'Status';
+	$newColumns['date'] = 'Date';
+	return $newColumns;
+}
+
+function prizesite_prizecheck_custom_column( $column, $post_id ){
+	switch( $column ){
+		case 'status' :
+			echo get_post_meta( $post_id, '_prizecheck_status_value_key', true);
+			break;
+	}
+}
+
+/* Prize Check META BOXES */
+function prizesite_prizecheck_add_meta_box() {
+	add_meta_box( 'prizecheck_status', 'Status', 'prizesite_prizecheck_status_callback', 'prizesite-prizecheck' );
+}
+
+function prizesite_prizecheck_status_callback( $post ) {
+	wp_nonce_field( 'prizesite_save_prizecheck_status_data', 'prizesite_prizecheck_status_meta_box_nonce' );
+
+	$status_value = get_post_meta( $post->ID, '_prizecheck_status_value_key', true );
+	
+	echo '<label for="prizesite_prizecheck_status_field">Prize Status: </label>';
+	echo '<input type="text" id="prizesite_prizecheck_status_field" name="prizesite_prizecheck_status_field" value="' . esc_attr( $status_value ) . '" size="25" />';
+}
+
+function prizesite_save_prizecheck_status_data( $post_id ) {
+	if( ! isset( $_POST['prizesite_prizecheck_status_meta_box_nonce'] )) {
+		return;
+	}
+
+	if( defined('DOING_AUTOSAVE') && DOING_AUTOSAVE ) {
+		return;
+	}
+
+	if( ! current_user_can( 'edit_post', $post_id )) {
+		return;
+	}
+
+	if( ! isset( $_POST['prizesite_prizecheck_status_field'])) {
+		return;
+	}
+
+	$my_data = sanitize_text_field( $_POST['prizesite_prizecheck_status_field'] );
+
+	update_post_meta( $post_id, '_prizecheck_status_value_key', $my_data );
 }

@@ -120,5 +120,18 @@
             ?>
         </div>
     <?php endif; ?>
+    <?php if ( "//localhost/wordpress/test-winners/" == $current_url ):?>
+        <div class="clients-content">
+            <?php
+                if (have_posts() ):
+                    while( have_posts() ): the_post();
+
+                        get_template_part( 'template-parts/test-winners', get_post_format() );
+
+                    endwhile;
+                endif;
+            ?>
+        </div>
+    <?php endif; ?>
 </div>
 <?php get_footer(); ?>

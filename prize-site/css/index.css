@@ -108,6 +108,14 @@
     text-align: left;
 }
 
+
+/*new changes*/
+
+.middle-content .user-info-button {
+    padding-top: 10px;
+    padding-left: 25%;
+}
+
 .bottom-content {
     margin: 0px;
     background-color: #E0E0E0;
@@ -130,8 +138,20 @@
     height: 100%;
 }
 
+
+/* New Changes*/
+
+@media screen and (min-width: 992px) and (max-width: 1200px) {
+    .middle-content .user-info-button {
+        padding-left: 16.5%;
+    }
+}
+
 @media screen and (max-width: 992px) {
     .main-content .user-info-button {
+        padding-left: 0%;
+    }
+    .middle-content .user-info-button {
         padding-left: 0%;
     }
 }
