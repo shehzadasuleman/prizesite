@@ -29,8 +29,9 @@
             <div class="row winners-partitioned-actual-content">
                 <div class="col-xl-3 col-lg-3 col-md-2 col-sm-2 img-content">
 					<p>Ads Goes Here</p>
-				</div>
+                </div>
                 <div class="col-xl-6 col-lg-6 col-md-8 col-sm-8 recent-winners-content">
+                    <!-- New Changes -->
                     <div class="col-xl-12 offset-xl-0 col-lg-12 offset-lg-0 col-md-10 offset-md-1 col-sm-8 offset-sm-2 col-8 offset-2 user-info-content" >
                         <form id="prizesiteWinnerCheckForm" action="#" method="post" data-url="<?php echo admin_url('admin-ajax.php'); ?>">
                             <div class="row">
@@ -50,6 +51,7 @@
                         </form>
                     </div>
                     <hr>
+                    <!-- New Changes -->
                     <h1>Recent Winners</h1>
                     <div class="table-responsive">
                         <table class="table table-striped table-bordered">
