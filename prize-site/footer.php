@@ -9,7 +9,7 @@
 <footer class="page-footer font-small pt-0 custom-footer footer-text-color">
     <!-- Copyright-->
     <div class="footer-copyright py-3 text-center">
-       <strong>© Copyright 2000-2018 SiteDesign.com, inc. All rights reserved.</strong>
+       <strong>© Copyright 2018 MuftPaise.com, inc. All rights reserved.</strong>
     </div>
     <!--/.Copyright -->
 

@@ -94,6 +94,7 @@ function prizesite_set_winners_columns( $columns ){
 	$newColumns['title'] = 'Phone Number';
 	$newColumns['prizeamount'] = 'Prize Amount';
 	$newColumns['prizeclaimed'] = 'Prize Claimed';
+	$newColumns['actualnumber'] = 'Actual Number';
 	$newColumns['date'] = 'Date';
 	return $newColumns;
 }
@@ -107,6 +108,9 @@ function prizesite_winners_custom_column( $column, $post_id ){
 		case 'prizeclaimed' :
 			echo get_post_meta( $post_id, '_winners_prizeclaimed_value_key', true);
 			break;
+		case 'actualnumber' :
+			echo get_post_meta( $post_id, '_winners_actualnumber_value_key', true);
+			break;
 	}
 	
 }
@@ -115,6 +119,7 @@ function prizesite_winners_custom_column( $column, $post_id ){
 function prizesite_winners_add_meta_box() {
 	add_meta_box( 'winners_prizeamount', 'Prize Amount', 'prizesite_winners_prizeamount_callback', 'prizesite-winners' );
 	add_meta_box( 'winners_prizeclaimed', 'Prize Claimed', 'prizesite_winners_prizeclaimed_callback', 'prizesite-winners' );
+	add_meta_box( 'winners_actualnumber', 'Actual Number', 'prizesite_winners_actualnumber_callback', 'prizesite-winners' );
 }
 
 function prizesite_winners_prizeamount_callback( $post ) {
@@ -133,6 +138,15 @@ function prizesite_winners_prizeclaimed_callback( $post ) {
 	
 	echo '<label for="prizesite_winners_prizeclaimed_field">Prize Claimed: </label>';
 	echo '<input type="text" id="prizesite_winners_prizeclaimed_field" name="prizesite_winners_prizeclaimed_field" value="' . esc_attr( get_post_meta( $post->ID, '_winners_prizeclaimed_value_key', true) ) . '" size="25" />';
+}
+
+function prizesite_winners_actualnumber_callback( $post ) {
+	wp_nonce_field( 'bulk_save_winners_custom_fields', 'prizesite_winners_actualnumber_meta_box_nonce' );
+
+	$actual_value = get_post_meta( $post->ID, '_winners_actualnumber_value_key', true );
+	
+	echo '<label for="prizesite_winners_actualnumber_field">Actual Number: </label>';
+	echo '<input type="text" id="prizesite_winners_actualnumber_field" name="prizesite_winners_actualnumber_field" value="' . esc_attr( $actual_value ) . '" size="25" />';
 }
 
 function bulk_save_winners_custom_fields( $post_id ) {
@@ -154,6 +168,12 @@ function bulk_save_winners_custom_fields( $post_id ) {
 		$my_data = sanitize_text_field( $_POST['prizesite_winners_prizeclaimed_field'] );
 
 		update_post_meta( $post_id, '_winners_prizeclaimed_value_key', $my_data );
+	}
+
+	if(isset( $_POST['prizesite_winners_actualnumber_meta_box_nonce'] ) && isset( $_POST['prizesite_winners_actualnumber_field']) ) {
+		$my_data = sanitize_text_field( $_POST['prizesite_winners_actualnumber_field'] );
+
+		update_post_meta( $post_id, '_winners_actualnumber_value_key', $my_data );
 	}
 }
 

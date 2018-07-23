@@ -1,9 +1,9 @@
 <?php get_header(); ?>
 <?php 
-    $current_url="//".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
+    $current_uri=$_SERVER['REQUEST_URI'];
 ?>
 <div>
-    <?php if ( "//localhost/wordpress/" == $current_url ):?>
+    <?php if ( "/" == $current_uri ):?>
         <div class="col-lg-12 col-xs-12 col-centered main-content" style="background-image: url(<?php header_image(); ?>);">
             <div class="row">
                 <div class="col-lg-8 offset-lg-2 col-md-8 offset-md-2 col-sm-10 offset-sm-1 col-10 offset-1 actual-content">
@@ -55,7 +55,7 @@
             ?>
         </div>
     <?php endif; ?>
-    <?php if ( "//localhost/wordpress/contact-us/" == $current_url ):?>
+    <?php if ( "/contact-us/" == $current_uri ):?>
         <div class="clients-content">
             <?php
                 if (have_posts() ):
@@ -68,7 +68,7 @@
             ?>
         </div>
     <?php endif; ?>
-    <?php if ( "//localhost/wordpress/terms-and-conditions/" == $current_url ):?>
+    <?php if ( "/terms-and-conditions/" == $current_uri ):?>
         <div class="clients-content">
             <?php
                 if (have_posts() ):
@@ -81,7 +81,7 @@
             ?>
         </div>
     <?php endif; ?>
-    <?php if ( "//localhost/wordpress/winners/" == $current_url ):?>
+    <?php if ( "/winners/" == $current_uri ):?>
         <div class="clients-content">
             <?php
                 if (have_posts() ):
@@ -94,7 +94,7 @@
             ?>
         </div>
     <?php endif; ?>
-    <?php if ( "//localhost/wordpress/failure-confirmation-page/" == $current_url ):?>
+    <?php if ( "/failure-confirmation-page/" == $current_uri ):?>
         <div class="clients-content">
             <?php
                 if (have_posts() ):
@@ -107,7 +107,7 @@
             ?>
         </div>
     <?php endif; ?>
-    <?php if ( "//localhost/wordpress/success-confirmation-page/" == $current_url ):?>
+    <?php if ( "/success-confirmation-page/" == $current_uri ):?>
         <div class="clients-content">
             <?php
                 if (have_posts() ):
@@ -120,13 +120,52 @@
             ?>
         </div>
     <?php endif; ?>
-    <?php if ( "//localhost/wordpress/test-winners/" == $current_url ):?>
+    <?php if ( "/test-winners/" == $current_uri ):?>
         <div class="clients-content">
             <?php
                 if (have_posts() ):
                     while( have_posts() ): the_post();
 
                         get_template_part( 'template-parts/test-winners', get_post_format() );
+
+                    endwhile;
+                endif;
+            ?>
+        </div>
+    <?php endif; ?>
+    <?php if ( "/won/" == $current_uri ):?>
+        <div class="clients-content">
+            <?php
+                if (have_posts() ):
+                    while( have_posts() ): the_post();
+
+                        get_template_part( 'template-parts/won', get_post_format() );
+
+                    endwhile;
+                endif;
+            ?>
+        </div>
+    <?php endif; ?>
+    <?php if ( "/not-registered/" == $current_uri ):?>
+        <div class="clients-content">
+            <?php
+                if (have_posts() ):
+                    while( have_posts() ): the_post();
+
+                        get_template_part( 'template-parts/not-registered', get_post_format() );
+
+                    endwhile;
+                endif;
+            ?>
+        </div>
+    <?php endif; ?>
+    <?php if ( "/did-not-won/" == $current_uri ):?>
+        <div class="clients-content">
+            <?php
+                if (have_posts() ):
+                    while( have_posts() ): the_post();
+
+                        get_template_part( 'template-parts/did-not-won', get_post_format() );
 
                     endwhile;
                 endif;
