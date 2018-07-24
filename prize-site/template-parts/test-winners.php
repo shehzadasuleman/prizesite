@@ -50,11 +50,11 @@
 									
                                 </div>
 								
-						    	<div class="col-xl-6 offset-xl-1 col-lg-8 offset-lg-1 col-md-12 offset-md-1 col-sm-8 offset-sm-1 col-10 offset-1   input-content-mobile">                                
+						    	<div class="col-xl-6 offset-xl-1 col-lg-8 col-md-8 col-sm-8 col-10 offset-1   input-content-mobile">                                
 		
                                     <input class="form-control" type="text" id="check-phNumber" pattern="03[0-9]{2}(?!1234567)(?!1111111)(?!7654321)[0-9]{7}" required="required" placeholder="03XXXXXXXXXX">
 								</div>
-                                <div class="col-md-6  user-info-button">
+                                <div class="col-md-2 col-lg-2 col-md-2 col-sm-2  user-info-button">
                                     <button type="submit" class="btn btn-primary btn-md">Check</button><br/><br/>
                                 </div>
 							</div>
@@ -109,7 +109,7 @@
                                             <!--td><?php echo get_post_meta( get_the_ID(), '_winners_prizeclaimed_value_key', true); ?></td-->
                                         <?php } ?>
                                     </tr>
-                            <?php   $counter = $counter + 1;
+                            <?php
                             endwhile;
                             endif;
                             wp_reset_query();

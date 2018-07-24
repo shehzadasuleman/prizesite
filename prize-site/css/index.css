@@ -73,9 +73,10 @@
     text-decoration: none;
     color: white;
 }
+
 .terms-conditions-content {
-        padding-bottom: 5%;
-        color: #999999;
+    padding-bottom: 5%;
+    color: #999999;
 }
 
 .terms-conditions-content p {
@@ -99,6 +100,7 @@
 .terms-conditions-content li {
     margin-bottom: 1%;
 }
+
 .middle-content {
     margin: 0px;
     margin-top: 2%;
@@ -134,6 +136,7 @@
     text-align: left;
 }
 
+
 /*.middle-content .user-info-button {
     padding-top: 10px;
     padding-left: 25%;
@@ -167,11 +170,7 @@
     }
 }
 
-@media screen and (min-width: 992px) and (max-width: 1200px) {
-    .middle-content .user-info-button {
-        padding-left: 16.5%;
-    }
-}
+@media screen and (min-width: 992px) and (max-width: 1200px) {}
 
 .cover-ad-banner-parent {
     margin: 0%;
@@ -203,11 +202,18 @@
     margin-bottom: 1%;
 }
 
-@media screen and (min-width: 576px) {
+@media screen and (max-width: 575px) {
     .footer-text-color {
         position: fixed;
         bottom: 0;
         width: 100%;
+    }
+    .middle-content .user-info-button {
+        margin-left: 4%;
+        margin-top: 2%;
+    }
+    #check-phNumber {
+        margin-left: -1%;
     }
 }
 
@@ -278,9 +284,11 @@
     padding-right: 4%;
     color: black;
 }
+
 #danger-alert {
     display: none;
 }
+
 ::-webkit-input-placeholder {
     opacity: 0.5 !important;
     /* for older chrome versions. may no longer apply. */

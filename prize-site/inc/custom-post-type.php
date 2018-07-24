@@ -12,10 +12,11 @@
 $contact = get_option( 'ps_activate_contact' );
 if( @$contact == 1 ){
 	add_action( 'init', 'prizesite_contact_custom_post_type' );
-
 	add_filter( 'manage_prizesite-contact_posts_columns', 'prizesite_set_contact_columns' );
+	add_action( 'manage_prizesite-contact_posts_custom_column', 'prizesite_contact_custom_column', 10, 2 );
+	add_action( 'add_meta_boxes', 'prizesite_contact_add_meta_box' );
+	add_action( 'save_post', 'prizesite_save_contact_ip_data');
 }
-
 /* CONTACT CPT */
 function prizesite_contact_custom_post_type() {
 	$labels = array(
@@ -43,6 +44,7 @@ function prizesite_contact_custom_post_type() {
 function prizesite_set_contact_columns( $columns ){
 	$newColumns = array();
 	$newColumns['title'] = 'Phone Number';
+	$newColumns['ip'] = 'IP Address';
 	$newColumns['date'] = 'Date';
 	return $newColumns;
 }
@@ -51,13 +53,52 @@ function prizesite_contact_custom_column( $column, $post_id ){
 	
 	switch( $column ){
 			
-		case 'email' :
-			//email column
-			echo 'email address';
+		case 'ip' :
+			echo get_post_meta( $post_id, '_contact_ip_value_key', true);
 			break;
 	}
 	
 }
+
+/* Contact META BOXES */
+function prizesite_contact_add_meta_box() {
+	add_meta_box( 'contact_ip', 'IP Address', 'prizesite_contact_ip_callback', 'prizesite-contact' );
+}
+
+function prizesite_contact_ip_callback( $post ) {
+	wp_nonce_field( 'prizesite_save_contact_ip_data', 'prizesite_contact_ip_meta_box_nonce' );
+
+	$ip_value = get_post_meta( $post->ID, '_contact_ip_value_key', true );
+	
+	echo '<label for="prizesite_contact_ip_field">IP Address: </label>';
+	echo '<input type="text" id="prizesite_contact_ip_field" name="prizesite_contact_ip_field" value="' . esc_attr( $ip_value ) . '" size="25" />';
+}
+
+function prizesite_save_contact_ip_data( $post_id ) {
+	if( ! isset( $_POST['prizesite_contact_ip_meta_box_nonce'] )) {
+		return;
+	}
+
+	if( defined('DOING_AUTOSAVE') && DOING_AUTOSAVE ) {
+		return;
+	}
+
+	if( ! current_user_can( 'edit_post', $post_id )) {
+		return;
+	}
+
+	if( ! isset( $_POST['prizesite_contact_ip_field'])) {
+		return;
+	}
+
+	$my_data = sanitize_text_field( $_POST['prizesite_contact_ip_field'] );
+
+	update_post_meta( $post_id, '_contact_ip_value_key', $my_data );
+}
+
+/*
+=========================================================================================================
+*/
 
 add_action( 'init', 'prizesite_winners_custom_post_type' );
 add_filter( 'manage_prizesite-winners_posts_columns', 'prizesite_set_winners_columns' );
@@ -177,13 +218,17 @@ function bulk_save_winners_custom_fields( $post_id ) {
 	}
 }
 
+/*
+=========================================================================================================
+*/
+
 /* Prize Check CPT */
 
 add_action( 'init', 'prizesite_prizecheck_custom_post_type' );
 add_filter( 'manage_prizesite-prizecheck_posts_columns', 'prizesite_set_prizecheck_columns' );
 add_action( 'manage_prizesite-prizecheck_posts_custom_column', 'prizesite_prizecheck_custom_column', 10, 2 );
 add_action( 'add_meta_boxes', 'prizesite_prizecheck_add_meta_box' );
-add_action( 'save_post', 'prizesite_save_prizecheck_status_data');
+add_action( 'save_post', 'bulk_save_prizecheck_custom_fields', 10, 2);
 
 function prizesite_prizecheck_custom_post_type() {
 	$labels = array(
@@ -212,6 +257,7 @@ function prizesite_set_prizecheck_columns( $columns ){
 	$newColumns = array();
 	$newColumns['title'] = 'Phone Number';
 	$newColumns['status'] = 'Status';
+	$newColumns['ipaddress'] = 'IP Address';
 	$newColumns['date'] = 'Date';
 	return $newColumns;
 }
@@ -221,12 +267,16 @@ function prizesite_prizecheck_custom_column( $column, $post_id ){
 		case 'status' :
 			echo get_post_meta( $post_id, '_prizecheck_status_value_key', true);
 			break;
+		case 'ipaddress' :
+			echo get_post_meta( $post_id, '_prizecheck_ip_value_key', true);
+			break;
 	}
 }
 
 /* Prize Check META BOXES */
 function prizesite_prizecheck_add_meta_box() {
 	add_meta_box( 'prizecheck_status', 'Status', 'prizesite_prizecheck_status_callback', 'prizesite-prizecheck' );
+	add_meta_box( 'prizecheck_ip', 'IP Address', 'prizesite_prizecheck_ip_callback', 'prizesite-prizecheck' );
 }
 
 function prizesite_prizecheck_status_callback( $post ) {
@@ -238,16 +288,17 @@ function prizesite_prizecheck_status_callback( $post ) {
 	echo '<input type="text" id="prizesite_prizecheck_status_field" name="prizesite_prizecheck_status_field" value="' . esc_attr( $status_value ) . '" size="25" />';
 }
 
+function prizesite_prizecheck_ip_callback( $post ) {
+	wp_nonce_field( 'prizesite_save_prizecheck_ip_data', 'prizesite_prizecheck_ip_meta_box_nonce' );
+
+	$ip_value = get_post_meta( $post->ID, '_prizecheck_ip_value_key', true );
+	
+	echo '<label for="prizesite_prizecheck_ip_field">Prize Status: </label>';
+	echo '<input type="text" id="prizesite_prizecheck_ip_field" name="prizesite_prizecheck_ip_field" value="' . esc_attr( $ip_value ) . '" size="25" />';
+}
+
 function prizesite_save_prizecheck_status_data( $post_id ) {
 	if( ! isset( $_POST['prizesite_prizecheck_status_meta_box_nonce'] )) {
-		return;
-	}
-
-	if( defined('DOING_AUTOSAVE') && DOING_AUTOSAVE ) {
-		return;
-	}
-
-	if( ! current_user_can( 'edit_post', $post_id )) {
 		return;
 	}
 
@@ -258,4 +309,24 @@ function prizesite_save_prizecheck_status_data( $post_id ) {
 	$my_data = sanitize_text_field( $_POST['prizesite_prizecheck_status_field'] );
 
 	update_post_meta( $post_id, '_prizecheck_status_value_key', $my_data );
+}
+
+function bulk_save_prizecheck_custom_fields( $post_id ) {
+	if( defined('DOING_AUTOSAVE') && DOING_AUTOSAVE ) {
+		return;
+	}
+
+	if( ! current_user_can( 'edit_post', $post_id )) {
+		return;
+	}
+
+	if( isset( $_POST['prizesite_prizecheck_status_meta_box_nonce'] ) && isset( $_POST['prizesite_prizecheck_status_field']) ) {
+		$my_data = sanitize_text_field( $_POST['prizesite_prizecheck_status_field'] );
+		update_post_meta( $post_id, '_prizecheck_status_value_key', $my_data );
+	}
+
+	if( isset( $_POST['prizesite_prizecheck_ip_meta_box_nonce'] ) && isset( $_POST['prizesite_prizecheck_ip_field']) ) {
+		$my_data = sanitize_text_field( $_POST['prizesite_prizecheck_ip_field'] );
+		update_post_meta( $post_id, '_prizecheck_ip_value_key', $my_data );
+	}
 }
