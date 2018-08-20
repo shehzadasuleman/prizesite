@@ -70,7 +70,35 @@
 }
 
 .terms-conditions a {
+    text-decoration: none;
     color: white;
+}
+
+.terms-conditions-content {
+    padding-bottom: 5%;
+    color: #999999;
+}
+
+.terms-conditions-content p {
+    color: #999999;
+}
+
+.terms-conditions-content h1 {
+    font-size: 150%;
+    margin-top: 1%;
+    margin-bottom: 2%;
+    text-align: justify;
+    color: black;
+}
+
+.terms-conditions-content h2 {
+    font-size: 110%;
+    color: #999999;
+    text-align: justify;
+}
+
+.terms-conditions-content li {
+    margin-bottom: 1%;
 }
 
 .middle-content {
@@ -109,12 +137,10 @@
 }
 
 
-/*new changes*/
-
-.middle-content .user-info-button {
+/*.middle-content .user-info-button {
     padding-top: 10px;
     padding-left: 25%;
-}
+}*/
 
 .bottom-content {
     margin: 0px;
@@ -138,23 +164,13 @@
     height: 100%;
 }
 
-
-/* New Changes*/
-
-@media screen and (min-width: 992px) and (max-width: 1200px) {
-    .middle-content .user-info-button {
-        padding-left: 16.5%;
-    }
-}
-
 @media screen and (max-width: 992px) {
     .main-content .user-info-button {
         padding-left: 0%;
     }
-    .middle-content .user-info-button {
-        padding-left: 0%;
-    }
 }
+
+@media screen and (min-width: 992px) and (max-width: 1200px) {}
 
 .cover-ad-banner-parent {
     margin: 0%;
@@ -162,6 +178,10 @@
 
 .cover-ad-banner {
     padding: 0%;
+}
+
+.cover-ad-banner p {
+    color: #999999;
 }
 
 .cover-ad-banner h1 {
@@ -182,18 +202,24 @@
     margin-bottom: 1%;
 }
 
-@media screen and (min-width: 576px) {
+@media screen and (max-width: 575px) {
     .footer-text-color {
         position: fixed;
         bottom: 0;
         width: 100%;
     }
+    .middle-content .user-info-button {
+        margin-left: 4%;
+        margin-top: 2%;
+    }
+    #check-phNumber {
+        margin-left: -1%;
+    }
 }
 
-
-/*.winners-main-content {
+.winners-main-content {
     color: white;
-}*/
+}
 
 .winners-cover-ad-banner-parent {
     margin: 0%;
@@ -205,10 +231,6 @@
 
 .winners-cover-ad-banner p {
     text-align: center;
-}
-
-.winners-cover-ad-banner img {
-    width: 100%;
 }
 
 .winners-middle-content-parent {
@@ -231,6 +253,7 @@
 
 .winners-partitioned-actual-content .img-content p {
     text-align: center;
+    color: white;
 }
 
 .winners-partitioned-actual-content img {
@@ -253,6 +276,7 @@
 
 .recent-winners-content td {
     text-align: center;
+    color: #000000;
 }
 
 .recent-winners-content .description {

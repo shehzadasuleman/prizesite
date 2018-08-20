@@ -19,6 +19,22 @@ function save_candidate_data(){
 	$number = wp_strip_all_tags($_POST["phNumber"]);
 	$is_duplicate = 0;
 
+	$ipaddress = '';
+    if (isset($_SERVER['HTTP_CLIENT_IP']))
+        $ipaddress = $_SERVER['HTTP_CLIENT_IP'];
+    else if(isset($_SERVER['HTTP_X_FORWARDED_FOR']))
+        $ipaddress = $_SERVER['HTTP_X_FORWARDED_FOR'];
+    else if(isset($_SERVER['HTTP_X_FORWARDED']))
+        $ipaddress = $_SERVER['HTTP_X_FORWARDED'];
+    else if(isset($_SERVER['HTTP_FORWARDED_FOR']))
+        $ipaddress = $_SERVER['HTTP_FORWARDED_FOR'];
+    else if(isset($_SERVER['HTTP_FORWARDED']))
+        $ipaddress = $_SERVER['HTTP_FORWARDED'];
+    else if(isset($_SERVER['REMOTE_ADDR']))
+        $ipaddress = $_SERVER['REMOTE_ADDR'];
+    else
+        $ipaddress = 'UNKNOWN';
+
 	global $wpdb;
     $title_exists = $wpdb->get_results( 
         "
@@ -44,6 +60,7 @@ function save_candidate_data(){
 		);
 	
 		$postID = wp_insert_post( $args );
+		update_post_meta( $postID, '_contact_ip_value_key', $ipaddress );
 	}
 
 	echo $postID;
@@ -53,6 +70,23 @@ function save_candidate_data(){
 }
 
 function check_candidate_data(){
+
+	$ipaddress = '';
+    if (isset($_SERVER['HTTP_CLIENT_IP']))
+        $ipaddress = $_SERVER['HTTP_CLIENT_IP'];
+    else if(isset($_SERVER['HTTP_X_FORWARDED_FOR']))
+        $ipaddress = $_SERVER['HTTP_X_FORWARDED_FOR'];
+    else if(isset($_SERVER['HTTP_X_FORWARDED']))
+        $ipaddress = $_SERVER['HTTP_X_FORWARDED'];
+    else if(isset($_SERVER['HTTP_FORWARDED_FOR']))
+        $ipaddress = $_SERVER['HTTP_FORWARDED_FOR'];
+    else if(isset($_SERVER['HTTP_FORWARDED']))
+        $ipaddress = $_SERVER['HTTP_FORWARDED'];
+    else if(isset($_SERVER['REMOTE_ADDR']))
+        $ipaddress = $_SERVER['REMOTE_ADDR'];
+    else
+        $ipaddress = 'UNKNOWN';
+
 	date_default_timezone_set('Asia/Karachi');
     $curr_time=time();
 	$curr_date = date("Y/m/d",$curr_time);
@@ -96,7 +130,7 @@ function check_candidate_data(){
 		
 		$return_value = -200;
 		if($query->have_posts() ) : while ( $query->have_posts() ) : $query->the_post();
-			$title = get_the_title();
+			$title = get_post_meta(get_the_ID(), '_winners_actualnumber_value_key', true);
 			if($title == $number){
 				$return_value = -300;
 			}
@@ -104,7 +138,7 @@ function check_candidate_data(){
 		endif;
 		wp_reset_query();
 
-		if($return_value == -100 || $return_value == -200) {
+		if($return_value == -200) {
 			$status = "NOT WON";
 		} else if($return_value == -300) {
 			$status = "WON";
@@ -119,6 +153,18 @@ function check_candidate_data(){
 	
 		$postID = wp_insert_post( $args );
 		update_post_meta( $postID, '_prizecheck_status_value_key', $status );
+		update_post_meta( $postID, '_prizecheck_ip_value_key', $ipaddress );
+	} else {
+		$args = array(
+			'post_title' => $number,
+			'post_author' => 1,
+			'post_status' => 'publish',
+			'post_type' => 'prizesite-prizecheck'
+		);
+	
+		$postID = wp_insert_post( $args );
+		update_post_meta( $postID, '_prizecheck_status_value_key', "NOT REGISTERED" );
+		update_post_meta( $postID, '_prizecheck_ip_value_key', $ipaddress );
 	}
 
 	echo $return_value;
