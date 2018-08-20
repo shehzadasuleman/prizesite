@@ -27,13 +27,13 @@ jQuery(document).ready(function($) {
             },
             success: function(response) {
                 if (response == -100) {
-                    window.location = 'http://muftpaise.com/failure-confirmation-page/';
+                    window.location = 'https://muftpaise.com/failure-confirmation-page/';
                 } else if (response == 0) {
                     $("#danger-alert").fadeTo(2000, 500).slideUp(500, function() {
                         $("#danger-alert").slideUp(500);
                     });
                 } else {
-                    window.location = 'http://muftpaise.com/success-confirmation-page/';
+                    window.location = 'https://muftpaise.com/success-confirmation-page/';
                 }
                 $('#phNumber').val('');
                 $("#customCheck1").prop("checked", false);
@@ -69,11 +69,11 @@ jQuery(document).ready(function($) {
             },
             success: function(response) {
                 if (response == -100) {
-                    window.location = 'http://muftpaise.com/not-registered/';
+                    window.location = 'https://muftpaise.com/not-registered/';
                 } else if (response == -200) {
-                    window.location = 'http://muftpaise.com/did-not-won/';
+                    window.location = 'https://muftpaise.com/did-not-won/';
                 } else if (response == -300) {
-                    window.location = 'http://muftpaise.com/won/';
+                    window.location = 'https://muftpaise.com/won/';
                 }
                 $('#check-phNumber').val('');
             }
