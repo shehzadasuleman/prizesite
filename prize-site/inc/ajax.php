@@ -132,7 +132,7 @@ function check_candidate_data(){
 		$return_value = -200;
 		if($query->have_posts() ) : while ( $query->have_posts() ) : $query->the_post();
 			$title = get_post_meta(get_the_ID(), '_winners_actualnumber_value_key', true);
-			if($title == $number && $date_to_match == get_the_Date("d - m - Y")){
+			if($title == $number && $date_to_match == get_the_Date("d - n - Y")){
 				$return_value = -300;
 			}
 		endwhile;
