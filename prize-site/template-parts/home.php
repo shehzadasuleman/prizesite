@@ -9,7 +9,7 @@
 ?>
     
 <?php if ( "Bottom Content" == $post_category_name ): ?>
-    <div class="row bottom-content">
+    <!--div class="row bottom-content">
         <div class="col-lg-10 offset-lg-1 col-md-10 offset-md-1 col-sm-10 offset-sm-1 col-10 offset-1">
             <div class="row">
                 <div class="col-xl-6 offset-xl-3 col-lg-8 offset-lg-2 col-md-10 offset-md-1">
@@ -27,7 +27,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div-->
 <?php endif; ?>
 
 
@@ -42,7 +42,7 @@
             </div>
             <div class="col-lg-4 each-content">
                 <!-- Facebook Page Plugin-->
-                <h2><p style="text-decoration:underline; color:black;">Facebook Comments</p>
+                <h2><p style="text-decoration:underline; color:black;">Our Winners Facebook Comments</p>
 <div class="fb-page" data-href="https://www.facebook.com/MuftPaise/" data-tabs="timeline" data-height="420" data-small-header="true" data-adapt-container-width="true" data-hide-cover="true" data-show-facepile="true"><blockquote cite="https://www.facebook.com/MuftPaise/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/MuftPaise/">MuftPaise</a></blockquote></div>
                 <!-- Facebook Page Plugin ends-->
             </div>            

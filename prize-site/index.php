@@ -18,7 +18,7 @@
                                 <input class="form-control" type="text" id="phNumber" pattern="03[0-9]{2}(?!1234567)(?!1111111)(?!7654321)[0-9]{7}" required="required" placeholder="03XXXXXXXXXX">
                             </div>
                             <div class="col-xl-4 offset-xl-0 col-lg-4 offset-lg-0 col-md-4 offset-md-2 col-sm-4 offset-sm-2 col-4 offset-1 user-info-button">
-                                <button type="submit" class="btn btn-primary btn-md">Start Winning</button>
+                                <button type="submit" class="btn btn-primary btn-md">Enter Lucky Draw</button>
                             </div>
                         </div>
                         <div class="row">
