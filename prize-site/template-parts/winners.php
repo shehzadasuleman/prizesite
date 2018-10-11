@@ -8,13 +8,6 @@
     date_default_timezone_set('Asia/Karachi');
     $curr_time=time();
     $curr_date = date("F j, Y");
-    $threshold_time = strtotime($curr_date . " 13:00:00");
-    $not_retrieve_date = "";
-    if( $curr_time <= $threshold_time ) {
-        $not_retrieve_date = date('F j, Y', strtotime(' -1 day'));
-    } else {
-        $not_retrieve_date = date('F j, Y');
-    }
 ?>
 <div class="winners-main-content">
     <div class="row winners-cover-ad-banner-parent">
@@ -106,7 +99,7 @@
                                 if($query->have_posts() ) : while ( $query->have_posts() ) : $query->the_post(); ?>
                                     <tr>
                                     <?php $post_date = get_the_date(); ?>
-                                        <?php if (($post_date != $not_retrieve_date) && ($post_date != $curr_date)) { ?>
+                                        <?php if ($post_date != $curr_date) { ?>
                                             <td><?php echo $post_date; ?></td>
                                             <td><?php the_title(); 
                                             ?></td>

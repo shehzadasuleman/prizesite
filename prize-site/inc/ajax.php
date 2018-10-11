@@ -86,18 +86,8 @@ function check_candidate_data(){
         $ipaddress = $_SERVER['REMOTE_ADDR'];
     else
         $ipaddress = 'UNKNOWN';
-
-	date_default_timezone_set('Asia/Karachi');
-    $curr_time=time();
-	$curr_date = date("Y/m/d",$curr_time);
-	$threshold_time = strtotime($curr_date . " 13:00:00");
-
-	$wp_today = getdate();
 	
-	$retrieve_date = $wp_today;
-	if ($curr_time <= $threshold_time) {
-		$retrieve_date['mday'] = $wp_today['mday'] - 1;
-	}
+	$retrieve_date = getdate();
 
 	$number = wp_strip_all_tags($_POST["phNumber"]);
 	$status = "";
