@@ -8,7 +8,7 @@
     $instagram_url = get_template_directory_uri() . '/img/instagram.svg';
     $close_url = get_template_directory_uri() . '/img/close.svg';
 ?>
-<?php if ( "/wordpress/v1" == $current_uri || "/wordpress/v1/winners/" == $current_uri || "/wordpress/v1/whats-the-catch" == $current_uri ):?>
+<?php if ( "/wordpress/v1" == $current_uri || "/wordpress/v1/winners" == $current_uri || "/wordpress/v1/whats-the-catch" == $current_uri || "/wordpress/v1/contact-us" == $current_uri ):?>
 <div id="wrapper">
     <header id="header" style="background-image: url(<?php print $background_url ?>);">
         <div class="header-holder">
@@ -29,7 +29,7 @@
                         ) );
                     ?>
                     <div class="btn-holder">
-                        <a id="draw-btn-menu" href="#infoblock" class="btn menu-close">Enter daily lucky draw for free</a>
+                        <a id="draw-btn-menu" href="#" class="btn menu-close">Enter daily lucky draw for free</a>
                     </div>
                     <div class="social-block">
                         <strong class="title">Be our friend</strong>
@@ -166,6 +166,28 @@
                         while( have_posts() ): the_post();
 
                             get_template_part( 'template-parts/v1/whats-the-catch', get_post_format() );
+
+                        endwhile;
+                    endif;
+                ?>
+    <?php endif; ?>
+    <?php if ( "/wordpress/v1/contact-us" == $current_uri ):?>
+                <?php
+                    if (have_posts() ):
+                        while( have_posts() ): the_post();
+
+                            get_template_part( 'template-parts/v1/contactus', get_post_format() );
+
+                        endwhile;
+                    endif;
+                ?>
+    <?php endif; ?>
+    <?php if ( "/wordpress/v1/winners" == $current_uri ):?>
+                <?php
+                    if (have_posts() ):
+                        while( have_posts() ): the_post();
+
+                            get_template_part( 'template-parts/v1/winners', get_post_format() );
 
                         endwhile;
                     endif;

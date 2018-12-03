@@ -9,15 +9,15 @@
     $instagram_url = get_template_directory_uri() . '/img/instagram.svg';
 ?>
 <!--Footer-->
-<?php if ( "/wordpress/v1" == $current_uri || "/wordpress/v1/winners/" == $current_uri || "/wordpress/v1/whats-the-catch" == $current_uri ):?>
+<?php if ( "/wordpress/v1" == $current_uri || "/wordpress/v1/winners" == $current_uri || "/wordpress/v1/whats-the-catch" == $current_uri || "/wordpress/v1/contact-us" == $current_uri ):?>
 <footer id="footer">
 			<div class="container">
 				<div class="footer-wrapper">
 					<ul class="footer-links">
-						<li><a href="#">Blog</a></li>
-						<li><a href="#">My Account</a></li>
-						<li><a href="#">FAQ</a></li>
-						<li><a href="#">Contact us</a></li>
+						<li><a href="http://localhost/wordpress/v1">Home</a></li>
+						<li><a href="http://localhost/wordpress/v1/whats-the-catch">What's the catch</a></li>
+						<li><a href="http://localhost/wordpress/v1/winners">Winners</a></li>
+						<li><a href="http://localhost/wordpress/v1/contact-us">Contact us</a></li>
 					</ul>
 					<div class="social-block">
 						<strong class="title">Be our friend</strong>

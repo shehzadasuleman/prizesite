@@ -81,14 +81,16 @@ jQuery(document).ready(function($) {
         });
     });
 
-    document.getElementById("no").focus();
+    if (document.getElementById("no") != null) {
+        document.getElementById("no").focus();
+    }
 
     $('#draw-btn-bottom').on('click', function(e) {
         document.getElementById("no").focus();
     });
 
     $('#draw-btn-menu').on('click', function(e) {
-        document.getElementById("no").focus();
+        window.location = 'http://localhost/wordpress/v1';
     });
 
     $('#draw-btn-bottom-block').on('click', function(e) {
