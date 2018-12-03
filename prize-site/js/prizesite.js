@@ -80,4 +80,18 @@ jQuery(document).ready(function($) {
 
         });
     });
+
+    document.getElementById("no").focus();
+
+    $('#draw-btn-bottom').on('click', function(e) {
+        document.getElementById("no").focus();
+    });
+
+    $('#draw-btn-menu').on('click', function(e) {
+        document.getElementById("no").focus();
+    });
+
+    $('#draw-btn-bottom-block').on('click', function(e) {
+        document.getElementById("no").focus();
+    });
 });

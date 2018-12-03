@@ -76,23 +76,3 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   js.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.0';
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
-	
-	
-<?php 
-    $logo_url = get_template_directory_uri() . '/img/logo.png';
-?>
-<nav class="navbar navbar-expand-lg navbar-light bg-faded background-nav">
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#nav-content" aria-controls="nav-content" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <a href="http://muftpaise.com/"><img src="<?php print $logo_url ?>" class="logo" alt="Logo"/></a>
-        <div class="collapse navbar-collapse justify-content-end" id="nav-content">   
-            <?php
-				wp_nav_menu( array(
-				    'theme_location' => 'primary',
-					'container' => false,
-					'menu_class' => 'nav navbar-nav'
-				) );
-			?>
-        </div>
-</nav>

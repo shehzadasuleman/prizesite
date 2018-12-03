@@ -35,13 +35,7 @@
                         <form id="prizesiteWinnerCheckForm" action="#" method="post" data-url="<?php echo admin_url('admin-ajax.php'); ?>">
                             <div class="row">
                                 <div class="col-md-10 offset-1 input-content-mobile">                                
-								<?php
-                                    if ($curr_time <= $threshold_time) { ?>
-                                        <h2>Enter your Number below to see if you won in yesterday's draw!</h2><br/>
-                                <?php    } else {    ?>
-                                        <h2>Enter your Number below to see if you won in today's draw!</h2><br/>
-                                <?php } ?>		
-									
+								    <h2>Enter your Number below to see if you won in today's draw!</h2><br/>
                                 </div><br/>
 								
 						    	<div class="col-xl-6 offset-xl-1 col-lg-8 col-md-8 col-sm-8 col-10 offset-1   input-content-mobile">                                
