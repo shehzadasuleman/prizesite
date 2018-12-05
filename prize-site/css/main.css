@@ -1306,6 +1306,10 @@ a:focus {
     padding: 0 15px 40px;
 }
 
+.current-menu-item a {
+    color: #508DC6;
+}
+
 .main-navigation li a {
     color: #131c45;
     font-size: 24px;
@@ -2039,5 +2043,50 @@ a:focus {
 @media (max-width: 479px) {
     .is-countdown .countdown-section:nth-child(2):before {
         right: -2px !important;
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    .check-prize-btn {
+        height: 59px;
+    }
+}
+
+@media screen and (min-width: 992px) and (max-width: 1080px) {
+    .lucky-form .input-wrap .label-text {
+        top: 9px;
+    }
+}
+
+@media screen and (min-width: 576px) and (max-width: 726px) {
+    .lucky-form .input-wrap .label-text {
+        top: 9px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .lucky-form .input-wrap .label-text {
+        top: 9px;
+    }
+}
+
+@media screen and (max-width: 340px) {
+    .check-prize-btn {
+        padding: 8px;
+    }
+}
+
+@media screen and (min-width: 1024px) and (max-width: 1062px) {
+    .nav-holder .nav-area ul li {
+        padding-left: 35px;
+    }
+}
+
+@media screen and (min-width: 768px) and (max-width: 838px) {
+    .nav-holder .nav-area ul li {
+        padding-left: 3%;
+    }
+    .nav-holder .nav-area ul li a {
+        font-size: 22px;
     }
 }

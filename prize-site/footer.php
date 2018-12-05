@@ -9,7 +9,7 @@
     $instagram_url = get_template_directory_uri() . '/img/instagram.svg';
 ?>
 <!--Footer-->
-<?php if ( "/wordpress/v1" == $current_uri || "/wordpress/v1/winners" == $current_uri || "/wordpress/v1/whats-the-catch" == $current_uri || "/wordpress/v1/contact-us" == $current_uri ):?>
+<?php if ( "/wordpress/v1" == $current_uri || "/wordpress/v1/winners" == $current_uri || "/wordpress/v1/whats-the-catch" == $current_uri || "/wordpress/v1/contact-us" == $current_uri || "/wordpress/v1/failure-confirmation-page" == $current_uri || "/wordpress/v1/success-confirmation-page" == $current_uri || "/wordpress/v1/not-registered" == $current_uri || "/wordpress/v1/did-not-won" == $current_uri || "/wordpress/v1/won" == $current_uri):?>
 <footer id="footer">
 			<div class="container">
 				<div class="footer-wrapper">

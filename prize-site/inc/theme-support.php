@@ -26,10 +26,14 @@ function prizesite_register_term_menu() {
 function prizesite_v1_primary_nav_menu() {
 	register_nav_menu( 'v1-primary-menu', 'Prizesite v1 Header Navigation Menu' );
 }
+function prizesite_v1_register_term_menu() {
+	register_nav_menu( 'v1-secondary-menu', 'Prizesite v1 Terms Navigation Menu' );
+}
 
 add_action( 'after_setup_theme', 'prizesite_register_nav_menu' );
 add_action( 'after_setup_theme', 'prizesite_register_term_menu' );
 add_action( 'after_setup_theme', 'prizesite_v1_primary_nav_menu' );
+add_action( 'after_setup_theme', 'prizesite_v1_register_term_menu' );
 
 /*
 	==================================

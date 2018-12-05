@@ -170,8 +170,6 @@
     }
 }
 
-@media screen and (min-width: 992px) and (max-width: 1200px) {}
-
 .cover-ad-banner-parent {
     margin: 0%;
 }
@@ -280,8 +278,8 @@
 }
 
 .recent-winners-content .description {
-    padding-left: 4%;
-    padding-right: 4%;
+    padding-left: 0px;
+    padding-right: 0px;
     color: black;
 }
 

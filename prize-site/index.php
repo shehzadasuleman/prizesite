@@ -8,7 +8,7 @@
     $instagram_url = get_template_directory_uri() . '/img/instagram.svg';
     $close_url = get_template_directory_uri() . '/img/close.svg';
 ?>
-<?php if ( "/wordpress/v1" == $current_uri || "/wordpress/v1/winners" == $current_uri || "/wordpress/v1/whats-the-catch" == $current_uri || "/wordpress/v1/contact-us" == $current_uri ):?>
+<?php if ( "/wordpress/v1" == $current_uri || "/wordpress/v1/winners" == $current_uri || "/wordpress/v1/whats-the-catch" == $current_uri || "/wordpress/v1/contact-us" == $current_uri || "/wordpress/v1/failure-confirmation-page" == $current_uri || "/wordpress/v1/success-confirmation-page" == $current_uri || "/wordpress/v1/not-registered" == $current_uri || "/wordpress/v1/did-not-won" == $current_uri || "/wordpress/v1/won" == $current_uri ):?>
 <div id="wrapper">
     <header id="header" style="background-image: url(<?php print $background_url ?>);">
         <div class="header-holder">
@@ -49,13 +49,21 @@
 					<div class="row">
 						<div class="col">
 							<h1>Join Pakistan's<br> only <span class="slogan">Free</span><br> daily cash<br> draw site</h1>
-							<div class="text-wrapper">
-								<strong class="text">Today we're giving away</strong>
-								<a href="#" class="btn green">RS.500</a>
-							</div>
-							<div class="text-holder">
-								<p>We believe everyone should have the chance to win something for free. On Muft Paise, all you need is a mobile number and a minute a day to check if you have won.</p>
-							</div>
+                            
+                            <?php
+                            $category_id = get_cat_ID('V1 Home Descriprtion');
+                            query_posts("cat=$category_id&posts_per_page=1");
+                            if (have_posts()) {
+                                the_post(); ?>
+                                <div class="text-wrapper">
+                                    <strong class="text"><?php the_title(); ?></strong>
+                                    <?php $excerpt_content = get_the_excerpt(); ?>
+                                    <a href="#" class="btn green"><?php echo $excerpt_content; ?></a>
+                                </div>
+                                <div class="text-holder">
+                                    <p><?php the_content(); ?></p>
+                                </div>
+                            <?php } wp_reset_query(); ?>
 						</div>
 						<div class="col">
 							<div class="time-block">
@@ -67,27 +75,38 @@
 									<a id="draw-btn-bottom-block" href="#infoblock" class="btn">Enter daily lucky draw for free</a>
 								</div>
 							</div>
-							<form class="lucky-form">
+							<form id="prizesite-lucky-form" class="lucky-form" action="" method="post" data-url="<?php echo admin_url('admin-ajax.php'); ?>">
 								<div class="form-group">
 									<div class="input-wrap">
 										<label for="no" class="label-text">Your mobile number (ОЗххххххххх)</label>
-										<input type="text" id="no" class="form-control" placeholder="">
-										<span class="label">Don't worry, we'll never pass this on.</span>
-										<span class="error-message">Please enter an email address</span>
+                                        <input type="text" id="no" class="form-control" placeholder="" required>
+                                        <span class="label">Don't worry, we'll never pass this on.</span>
+                                        <span class="error-message" id="error-msg">Please enter a phone number</span>
 									</div>
 								</div>
 								<div class="form-group">
 									<div class="input-wrap">
-										<input id="agree" type="checkbox">
+										<input id="agree" type="checkbox" required>
 										<label for="agree" class="check-label">
-											I agree to the <strong>Terms &amp; Conditions.</strong>
+                                            <?php
+                                                wp_nav_menu( array(
+                                                    'theme_location' => 'v1-secondary-menu',
+                                                    'container' => false,
+                                                    'items_wrap' => '%3$s'
+                                                ) );
+                                            ?>
 										</label>
 									</div>
 								</div>
 								<button type="sumbit" class="btn">Enter daily lucky draw for free</button>
-							</form>
+                            </form>
+                            <div class="alert alert-danger hidden" id="v1-danger-alert">
+                                <button type="button" class="close" data-dismiss="alert">x</button>
+                                <strong>Failure! </strong>
+                                Unable to save your Information, Please try again later.
+                            </div>
 						</div>
-					</div>
+                    </div>
 				</div>
 			</section>
 			<section class="messages-block">
@@ -161,15 +180,15 @@
 			</aside>
     <?php endif; ?>
     <?php if ( "/wordpress/v1/whats-the-catch" == $current_uri ):?>
-                <?php
-                    if (have_posts() ):
-                        while( have_posts() ): the_post();
+            <?php
+                if (have_posts() ):
+                    while( have_posts() ): the_post();
 
-                            get_template_part( 'template-parts/v1/whats-the-catch', get_post_format() );
+                        get_template_part( 'template-parts/v1/whats-the-catch', get_post_format() );
 
-                        endwhile;
-                    endif;
-                ?>
+                    endwhile;
+                endif;
+            ?>
     <?php endif; ?>
     <?php if ( "/wordpress/v1/contact-us" == $current_uri ):?>
                 <?php
@@ -192,6 +211,71 @@
                         endwhile;
                     endif;
                 ?>
+    <?php endif; ?>
+    <?php if ( "/wordpress/v1/failure-confirmation-page" == $current_uri ):?>
+        <div class="clients-content">
+            <?php
+                if (have_posts() ):
+                    while( have_posts() ): the_post();
+
+                        get_template_part( 'template-parts/v1/failure-confirmation', get_post_format() );
+
+                    endwhile;
+                endif;
+            ?>
+        </div>
+    <?php endif; ?>
+    <?php if ( "/wordpress/v1/success-confirmation-page" == $current_uri ):?>
+        <div class="clients-content">
+            <?php
+                if (have_posts() ):
+                    while( have_posts() ): the_post();
+
+                        get_template_part( 'template-parts/v1/success-confirmation', get_post_format() );
+
+                    endwhile;
+                endif;
+            ?>
+        </div>
+    <?php endif; ?>
+    <?php if ( "/wordpress/v1/not-registered" == $current_uri ):?>
+        <div class="clients-content">
+            <?php
+                if (have_posts() ):
+                    while( have_posts() ): the_post();
+
+                        get_template_part( 'template-parts/v1/not-registered', get_post_format() );
+
+                    endwhile;
+                endif;
+            ?>
+        </div>
+    <?php endif; ?>
+    <?php if ( "/wordpress/v1/did-not-won" == $current_uri ):?>
+        <div class="clients-content">
+            <?php
+                if (have_posts() ):
+                    while( have_posts() ): the_post();
+
+                        get_template_part( 'template-parts/v1/did-not-won', get_post_format() );
+
+                    endwhile;
+                endif;
+            ?>
+        </div>
+    <?php endif; ?>
+    <?php if ( "/wordpress/v1/won" == $current_uri ):?>
+        <div class="clients-content">
+            <?php
+                if (have_posts() ):
+                    while( have_posts() ): the_post();
+
+                        get_template_part( 'template-parts/v1/won', get_post_format() );
+
+                    endwhile;
+                endif;
+            ?>
+        </div>
     <?php endif; ?>
     </main>
 </div>

@@ -1,0 +1,17 @@
+.check-label a {
+    text-decoration: none;
+    color: black;
+}
+
+.check-label li {
+    list-style: none;
+}
+
+#v1-danger-alert {
+    margin-top: 2%;
+    display: none;
+}
+
+.input-content-mobile h2 {
+    justify-content: center;
+}

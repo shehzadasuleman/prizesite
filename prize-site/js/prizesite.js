@@ -96,4 +96,87 @@ jQuery(document).ready(function($) {
     $('#draw-btn-bottom-block').on('click', function(e) {
         document.getElementById("no").focus();
     });
+
+    $('#prizesite-lucky-form').on('submit', function(e) {
+        e.preventDefault();
+        var form = $(this),
+            phNumber = form.find('#no').val(),
+            ajaxurl = form.data('url');
+
+        if (phNumber === '' && !$('#agree').is(":checked")) {
+            $("#error-msg").css({ "display": "inline" });
+            return;
+        }
+
+        $.ajax({
+
+            url: ajaxurl,
+            type: 'post',
+            data: {
+
+                phNumber: phNumber,
+                action: 'prizesite_save_new_candidate_data'
+
+            },
+            error: function(response) {
+                console.log(response);
+            },
+            success: function(response) {
+                if (response == -100) {
+                    window.location = 'http://localhost/wordpress/v1/failure-confirmation-page';
+                } else if (response == 0) {
+                    $("#v1-danger-alert").fadeTo(2000, 500).slideUp(500, function() {
+                        $("#v1-danger-alert").slideUp(500);
+                    });
+                } else {
+                    window.location = 'http://localhost/wordpress/v1/success-confirmation-page';
+                }
+                $('#phNumber').val('');
+                $("#agree").prop("checked", false);
+            }
+
+        });
+    });
+
+    $('#prizesite-lucky-form-check').on('submit', function(e) {
+        e.preventDefault();
+        var form = $(this),
+            phNumber = form.find('#check-no').val(),
+            ajaxurl = form.data('url');
+
+        if (phNumber === '') {
+            alert('Required inputs are empty');
+            return;
+        }
+
+        $.ajax({
+
+            url: ajaxurl,
+            type: 'post',
+            data: {
+
+                phNumber: phNumber,
+                action: 'prizesite_check_candidate_data'
+
+            },
+            error: function(response) {
+                console.log(response);
+            },
+            success: function(response) {
+                if (response == -100) {
+                    window.location = 'http://localhost/wordpress/v1/not-registered';
+                } else if (response == -200) {
+                    window.location = 'http://localhost/wordpress/v1/did-not-won';
+                } else if (response == -300) {
+                    window.location = 'http://localhost/wordpress/v1/won';
+                }
+                $('#check-phNumber').val('');
+            }
+
+        });
+    });
+
+    if (document.getElementById("check-no") != null) {
+        document.getElementById("check-no").focus();
+    }
 });

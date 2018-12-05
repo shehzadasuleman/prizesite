@@ -32,18 +32,19 @@
                 <div class="col-xl-6 col-lg-6 col-md-8 col-sm-8 recent-winners-content">
                     <!-- New Changes -->
 
-                        <form id="prizesiteWinnerCheckForm" action="#" method="post" data-url="<?php echo admin_url('admin-ajax.php'); ?>">
+                        <form id="prizesite-lucky-form-check" class="lucky-form" action="" method="post" data-url="<?php echo admin_url('admin-ajax.php'); ?>">
                             <div class="row">
-                                <div class="col-md-10 offset-1 input-content-mobile">                                
+                                <div class="input-content-mobile">                                
 								    <h2>Enter your Number below to see if you won in today's draw!</h2><br/>
                                 </div><br/>
-								
-						    	<div class="col-xl-6 offset-xl-1 col-lg-8 col-md-8 col-sm-8 col-10 offset-1   input-content-mobile">                                
-		
-                                    <input class="form-control" type="text" id="check-phNumber" pattern="03[0-9]{2}(?!1234567)(?!1111111)(?!7654321)[0-9]{7}" required="required" placeholder="03XXXXXXXXXX">
+								<div class="form-group col-xl-7 offset-xl-1 col-lg-8 col-md-8 col-sm-8 col-8 input-content-mobile">
+									<div class="input-wrap">
+										<label for="check-no" class="label-text">Your mobile number (ОЗххххххххх)</label>
+										<input type="text" id="check-no" class="form-control" placeholder="" required>
+									</div>
 								</div>
-                                <div class="col-md-2 col-lg-2 col-md-2 col-sm-2  user-info-button">
-                                    <button type="submit" class="btn btn-primary btn-md">Check</button><br/><br/>
+						    	<div class="col-xl-3 col-lg-4 col-md-4 col-sm-4 col-4">
+                                    <button type="submit" class="check-prize-btn btn btn-primary">Check</button><br/><br/>
                                 </div>
 							</div>
 								
