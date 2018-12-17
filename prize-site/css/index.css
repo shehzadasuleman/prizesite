@@ -305,3 +305,17 @@
 :-ms-input-placeholder {
     opacity: 0.5 !important;
 }
+
+.Queries-Box img {
+    width: 30px;
+    height: 30px;
+}
+
+.Queries-Box {
+    margin-bottom: 2%; 
+}
+
+.Queries-Box p {
+    margin-left: 8%;
+    margin-top: 8%;
+}

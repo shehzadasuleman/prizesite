@@ -2058,7 +2058,7 @@ a:focus {
     }
 }
 
-@media screen and (min-width: 576px) and (max-width: 726px) {
+@media screen and (min-width: 485px) and (max-width: 726px) {
     .lucky-form .input-wrap .label-text {
         top: 9px;
     }
@@ -2076,13 +2076,13 @@ a:focus {
     }
 }
 
-@media screen and (min-width: 1024px) and (max-width: 1062px) {
+@media screen and (min-width: 1024px) and (max-width: 1124px) {
     .nav-holder .nav-area ul li {
         padding-left: 35px;
     }
 }
 
-@media screen and (min-width: 768px) and (max-width: 838px) {
+@media screen and (min-width: 768px) and (max-width: 900px) {
     .nav-holder .nav-area ul li {
         padding-left: 3%;
     }

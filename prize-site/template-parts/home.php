@@ -6,30 +6,9 @@
 <?php 
     $post_category= get_the_category( get_the_ID() );
     $post_category_name = $post_category[0]->cat_name;
+    echo $post_category_name;
+    echo "\n";
 ?>
-    
-<?php if ( "Bottom Content" == $post_category_name ): ?>
-    <!--div class="row bottom-content">
-        <div class="col-lg-10 offset-lg-1 col-md-10 offset-md-1 col-sm-10 offset-sm-1 col-10 offset-1">
-            <div class="row">
-                <div class="col-xl-6 offset-xl-3 col-lg-8 offset-lg-2 col-md-10 offset-md-1">
-                    <h1><?php the_title(); ?></h1>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-10 offset-lg-1 col-md-10 offset-md-1 col-sm-10 offset-sm-1 col-10 offset-1">
-            <div class="row">
-                <div class="col-lg-12 offset-lg-0 col-md-12 offset-md-0">
-                    <h3><?php the_content() ?></h3>
-                </div>
-                <div class="col-xl-8 offset-xl-2 col-lg-8 offset-lg-2 col-md-8 offset-md-2">
-                    <!--img src="<?php echo wp_get_attachment_url(get_post_thumbnail_id( get_the_ID() ) ); ?>" alt="img-content-cover" class="img-thumbnail" /-->
-                </div>
-            </div>
-        </div>
-    </div-->
-<?php endif; ?>
-
 
 <?php if ( "Home Description" == $post_category_name ): ?>
     <div class="row top-content">
