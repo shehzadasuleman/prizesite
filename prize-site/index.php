@@ -8,7 +8,7 @@
     $instagram_url = get_template_directory_uri() . '/img/instagram.svg';
     $close_url = get_template_directory_uri() . '/img/close.svg';
 ?>
-<?php if ( "/wordpress/v1" == $current_uri || "/wordpress/v1/winners" == $current_uri || "/wordpress/v1/whats-the-catch" == $current_uri || "/wordpress/v1/contact-us" == $current_uri || "/wordpress/v1/failure-confirmation-page" == $current_uri || "/wordpress/v1/success-confirmation-page" == $current_uri || "/wordpress/v1/not-registered" == $current_uri || "/wordpress/v1/did-not-won" == $current_uri || "/wordpress/v1/won" == $current_uri ):?>
+<?php if ( "/wordpress/v1" == $current_uri || "/wordpress/v1/winners" == $current_uri || "/wordpress/v1/whats-the-catch" == $current_uri || "/wordpress/v1/contact-us" == $current_uri || "/wordpress/v1/failure-confirmation-page" == $current_uri || "/wordpress/v1/success-confirmation-page" == $current_uri || "/wordpress/v1/not-registered" == $current_uri || "/wordpress/v1/did-not-won" == $current_uri || "/wordpress/v1/won" == $current_uri || "/wordpress/v1/terms-and-conditions" == $current_uri ):?>
 <div id="wrapper">
     <header id="header" style="background-image: url(<?php print $background_url ?>);">
         <div class="header-holder">
@@ -271,6 +271,19 @@
                     while( have_posts() ): the_post();
 
                         get_template_part( 'template-parts/v1/won', get_post_format() );
+
+                    endwhile;
+                endif;
+            ?>
+        </div>
+    <?php endif; ?>
+    <?php if ( "/wordpress/v1/terms-and-conditions" == $current_uri ):?>
+        <div class="clients-content">
+            <?php
+                if (have_posts() ):
+                    while( have_posts() ): the_post();
+
+                        get_template_part( 'template-parts/v1/termsconditions', get_post_format() );
 
                     endwhile;
                 endif;
