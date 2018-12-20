@@ -754,6 +754,7 @@ body {
 
 .btn:hover {
     background-color: #39801a;
+    color: white;
 }
 
 .btn.green {

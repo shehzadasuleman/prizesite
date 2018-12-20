@@ -37,10 +37,10 @@
                                 <div class="input-content-mobile">                                
 								    <h2>Enter your Number below to see if you won in today's draw!</h2><br/>
                                 </div><br/>
-								<div class="form-group col-xl-7 offset-xl-1 col-lg-8 col-md-8 col-sm-8 col-8 input-content-mobile">
+								<div class="form-group col-xl-8 col-lg-8 col-md-8 col-sm-8 col-8 input-content-mobile">
 									<div class="input-wrap">
 										<label for="check-no" class="label-text">Your mobile number (ОЗххххххххх)</label>
-										<input type="text" id="check-no" class="form-control" placeholder="" required>
+										<input type="text" id="check-no" class="form-control" placeholder="" required pattern="03[0-9]{2}(?!1234567)(?!1111111)(?!7654321)[0-9]{7}">
 									</div>
 								</div>
 						    	<div class="col-xl-3 col-lg-4 col-md-4 col-sm-4 col-4">

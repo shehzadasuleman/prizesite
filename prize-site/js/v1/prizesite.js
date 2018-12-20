@@ -10,9 +10,9 @@ jQuery(document).ready(function($) {
         var newWindowWidth = $(window).width();
         var newWindowHeight = $(window).height();
         if (newWindowHeight < 700) {
-            $("html, body").animate({ 
+            /*$("html, body").animate({ 
                 scrollTop: $('.input-wrap').offset().top 
-            }, 1000);
+            }, 1000);*/
         }
     }
 

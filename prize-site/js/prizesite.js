@@ -99,12 +99,31 @@ jQuery(document).ready(function($) {
 
     $('#prizesite-lucky-form').on('submit', function(e) {
         e.preventDefault();
+
+        $("#error-msg").css({ "display": "none" });
+        $("#error-chk-box-msg").css({ "display": "none" });
         var form = $(this),
             phNumber = form.find('#no').val(),
             ajaxurl = form.data('url');
 
-        if (phNumber === '' && !$('#agree').is(":checked")) {
-            $("#error-msg").css({ "display": "inline" });
+        if (phNumber === '') {
+            $("#no").css({ "border-color": "#da6666" });
+            $("#error-msg").css({ "color": "#da6666", "background-color": "rgba(218, 102, 102, .3)",
+            "border-radius": "5px",
+            "display": "block",
+            "margin": "10px 0 0",
+            "padding": "7px 15px" });
+            $(".label").css({ "display": "none" });
+            return;
+        }
+
+        if ($('#agree').is(":not(:checked)")) {
+            $("#error-chk-box-msg").css({ "color": "#da6666", "background-color": "rgba(218, 102, 102, .3)",
+            "border-radius": "5px",
+            "display": "block",
+            "margin-top": "-15px",
+            "padding": "7px 15px" });
+            $(".label").css({ "display": "none" });
             return;
         }
 
@@ -166,7 +185,7 @@ jQuery(document).ready(function($) {
                 if (response == -100) {
                     window.location = 'http://localhost/wordpress/v1/not-registered';
                 } else if (response == -200) {
-                    window.location = 'http://localhost/wordpress/v1/did-not-won';
+                    window.location = 'http://localhost/wordpress/v1/try-tomorrow';
                 } else if (response == -300) {
                     window.location = 'http://localhost/wordpress/v1/won';
                 }

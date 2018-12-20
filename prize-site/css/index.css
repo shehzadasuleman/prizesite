@@ -38,7 +38,7 @@
 }
 
 .input-content-mobile {
-    padding: 0%;
+    padding-left: 2%;
 }
 
 .user-info-chkbox {
@@ -259,7 +259,9 @@
 }
 
 .recent-winners-content {
-    padding: 1%;
+    padding-left: 3%;
+    padding-right: 3%;
+    padding-top: 2%;
 }
 
 .recent-winners-content h1 {
@@ -318,4 +320,8 @@
 .Queries-Box p {
     margin-left: 8%;
     margin-top: 8%;
+}
+
+.lucky-form.prizesite-has-error .check-label:before {
+    border-color: #da6666;
 }

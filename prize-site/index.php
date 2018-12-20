@@ -8,7 +8,7 @@
     $instagram_url = get_template_directory_uri() . '/img/instagram.svg';
     $close_url = get_template_directory_uri() . '/img/close.svg';
 ?>
-<?php if ( "/wordpress/v1" == $current_uri || "/wordpress/v1/winners" == $current_uri || "/wordpress/v1/whats-the-catch" == $current_uri || "/wordpress/v1/contact-us" == $current_uri || "/wordpress/v1/failure-confirmation-page" == $current_uri || "/wordpress/v1/success-confirmation-page" == $current_uri || "/wordpress/v1/not-registered" == $current_uri || "/wordpress/v1/did-not-won" == $current_uri || "/wordpress/v1/won" == $current_uri || "/wordpress/v1/terms-and-conditions" == $current_uri ):?>
+<?php if ( "/wordpress/v1" == $current_uri || "/wordpress/v1/winners" == $current_uri || "/wordpress/v1/whats-the-catch" == $current_uri || "/wordpress/v1/contact-us" == $current_uri || "/wordpress/v1/failure-confirmation-page" == $current_uri || "/wordpress/v1/success-confirmation-page" == $current_uri || "/wordpress/v1/not-registered" == $current_uri || "/wordpress/v1/try-tomorrow" == $current_uri || "/wordpress/v1/won" == $current_uri || "/wordpress/v1/terms-and-conditions" == $current_uri || "/wordpress/v1/privacy-policy" == $current_uri || "/wordpress/v1/cookies-policy" == $current_uri):?>
 <div id="wrapper">
     <header id="header" style="background-image: url(<?php print $background_url ?>);">
         <div class="header-holder">
@@ -79,14 +79,14 @@
 								<div class="form-group">
 									<div class="input-wrap">
 										<label for="no" class="label-text">Your mobile number (ОЗххххххххх)</label>
-                                        <input type="text" id="no" class="form-control" placeholder="" required>
+                                        <input type="text" id="no" class="form-control" pattern="03[0-9]{2}(?!1234567)(?!1111111)(?!7654321)[0-9]{7}" >
                                         <span class="label">Don't worry, we'll never pass this on.</span>
                                         <span class="error-message" id="error-msg">Please enter a phone number</span>
 									</div>
 								</div>
-								<div class="form-group">
+								<div class="form-group" id="check-box-div">
 									<div class="input-wrap">
-										<input id="agree" type="checkbox" required>
+										<input id="agree" type="checkbox">
 										<label for="agree" class="check-label">
                                             <?php
                                                 wp_nav_menu( array(
@@ -95,8 +95,9 @@
                                                     'items_wrap' => '%3$s'
                                                 ) );
                                             ?>
-										</label>
-									</div>
+                                        </label>
+                                        <span class="error-message" id="error-chk-box-msg">Please agree to our Terms & Conditions</span>
+                                    </div>
 								</div>
 								<button type="sumbit" class="btn">Enter daily lucky draw for free</button>
                             </form>
@@ -251,7 +252,7 @@
             ?>
         </div>
     <?php endif; ?>
-    <?php if ( "/wordpress/v1/did-not-won" == $current_uri ):?>
+    <?php if ( "/wordpress/v1/try-tomorrow" == $current_uri ):?>
         <div class="clients-content">
             <?php
                 if (have_posts() ):
@@ -284,6 +285,32 @@
                     while( have_posts() ): the_post();
 
                         get_template_part( 'template-parts/v1/termsconditions', get_post_format() );
+
+                    endwhile;
+                endif;
+            ?>
+        </div>
+    <?php endif; ?>
+    <?php if ( "/wordpress/v1/cookies-policy" == $current_uri ):?>
+        <div class="clients-content">
+            <?php
+                if (have_posts() ):
+                    while( have_posts() ): the_post();
+
+                        get_template_part( 'template-parts/v1/cookies-policy', get_post_format() );
+
+                    endwhile;
+                endif;
+            ?>
+        </div>
+    <?php endif; ?>
+    <?php if ( "/wordpress/v1/privacy-policy" == $current_uri ):?>
+        <div class="clients-content">
+            <?php
+                if (have_posts() ):
+                    while( have_posts() ): the_post();
+
+                        get_template_part( 'template-parts/v1/privacy-policy', get_post_format() );
 
                     endwhile;
                 endif;

@@ -9,7 +9,7 @@
     $instagram_url = get_template_directory_uri() . '/img/instagram.svg';
 ?>
 <!--Footer-->
-<?php if ( "/wordpress/v1" == $current_uri || "/wordpress/v1/winners" == $current_uri || "/wordpress/v1/whats-the-catch" == $current_uri || "/wordpress/v1/contact-us" == $current_uri || "/wordpress/v1/failure-confirmation-page" == $current_uri || "/wordpress/v1/success-confirmation-page" == $current_uri || "/wordpress/v1/not-registered" == $current_uri || "/wordpress/v1/did-not-won" == $current_uri || "/wordpress/v1/won" == $current_uri || "/wordpress/v1/terms-and-conditions" == $current_uri):?>
+<?php if ( "/wordpress/v1" == $current_uri || "/wordpress/v1/winners" == $current_uri || "/wordpress/v1/whats-the-catch" == $current_uri || "/wordpress/v1/contact-us" == $current_uri || "/wordpress/v1/failure-confirmation-page" == $current_uri || "/wordpress/v1/success-confirmation-page" == $current_uri || "/wordpress/v1/not-registered" == $current_uri || "/wordpress/v1/try-tomorrow" == $current_uri || "/wordpress/v1/won" == $current_uri || "/wordpress/v1/terms-and-conditions" == $current_uri || "/wordpress/v1/privacy-policy" == $current_uri || "/wordpress/v1/cookies-policy" == $current_uri):?>
 <footer id="footer">
 			<div class="container">
 				<div class="footer-wrapper">
@@ -28,9 +28,9 @@
 					</div>
 				</div>
 				<ul class="footer-nav">
-					<li><a href="#">Terms &amp; Conditions</a></li>
-					<li><a href="#">Privacy policy</a></li>
-					<li><a href="#">Cookies policy</a></li>
+					<li><a href="http://localhost/wordpress/v1/terms-and-conditions">Terms &amp; Conditions</a></li>
+					<li><a href="http://localhost/wordpress/v1/privacy-policy">Privacy policy</a></li>
+					<li><a href="http://localhost/wordpress/v1/cookies-policy">Cookies policy</a></li>
 				</ul>
 				<div class="copyright">
 					<p>&copy; Copyright 2018 <a href="#">MuftPaise.com</a>, inc. All rights reserved.</p>
