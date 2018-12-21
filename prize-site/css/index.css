@@ -322,6 +322,14 @@
     margin-top: 8%;
 }
 
-.lucky-form.prizesite-has-error .check-label:before {
-    border-color: #da6666;
+.modal-content {
+    border-radius: 0%;
+    border: lightgray;
+    border-width: 3px;
+    border-style: solid;
+}
+
+.close-btn {
+    margin-right:3%;
+    margin-top: 2%;
 }

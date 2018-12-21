@@ -29,7 +29,7 @@
                         ) );
                     ?>
                     <div class="btn-holder">
-                        <a id="draw-btn-menu" href="#" class="btn menu-close">Enter daily lucky draw for free</a>
+                    <button type="sumbit" class="btn" data-toggle="modal" data-target="#popup-registration-modal">Enter daily lucky draw for free</button>
                     </div>
                     <div class="social-block">
                         <strong class="title">Be our friend</strong>
@@ -507,4 +507,47 @@
         <?php endif; ?>
     </div>
 <?php endif; ?>
+
+<div class="modal" id="popup-registration-modal" tabindex="-1" role="dialog" aria-labelledby="popupRegistrationModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                    <div>
+                        <button type="button" class="close close-btn" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="col">
+                            <h3>Register once, for a chance to win everyday!</h3>
+                            <form id="prizesite-lucky-form-popup" class="lucky-form" action="" method="post" data-url="<?php echo admin_url('admin-ajax.php'); ?>">
+                                <div class="form-group">
+                                    <div class="input-wrap">
+                                        <label for="popup-no" class="label-text">Your mobile number (ОЗххххххххх)</label>
+                                        <input type="text" id="popup-no" class="form-control" pattern="03[0-9]{2}(?!1234567)(?!1111111)(?!7654321)[0-9]{7}" >
+                                        <span class="label">Don't worry, we'll never pass this on.</span>
+                                        <span class="error-message" id="popup-error-msg">Please enter a phone number</span>
+                                    </div>
+                                </div>
+                                <div class="form-group" id="check-box-div">
+                                    <div class="input-wrap">
+                                        <input id="popup-agree" type="checkbox">
+                                        <label for="popup-agree" class="check-label">
+                                        <?php
+                                            wp_nav_menu( array(
+                                            'theme_location' => 'v1-secondary-menu',
+                                                'container' => false,
+                                                'items_wrap' => '%3$s'
+                                            ) );
+                                        ?>
+                                        </label>
+                                        <span class="error-message" id="popup-error-chk-box-msg">Please agree to our Terms & Conditions</span>
+                                </div>
+                                </div>
+                                <button type="sumbit" class="btn">Enter daily lucky draw for free</button>
+                            </form>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
 <?php get_footer(); ?>
