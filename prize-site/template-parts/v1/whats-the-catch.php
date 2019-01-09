@@ -71,7 +71,7 @@
 				<div class="form-group" id="check-box-div">
 					<div class="input-wrap">
 						<input id="agree" type="checkbox">
-						<label for="agree" class="check-label">
+						<label id="check-label-box" for="agree" class="check-label">
                         <?php
                             wp_nav_menu( array(
                                'theme_location' => 'v1-secondary-menu',

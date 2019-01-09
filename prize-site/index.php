@@ -34,8 +34,8 @@
                     <div class="social-block">
                         <strong class="title">Be our friend</strong>
                         <ul class="social-networks">
-                            <li><a href="#"><img src="<?php print $facebook_url ?>" alt="image description"></a></li>
-                            <li><a href="#"><img src="<?php print $instagram_url ?>" alt="image description"></a></li>
+                            <li><a href="https://www.facebook.com/MuftPaise/" target="_blank"><img src="<?php print $facebook_url ?>" alt="image description"></a></li>
+                            <li><a href="https://www.instagram.com/muftpaise/" target="_blank"><img src="<?php print $instagram_url ?>" alt="image description"></a></li>
                         </ul>
                     </div>
                 </div>
@@ -72,7 +72,7 @@
 										<span class="title">Next draw</span>
 										<div id="defaultCountdown"></div>
 									</div>
-									<a id="draw-btn-bottom-block" href="#infoblock" class="btn">Enter daily lucky draw for free</a>
+                                    <button type="sumbit" class="btn" data-toggle="modal" data-target="#popup-registration-modal">Enter daily lucky draw for free</button>
 								</div>
 							</div>
 							<form id="prizesite-lucky-form" class="lucky-form" action="" method="post" data-url="<?php echo admin_url('admin-ajax.php'); ?>">
@@ -87,7 +87,7 @@
 								<div class="form-group" id="check-box-div">
 									<div class="input-wrap">
 										<input id="agree" type="checkbox">
-										<label for="agree" class="check-label">
+										<label id="check-label-box" for="agree" class="check-label">
                                             <?php
                                                 wp_nav_menu( array(
                                                     'theme_location' => 'v1-secondary-menu',
@@ -174,9 +174,9 @@
 					<div class="text-holder">
 						<p>Thanks for reading all the way down. All that's left to do is sign up and see for yourself. Good Luck!</p>
 					</div>
-					<div class="btn-holder">
-						<a id="draw-btn-bottom" href="#infoblock" class="btn" class="scroll">Enter daily lucky draw for free</a>
-					</div>
+                    <div class="btn-holder">
+                        <button type="sumbit" class="btn" data-toggle="modal" data-target="#popup-registration-modal">Enter daily lucky draw for free</button>
+                    </div>
 				</div>
 			</aside>
     <?php endif; ?>
@@ -531,7 +531,7 @@
                                 <div class="form-group" id="check-box-div">
                                     <div class="input-wrap">
                                         <input id="popup-agree" type="checkbox">
-                                        <label for="popup-agree" class="check-label">
+                                        <label id="popup-check-label-box" for="popup-agree" class="check-label">
                                         <?php
                                             wp_nav_menu( array(
                                             'theme_location' => 'v1-secondary-menu',
@@ -540,7 +540,6 @@
                                             ) );
                                         ?>
                                         </label>
-                                        <span class="error-message" id="popup-error-chk-box-msg">Please agree to our Terms & Conditions</span>
                                 </div>
                                 </div>
                                 <button type="sumbit" class="btn">Enter daily lucky draw for free</button>

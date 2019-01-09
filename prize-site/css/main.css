@@ -2091,3 +2091,50 @@ a:focus {
         font-size: 22px;
     }
 }
+.check-prize-btn-box {
+    padding-left: 2%;
+    margin-top: -4%;
+}
+
+.error-occured:before {
+    -webkit-transition: all .3s ease;
+    transition: all .3s ease;
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 30px;
+    height: 30px;
+    border: 2px solid rgb(218, 102, 102);
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    margin: 5px 10px 0 0;
+}
+
+.error-occured li {
+    list-style: none;
+    margin-left: 45px;
+    margin-top:15px;
+}
+
+.error-occured a {
+    text-decoration: none;
+    color: black;
+}
+
+.lucky-form input[type="checkbox"]:checked+.error-occured:before {
+    content: "\2713";
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-flow: row wrap;
+    flex-flow: row wrap;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+}

@@ -22,8 +22,8 @@
 					<div class="social-block">
 						<strong class="title">Be our friend</strong>
 						<ul class="social-networks">
-							<li><a href="#"><img src="<?php print $facebook_url ?>" alt="image description"></a></li>
-							<li><a href="#"><img src="<?php print $instagram_url ?>" alt="image description"></a></li>
+							<li><a href="https://www.facebook.com/MuftPaise/" target="_blank"><img src="<?php print $facebook_url ?>" alt="image description"></a></li>
+							<li><a href="https://www.instagram.com/muftpaise/" target="_blank"><img src="<?php print $instagram_url ?>" alt="image description"></a></li>
 						</ul>
 					</div>
 				</div>

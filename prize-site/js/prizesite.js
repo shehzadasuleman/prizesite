@@ -81,20 +81,8 @@ jQuery(document).ready(function($) {
         });
     });
 
-    if (document.getElementById("no") != null) {
-        document.getElementById("no").focus();
-    }
-
-    $('#draw-btn-bottom').on('click', function(e) {
-        document.getElementById("no").focus();
-    });
-
     $('#draw-btn-menu').on('click', function(e) {
         window.location = 'http://localhost/wordpress/v1';
-    });
-
-    $('#draw-btn-bottom-block').on('click', function(e) {
-        document.getElementById("no").focus();
     });
 
     $('#prizesite-lucky-form').on('submit', function(e) {
@@ -103,6 +91,9 @@ jQuery(document).ready(function($) {
         $("#error-msg").css({ "display": "none" });
         $("#error-chk-box-msg").css({ "display": "none" });
         $("#no").css({ "border-color": "#387E1B", "background-color": "#F2F2F2" });
+        $("#check-label-box").addClass("check-label");
+        $("#check-label-box").removeClass("error-occured");
+        
         var form = $(this),
             phNumber = form.find('#no').val(),
             ajaxurl = form.data('url');
@@ -115,16 +106,15 @@ jQuery(document).ready(function($) {
             "margin": "10px 0 0",
             "padding": "7px 15px" });
             $(".label").css({ "display": "none" });
+            $("#check-label-box").removeClass("check-label");
+            $("#check-label-box").addClass("error-occured");
             return;
         }
 
         if ($('#agree').is(":not(:checked)")) {
-            $("#error-chk-box-msg").css({ "color": "#da6666", "background-color": "rgba(218, 102, 102, .3)",
-            "border-radius": "5px",
-            "display": "block",
-            "margin-top": "-15px",
-            "padding": "7px 15px" });
             $(".label").css({ "display": "none" });
+            $("#check-label-box").removeClass("check-label");
+            $("#check-label-box").addClass("error-occured");
             return;
         }
 
@@ -196,16 +186,15 @@ jQuery(document).ready(function($) {
         });
     });
 
-    if (document.getElementById("check-no") != null) {
-        document.getElementById("check-no").focus();
-    }
-
     $('#prizesite-lucky-form-popup').on('submit', function(e) {
         e.preventDefault();
 
         $("#popup-error-msg").css({ "display": "none" });
         $("#popup-error-chk-box-msg").css({ "display": "none" });
         $("#popup-no").css({ "border-color": "#387E1B", "background-color": "#F2F2F2" });
+        $("#popup-check-label-box").addClass("check-label");
+        $("#popup-check-label-box").removeClass("error-occured");
+
         var form = $(this),
             phNumber = form.find('#popup-no').val(),
             ajaxurl = form.data('url');
@@ -218,16 +207,15 @@ jQuery(document).ready(function($) {
             "margin": "10px 0 0",
             "padding": "7px 15px" });
             $(".label").css({ "display": "none" });
+            $("#popup-check-label-box").removeClass("check-label");
+            $("#popup-check-label-box").addClass("error-occured");
             return;
         }
 
         if ($('#popup-agree').is(":not(:checked)")) {
-            $("#popup-error-chk-box-msg").css({ "color": "#da6666", "background-color": "rgba(218, 102, 102, .3)",
-            "border-radius": "5px",
-            "display": "block",
-            "margin-top": "-15px",
-            "padding": "7px 15px" });
             $(".label").css({ "display": "none" });
+            $("#popup-check-label-box").removeClass("check-label");
+            $("#popup-check-label-box").addClass("error-occured");
             return;
         }
 
