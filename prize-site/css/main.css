@@ -863,7 +863,7 @@ a:focus {
 
 .info-block .text-wrapper .text {
     color: #152638;
-    font-size: 16px;
+    font-size: 22px;
     line-height: 20px;
     margin: 0 0 0 5px;
 }
@@ -883,8 +883,8 @@ a:focus {
 
 .info-block .text-holder {
     color: #0e1619;
-    font-size: 16px;
-    line-height: 20px;
+    font-size: 20px;
+    line-height: 24px;
     letter-spacing: -.8px;
     margin: 0 0 0 3px;
 }
@@ -1758,8 +1758,8 @@ a:focus {
         min-width: 100px;
     }
     .info-block .text-holder {
-        font-size: 18px;
-        line-height: 20px;
+        font-size: 28px;
+        line-height: 30px;
     }
     .info-block .time-block {
         position: static;
@@ -1984,7 +1984,7 @@ a:focus {
         line-height: 62px;
     }
     .info-block .text-wrapper .text {
-        font-size: 18px;
+        font-size: 28px;
         line-height: 22px;
     }
     .info-block .text-wrapper .btn {

@@ -154,8 +154,17 @@ jQuery(document).ready(function($) {
             phNumber = form.find('#check-no').val(),
             ajaxurl = form.data('url');
 
+        $("#check-no").css({ "border-color": "#387E1B", "background-color": "#F2F2F2" });
+        $("#check-error-msg").css({ "display": "none" });
+
         if (phNumber === '') {
-            alert('Required inputs are empty');
+            $("#check-no").css({ "border-color": "#da6666" });
+            $("#check-error-msg").css({ "color": "#da6666", "background-color": "rgba(218, 102, 102, .3)",
+            "border-radius": "5px",
+            "display": "block",
+            "margin": "10px 0 0",
+            "padding": "7px 15px" });
+            $(".label").css({ "display": "none" });
             return;
         }
 
