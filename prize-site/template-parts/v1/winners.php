@@ -41,8 +41,8 @@
 									<div class="input-wrap">
 										<label for="check-no" class="label-text">Your mobile number (ОЗххххххххх)</label>
 										<input type="text" id="check-no" class="form-control" placeholder="" pattern="03[0-9]{2}(?!1234567)(?!1111111)(?!7654321)[0-9]{7}">
-                                        <span class="error-message" id="check-error-msg">Please enter a phone number</span>
-                                    </div>
+                                                                                <span class="error-message" id="check-error-msg">Please enter a phone number</span>
+                                                                        </div>
 								</div>
 						    	<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 check-prize-btn-box">
                                     <button type="submit" class="check-prize-btn btn btn-primary">Check If I Won Today</button><br/><br/>

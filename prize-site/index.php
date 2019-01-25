@@ -1,5 +1,7 @@
 <?php get_header(); ?>
-<?php 
+<?php
+    $urlparts = parse_url(home_url());
+    $domain = 'http:'.$urlparts['host'];
     $current_uri=$_SERVER['REQUEST_URI'];
     $logo_url = get_template_directory_uri() . '/img/logo.png';
     $background_url = get_template_directory_uri() . '/img/cover.jpg';
@@ -8,7 +10,7 @@
     $instagram_url = get_template_directory_uri() . '/img/instagram.svg';
     $close_url = get_template_directory_uri() . '/img/close.svg';
 ?>
-<?php if ( "/wordpress/v1" == $current_uri || "/wordpress/v1/winners" == $current_uri || "/wordpress/v1/whats-the-catch" == $current_uri || "/wordpress/v1/contact-us" == $current_uri || "/wordpress/v1/failure-confirmation-page" == $current_uri || "/wordpress/v1/success-confirmation-page" == $current_uri || "/wordpress/v1/not-registered" == $current_uri || "/wordpress/v1/try-tomorrow" == $current_uri || "/wordpress/v1/won" == $current_uri || "/wordpress/v1/terms-and-conditions" == $current_uri || "/wordpress/v1/privacy-policy" == $current_uri || "/wordpress/v1/cookies-policy" == $current_uri):?>
+<?php if ( "/v1" == $current_uri || "/v1/winners" == $current_uri || "/v1/whats-the-catch" == $current_uri || "/v1/contact-us" == $current_uri || "/v1/failure-confirmation-page" == $current_uri || "/v1/success-confirmation-page" == $current_uri || "/v1/not-registered" == $current_uri || "/v1/try-tomorrow" == $current_uri || "/v1/won" == $current_uri || "/v1/terms-and-conditions" == $current_uri || "/v1/privacy-policy" == $current_uri || "/v1/cookies-policy" == $current_uri):?>
 <div id="wrapper">
     <header id="header" style="background-image: url(<?php print $background_url ?>);">
         <div class="header-holder">
@@ -29,7 +31,7 @@
                         ) );
                     ?>
                     <div class="btn-holder">
-                    <button type="sumbit" class="btn" data-toggle="modal" data-target="#popup-registration-modal">Enter daily lucky draw for free</button>
+                            <button type="sumbit" class="btn" data-toggle="modal" data-target="#popup-registration-modal">Enter daily lucky draw for free</button>
                     </div>
                     <div class="social-block">
                         <strong class="title">Be our friend</strong>
@@ -43,12 +45,12 @@
         </div>
     </header>
     <main id="main">
-    <?php if ( "/wordpress/v1" == $current_uri ):?>
+    <?php if ( "/v1" == $current_uri ):?>
 			<section class="info-block" id="infoblock">
 				<div class="container">
 					<div class="row">
 						<div class="col">
-							<h1>Join Pakistan's<br> only <span class="slogan">Free</span><br> daily cash<br> draw site</h1>
+							<h1>Join Pakistan's only <span class="slogan">Free</span> daily cash draw site</h1>
                             
                             <?php
                             $category_id = get_cat_ID('V1 Home Descriprtion');
@@ -72,7 +74,7 @@
 										<span class="title">Next draw</span>
 										<div id="defaultCountdown"></div>
 									</div>
-                                    <button type="sumbit" class="btn" data-toggle="modal" data-target="#popup-registration-modal">Enter daily lucky draw for free</button>
+									<button type="sumbit" class="btn" data-toggle="modal" data-target="#popup-registration-modal">Enter daily lucky draw for free</button>
 								</div>
 							</div>
 							<form id="prizesite-lucky-form" class="lucky-form" action="" method="post" data-url="<?php echo admin_url('admin-ajax.php'); ?>">
@@ -95,9 +97,9 @@
                                                     'items_wrap' => '%3$s'
                                                 ) );
                                             ?>
-                                        </label>
-                                        <span class="error-message" id="error-chk-box-msg">Please agree to our Terms & Conditions</span>
-                                    </div>
+										</label>
+                                                                                <span class="error-message" id="error-chk-box-msg">Please agree to our Terms & Conditions</span>
+									</div>
 								</div>
 								<button type="sumbit" class="btn">Enter daily lucky draw for free</button>
                             </form>
@@ -109,64 +111,113 @@
 						</div>
                     </div>
 				</div>
-			</section>
+			</section><br/>
 			<section class="messages-block">
 				<div class="container">
-					<div class="message-box left">
+                                
+                       		        <div class="message-box left">
 						<div class="message gray">
-							<span class="text">What's the catch? How can it be free to enter?</span>
+							<span class="text">Muftpaise kiya hai? 🤔</span>
 						</div>
 					</div>
 					<div class="message-box right">
 						<div class="message green">
-							<span class="text">We make money through ad revenue on the site, which is generated by the traffic caused by users checking if they've won. So, the more people come back to check everyday, the more money we can give away for free.</span>
+							<span class="text">Muftpaise Pakistan ki aik wahid website hai jo rozana muft inaam deti hai. Hum website pai registered mobile numbers mai sai roz lucky log choose kartai hain, aur unhai muft paise daitai hain. Simple - ☺️</span>
 						</div>
 						<a href="#" class="image-holder"><img src="<?php print $message_contact_url ?>" alt="image description"></a>
 					</div>
-					<div class="message-box left">
+                       
+                       
+                       		        <div class="message-box left">
 						<div class="message gray">
-							<span class="text">How are the winning mobile numbers chosen?</span>
+							<span class="text">Mai kaise register kar sakta hoon? 🙋‍♂️</span>
 						</div>
 					</div>
 					<div class="message-box right">
 						<div class="message green">
-							<span class="text">Mobile numbers are randomly selected from the list of registered mobile numbers everyday. The selected numbers are then given free money. So, if your number is not in our system, it will not be picked.</span>
+							<span class="text">Apko sirf hamari website pai apna Pakistani mobile number register karna hai. Apna mobile number upar daliye aur abhi register harain, aur apko tasdeeqi screen nazar aa jaye gi. </span>
 						</div>
 						<a href="#" class="image-holder"><img src="<?php print $message_contact_url ?>" alt="image description"></a>
 					</div>
-					<div class="message-box left">
+          
+                       		        <div class="message-box left">
 						<div class="message gray">
-							<span class="text">Fm just going to get loads of spam aren't I?</span>
+							<span class="text">Mera inaam kab niklay ga? 😉</span>
 						</div>
 					</div>
 					<div class="message-box right">
 						<div class="message green">
-							<span class="text">Definitely not. We will never share your details and will only use your mobile number to send you daily reminders to make sure you check if you have won. We may also send you the occasional updates.</span>
+							<span class="text">Hum registered mobile numbers mai sai rozana raat ko 12 bajai lucky numbers choose kartai hain. Jis din aap ka number choose hua, us din apko free cash/inaam miley ga 🤑.</span>
 						</div>
 						<a href="#" class="image-holder"><img src="<?php print $message_contact_url ?>" alt="image description"></a>
 					</div>
-					<div class="message-box left">
+                       		        <div class="message-box left">
 						<div class="message gray">
-							<span class="text">How do I check if I have won?</span>
+							<span class="text">Mujhai kaise pata chalay ga k mera inaam nikla hai? 🤔</span>
 						</div>
 					</div>
 					<div class="message-box right">
 						<div class="message green">
-							<span class="text">Just visit our winners page everyday to check if you have won. You'll get a daily reminder to check the site to see if your mobile number has won in the draws. It take less than a minute to check:)</span>
+							<span class="text">Har roz raat ko 12 bajai sai pehlai, Hamarai <a style="text-decoration: underline; color: white;" href="https://www.muftpaise.com/winners/">winners page</a> pai ja kai apna mobile number dalain, aur “CHECK” button click karain. Agar aap us din jeetai hain to aap ko “CONGRATULATIONS” ka message nazar a jayai ga 😃</span>
 						</div>
 						<a href="#" class="image-holder"><img src="<?php print $message_contact_url ?>" alt="image description"></a>
 					</div>
-					<div class="message-box left">
+                       		        <div class="message-box left">
 						<div class="message gray">
-							<span class="text">How do I claim when I win?</span>
+							<span class="text">Jab mai jeeta, mai inaam kaise claim karoon ga ? 🤷‍♂️</span>
 						</div>
 					</div>
 					<div class="message-box right">
 						<div class="message green">
-							<span class="text">If you win, claim your prize by sending us a text message saying "WINNER" on our company mobile number shown on the page when you win your prize.</span>
+							<span class="text">Jab aap Congratultions ka message dekhain gai, wahan pai aap hamara mobile number bhi dekhain gai. Apka jonsa mobile number inaam jeeta hain, hamai us mobile number sai text/whatsapp message karain aur message mai sirf likhiye “Winner”. Hum phir apko easypaise kai through Muft Paisai transfer kar dain gai. ☺️</span>
 						</div>
 						<a href="#" class="image-holder"><img src="<?php print $message_contact_url ?>" alt="image description"></a>
 					</div>
+                       		        <div class="message-box left">
+						<div class="message gray">
+							<span class="text">Mai inaam kitni dair main claim kar sakta hoon?</span>
+						</div>
+					</div>
+					<div class="message-box right">
+						<div class="message green">
+							<span class="text">Hum rozana raat ko 12 bajay lucky numbers nikaltai hain. Phir logon kai paas pura din hai inaam claim karnai kai liye. Apko bus inaam usi din claim karna hai jis din nikla. Aglai din dobara lucky draw hogain aur agar apnai inaam nahi claim kiya to zaya ho jayai ga.</span>
+						</div>
+						<a href="#" class="image-holder"><img src="<?php print $message_contact_url ?>" alt="image description"></a>
+					</div>
+                       		        <div class="message-box left">
+						<div class="message gray">
+							<span class="text">Mera inaam dobara nikal sakta hai? 😉</span>
+						</div>
+					</div>
+					<div class="message-box right">
+						<div class="message green">
+							<span class="text">G bilkul nikal sakta hai. Har number jo hamare pas register hai, wo rozana lucky draw main shamil hota hai isliye apka inaam rozana nikal sakta hai 😍</span>
+						</div>
+						<a href="#" class="image-holder"><img src="<?php print $message_contact_url ?>" alt="image description"></a>
+					</div>
+                       		        <div class="message-box left">
+						<div class="message gray">
+							<span class="text">Apka office kaha hai?</span>
+						</div>
+					</div>
+					<div class="message-box right">
+						<div class="message green">
+							<span class="text">Hamara office ka address hai 1-km, old defence road, near chungi amar sadhu, Lahore. 🏢</span>
+						</div>
+						<a href="#" class="image-holder"><img src="<?php print $message_contact_url ?>" alt="image description"></a>
+					</div>
+                                       <div class="message-box left">
+						<div class="message gray">
+							<span class="text">Ap log muft main inaam kaisai dai rahe hai – aap paisai kahan sai banatai hain?  </span>
+						</div>
+					</div>
+					<div class="message-box right">
+						<div class="message green">
+							<span class="text">Hamari site pai companies advertise karti hain aur hum un paison sai apko inaam daitai hain. Is ka matlab hua kai "Jeeto Pakistan, laikin ghar bethai bethai". 🤗</span>
+						</div>
+						<a href="#" class="image-holder"><img src="<?php print $message_contact_url ?>" alt="image description"></a>
+					</div>
+                       
 				</div>
 			</section>
 			<aside class="aside">
@@ -174,13 +225,13 @@
 					<div class="text-holder">
 						<p>Thanks for reading all the way down. All that's left to do is sign up and see for yourself. Good Luck!</p>
 					</div>
-                    <div class="btn-holder">
-                        <button type="sumbit" class="btn" data-toggle="modal" data-target="#popup-registration-modal">Enter daily lucky draw for free</button>
-                    </div>
+					<div class="btn-holder">
+						<button type="sumbit" class="btn" data-toggle="modal" data-target="#popup-registration-modal">Enter daily lucky draw for free</button>
+					</div>
 				</div>
 			</aside>
     <?php endif; ?>
-    <?php if ( "/wordpress/v1/whats-the-catch" == $current_uri ):?>
+    <?php if ( "/v1/whats-the-catch" == $current_uri ):?>
             <?php
                 if (have_posts() ):
                     while( have_posts() ): the_post();
@@ -191,7 +242,7 @@
                 endif;
             ?>
     <?php endif; ?>
-    <?php if ( "/wordpress/v1/contact-us" == $current_uri ):?>
+    <?php if ( "/v1/contact-us" == $current_uri ):?>
                 <?php
                     if (have_posts() ):
                         while( have_posts() ): the_post();
@@ -202,7 +253,7 @@
                     endif;
                 ?>
     <?php endif; ?>
-    <?php if ( "/wordpress/v1/winners" == $current_uri ):?>
+    <?php if ( "/v1/winners" == $current_uri ):?>
                 <?php
                     if (have_posts() ):
                         while( have_posts() ): the_post();
@@ -213,7 +264,7 @@
                     endif;
                 ?>
     <?php endif; ?>
-    <?php if ( "/wordpress/v1/failure-confirmation-page" == $current_uri ):?>
+    <?php if ( "/v1/failure-confirmation-page" == $current_uri ):?>
         <div class="clients-content">
             <?php
                 if (have_posts() ):
@@ -226,7 +277,7 @@
             ?>
         </div>
     <?php endif; ?>
-    <?php if ( "/wordpress/v1/success-confirmation-page" == $current_uri ):?>
+    <?php if ( "/v1/success-confirmation-page" == $current_uri ):?>
         <div class="clients-content">
             <?php
                 if (have_posts() ):
@@ -239,7 +290,7 @@
             ?>
         </div>
     <?php endif; ?>
-    <?php if ( "/wordpress/v1/not-registered" == $current_uri ):?>
+    <?php if ( "/v1/not-registered" == $current_uri ):?>
         <div class="clients-content">
             <?php
                 if (have_posts() ):
@@ -252,7 +303,7 @@
             ?>
         </div>
     <?php endif; ?>
-    <?php if ( "/wordpress/v1/try-tomorrow" == $current_uri ):?>
+    <?php if ( "/v1/try-tomorrow" == $current_uri ):?>
         <div class="clients-content">
             <?php
                 if (have_posts() ):
@@ -265,7 +316,7 @@
             ?>
         </div>
     <?php endif; ?>
-    <?php if ( "/wordpress/v1/won" == $current_uri ):?>
+    <?php if ( "/v1/won" == $current_uri ):?>
         <div class="clients-content">
             <?php
                 if (have_posts() ):
@@ -278,7 +329,7 @@
             ?>
         </div>
     <?php endif; ?>
-    <?php if ( "/wordpress/v1/terms-and-conditions" == $current_uri ):?>
+    <?php if ( "/v1/terms-and-conditions" == $current_uri ):?>
         <div class="clients-content">
             <?php
                 if (have_posts() ):
@@ -291,7 +342,7 @@
             ?>
         </div>
     <?php endif; ?>
-    <?php if ( "/wordpress/v1/cookies-policy" == $current_uri ):?>
+    <?php if ( "/v1/cookies-policy" == $current_uri ):?>
         <div class="clients-content">
             <?php
                 if (have_posts() ):
@@ -304,7 +355,7 @@
             ?>
         </div>
     <?php endif; ?>
-    <?php if ( "/wordpress/v1/privacy-policy" == $current_uri ):?>
+    <?php if ( "/v1/privacy-policy" == $current_uri ):?>
         <div class="clients-content">
             <?php
                 if (have_posts() ):
@@ -336,7 +387,7 @@
         </div>
     </nav>
     <div>
-        <?php if ( "/wordpress/" == $current_uri ):?>
+        <?php if ( "/" == $current_uri ):?>
             <div class="col-lg-12 col-xs-12 col-centered main-content" style="background-image: url(<?php header_image(); ?>);">
                 <div class="row">
                     <div class="col-lg-8 offset-lg-2 col-md-8 offset-md-2 col-sm-10 offset-sm-1 col-10 offset-1 actual-content">
@@ -388,7 +439,7 @@
                 ?>
             </div>
         <?php endif; ?>
-        <?php if ( "/wordpress/contact-us/" == $current_uri ):?>
+        <?php if ( "/contact-us/" == $current_uri ):?>
             <div class="clients-content">
                 <?php
                     if (have_posts() ):
@@ -401,7 +452,7 @@
                 ?>
             </div>
         <?php endif; ?>
-        <?php if ( "/wordpress/terms-and-conditions/" == $current_uri ):?>
+        <?php if ( "/terms-and-conditions/" == $current_uri ):?>
             <div class="clients-content">
                 <?php
                     if (have_posts() ):
@@ -414,7 +465,7 @@
                 ?>
             </div>
         <?php endif; ?>
-        <?php if ( "/wordpress/winners/" == $current_uri ):?>
+        <?php if ( "/winners/" == $current_uri ):?>
             <div class="clients-content">
                 <?php
                     if (have_posts() ):
@@ -427,7 +478,7 @@
                 ?>
             </div>
         <?php endif; ?>
-        <?php if ( "/wordpress/failure-confirmation-page/" == $current_uri ):?>
+        <?php if ( "/failure-confirmation-page/" == $current_uri ):?>
             <div class="clients-content">
                 <?php
                     if (have_posts() ):
@@ -440,7 +491,7 @@
                 ?>
             </div>
         <?php endif; ?>
-        <?php if ( "/wordpress/success-confirmation-page/" == $current_uri ):?>
+        <?php if ( "/success-confirmation-page/" == $current_uri ):?>
             <div class="clients-content">
                 <?php
                     if (have_posts() ):
@@ -453,7 +504,7 @@
                 ?>
             </div>
         <?php endif; ?>
-        <?php if ( "/wordpress/test-winners/" == $current_uri ):?>
+        <?php if ( "/test-winners/" == $current_uri ):?>
             <div class="clients-content">
                 <?php
                     if (have_posts() ):
@@ -466,7 +517,7 @@
                 ?>
             </div>
         <?php endif; ?>
-        <?php if ( "/wordpress/won/" == $current_uri ):?>
+        <?php if ( "/won/" == $current_uri ):?>
             <div class="clients-content">
                 <?php
                     if (have_posts() ):
@@ -479,7 +530,7 @@
                 ?>
             </div>
         <?php endif; ?>
-        <?php if ( "/wordpress/not-registered/" == $current_uri ):?>
+        <?php if ( "/not-registered/" == $current_uri ):?>
             <div class="clients-content">
                 <?php
                     if (have_posts() ):
@@ -492,7 +543,7 @@
                 ?>
             </div>
         <?php endif; ?>
-        <?php if ( "/wordpress/did-not-won/" == $current_uri ):?>
+        <?php if ( "/did-not-won/" == $current_uri ):?>
             <div class="clients-content">
                 <?php
                     if (have_posts() ):
@@ -507,7 +558,6 @@
         <?php endif; ?>
     </div>
 <?php endif; ?>
-
 <div class="modal" id="popup-registration-modal" tabindex="-1" role="dialog" aria-labelledby="popupRegistrationModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">

@@ -863,13 +863,13 @@ a:focus {
 
 .info-block .text-wrapper .text {
     color: #152638;
-    font-size: 22px;
-    line-height: 20px;
+    font-size: 20px;
+    line-height: 18px;
     margin: 0 0 0 5px;
 }
 
 .info-block .text-wrapper .btn {
-    font-size: 16px;
+    font-size: 18px;
     line-height: 20px;
     font-weight: 900;
     border-radius: 25px;
@@ -883,8 +883,8 @@ a:focus {
 
 .info-block .text-holder {
     color: #0e1619;
-    font-size: 20px;
-    line-height: 24px;
+    font-size: 18px;
+    line-height: 22px;
     letter-spacing: -.8px;
     margin: 0 0 0 3px;
 }
@@ -1142,8 +1142,8 @@ a:focus {
 }
 
 .aside .text-holder {
-    font-size: 16px;
-    line-height: 20px;
+    font-size: 18px;
+    line-height: 22px;
     font-weight: 700;
     padding: 0 10px;
     margin: 0 0 20px;
@@ -1260,7 +1260,7 @@ a:focus {
 }
 
 #header {
-    padding: 30px 15px;
+    padding: 20px 10px;
     position: relative;
     min-height: 185px;
     background-size: cover;
@@ -1295,8 +1295,8 @@ a:focus {
 
 #header .nav-opener {
     position: absolute;
-    top: 30px;
-    right: 15px;
+    top: 20px;
+    right: 25px;
 }
 
 .main-navigation {
@@ -1810,8 +1810,8 @@ a:focus {
         align-items: center;
     }
     .aside .text-holder {
-        font-size: 20px;
-        line-height: 24px;
+        font-size: 22px;
+        line-height: 26px;
         letter-spacing: 1px;
         width: 50%;
         margin: 0;

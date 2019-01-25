@@ -6,8 +6,6 @@
 <?php 
     $post_category= get_the_category( get_the_ID() );
     $post_category_name = $post_category[0]->cat_name;
-    echo $post_category_name;
-    echo "\n";
 ?>
 
 <?php if ( "Home Description" == $post_category_name ): ?>

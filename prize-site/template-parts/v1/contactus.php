@@ -60,7 +60,7 @@
 										<tbody>
 											<tr>
 												<td><img src="<?php print $map_url ?>" alt="Message"></td>
-												<td><p>Defence Rd, Wapda Colony, Lahore, Pakistan</p></td>
+												<td><p>1-km, Old Defence Road, near Chungi Amar Sadhu, Lahore, Pakistan</p></td>
 											</tr>
 										</tbody>
 									</table>
