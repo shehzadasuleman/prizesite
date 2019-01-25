@@ -1,5 +1,7 @@
 jQuery(document).ready(function($) {
 
+    var origin = document.location.origin;
+
     /* Candidates form Submission */
     $('#prizesiteCandidatesForm').on('submit', function(e) {
         e.preventDefault();
@@ -27,13 +29,13 @@ jQuery(document).ready(function($) {
             },
             success: function(response) {
                 if (response == -100) {
-                    window.location = 'http://uat.muftpaise.com/failure-confirmation-page/';
+                    window.location = 'https://muftpaise.com/failure-confirmation-page/';
                 } else if (response == 0) {
                     $("#danger-alert").fadeTo(2000, 500).slideUp(500, function() {
                         $("#danger-alert").slideUp(500);
                     });
                 } else {
-                    window.location = 'http://uat.muftpaise.com/success-confirmation-page/';
+                    window.location = 'https://muftpaise.com/success-confirmation-page/';
                 }
                 $('#phNumber').val('');
                 $("#customCheck1").prop("checked", false);
@@ -69,11 +71,11 @@ jQuery(document).ready(function($) {
             },
             success: function(response) {
                 if (response == -100) {
-                    window.location = 'http://uat.muftpaise.com/not-registered/';
+                    window.location = 'https://muftpaise.com/not-registered/';
                 } else if (response == -200) {
-                    window.location = 'http://uat.muftpaise.com/did-not-won/';
+                    window.location = 'https://muftpaise.com/did-not-won/';
                 } else if (response == -300) {
-                    window.location = 'http://uat.muftpaise.com/won/';
+                    window.location = 'https://muftpaise.com/won/';
                 }
                 $('#check-phNumber').val('');
             }
@@ -82,12 +84,12 @@ jQuery(document).ready(function($) {
     });
 
     $('#draw-btn-menu').on('click', function(e) {
-        window.location = 'http://uat.muftpaise.com/v1';
+        window.location = origin + '/wordpress/v1';
     });
 
     $('#prizesite-lucky-form').on('submit', function(e) {
         e.preventDefault();
-        
+
         $("#error-msg").css({ "display": "none" });
         $("#error-chk-box-msg").css({ "display": "none" });
         $("#no").css({ "border-color": "#387E1B", "background-color": "#F2F2F2" });
@@ -110,7 +112,7 @@ jQuery(document).ready(function($) {
             $("#check-label-box").addClass("error-occured");
             return;
         }
-        
+
         if ($('#agree').is(":not(:checked)")) {
             $(".label").css({ "display": "none" });
             $("#check-label-box").removeClass("check-label");
@@ -133,13 +135,13 @@ jQuery(document).ready(function($) {
             },
             success: function(response) {
                 if (response == -100) {
-                    window.location = 'http://uat.muftpaise.com/v1/failure-confirmation-page';
+                    window.location = origin + '/wordpress/v1/failure-confirmation-page';
                 } else if (response == 0) {
                     $("#v1-danger-alert").fadeTo(2000, 500).slideUp(500, function() {
                         $("#v1-danger-alert").slideUp(500);
                     });
                 } else {
-                    window.location = 'http://uat.muftpaise.com/v1/success-confirmation-page';
+                    window.location = origin + '/wordpress/v1/success-confirmation-page';
                 }
                 $('#no').val('');
                 $("#agree").prop("checked", false);
@@ -153,7 +155,7 @@ jQuery(document).ready(function($) {
         var form = $(this),
             phNumber = form.find('#check-no').val(),
             ajaxurl = form.data('url');
-            
+
         $("#check-no").css({ "border-color": "#387E1B", "background-color": "#F2F2F2" });
         $("#check-error-msg").css({ "display": "none" });
 
@@ -183,18 +185,18 @@ jQuery(document).ready(function($) {
             },
             success: function(response) {
                 if (response == -100) {
-                    window.location = 'http://uat.muftpaise.com/v1/not-registered';
+                    window.location = origin + '/wordpress/v1/not-registered';
                 } else if (response == -200) {
-                    window.location = 'http://uat.muftpaise.com/v1/try-tomorrow';
+                    window.location = origin + '/wordpress/v1/try-tomorrow';
                 } else if (response == -300) {
-                    window.location = 'http://uat.muftpaise.com/v1/won';
+                    window.location = origin + '/wordpress/v1/won';
                 }
                 $('#check-phNumber').val('');
             }
 
         });
     });
-    
+
     $('#prizesite-lucky-form-popup').on('submit', function(e) {
         e.preventDefault();
 
@@ -203,7 +205,7 @@ jQuery(document).ready(function($) {
         $("#popup-no").css({ "border-color": "#387E1B", "background-color": "#F2F2F2" });
         $("#popup-check-label-box").addClass("check-label");
         $("#popup-check-label-box").removeClass("error-occured");
-        
+
         var form = $(this),
             phNumber = form.find('#popup-no').val(),
             ajaxurl = form.data('url');
@@ -243,13 +245,13 @@ jQuery(document).ready(function($) {
             },
             success: function(response) {
                 if (response == -100) {
-                    window.location = 'http://uat.muftpaise.com/v1/failure-confirmation-page';
+                    window.location = origin + '/wordpress/v1/failure-confirmation-page';
                 } else if (response == 0) {
                     $("#v1-danger-alert").fadeTo(2000, 500).slideUp(500, function() {
                         $("#v1-danger-alert").slideUp(500);
                     });
                 } else {
-                    window.location = 'http://uat.muftpaise.com/v1/success-confirmation-page';
+                    window.location = origin + '/wordpress/v1/success-confirmation-page';
                 }
                 $('#popup-no').val('');
                 $("#popup-agree").prop("checked", false);
