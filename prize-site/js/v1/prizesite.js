@@ -5,15 +5,32 @@ jQuery(document).ready(function($) {
     });
 
     checkScreenSize();
-
+    
     function checkScreenSize(){
         var newWindowWidth = $(window).width();
         var newWindowHeight = $(window).height();
-        if (newWindowHeight < 700) {
-            /*$("html, body").animate({ 
-                scrollTop: $('.input-wrap').offset().top 
-            }, 1000);*/
+        if (newWindowWidth <= 768) {
+            $('#past-winners-sidebar-content-fb-lg').hide();
+            $('#past-winners-sidebar-content-fb-sm').show();
+        } else {
+            $('#past-winners-sidebar-content-fb-lg').show();
+            $('#past-winners-sidebar-content-fb-sm').hide();
         }
     }
+
+    $(document).ready(function() {
+        $('#winners-data').DataTable( {
+            "columnDefs": [
+                {
+                    "targets": [ 2 ],
+                    "visible": false,
+                    "searchable": true
+                }
+            ],
+            "language": {
+                "zeroRecords": error_message
+            }
+        });
+    } );
 
 });

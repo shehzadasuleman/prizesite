@@ -35,11 +35,13 @@ function prizesite_custom_settings() {
     //Register Field
 
     //Theme Support Options
-	register_setting( 'prizesite-theme-support', 'prizesite_custom_header' );
+    register_setting( 'prizesite-theme-support', 'prizesite_custom_header' );
+    register_setting( 'prizesite-theme-support', 'prizesite_custom_filter_error_meesgae' );
 	
 	add_settings_section( 'prizesite-theme-options', 'Theme Options', 'prizesite_theme_options', 'shahzada_prizesite_theme' );
 	
 	add_settings_field( 'prizesite-custom-header', 'Custom Header', 'prizesite_custom_header_callback', 'shahzada_prizesite_theme', 'prizesite-theme-options' );
+    add_settings_field( 'prizesite-custom-filter-error-message', 'Custom Filteration Error Message', 'prizesite_custom_filter_error_message_callback', 'shahzada_prizesite_theme', 'prizesite-theme-options' );
 
     //Contact Form Options
 	register_setting( 'prizesite-contact-options', 'ps_activate_contact' );
@@ -67,4 +69,9 @@ function prizesite_activate_contact() {
 	$options = get_option( 'ps_activate_contact' );
 	$checked = ( @$options == 1 ? 'checked' : '' );
 	echo '<label><input type="checkbox" id="custom_header" name="ps_activate_contact" value="1" '.$checked.' /></label>';
+}
+
+function prizesite_custom_filter_error_message_callback() {
+    $error_message = esc_attr(get_option('prizesite_custom_filter_error_meesgae'));
+    echo '<input type="text" value="'.$error_message.'" id="prizesite_custom_filter_error_meesgae" name="prizesite_custom_filter_error_meesgae" style="width:400px;"/>';
 }

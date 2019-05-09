@@ -15,3 +15,73 @@
 .input-content-mobile h2 {
     justify-content: center;
 }
+
+.past-winners {
+    color: #999999;
+    margin-top: 30px;
+    padding-left: 30px;
+    padding-right: 30px;
+    margin-bottom: 30px;
+}
+
+.remove-padding {
+    padding: 0px;
+}
+
+#winners-data_wrapper select {
+    background: none;
+    border: 1px solid #4c694a;
+    border-radius: 0px;
+    padding: 0px 0px 0px 16px;
+    width: 60px;
+    height: 40px;
+    font-size: 18px;
+    border-radius: 2px;
+}
+
+#winners-data_wrapper input[type="search"] {
+    background: none;
+    border: 1px solid #4c694a;
+    border-radius: 0px;
+    padding: 0px 0px 0px 16px;
+    width: 160px;
+    height: 40px;
+    font-size: 18px;
+    border-radius: 2px;
+}
+
+.page-content {
+    color : #999999;
+}
+
+#winners-data_wrapper {
+    margin-top: 30px;
+}
+
+@media screen and (min-width: 768px) {
+    #past-winners-content {
+        padding-right: 0%;
+    }
+}
+
+@media screen and (max-width: 768px) {
+
+    #past-winners-content {
+        margin-top: 20px;
+    }
+
+    #past-winners-content h2 {
+        text-align: justify;
+    }
+
+    #past-winners-content p {
+        text-align: justify;
+    }
+
+    #past-winners-sidebar-content-fb-sm {
+        margin-top: 30px;
+    }
+    #past-winners-sidebar-content {
+        padding-left: 15px;
+    }
+  }

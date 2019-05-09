@@ -31,6 +31,7 @@ add_action('admin_enqueue_scripts', 'prizesite_load_admin_scripts');
 
 function prizesite_load_scripts() {
     wp_enqueue_style( 'bootstrap', get_template_directory_uri() . '/css/bootstrap.min.css', array(), '4.0.0', 'all' );
+    wp_enqueue_style( 'dataTables-bootstrap', get_template_directory_uri() . '/css/v1/dataTables.bootstrap4.min.css', array(), '1.0.0', 'all' );
     wp_enqueue_style( 'prizesite', get_template_directory_uri() . '/css/prizesite.css', array(), '1.0.0', 'all' );
     //wp_enqueue_style( 'raleway', 'https://fonts.googleapis.com/css?family=Raleway:200,300,500' );
     // New Design - Start
@@ -48,6 +49,8 @@ function prizesite_load_scripts() {
 	wp_register_script( 'jquery' , get_template_directory_uri() . '/js/jquery-3.3.1.min.js', false, '3.3.1', true );
 	wp_enqueue_script( 'jquery' );
     wp_enqueue_script( 'bootstrap', get_template_directory_uri() . '/js/bootstrap.min.js', array('jquery'), '4.0.0', true );
+    wp_enqueue_script( 'jquery-dataTables', get_template_directory_uri() . '/js/v1/jquery.dataTables.min.js', array('jquery'), '1.10.19', true );
+    wp_enqueue_script( 'dataTables-bootstrap', get_template_directory_uri() . '/js/v1/dataTables.bootstrap4.min.js', array('jquery'), '1.10.19', true );
     // New Design - Start
     wp_enqueue_script( 'jquery-main', get_template_directory_uri() . '/js/jquery.main.js', array('jquery'), '1.0.0', true );
     wp_enqueue_script( 'jquery-plugin', get_template_directory_uri() . '/js/jquery.plugin.js', array('jquery'), '1.0.0', true );

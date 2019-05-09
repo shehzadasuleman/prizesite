@@ -11,7 +11,7 @@
     $instagram_url = get_template_directory_uri() . '/img/instagram.svg';
 ?>
 <!--Footer-->
-<?php if ( "/wordpress/v1" == $current_uri || "/wordpress/v1/winners" == $current_uri || "/wordpress/v1/whats-the-catch" == $current_uri || "/wordpress/v1/contact-us" == $current_uri || "/wordpress/v1/failure-confirmation-page" == $current_uri || "/wordpress/v1/success-confirmation-page" == $current_uri || "/wordpress/v1/not-registered" == $current_uri || "/wordpress/v1/try-tomorrow" == $current_uri || "/wordpress/v1/won" == $current_uri || "/wordpress/v1/terms-and-conditions" == $current_uri || "/wordpress/v1/privacy-policy" == $current_uri || "/wordpress/v1/cookies-policy" == $current_uri):?>
+<?php if ( "/wordpress/v1" == $current_uri || "/wordpress/v1/winners" == $current_uri || "/wordpress/v1/whats-the-catch" == $current_uri || "/wordpress/v1/contact-us" == $current_uri || "/wordpress/v1/failure-confirmation-page" == $current_uri || "/wordpress/v1/success-confirmation-page" == $current_uri || "/wordpress/v1/not-registered" == $current_uri || "/wordpress/v1/try-tomorrow" == $current_uri || "/wordpress/v1/won" == $current_uri || "/wordpress/v1/terms-and-conditions" == $current_uri || "/wordpress/v1/privacy-policy" == $current_uri || "/wordpress/v1/cookies-policy" == $current_uri || "/wordpress/v1/past-winners" == $current_uri):?>
 <footer id="footer">
 			<div class="container">
 				<div class="footer-wrapper">
@@ -20,6 +20,7 @@
 						<li><a href="<?php print $domain."/whats-the-catch"; ?>">What's the catch</a></li>
 						<li><a href="<?php print $domain."/winners"; ?>">Winners</a></li>
 						<li><a href="<?php print $domain."/contact-us"; ?>">Contact us</a></li>
+						<li><a href="<?php print $domain."/past-winners"; ?>">Past Winners</a></li>
 					</ul>
 					<div class="social-block">
 						<strong class="title">Be our friend</strong>
