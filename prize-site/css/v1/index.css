@@ -41,13 +41,13 @@
 
 #winners-data_wrapper input[type="search"] {
     background: none;
-    border: 1px solid #4c694a;
+    border: 2px solid #4c694a;
     border-radius: 0px;
     padding: 0px 0px 0px 16px;
-    width: 160px;
+    width: 100%;
     height: 40px;
     font-size: 18px;
-    border-radius: 2px;
+    border-radius: 8px;
 }
 
 .page-content {
@@ -56,6 +56,72 @@
 
 #winners-data_wrapper {
     margin-top: 30px;
+}
+
+#faq-tabs a {
+    font-size: 22px;
+    color: #06174f;
+}
+
+#english-faqs {
+    color: black;
+}
+
+#past-winners-content h1 {
+    font-family: "Montserrat", "Arial", "Helvetica Neue", "Helvetica", sans-serif;
+    color: #06174f;
+    font-size: 54px;
+    line-height: 58px;
+}
+
+#past-winners-content p {
+    font-family: "Source Sans Pro", Arial, "Helvetica Neue", Helvetica, sans-serif;
+    color: #333;
+    font-size: 16px;
+}
+
+#winners-data tbody {
+    color: black;
+    font-size: 16px;
+}
+
+#past-winners-content .header {
+    color: black;
+    font-family: "Montserrat", "Arial", "Helvetica Neue", "Helvetica", sans-serif;
+    font-size: 28px;
+    line-height: 33px;
+    letter-spacing: -.4px;
+}
+
+.claim-status {
+    background-color: #477534;
+    color: white;
+}
+
+#past-winners-register-number-lg {
+    margin-top: 25px;
+    width : 450px;
+    float: left;
+}
+
+#past-winners-register-number-sm {
+    margin-top: 25px;
+    width : 340px;
+    float: left;
+}
+
+#winners-data_filter {
+    float: left;
+}
+
+#winners-data_filter label {
+    color: #06174f;
+    font-family: "Montserrat", "Arial", "Helvetica Neue", "Helvetica", sans-serif;
+    font-size: 22px;
+    line-height: 26px;
+    font-weight: 700;
+    display: block;
+    margin: 0 0 4px;
 }
 
 @media screen and (min-width: 768px) {
@@ -81,7 +147,12 @@
     #past-winners-sidebar-content-fb-sm {
         margin-top: 30px;
     }
+
     #past-winners-sidebar-content {
         padding-left: 15px;
+    }
+
+    #winners-data_wrapper input[type="search"] {
+        width: 75%;
     }
   }
