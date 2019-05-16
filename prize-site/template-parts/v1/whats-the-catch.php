@@ -42,6 +42,7 @@
                             wp_reset_query();
                         ?>
 									</div>
+									<strong class="title">Thanks for reading all the way down. All that's left to do is sign up and see for yourself. Good Luck!</strong>
 									<button type="sumbit" class="btn" data-toggle="modal" data-target="#registration-modal">Enter daily lucky draw for free</button>
 						</div>
 					</div>

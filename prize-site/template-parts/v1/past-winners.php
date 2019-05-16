@@ -73,6 +73,7 @@ $yesterday = date('j F Y', strtotime('-1 days'));;
                 ?>
                 </tbody>
             </table>
+            <strong id="past-winners-register-content-lg" class="title">Thanks for reading all the way down. All that's left to do is sign up and see for yourself. Good Luck!</strong>
             <button id="past-winners-register-number-lg" type="sumbit" class="btn" data-toggle="modal" data-target="#registration-modal">Enter daily lucky draw for free</button>
             <div id="past-winners-sidebar-content-fb-sm">
                 <!-- Facebook Page Plugin-->
@@ -80,6 +81,7 @@ $yesterday = date('j F Y', strtotime('-1 days'));;
                 <div class="fb-page" data-href="https://www.facebook.com/MuftPaise/" data-tabs="timeline" data-height="420" data-small-header="true" data-adapt-container-width="true" data-hide-cover="true" data-show-facepile="true"><blockquote cite="https://www.facebook.com/MuftPaise/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/MuftPaise/">MuftPaise</a></blockquote></div>
                 <!-- Facebook Page Plugin ends-->
             </div>
+            <strong id="past-winners-register-content-sm" class="title">Thanks for reading all the way down. All that's left to do is sign up and see for yourself. Good Luck!</strong>
             <button id="past-winners-register-number-sm" type="sumbit" class="btn" data-toggle="modal" data-target="#registration-modal">Enter daily lucky draw for free</button>
         </div>
     </div>
@@ -119,7 +121,7 @@ $yesterday = date('j F Y', strtotime('-1 days'));;
                         </label>
                         <span class="error-message" id="error-chk-box-msg">Please agree to our Terms & Conditions</span>
 	            </div>
-				</div>
+                </div>
 				<button type="sumbit" class="btn">Enter daily lucky draw for free</button>
             </form>
 		</div>

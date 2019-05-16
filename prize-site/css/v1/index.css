@@ -58,8 +58,8 @@
     margin-top: 30px;
 }
 
-#faq-tabs a {
-    font-size: 22px;
+#faq-tabs li a {
+    font-size: 28px;
     color: #06174f;
 }
 
@@ -99,15 +99,23 @@
 }
 
 #past-winners-register-number-lg {
-    margin-top: 25px;
+    margin-top: 10px;
     width : 450px;
     float: left;
 }
 
-#past-winners-register-number-sm {
+#past-winners-register-content-lg {
     margin-top: 25px;
+}
+
+#past-winners-register-number-sm {
+    margin-top: 10px;
     width : 340px;
     float: left;
+}
+
+#past-winners-register-content-sm {
+    margin-top: 25px;
 }
 
 #winners-data_filter {
@@ -122,6 +130,76 @@
     font-weight: 700;
     display: block;
     margin: 0 0 4px;
+}
+
+#english-tab .wrapper {
+    width:100%;
+}
+
+.panel-heading {
+    padding: 0;
+    border:0;
+}
+.panel-title>a, .panel-title>a:active{
+    display:block;
+    padding:15px;
+    color:#06174f;
+    font-family: "Montserrat", "Arial", "Helvetica Neue", "Helvetica", sans-serif;
+    font-size:18px;
+    font-weight:bold;
+    letter-spacing:1px;
+    word-spacing:3px;
+    text-decoration:none;
+}
+
+.panel-default {
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2), 0 1.5px 5px 0 rgba(0, 0, 0, 0.19);
+    margin-bottom: 20px;
+    margin-left: 1.5px;
+}
+
+.panel-body {
+    padding:15px;
+    padding-top: 0px;
+    color : black;
+    font-family: "Montserrat", "Arial", "Helvetica Neue", "Helvetica", sans-serif;
+    font-size:16px;
+    font-weight: 500;
+}
+
+.panel-heading  a:before {
+    font-family: "Font Awesome 5 Free";
+    content: "\f105"; 
+    float: right;
+    transition: all 0.5s;
+}
+.panel-heading.active a:before {
+    -webkit-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    transform: rotate(90deg);
+}
+
+.past-winners .title {
+    color: #06174f;
+    font-family: "Montserrat", "Arial", "Helvetica Neue", "Helvetica", sans-serif;
+    font-size: 22px;
+    line-height: 26px;
+    font-weight: 700;
+    display: block;
+    margin: 0 0 4px;
+}
+
+#winners-data {
+    text-align: center;
+}
+
+.past-winners-label {
+    font-size: 16px;
+    line-height: 20px;
+    letter-spacing: -.4px;
+    display: block;
+    color: #999999;
+    padding-left: 92px;
 }
 
 @media screen and (min-width: 768px) {
