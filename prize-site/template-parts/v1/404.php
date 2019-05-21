@@ -2,35 +2,32 @@
 /*
 @package prizesitetheme
 */
-$post_category= get_the_category( get_the_ID() );
-$post_category_name = $post_category[0]->cat_name;
 ?>
-<?php if ( "404" == $post_category_name ): ?>
-<section class="about-block">
-	<div class="container">
-		<div class="time-block">
-			<div class="timer-wrapper">
-				<div class="timer">
-					<span class="title">Next draw</span>
-						<div id="defaultCountdown">
-                    </div>
-				</div>
-				<button type="sumbit" class="btn" data-toggle="modal" data-target="#registration-modal">Enter daily lucky draw for free</button>
-			</div>
-		</div>
-        <div class="row">
+<div class="clients-content">
+  <?php
+    $category_id = get_cat_ID('404');
+    query_posts("cat=$category_id&posts_per_page=1");
+    if (have_posts()) {
+      the_post(); ?>
+      <section class="about-block">
+        <div class="container">
+          <div class="row">
             <div class="main-content">
-                <div class="row cover-ad-banner-parent">
-                    <div class="col-xl-10 offset-xl-1 col-lg-10 offset-lg-1 col-md-10 offset-md-1 col-sm-10 offset-sm-1 col-10 offset-1 terms-conditions-content">
-                        <h1><?php the_title() ?></h1>
-                        <?php the_content() ?>
-                    </div>
+              <div class="row cover-ad-banner-parent">
+                <div class="col-xl-10 offset-xl-1 col-lg-10 offset-lg-1 col-md-10 offset-md-1 col-sm-10 offset-sm-1 col-10 offset-1 terms-conditions-content">
+                  <h1><?php the_title() ?></h1>
+                    <?php the_content() ?>
+                  </div>
                 </div>
+              </div>
             </div>
-        </div>
-    </div>
-</section>
-<?php endif ?>
+          </div>
+        </section>
+      <?php } 
+    wp_reset_query(); 
+  ?>
+</div>
+
 
 <div class="modal" id="registration-modal" tabindex="-1" role="dialog" aria-labelledby="registrationModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">

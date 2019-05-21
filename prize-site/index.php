@@ -336,15 +336,20 @@
                     endif;
                 ?>
             </div>
-        <?php else: ?>
+        <?php elseif ( "/wordpress/v1/404" == $current_uri || strpos($current_uri, "/wordpress/v1/404") !== false ):?>
             <div class="clients-content">
                 <?php
-                    $wp_query = new WP_Query(array('posts_per_page'=>-1));
-                    while ($wp_query->have_posts()) : $wp_query->the_post();
-                        get_template_part( 'template-parts/v1/404', get_post_format() );
-                    endwhile;
+                    if (have_posts() ):
+                        while( have_posts() ): the_post();
+
+                            get_template_part( 'template-parts/v1/404', get_post_format() );
+
+                        endwhile;
+                    endif;
                 ?>
             </div>
+        <?php else: ?>
+        <script type="text/javascript">window.location = 'http://localhost/wordpress/v1/404';</script>
         <?php endif; ?>
     </main>
 </div>
@@ -352,41 +357,41 @@
 <div class="modal" id="popup-registration-modal" tabindex="-1" role="dialog" aria-labelledby="popupRegistrationModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
-                    <div>
-                        <button type="button" class="close close-btn" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="col">
-                            <h3>Register once, for a chance to win everyday!</h3>
-                            <form id="prizesite-lucky-form-popup" class="lucky-form" action="" method="post" data-url="<?php echo admin_url('admin-ajax.php'); ?>">
-                                <div class="form-group">
-                                    <div class="input-wrap">
-                                        <label for="popup-no" class="label-text">Your mobile number (ОЗххххххххх)</label>
-                                        <input type="text" id="popup-no" class="form-control" pattern="03[0-9]{2}(?!1234567)(?!1111111)(?!7654321)[0-9]{7}" >
-                                        <span class="label">Don't worry, we'll never pass this on.</span>
-                                        <span class="error-message" id="popup-error-msg">Please enter a phone number</span>
-                                    </div>
-                                </div>
-                                <div class="form-group" id="check-box-div">
-                                    <div class="input-wrap">
-                                        <input id="popup-agree" type="checkbox">
-                                        <label id="popup-check-label-box" for="popup-agree" class="check-label">
-                                        <?php
-                                            wp_nav_menu( array(
-                                            'theme_location' => 'v1-secondary-menu',
-                                                'container' => false,
-                                                'items_wrap' => '%3$s'
-                                            ) );
-                                        ?>
-                                        </label>
-                                </div>
-                                </div>
-                                <button type="sumbit" class="btn">Enter daily lucky draw for free</button>
-                            </form>
+                        <div>
+                            <button type="button" class="close close-btn" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                            </button>
                         </div>
-                    </div>
+                        <div class="modal-body">
+                            <div class="col">
+                                <h3>Register once, for a chance to win everyday!</h3>
+                                <form id="prizesite-lucky-form-popup" class="lucky-form" action="" method="post" data-url="<?php echo admin_url('admin-ajax.php'); ?>">
+                                    <div class="form-group">
+                                        <div class="input-wrap">
+                                            <label for="popup-no" class="label-text">Your mobile number (ОЗххххххххх)</label>
+                                            <input type="text" id="popup-no" class="form-control" pattern="03[0-9]{2}(?!1234567)(?!1111111)(?!7654321)[0-9]{7}" >
+                                            <span class="label">Don't worry, we'll never pass this on.</span>
+                                            <span class="error-message" id="popup-error-msg">Please enter a phone number</span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group" id="check-box-div">
+                                        <div class="input-wrap">
+                                            <input id="popup-agree" type="checkbox">
+                                            <label id="popup-check-label-box" for="popup-agree" class="check-label">
+                                            <?php
+                                                wp_nav_menu( array(
+                                                'theme_location' => 'v1-secondary-menu',
+                                                    'container' => false,
+                                                    'items_wrap' => '%3$s'
+                                                ) );
+                                            ?>
+                                            </label>
+                                    </div>
+                                    </div>
+                                    <button type="sumbit" class="btn">Enter daily lucky draw for free</button>
+                                </form>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
