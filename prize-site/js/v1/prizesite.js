@@ -44,7 +44,8 @@ jQuery(document).ready(function($) {
                 }
             ],
             "language": {
-                "zeroRecords": error_message
+                "zeroRecords": error_message,
+                "search": "Search Winning Mobile Numbers:"
             },
             "lengthChange": false
         });

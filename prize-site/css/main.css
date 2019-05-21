@@ -2033,6 +2033,27 @@ a:focus {
     .lucky-form {
         margin: 0;
     }
+    .query-form {
+        margin: 0;
+    }
+    #winners-data_wrapper input[type="search"] {
+        width: 75%;
+    }
+    .past-winners-label {
+        padding-left: 395px;
+    }
+}
+
+@media screen and (min-width: 992px) and (max-width: 1200px) {
+    .past-winners-label {
+        padding-left: 395px;
+    }
+}
+
+@media (max-width: 1200px) {
+    #winners-data_wrapper input[type="search"] {
+        width: 60%;
+    }
 }
 
 @media (max-width: 767px) {
@@ -2072,11 +2093,18 @@ a:focus {
     .lucky-form .input-wrap .label-text {
         top: 9px;
     }
+    .query-form .input-wrap .label-text {
+        top: 9px;
+    }
 }
 
 @media screen and (max-width: 350px) {
     .check-prize-btn {
         padding: 8px;
+    }
+    .container {
+        padding-left: 0px;
+        padding-right: 0px;
     }
 }
 
@@ -2116,18 +2144,6 @@ a:focus {
     }
 }
 
-@media screen and (max-width: 400px) {
-    #winners-data {
-        font-size:10.5px;
-    }
-    #winners-data tbody {
-        font-size: 10.5px;
-    }
-    #winners-data_wrapper input[type="search"] {
-        width: 60%;
-    }
-}
-
 @media screen and (min-width: 576px) and (max-width: 768px) {
     #winners-data_length {
         text-align: left;
@@ -2141,6 +2157,27 @@ a:focus {
     #past-winners-content h1 {
         font-size: 42px;
         line-height: 44px;
+    }
+    #new-question-no {
+        margin-left: 18%;
+        margin-top: 15px;
+        width: 80px;
+        padding: .300rem .600rem;
+    }
+    #new-question-yes {
+        margin-left: 15px;
+        margin-top: 15px;
+        width: 80px;
+        padding: .300rem .600rem;
+    }
+    #winners-data_wrapper input[type="search"] {
+        width: 200px;
+    }
+    #winners-data_filter label {
+        font-size: 16px;
+    }
+    .past-winners-label {
+        padding-left: 290px;
     }
 }
 
@@ -2174,6 +2211,56 @@ a:focus {
         font-size: 42px;
         line-height: 40px;
     }
+    #faq-tabs .container {
+        padding-left: 0px;
+        padding-right: 0px;
+    }
+    #new-question-yes {
+        margin-left: 15px;
+        margin-top: 15px;
+        width: 80px;
+        padding: .300rem .600rem;
+    }
+    #new-question-no {
+        margin-left: 0px;
+        margin-top: 15px;
+        width: 80px;
+        padding: .300rem .600rem;
+    }
+    #winners-data_wrapper input[type="search"] {
+        width: 100%;
+    }
+    #winners-data_filter label {
+        font-size: 16px;
+    }
+    div.dataTables_wrapper div.dataTables_filter input {
+        margin-left: 0px;
+        display: block;
+    }
+    .past-winners-label {
+        padding-left: 0px;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    #winners-data {
+        font-size:10.5px;
+    }
+    #winners-data tbody {
+        font-size: 10.5px;
+    }
+    #winners-data_wrapper input[type="search"] {
+        width: 100%;
+    }
+    #new-question-no {
+        margin-left: 20px;
+        margin-top: 15px;
+        width: 80px;
+        padding: .300rem .600rem;
+    }
+    .past-winners-label {
+        padding-left: 0px;
+    }
 }
 
 @media screen and (min-width: 768px) and (max-width: 992px) {
@@ -2181,11 +2268,39 @@ a:focus {
         font-size: 42px;
         line-height: 44px;
     }
+    #faqs-question-label {
+        color: black;
+        font-size: 16px;
+    }
+
+    #new-question-no {
+        width: 80px;
+        padding: .300rem .600rem;
+    }
+    #new-question-yes {
+        width: 80px;
+        padding: .300rem .600rem;
+    }
+    #winners-data_wrapper input[type="search"] {
+        width: 160px;
+    }
+    #winners-data_filter label {
+        font-size: 16px;
+    }
+    .past-winners-label {
+        padding-left: 290px;
+    }
 }
 
 @media screen and (max-width: 370px) {
     #past-winners-register-number-sm {
         width : 288px;
+    }
+}
+
+@media screen and (min-width: 650px) and (max-width: 768px) {
+    #new-question-no {
+        margin-left: 5%;
     }
 }
 

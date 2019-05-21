@@ -11,7 +11,7 @@ $yesterday = date('j F Y', strtotime('-1 days'));;
 
 ?>
 <script type="text/javascript">var error_message = "<?= $error_message ?>";</script>
-<div class="main-content">
+<div class="main-content container">
     <div class="past-winners row">
         <div id="past-winners-sidebar-content" class="col-xl-3 col-lg-3 col-md-4 col-sm-12 col-12 remove-padding">
             <div class="row">
@@ -20,7 +20,7 @@ $yesterday = date('j F Y', strtotime('-1 days'));;
                 </div>
                 <div id="past-winners-sidebar-content-fb-lg" class="col-12">
                     <!-- Facebook Page Plugin-->
-                    <h3><p style="text-decoration:underline; color:black;">Our Winners Facebook Comments</p></h3>
+                    <h3><p style="text-decoration:underline; color:black;">Facebook Comments</p></h3>
                     <div class="fb-page" data-href="https://www.facebook.com/MuftPaise/" data-tabs="timeline" data-height="420" data-small-header="true" data-adapt-container-width="true" data-hide-cover="true" data-show-facepile="true"><blockquote cite="https://www.facebook.com/MuftPaise/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/MuftPaise/">MuftPaise</a></blockquote></div>
                     <!-- Facebook Page Plugin ends-->
                 </div>
@@ -77,7 +77,7 @@ $yesterday = date('j F Y', strtotime('-1 days'));;
             <button id="past-winners-register-number-lg" type="sumbit" class="btn" data-toggle="modal" data-target="#registration-modal">Enter daily lucky draw for free</button>
             <div id="past-winners-sidebar-content-fb-sm">
                 <!-- Facebook Page Plugin-->
-                <h3><p style="text-decoration:underline; color:black;">Our Winners Facebook Comments</p></h3>
+                <h3><p style="text-decoration:underline; color:black;">Facebook Comments</p></h3>
                 <div class="fb-page" data-href="https://www.facebook.com/MuftPaise/" data-tabs="timeline" data-height="420" data-small-header="true" data-adapt-container-width="true" data-hide-cover="true" data-show-facepile="true"><blockquote cite="https://www.facebook.com/MuftPaise/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/MuftPaise/">MuftPaise</a></blockquote></div>
                 <!-- Facebook Page Plugin ends-->
             </div>
