@@ -67,6 +67,10 @@
     color: black;
 }
 
+#past-winners-content {
+    padding-left : 3%;
+}
+
 #past-winners-content h1 {
     font-family: "Montserrat", "Arial", "Helvetica Neue", "Helvetica", sans-serif;
     color: #06174f;
@@ -417,6 +421,9 @@
 
     #winners-data_wrapper input[type="search"] {
         width: 75%;
+    }
+    #past-winners-content {
+        padding-left: 15px;
     }
   }
 
