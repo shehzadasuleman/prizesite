@@ -50,6 +50,14 @@
     </div>
 </div>
 <?php } else { ?>
+    <?php if ( $onhold_notification_enabler == 1 ) { ?>
+        <div id="onhold-notification" class="alert alert-warning alert-dismissible fade show" role="alert">
+            <?php echo $onhold_notification_message; ?>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    <?php } ?>
 <div id="wrapper">
     <header id="header" style="background-image: url(<?php print $background_url ?>);">
         <div class="header-holder">
@@ -386,15 +394,6 @@
         <script type="text/javascript">window.location = 'http://localhost/wordpress/v1/404';</script>
         <?php endif; ?>
     </main>
-    
-    <?php if ( $onhold_notification_enabler == 1 ) { ?>
-        <div id="onhold-notification" class="alert alert-warning alert-dismissible fade show" role="alert">
-            <?php echo $onhold_notification_message; ?>
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-    <?php } ?>
 </div>
 
 <div class="modal" id="popup-registration-modal" tabindex="-1" role="dialog" aria-labelledby="popupRegistrationModalLabel" aria-hidden="true">

@@ -400,11 +400,13 @@
 }
 
 #onhold-notification {
-    position:fixed;
-    bottom:0;
+    top:0;
     right:0;
-    margin-right: 10px;
     color: black;
+    z-index: 100;
+    margin-bottom: 0px;
+    width: 100%;
+    text-align: center;
 }
 
 #onhold-page {
