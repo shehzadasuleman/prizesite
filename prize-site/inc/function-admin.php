@@ -37,11 +37,17 @@ function prizesite_custom_settings() {
     //Theme Support Options
     register_setting( 'prizesite-theme-support', 'prizesite_custom_header' );
     register_setting( 'prizesite-theme-support', 'prizesite_custom_filter_error_meesgae' );
+    register_setting( 'prizesite-theme-support', 'prizesite_onhold_notification_enabler' );
+    register_setting( 'prizesite-theme-support', 'prizesite_onhold_notification' );
+    register_setting( 'prizesite-theme-support', 'prizesite_onhold_page_enabler' );
 	
 	add_settings_section( 'prizesite-theme-options', 'Theme Options', 'prizesite_theme_options', 'shahzada_prizesite_theme' );
 	
 	add_settings_field( 'prizesite-custom-header', 'Custom Header', 'prizesite_custom_header_callback', 'shahzada_prizesite_theme', 'prizesite-theme-options' );
     add_settings_field( 'prizesite-custom-filter-error-message', 'Custom Filteration Error Message', 'prizesite_custom_filter_error_message_callback', 'shahzada_prizesite_theme', 'prizesite-theme-options' );
+    add_settings_field( 'prizesite-onhold-notification-enabler', 'Enable On-hold Notification', 'prizesite_onhold_notification_enabler_callback', 'shahzada_prizesite_theme', 'prizesite-theme-options' );
+    add_settings_field( 'prizesite-onhold-notification', 'On-hold Notification Message', 'prizesite_onhold_notification_callback', 'shahzada_prizesite_theme', 'prizesite-theme-options' );
+    add_settings_field( 'prizesite-onhold-page-enabler', 'Enable On-hold Page', 'prizesite_onhold_page_enabler_callback', 'shahzada_prizesite_theme', 'prizesite-theme-options' );
 
     //Contact Form Options
 	register_setting( 'prizesite-contact-options', 'ps_activate_contact' );
@@ -74,4 +80,21 @@ function prizesite_activate_contact() {
 function prizesite_custom_filter_error_message_callback() {
     $error_message = esc_attr(get_option('prizesite_custom_filter_error_meesgae'));
     echo '<input type="text" value="'.$error_message.'" id="prizesite_custom_filter_error_meesgae" name="prizesite_custom_filter_error_meesgae" style="width:400px;"/>';
+}
+
+function prizesite_onhold_notification_enabler_callback() {
+	$options = get_option( 'prizesite_onhold_notification_enabler' );
+	$checked = ( @$options == 1 ? 'checked' : '' );
+	echo '<label><input type="checkbox" id="onhold_notification_enabler" name="prizesite_onhold_notification_enabler" value="1" '.$checked.' /></label>';
+}
+
+function prizesite_onhold_notification_callback() {
+    $message = esc_attr(get_option('prizesite_onhold_notification'));
+    echo '<textarea id="prizesite_onhold_notification" name="prizesite_onhold_notification" rows="4" cols="50">'.$message.'</textarea>';
+}
+
+function prizesite_onhold_page_enabler_callback() {
+	$options = get_option( 'prizesite_onhold_page_enabler' );
+	$checked = ( @$options == 1 ? 'checked' : '' );
+	echo '<label><input type="checkbox" id="onhold_page_enabler" name="prizesite_onhold_page_enabler" value="1" '.$checked.' /></label>';
 }

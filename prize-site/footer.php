@@ -8,8 +8,10 @@
     $domain = 'http:'.$urlparts['host'].'/wordpress/v1';
     $current_uri=$_SERVER['REQUEST_URI'];
     $facebook_url = get_template_directory_uri() . '/img/facebook.svg';
-    $instagram_url = get_template_directory_uri() . '/img/instagram.svg';
+	$instagram_url = get_template_directory_uri() . '/img/instagram.svg';
+	$onhold_page_enabler = get_option( 'prizesite_onhold_page_enabler' );
 ?>
+<?php if ( $onhold_page_enabler != 1 ) { ?>
 <footer id="footer">
 	<div class="container">
 		<div class="footer-wrapper">
@@ -39,6 +41,7 @@
 		</div>
 	</div>
 </footer>
+<?php } ?>
 <!--/.Footer-->
 <?php wp_footer(); ?>
     </body>
