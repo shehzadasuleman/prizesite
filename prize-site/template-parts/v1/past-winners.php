@@ -8,7 +8,7 @@ $error_message = esc_attr(get_option('prizesite_custom_filter_error_meesgae'));
 date_default_timezone_set('Asia/Karachi');
 $today = date("j F Y");
 $yesterday = date('j F Y', strtotime('-1 days'));;
-
+$cutoff_date = get_option( 'prizesite_past_winners_date' );
 ?>
 <script type="text/javascript">var error_message = "<?= $error_message ?>";</script>
 <div class="main-content container">
@@ -47,7 +47,8 @@ $yesterday = date('j F Y', strtotime('-1 days'));;
                     $query = new WP_Query(array(
                         'post_type' => 'prizesite-winners',
                         'post_status' => 'publish',
-                        'posts_per_page' => -1
+                        'posts_per_page' => -1,
+                        'date_query'     => array( 'after' => $cutoff_date )
                     ));
                     if($query->have_posts() ) : while ( $query->have_posts() ) : $query->the_post(); ?>
                         <?php   $post_date = get_the_date("j F Y"); ?>
