@@ -330,3 +330,175 @@ function bulk_save_prizecheck_custom_fields( $post_id ) {
 		update_post_meta( $post_id, '_prizecheck_ip_value_key', $my_data );
 	}
 }
+
+/*
+=========================================================================================================
+*/
+
+/* Queries CPT */
+
+add_action( 'init', 'prizesite_queries_custom_post_type' );
+add_filter( 'manage_prizesite-queries_posts_columns', 'prizesite_set_queries_columns' );
+add_action( 'manage_prizesite-queries_posts_custom_column', 'prizesite_queries_custom_column', 10, 2 );
+add_action( 'add_meta_boxes', 'prizesite_queries_add_meta_box' );
+add_action( 'save_post', 'bulk_save_queries_custom_fields', 10, 2);
+
+function prizesite_queries_custom_post_type() {
+	$labels = array(
+		'name' 				=> 'Queries',
+		'singular_name' 	=> 'Query',
+		'menu_name'			=> 'Queries',
+		'name_admin_bar'	=> 'Query'
+	);
+	
+	$args = array(
+		'labels'			=> $labels,
+		'show_ui'			=> true,
+		'show_in_menu'		=> true,
+		'capability_type'	=> 'post',
+		'hierarchical'		=> false,
+		'menu_position'		=> 27,
+		'menu_icon'			=> get_template_directory_uri() . '/img/query.png',
+		'supports'			=> array('title')
+	);
+	
+	register_post_type( 'prizesite-queries', $args );
+	
+}
+
+function prizesite_set_queries_columns( $columns ){
+	$newColumns = array();
+	$newColumns['title'] = 'Name';
+	$newColumns['email'] = 'Email';
+	$newColumns['number'] = 'Phone Number';
+	$newColumns['question'] = 'Question';
+	$newColumns['notes'] = 'Notes';
+	$newColumns['userresponded'] = 'User Responded';
+	$newColumns['respondedon'] = 'Responded On';
+	$newColumns['date'] = 'Date';
+	return $newColumns;
+}
+
+function prizesite_queries_custom_column( $column, $post_id ){
+	
+	switch( $column ){
+		case 'email' :
+			echo implode(" ", get_post_meta( $post_id, '_queries_email_value_key'));
+			break;
+		case 'number' :
+			echo get_post_meta( $post_id, '_queries_number_value_key', true);
+			break;
+		case 'question' :
+			echo get_post_meta( $post_id, '_queries_question_value_key', true);
+			break;
+		case 'notes' :
+			echo implode(" ", get_post_meta( $post_id, '_queries_notes_value_key'));
+			break;
+		case 'userresponded' :
+			$userresponded_value = get_post_meta( $post_id, '_queries_userresponded_value_key', true );
+			$checked = ( $userresponded_value == 1 ? 'Yes' : 'No' );
+			echo $checked;
+			break;
+		case 'respondedon' :
+			echo get_post_meta( $post_id, '_queries_respondedon_value_key', true);
+			break;
+	}
+	
+}
+
+/* Queries META BOXES */
+function prizesite_queries_add_meta_box() {
+	add_meta_box( 'queries_email', 'Email', 'prizesite_queries_email_callback', 'prizesite-queries' );
+	add_meta_box( 'queries_number', 'Phone Number', 'prizesite_queries_number_callback', 'prizesite-queries' );
+	add_meta_box( 'queries_question', 'Question', 'prizesite_queries_question_callback', 'prizesite-queries' );
+	add_meta_box( 'queries_notes', 'Notes', 'prizesite_queries_notes_callback', 'prizesite-queries' );
+	add_meta_box( 'queries_userresponded', 'User Responded', 'prizesite_queries_userresponded_callback', 'prizesite-queries' );
+	add_meta_box( 'queries_respondedon', 'Responded On', 'prizesite_queries_respondedon_callback', 'prizesite-queries' );
+}
+
+function prizesite_queries_email_callback( $post ) {
+	wp_nonce_field( 'bulk_save_queries_email_fields', 'prizesite_queries_email_meta_box_nonce' );
+
+	$email_value = get_post_meta( $post->ID, '_queries_email_value_key', true );
+	
+	echo '<input type="email" id="prizesite_queries_email_field" name="prizesite_queries_email_field" value="' . esc_attr( $email_value ) . '" size="40" />';
+}
+
+function prizesite_queries_number_callback( $post ) {
+	wp_nonce_field( 'bulk_save_queries_number_fields', 'prizesite_queries_number_meta_box_nonce' );
+
+	$number_value = get_post_meta( $post->ID, '_queries_number_value_key', true );
+	
+	echo '<input type="text" id="prizesite_queries_number_field" name="prizesite_queries_number_field" value="' . esc_attr( $number_value ) . '" size="40" />';
+}
+
+function prizesite_queries_question_callback( $post ) {
+	wp_nonce_field( 'bulk_save_queries_question_fields', 'prizesite_queries_question_meta_box_nonce' );
+
+	$question_value = get_post_meta( $post->ID, '_queries_question_value_key', true );
+	
+	echo '<textarea id="prizesite_queries_question_field" name="prizesite_queries_question_field" class="form-control" rows="3" cols="100">' . esc_attr( $question_value ) . '</textarea>';
+}
+
+function prizesite_queries_notes_callback( $post ) {
+	wp_nonce_field( 'bulk_save_queries_notes_fields', 'prizesite_queries_notes_meta_box_nonce' );
+
+	$notes_value = get_post_meta( $post->ID, '_queries_notes_value_key', true );
+	
+	echo '<textarea id="prizesite_queries_notes_field" name="prizesite_queries_notes_field" class="form-control" rows="3" cols="100">' . esc_attr( $notes_value ) . '</textarea>';
+}
+
+function prizesite_queries_userresponded_callback( $post ) {
+	wp_nonce_field( 'bulk_save_queries_userresponded_fields', 'prizesite_queries_userresponded_meta_box_nonce' );
+
+	$userresponded_value = get_post_meta( $post->ID, '_queries_userresponded_value_key', true );
+	$checked = ( $userresponded_value == 1 ? 'checked' : '' );
+	echo '<label><input type="checkbox" id="prizesite_queries_userresponded_field" name="prizesite_queries_userresponded_field" value="1" '.$checked.' /></label>';
+}
+
+function prizesite_queries_respondedon_callback( $post ) {
+	wp_nonce_field( 'bulk_save_queries_respondedon_fields', 'prizesite_queries_respondedon_meta_box_nonce' );
+
+	$respondedon_value = get_post_meta( $post->ID, '_queries_respondedon_value_key', true );
+	
+	echo '<input type="date" id="prizesite_queries_respondedon_field" name="prizesite_queries_respondedon_field" value="' . esc_attr( $respondedon_value ) . '" size="40" />';
+}
+
+function bulk_save_queries_custom_fields( $post_id ) {
+	if( defined('DOING_AUTOSAVE') && DOING_AUTOSAVE ) {
+		return;
+	}
+
+	if( ! current_user_can( 'edit_post', $post_id )) {
+		return;
+	}
+
+	if( isset( $_POST['prizesite_queries_email_meta_box_nonce'] ) && isset( $_POST['prizesite_queries_email_field']) ) {
+		$data = sanitize_text_field( $_POST['prizesite_queries_email_field'] );
+		update_post_meta( $post_id, '_queries_email_value_key', $data );
+	}
+
+	if( isset( $_POST['prizesite_queries_number_meta_box_nonce'] ) && isset( $_POST['prizesite_queries_number_field']) ) {
+		$data = sanitize_text_field( $_POST['prizesite_queries_number_field'] );
+		update_post_meta( $post_id, '_queries_number_value_key', $data );
+	}
+
+	if( isset( $_POST['prizesite_queries_question_meta_box_nonce'] ) && isset( $_POST['prizesite_queries_question_field']) ) {
+		$data = sanitize_text_field( $_POST['prizesite_queries_question_field'] );
+		update_post_meta( $post_id, '_queries_question_value_key', $data );
+	}
+
+	if( isset( $_POST['prizesite_queries_notes_meta_box_nonce'] ) && isset( $_POST['prizesite_queries_notes_field']) ) {
+		$data = sanitize_text_field( $_POST['prizesite_queries_notes_field'] );
+		update_post_meta( $post_id, '_queries_notes_value_key', $data );
+	}
+
+	//if( isset( $_POST['prizesite_queries_userresponded_meta_box_nonce'] ) && isset( $_POST['prizesite_queries_userresponded_field']) ) {
+		update_post_meta( $post_id, '_queries_userresponded_value_key', $_POST['prizesite_queries_userresponded_field'] );
+	//}
+
+	if( isset( $_POST['prizesite_queries_respondedon_meta_box_nonce'] ) && isset( $_POST['prizesite_queries_respondedon_field']) ) {
+		$data = sanitize_text_field( $_POST['prizesite_queries_respondedon_field'] );
+		update_post_meta( $post_id, '_queries_respondedon_value_key', $data );
+	}
+}

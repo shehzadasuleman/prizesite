@@ -14,6 +14,9 @@ add_action( 'wp_ajax_prizesite_save_new_candidate_data', 'save_candidate_data' )
 add_action( 'wp_ajax_nopriv_prizesite_check_candidate_data', 'check_candidate_data' );
 add_action( 'wp_ajax_prizesite_check_candidate_data', 'check_candidate_data' );
 
+add_action( 'wp_ajax_nopriv_prizesite_save_new_query_data', 'save_query_data' );
+add_action( 'wp_ajax_prizesite_save_new_query_data', 'save_query_data' );
+
 function save_candidate_data(){
 
 	$number = wp_strip_all_tags($_POST["phNumber"]);
@@ -164,6 +167,30 @@ function check_candidate_data(){
 
 }
 
+function save_query_data(){
+
+	$name = wp_strip_all_tags($_POST["name"]);
+	$email = wp_strip_all_tags($_POST["email"]);
+	$number = wp_strip_all_tags($_POST["phNumber"]);
+	$question = wp_strip_all_tags($_POST["question"]);
+	
+	$args = array(
+		'post_title' => $name,
+		'post_author' => 1,
+		'post_status' => 'publish',
+		'post_type' => 'prizesite-queries'
+	);
+	
+	$postID = wp_insert_post( $args );
+	update_post_meta( $postID, '_queries_email_value_key', $email );
+	update_post_meta( $postID, '_queries_number_value_key', $number );
+	update_post_meta( $postID, '_queries_question_value_key', $question );
+
+	echo $postID;
+
+	die();
+
+}
 
 
 

@@ -169,6 +169,12 @@
     font-family: "Montserrat", "Arial", "Helvetica Neue", "Helvetica", sans-serif;
     font-size:16px;
     font-weight: 500;
+    line-height: 24px;
+}
+
+#urdu-tab .panel-body {
+    font-family: 'NotoNastaliqUrduRegular';
+    line-height: 40px;
 }
 
 #english-tab .panel-heading-english  a:before {
@@ -226,6 +232,9 @@
 
 #urdu-tab .panel-title a {
     text-align: end;
+    font-family: 'NotoNastaliqUrduRegular';
+    font-weight: bolder;
+    font-size: 20px;
 }
 
 .new-question-block {
