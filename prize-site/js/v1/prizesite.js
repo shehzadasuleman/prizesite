@@ -90,6 +90,7 @@ jQuery(document).ready(function($) {
     }
     $(document).ready(function() {
         $('#winners-data').DataTable( {
+            "ordering": false,
             "columnDefs": [
                 {
                     "targets": [ 2 ],

@@ -7,7 +7,6 @@ $foodpanda_url = get_template_directory_uri() . '/img/foodpanda.jpg';
 $error_message = esc_attr(get_option('prizesite_custom_filter_error_meesgae'));
 date_default_timezone_set('Asia/Karachi');
 $today = date("j F Y");
-$yesterday = date('j F Y', strtotime('-1 days'));;
 $cutoff_date = get_option( 'prizesite_past_winners_date' );
 ?>
 <script type="text/javascript">var error_message = "<?= $error_message ?>";</script>
@@ -52,7 +51,7 @@ $cutoff_date = get_option( 'prizesite_past_winners_date' );
                     ));
                     if($query->have_posts() ) : while ( $query->have_posts() ) : $query->the_post(); ?>
                         <?php   $post_date = get_the_date("j F Y"); ?>
-                            <?php if ( ($post_date != $today) && ($post_date != $yesterday) ) { ?>
+                            <?php if ( ($post_date != $today) ) { ?>
                                 <tr>
                                         <td><?php echo $post_date; ?></td>
                                         <td><?php the_title(); ?></td>
