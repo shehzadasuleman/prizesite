@@ -60,5 +60,6 @@ function prizesite_load_scripts() {
     // New Design - End
     wp_enqueue_script( 'prizesite-js', get_template_directory_uri() . '/js/prizesite.js', array('jquery'), '1.0.0', 'all' );
     wp_enqueue_script( 'prizesite-v1-js', get_template_directory_uri() . '/js/v1/prizesite.js', array('jquery'), '1.0.0', 'all' );
+    wp_enqueue_script( 'past-winners-js', get_template_directory_uri() . '/js/v1/past-winners.js', array('jquery'), '1.0.0', 'all' );
 }
 add_action( 'wp_enqueue_scripts', 'prizesite_load_scripts' );
