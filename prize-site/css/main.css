@@ -1313,7 +1313,7 @@ a:focus {
 
 .main-navigation li a {
     color: #131c45;
-    font-size: 24px;
+    font-size: 23px;
     line-height: 26px;
     font-weight: 700;
     display: inline-block;
@@ -1775,9 +1775,6 @@ a:focus {
         margin: 0;
         display: none;
     }
-    .lucky-form {
-        margin: 0 30px 0 0;
-    }
     .messages-block .message-box.left .message {
         margin: 0 0 0 10px;
         padding: 35px 20px 32px 32px;
@@ -2048,6 +2045,9 @@ a:focus {
     .past-winners-label {
         padding-left: 395px;
     }
+    .main-navigation li a {
+        font-size: 20px;
+    }
 }
 
 @media (max-width: 1200px) {
@@ -2108,15 +2108,6 @@ a:focus {
     }
 }
 
-@media screen and (min-width: 1024px) and (max-width: 1124px) {
-    .nav-holder .nav-area ul li {
-        padding-left: 30px;
-    }
-    .main-navigation li a {
-        font-size: 20px;
-    }
-}
-
 @media screen and (min-width: 900px) and (max-width: 1024px) {
     .nav-holder .nav-area ul li {
         padding-left: 25px;
@@ -2125,7 +2116,7 @@ a:focus {
         font-size: 20px;
     }
 }
-
+/*
 @media screen and (min-width: 850px) and (max-width: 900px) {
     .nav-holder .nav-area ul li {
         padding-left: 25px;
@@ -2142,7 +2133,7 @@ a:focus {
     .nav-holder .nav-area ul li a {
         font-size: 15px;
     }
-}
+}*/
 
 @media screen and (min-width: 576px) and (max-width: 768px) {
     #winners-data_length {
@@ -2350,4 +2341,35 @@ a:focus {
     -webkit-box-align: center;
     -ms-flex-align: center;
     align-items: center;
+}
+
+@media screen and (min-width: 992px) and (max-width: 1094px) {
+    .main-navigation li a {
+        font-size: 19px;
+    }
+    .main-navigation li {
+        padding: 0 0 0 25px;
+    }
+}
+@media screen and (min-width: 900px) and (max-width: 970px) {
+    .main-navigation li a {
+        font-size: 18px;
+    }
+    .main-navigation li {
+        padding: 0 0 0 20px;
+    }
+    .logo {
+        margin-left: 0%;
+    }
+}
+@media screen and (min-width: 768px) and (max-width: 900px) {
+    .main-navigation li a {
+        font-size: 15px;
+    }
+    .main-navigation li {
+        padding: 0 0 0 16px;
+    }
+    .logo {
+        margin-left: 0%;
+    }
 }

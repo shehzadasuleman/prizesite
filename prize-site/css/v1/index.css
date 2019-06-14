@@ -174,19 +174,7 @@
 
 #urdu-tab .panel-body {
     font-family: 'NotoNastaliqUrduRegular';
-    line-height: 40px;
-}
-
-#english-tab .panel-heading-english  a:before {
-    font-family: "Font Awesome 5 Free";
-    content: "\f105"; 
-    float: right;
-    transition: all 0.5s;
-}
-#english-tab .panel-heading-english.active a:before {
-    -webkit-transform: rotate(90deg);
-    -moz-transform: rotate(90deg);
-    transform: rotate(90deg);
+    line-height: 50px;
 }
 
 .past-winners .title {
@@ -214,20 +202,8 @@
 }
 
 #faq-tabs .title {
-    margin-top: 15px;
+    margin-top: 40px;
     margin-bottom: 20px;
-}
-
-#urdu-tab .panel-heading-urdu  a:before {
-    font-family: "Font Awesome 5 Free";
-    content: "\f107"; 
-    float: left;
-    transition: all 0.5s;
-}
-#urdu-tab .panel-heading-urdu.active a:before {
-    -webkit-transform: rotate(90deg);
-    -moz-transform: rotate(90deg);
-    transform: rotate(90deg);
 }
 
 #urdu-tab .panel-title a {
@@ -444,6 +420,51 @@
     font-weight: 700;
     line-height: 98px;
     text-shadow: rgba(61, 61, 61, 0.3) 1px 1px, rgba(61, 61, 61, 0.2) 2px 2px, rgba(61, 61, 61, 0.3) 3px 3px;
+}
+
+#english-tab .panel-title a {
+    display: inline-block;
+}
+#english-tab .panel-title span {
+    margin-top: 10px;
+}
+
+#english-tab .panel-title a:nth-child(1) {
+    padding-right: 0px;
+}
+
+#english-tab .panel-title a:nth-child(2) {
+    padding-left: 0px;
+}
+
+#copy-url-btn {
+    margin-top: 10px;
+    color: white;
+}
+
+#query-url {
+    font-size: 16px;
+}
+
+.panel-heading-english h4 {
+    margin-bottom: 0px;
+}
+
+#success-queries-modal .col {
+    padding: 0%;
+}
+
+#failure-queries-modal .col {
+    padding: 0%;
+}
+
+#urdu-tab .panel-title a:nth-child(1) {
+    float: right;
+    padding-left: 5px;
+}
+
+#urdu-tab .panel-title a:nth-child(2) img {
+    margin-top: 12px;
 }
 
 @media screen and (min-width: 768px) {
