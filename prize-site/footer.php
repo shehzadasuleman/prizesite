@@ -5,7 +5,7 @@
         @package prizesite
 	*/
 	$urlparts = parse_url(home_url());
-    $domain = 'http:'.$urlparts['host'].'/wordpress/v1';
+	$domain = 'http:'.$urlparts['host'].'/wordpress/v1';
     $current_uri=$_SERVER['REQUEST_URI'];
     $facebook_url = get_template_directory_uri() . '/img/facebook.svg';
 	$instagram_url = get_template_directory_uri() . '/img/instagram.svg';
@@ -32,9 +32,9 @@
 			</div>
 		</div>
 		<ul class="footer-nav">
-			<li><a href="<?php print $domain."/terms-and-conditions"; ?>">Terms &amp; Conditions</a></li>
-			<li><a href="<?php print $domain."/privacy-policy"; ?>">Privacy policy</a></li>
-			<li><a href="<?php print $domain."/cookies-policy"; ?>">Cookies policy</a></li>
+			<li><a href="http://localhost/wordpress/v1/terms-and-conditions">Terms &amp; Conditions</a></li>
+			<li><a href="http://localhost/wordpress/v1/privacy-policy">Privacy policy</a></li>
+			<li><a href="http://localhost/wordpress/v1/cookies-policy">Cookies policy</a></li>
 		</ul>
 		<div class="copyright">
 			<p>&copy; Copyright 2018 <a href="#">MuftPaise.com</a>, inc. All rights reserved.</p>

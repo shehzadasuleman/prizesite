@@ -144,16 +144,27 @@
     padding: 0;
     border:0;
 }
-.panel-title>a, .panel-title>a:active{
+.panel-footer a{
     display:block;
-    padding:15px;
     color:#06174f;
     font-family: "Montserrat", "Arial", "Helvetica Neue", "Helvetica", sans-serif;
-    font-size:18px;
+    font-size:20px;
     font-weight:bold;
     letter-spacing:1px;
     word-spacing:3px;
     text-decoration:none;
+}
+
+.panel-title span {
+    display: block;
+    padding: 15px;
+    color: #06174f;
+    font-family: "Montserrat", "Arial", "Helvetica Neue", "Helvetica", sans-serif;
+    font-size: 18px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    word-spacing: 3px;
+    text-decoration: none;
 }
 
 .panel-default {
@@ -165,6 +176,7 @@
 .panel-body {
     padding:15px;
     padding-top: 0px;
+    padding-bottom: 0px;
     color : black;
     font-family: "Montserrat", "Arial", "Helvetica Neue", "Helvetica", sans-serif;
     font-size:16px;
@@ -172,9 +184,13 @@
     line-height: 24px;
 }
 
+.panel-body p {
+    margin-bottom: 0px;
+}
+
 #urdu-tab .panel-body {
     font-family: 'NotoNastaliqUrduRegular';
-    line-height: 50px;
+    line-height: 40px;
 }
 
 .past-winners .title {
@@ -207,6 +223,12 @@
 }
 
 #urdu-tab .panel-title a {
+    font-size: 20px;
+    padding-top: 0%;
+    padding-bottom: 0%;
+}
+
+#urdu-tab .panel-title span {
     text-align: end;
     font-family: 'NotoNastaliqUrduRegular';
     font-weight: bolder;
@@ -422,19 +444,15 @@
     text-shadow: rgba(61, 61, 61, 0.3) 1px 1px, rgba(61, 61, 61, 0.2) 2px 2px, rgba(61, 61, 61, 0.3) 3px 3px;
 }
 
-#english-tab .panel-title a {
-    display: inline-block;
-}
 #english-tab .panel-title span {
     margin-top: 10px;
+    padding-right: 15px;
+    display: inline-block;
 }
 
 #english-tab .panel-title a:nth-child(1) {
-    padding-right: 0px;
-}
-
-#english-tab .panel-title a:nth-child(2) {
     padding-left: 0px;
+    cursor: pointer;
 }
 
 #copy-url-btn {
@@ -458,13 +476,44 @@
     padding: 0%;
 }
 
-#urdu-tab .panel-title a:nth-child(1) {
-    float: right;
-    padding-left: 5px;
+#urdu-tab .panel-title span {
+    padding-left: 15px;
+    line-height: 45px;
 }
 
-#urdu-tab .panel-title a:nth-child(2) img {
-    margin-top: 12px;
+#urdu-tab h4 {
+    margin-bottom: 0%;
+}
+
+.panel-footer a label {
+    font-size: 18px;
+    font-weight: 700;
+    padding-left: 10px;
+    margin-top: 8px;
+}
+
+.share-icon-link {
+    margin-top: 2px;
+    margin-left: 4px;
+    margin-top: 8px;
+}
+
+.panel-footer {
+    margin-top: 5px;
+    padding-top: 5px;
+    padding-bottom: 10px;
+    padding-left: 15px;
+    padding-right: 15px;
+    text-align: right;
+}
+
+#urdu-tab .panel-footer {
+    text-align: left;
+}
+
+.panel-footer a {
+    border-top: 1px solid rgba(0,0,0,.1);
+    border-bottom: 1px solid rgba(0,0,0,.1);
 }
 
 @media screen and (min-width: 768px) {

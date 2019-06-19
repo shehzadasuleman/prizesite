@@ -10,12 +10,6 @@ jQuery(document).ready(function($) {
             $("#english-tab").removeClass("show");
             $("#urdu-tab").addClass("active");
             $("#urdu-tab").addClass("show");
-
-            if ( hash.toLowerCase() != "urdu-tab" ) {
-                $('html, body').delay(500).animate({
-                    'scrollTop' : $(hash).position().top
-                });
-            }
         }
         
     }

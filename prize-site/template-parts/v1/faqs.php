@@ -8,6 +8,7 @@ $category_id = get_cat_ID('Urdu Questions');
 $urdu_post_count = get_category( $category_id )->category_count;
 $share_url = get_template_directory_uri() . '/img/share.png';
 $share_rotate_url = get_template_directory_uri() . '/img/share-rotate.png';
+$share_urdu_url = get_template_directory_uri() . '/img/share-urdu.png';
 ?>
 <script type="text/javascript">
 var english_questions_count = "<?= $english_post_count ?>";
@@ -44,22 +45,21 @@ var urdu_questions_count = "<?= $urdu_post_count ?>";
 																$index = 1;
                                 									while (have_posts()) {
 																		the_post(); 
-																		$english_heading_id = "heading".$index."English";
-																		$english_content_id = "content".$index."English";?>
+																		$english_content_id = "content".$index."English"; ?>
                                     									<div class="panel panel-default">
-																			<div class="panel-heading-english active" role="tab" id="<?php echo $english_heading_id; ?>">
+																			<div class="panel-heading-english active" role="tab" id="<?php echo the_slug(); ?>">
 																				<h4 class="panel-title">
-																					<a role="button" data-parent="#accordion" href="#<?php echo $english_content_id; ?>" aria-expanded="true" aria-controls="<?php echo $english_content_id; ?>">
-																						<span><?php the_title(); ?></span>
-																					</a>
-																					<?php $share_link = "http://localhost/wordpress/v1/faqs#".$english_heading_id; ?>
-																					<a class="share-link-btn" type="sumbit" data-toggle="modal" data-target="#share-queries-modal" title="Share" href="<?php echo $share_link; ?>"><img class="share-icon-link" src="<?php print $share_url ?>" alt="share icon"></a>
+																					<span><?php the_title(); ?></span>
 																				</h4>
 																			</div>
 																			<div id="<?php echo $english_content_id; ?>" class="panel-collapse-english show" role="tabpanel" aria-labelledby="<?php echo $english_heading_id ?>">
 																				<div class="panel-body">
 																					<?php the_content(); ?>
 																				</div>
+																			</div>
+																			<?php $slug = the_slug(); $share_link = "http://localhost/wordpress/v1/faqs#".$slug; ?>
+																			<div class="panel-footer">
+																				<a class="share-link-btn" type="sumbit" data-toggle="modal" data-target="#share-queries-modal" title="Share" href="<?php echo $share_link; ?>"><img class="share-icon-link" src="<?php print $share_url ?>" alt="share icon"><label>Share</label></a>
 																			</div>
 																		</div>
 																	<?php
@@ -78,22 +78,21 @@ var urdu_questions_count = "<?= $urdu_post_count ?>";
 																	$index = 1;
 																	while (have_posts()) {
 																			the_post();
-																			$urdu_heading_id = "heading".$index."Urdu";
 																			$urdu_content_id = "content".$index."Urdu";?>
 																			<div class="panel panel-default">
-																				<div class="panel-heading-urdu active" role="tab" id="<?php echo $urdu_heading_id; ?>">
+																				<div class="panel-heading-urdu" role="tab" id="<?php echo the_slug(); ?>">
 																					<h4 class="panel-title">
-																						<a role="button" data-parent="#accordion" href="#<?php echo $urdu_content_id; ?>" aria-expanded="true" aria-controls="<?php echo $urdu_content_id; ?>">
-																							<?php the_title(); ?>
-																						</a>
-																						<?php $share_link = "http://localhost/wordpress/v1/faqs#".$urdu_heading_id; ?>
-																						<a class="share-link-btn" type="sumbit" data-toggle="modal" data-target="#share-queries-modal" title="Share" href="<?php echo $share_link; ?>"><img class="share-icon-link" src="<?php print $share_rotate_url ?>" alt="share icon"></a>
+																						<span><?php the_title(); ?></span>
 																					</h4>
 																				</div>
 																				<div id="<?php echo $urdu_content_id; ?>" class="panel-collapse-urdu show" role="tabpanel" aria-labelledby="<?php echo $urdu_heading_id; ?>">
 																					<div class="panel-body">
 																						<?php the_content(); ?>
 																					</div>
+																				</div>
+																				<?php $slug = the_slug(); $share_link = "http://localhost/wordpress/v1/faqs#".$slug; ?>
+																				<div class="panel-footer">
+																					<a class="share-link-btn" type="sumbit" data-toggle="modal" data-target="#share-queries-modal" title="Share" href="<?php echo $share_link; ?>"><img class="share-icon-link" src="<?php print $share_url ?>" alt="share icon"><label>Share</label></a>
 																				</div>
 																			</div>
 																<?php
@@ -225,6 +224,7 @@ var urdu_questions_count = "<?= $urdu_post_count ?>";
 							<?php the_content() ?>
 						</div>
 				<?php } wp_reset_query(); ?>
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
       </div>
     </div>
   </div>
@@ -288,7 +288,7 @@ var urdu_questions_count = "<?= $urdu_post_count ?>";
       </div>
       <div class="modal-body">
 	  		<div class="col">
-				<h3>Share questins with other people!</h3>
+				<h3>Share the link below with your friends for them to see the answer</h3>
 				<div class="form-group">
 					<div class="input-wrap">
 						<input type="text" id="query-url" class="form-control" readonly>
