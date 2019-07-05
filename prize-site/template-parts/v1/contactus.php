@@ -93,6 +93,12 @@
 							<span class="label">Don't worry, we'll never pass this on.</span>
 							<span class="error-message" id="error-msg">Please enter a phone number</span>
 						</div>
+						<div class="input-wrap">
+                        	<label for="email" class="label-text">Your email address (myemail@domain.com)</label>
+                        	<input type="text" id="email" class="form-control" >
+                        	<span class="label">Don't worry, we'll never pass this on.</span>
+                        	<span class="error-message" id="email-error-msg">Please enter a valid email address</span>
+                    	</div>
 					</div>
 					<div class="form-group" id="check-box-div">
 						<div class="input-wrap">

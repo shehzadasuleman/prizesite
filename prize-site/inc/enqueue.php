@@ -57,6 +57,7 @@ function prizesite_load_scripts() {
     wp_enqueue_script( 'jquery-main', get_template_directory_uri() . '/js/jquery.main.js', array('jquery'), '1.0.0', true );
     wp_enqueue_script( 'jquery-plugin', get_template_directory_uri() . '/js/jquery.plugin.js', array('jquery'), '1.0.0', true );
     wp_enqueue_script( 'jquery-countdown', get_template_directory_uri() . '/js/jquery.countdown.js', array('jquery'), '2.0.2', true );
+    
     // New Design - End
     wp_enqueue_script( 'prizesite-js', get_template_directory_uri() . '/js/prizesite.js', array('jquery'), '1.0.0', 'all' );
     wp_enqueue_script( 'prizesite-v1-js', get_template_directory_uri() . '/js/v1/prizesite.js', array('jquery'), '1.0.0', 'all' );

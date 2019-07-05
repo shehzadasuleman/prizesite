@@ -15,7 +15,7 @@ if( @$contact == 1 ){
 	add_filter( 'manage_prizesite-contact_posts_columns', 'prizesite_set_contact_columns' );
 	add_action( 'manage_prizesite-contact_posts_custom_column', 'prizesite_contact_custom_column', 10, 2 );
 	add_action( 'add_meta_boxes', 'prizesite_contact_add_meta_box' );
-	add_action( 'save_post', 'prizesite_save_contact_ip_data');
+	add_action( 'save_post', 'prizesite_save_contact_bulk_data');
 }
 /* CONTACT CPT */
 function prizesite_contact_custom_post_type() {
@@ -44,7 +44,9 @@ function prizesite_contact_custom_post_type() {
 function prizesite_set_contact_columns( $columns ){
 	$newColumns = array();
 	$newColumns['title'] = 'Phone Number';
+	$newColumns['email'] = 'Email Address';
 	$newColumns['ip'] = 'IP Address';
+	$newColumns['city'] = 'City';
 	$newColumns['date'] = 'Date';
 	return $newColumns;
 }
@@ -56,6 +58,12 @@ function prizesite_contact_custom_column( $column, $post_id ){
 		case 'ip' :
 			echo get_post_meta( $post_id, '_contact_ip_value_key', true);
 			break;
+		case 'email' :
+			echo get_post_meta( $post_id, '_contact_email_value_key', true);
+			break;
+		case 'city' :
+			echo get_post_meta( $post_id, '_contact_city_value_key', true);
+			break;
 	}
 	
 }
@@ -63,6 +71,8 @@ function prizesite_contact_custom_column( $column, $post_id ){
 /* Contact META BOXES */
 function prizesite_contact_add_meta_box() {
 	add_meta_box( 'contact_ip', 'IP Address', 'prizesite_contact_ip_callback', 'prizesite-contact' );
+	add_meta_box( 'contact_email', 'Email Address', 'prizesite_contact_email_callback', 'prizesite-contact' );
+	add_meta_box( 'contact_city', 'City', 'prizesite_contact_city_callback', 'prizesite-contact' );
 }
 
 function prizesite_contact_ip_callback( $post ) {
@@ -74,11 +84,26 @@ function prizesite_contact_ip_callback( $post ) {
 	echo '<input type="text" id="prizesite_contact_ip_field" name="prizesite_contact_ip_field" value="' . esc_attr( $ip_value ) . '" size="25" />';
 }
 
-function prizesite_save_contact_ip_data( $post_id ) {
-	if( ! isset( $_POST['prizesite_contact_ip_meta_box_nonce'] )) {
-		return;
-	}
+function prizesite_contact_email_callback( $post ) {
+	wp_nonce_field( 'prizesite_save_contact_email_data', 'prizesite_contact_email_meta_box_nonce' );
 
+	$email_value = get_post_meta( $post->ID, '_contact_email_value_key', true );
+	
+	echo '<label for="prizesite_contact_email_field">Email Address: </label>';
+	echo '<input type="text" id="prizesite_contact_email_field" name="prizesite_contact_email_field" value="' . esc_attr( $email_value ) . '" size="25" />';
+}
+
+function prizesite_contact_city_callback( $post ) {
+	wp_nonce_field( 'prizesite_save_contact_city_data', 'prizesite_contact_city_meta_box_nonce' );
+
+	$city_value = get_post_meta( $post->ID, '_contact_city_value_key', true );
+	
+	echo '<label for="prizesite_contact_city_field">City: </label>';
+	echo '<input type="text" id="prizesite_contact_city_field" name="prizesite_contact_city_field" value="' . esc_attr( $city_value ) . '" size="25" />';
+}
+
+function prizesite_save_contact_bulk_data( $post_id ) {
+	
 	if( defined('DOING_AUTOSAVE') && DOING_AUTOSAVE ) {
 		return;
 	}
@@ -87,13 +112,23 @@ function prizesite_save_contact_ip_data( $post_id ) {
 		return;
 	}
 
-	if( ! isset( $_POST['prizesite_contact_ip_field'])) {
-		return;
+	if( isset( $_POST['prizesite_contact_ip_meta_box_nonce'] ) && isset( $_POST['prizesite_contact_ip_field']) ) {
+		$my_data = sanitize_text_field( $_POST['prizesite_contact_ip_field'] );
+
+		update_post_meta( $post_id, '_contact_ip_value_key', $my_data );
 	}
 
-	$my_data = sanitize_text_field( $_POST['prizesite_contact_ip_field'] );
+	if(isset( $_POST['prizesite_contact_email_meta_box_nonce'] ) && isset( $_POST['prizesite_contact_email_field']) ) {
+		$my_data = sanitize_text_field( $_POST['prizesite_contact_email_field'] );
 
-	update_post_meta( $post_id, '_contact_ip_value_key', $my_data );
+		update_post_meta( $post_id, '_contact_email_value_key', $my_data );
+	}
+
+	if(isset( $_POST['prizesite_contact_city_meta_box_nonce'] ) && isset( $_POST['prizesite_contact_city_field']) ) {
+		$my_data = sanitize_text_field( $_POST['prizesite_contact_city_field'] );
+
+		update_post_meta( $post_id, '_contact_city_value_key', $my_data );
+	}
 }
 
 /*
@@ -500,5 +535,151 @@ function bulk_save_queries_custom_fields( $post_id ) {
 	if( isset( $_POST['prizesite_queries_respondedon_meta_box_nonce'] ) && isset( $_POST['prizesite_queries_respondedon_field']) ) {
 		$data = sanitize_text_field( $_POST['prizesite_queries_respondedon_field'] );
 		update_post_meta( $post_id, '_queries_respondedon_value_key', $data );
+	}
+}
+
+/*
+===============================================================================================================
+*/
+
+/* Verification CPT */
+add_action( 'init', 'prizesite_verify_custom_post_type' );
+add_filter( 'manage_prizesite-verify_posts_columns', 'prizesite_set_verify_columns' );
+add_action( 'manage_prizesite-verify_posts_custom_column', 'prizesite_verify_custom_column', 10, 2 );
+add_action( 'add_meta_boxes', 'prizesite_verify_add_meta_box' );
+add_action( 'save_post', 'prizesite_save_verify_bulk_data');
+
+/* Verification CPT */
+function prizesite_verify_custom_post_type() {
+	$labels = array(
+		'name' 				=> 'Verifications',
+		'singular_name' 	=> 'Verification',
+		'menu_name'			=> 'Verifications',
+		'name_admin_bar'	=> 'Verification'
+	);
+	
+	$args = array(
+		'labels'			=> $labels,
+		'show_ui'			=> true,
+		'show_in_menu'		=> true,
+		'capability_type'	=> 'post',
+		'hierarchical'		=> false,
+		'menu_position'		=> 26,
+		'menu_icon'			=> get_template_directory_uri() . '/img/verify.png',
+		'supports'			=> array('title')
+	);
+	
+	register_post_type( 'prizesite-verify', $args );
+	
+}
+
+function prizesite_set_verify_columns( $columns ){
+	$newColumns = array();
+	$newColumns['title'] = 'Phone Number';
+	$newColumns['email'] = 'Email Address';
+	$newColumns['ip'] = 'IP Address';
+	$newColumns['passcode'] = 'Passcode';
+	$newColumns['verified'] = 'Verified';
+	$newColumns['date'] = 'Date';
+	return $newColumns;
+}
+
+function prizesite_verify_custom_column( $column, $post_id ){
+	
+	switch( $column ){
+			
+		case 'ip' :
+			echo get_post_meta( $post_id, '_verify_ip_value_key', true);
+			break;
+		case 'email' :
+			echo get_post_meta( $post_id, '_verify_email_value_key', true);
+			break;
+		case 'passcode' :
+			echo get_post_meta( $post_id, '_verify_passcode_value_key', true);
+			break;
+		case 'verified' :
+			echo get_post_meta( $post_id, '_verify_verified_value_key', true);
+			break;
+	}
+	
+}
+
+/* Verification META BOXES */
+
+function prizesite_verify_add_meta_box() {
+	add_meta_box( 'verify_ip', 'IP Address', 'prizesite_verify_ip_callback', 'prizesite-verify' );
+	add_meta_box( 'verify_email', 'Email Address', 'prizesite_verify_email_callback', 'prizesite-verify' );
+	add_meta_box( 'verify_passcode', 'Passcode', 'prizesite_verify_passcode_callback', 'prizesite-verify' );
+	add_meta_box( 'verify_verified', 'Verified', 'prizesite_verify_verified_callback', 'prizesite-verify' );
+}
+
+function prizesite_verify_ip_callback( $post ) {
+	wp_nonce_field( 'prizesite_save_verify_ip_data', 'prizesite_verify_ip_meta_box_nonce' );
+
+	$ip_value = get_post_meta( $post->ID, '_verify_ip_value_key', true );
+	
+	echo '<label for="prizesite_verify_ip_field">IP Address: </label>';
+	echo '<input type="text" id="prizesite_verify_ip_field" name="prizesite_verify_ip_field" value="' . esc_attr( $ip_value ) . '" size="25" />';
+}
+
+function prizesite_verify_email_callback( $post ) {
+	wp_nonce_field( 'prizesite_save_verify_email_data', 'prizesite_verify_email_meta_box_nonce' );
+
+	$email_value = get_post_meta( $post->ID, '_verify_email_value_key', true );
+	
+	echo '<label for="prizesite_verify_email_field">Email Address: </label>';
+	echo '<input type="text" id="prizesite_verify_email_field" name="prizesite_verify_email_field" value="' . esc_attr( $email_value ) . '" size="25" />';
+}
+
+function prizesite_verify_passcode_callback( $post ) {
+	wp_nonce_field( 'prizesite_save_verify_passcode_data', 'prizesite_verify_passcode_meta_box_nonce' );
+
+	$passcode_value = get_post_meta( $post->ID, '_verify_passcode_value_key', true );
+	
+	echo '<label for="prizesite_verify_passcode_field">Passcode: </label>';
+	echo '<input type="text" id="prizesite_verify_passcode_field" name="prizesite_verify_passcode_field" value="' . esc_attr( $passcode_value ) . '" size="25" />';
+}
+
+function prizesite_verify_verified_callback( $post ) {
+	wp_nonce_field( 'prizesite_save_verify_verified_data', 'prizesite_verify_verified_meta_box_nonce' );
+
+	$verified_value = get_post_meta( $post->ID, '_verify_verified_value_key', true );
+	
+	echo '<label for="prizesite_verify_verified_field">Verified: </label>';
+	echo '<input type="text" id="prizesite_verify_verified_field" name="prizesite_verify_verified_field" value="' . esc_attr( $verified_value ) . '" size="25" />';
+}
+
+function prizesite_save_verify_bulk_data( $post_id ) {
+	
+	if( defined('DOING_AUTOSAVE') && DOING_AUTOSAVE ) {
+		return;
+	}
+
+	if( ! current_user_can( 'edit_post', $post_id )) {
+		return;
+	}
+
+	if( isset( $_POST['prizesite_verify_ip_meta_box_nonce'] ) && isset( $_POST['prizesite_verify_ip_field']) ) {
+		$my_data = sanitize_text_field( $_POST['prizesite_verify_ip_field'] );
+
+		update_post_meta( $post_id, '_verify_ip_value_key', $my_data );
+	}
+
+	if(isset( $_POST['prizesite_verify_email_meta_box_nonce'] ) && isset( $_POST['prizesite_verify_email_field']) ) {
+		$my_data = sanitize_text_field( $_POST['prizesite_verify_email_field'] );
+
+		update_post_meta( $post_id, '_verify_email_value_key', $my_data );
+	}
+
+	if(isset( $_POST['prizesite_verify_passcode_meta_box_nonce'] ) && isset( $_POST['prizesite_verify_passcode_field']) ) {
+		$my_data = sanitize_text_field( $_POST['prizesite_verify_passcode_field'] );
+
+		update_post_meta( $post_id, '_verify_passcode_value_key', $my_data );
+	}
+
+	if(isset( $_POST['prizesite_verify_verified_meta_box_nonce'] ) && isset( $_POST['prizesite_verify_verified_field']) ) {
+		$my_data = sanitize_text_field( $_POST['prizesite_verify_verified_field'] );
+
+		update_post_meta( $post_id, '_verify_verified_value_key', $my_data );
 	}
 }

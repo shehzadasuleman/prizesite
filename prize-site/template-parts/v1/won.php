@@ -2,6 +2,7 @@
 /*
 @package prizesitetheme
 */
+$foodpanda_url = get_template_directory_uri() . '/img/foodpanda.jpg';
 ?>
 <div class="main-content">
     <div class="row cover-ad-banner-parent">

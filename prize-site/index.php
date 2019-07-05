@@ -132,6 +132,12 @@
                                             <span class="label">Don't worry, we'll never pass this on.</span>
                                             <span class="error-message" id="error-msg">Please enter a phone number</span>
                                         </div>
+                                        <div class="input-wrap">
+                                            <label for="email" class="label-text">Your email address (myemail@domain.com)</label>
+                                            <input type="text" id="email" class="form-control" >
+                                            <span class="label">Don't worry, we'll never pass this on.</span>
+                                            <span class="error-message" id="email-error-msg">Please enter a valid email address</span>
+                                        </div>
                                     </div>
                                     <div class="form-group" id="check-box-div">
                                         <div class="input-wrap">
@@ -317,7 +323,7 @@
                         endwhile;
                     endif;
                 ?>
-            </div>
+                </div>
         <?php elseif ( "/wordpress/v1/terms-and-conditions" == $current_uri || strpos($current_uri, "/wordpress/v1/terms-and-conditions") !== false ):?>
             <div class="clients-content">
                 <?php
@@ -378,6 +384,18 @@
                     endif;
                 ?>
             </div>
+        <?php elseif ( "/wordpress/v1/verification" == $current_uri || strpos($current_uri, "/wordpress/v1/verification") !== false ):?>
+            <div class="clients-content">
+                <?php
+                    if (have_posts() ):
+                        while( have_posts() ): the_post();
+
+                            get_template_part( 'template-parts/v1/verification', get_post_format() );
+
+                        endwhile;
+                    endif;
+                ?>
+            </div>
         <?php elseif ( "/wordpress/v1/404" == $current_uri || strpos($current_uri, "/wordpress/v1/404") !== false ):?>
             <div class="clients-content">
                 <?php
@@ -406,6 +424,9 @@
                         </div>
                         <div class="modal-body">
                             <div class="col">
+                                <div id="popup-progress-bar" class="progress">
+                                    <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" style="width: 25%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"><span id="popup-progress-content">Progress ( 25% )</span></div>
+                                </div>
                                 <h3>Register once, for a chance to win everyday!</h3>
                                 <form id="prizesite-lucky-form-popup" class="lucky-form" action="" method="post" data-url="<?php echo admin_url('admin-ajax.php'); ?>">
                                     <div class="form-group">
@@ -414,6 +435,12 @@
                                             <input type="text" id="popup-no" class="form-control" pattern="03[0-9]{2}(?!1234567)(?!1111111)(?!7654321)[0-9]{7}" >
                                             <span class="label">Don't worry, we'll never pass this on.</span>
                                             <span class="error-message" id="popup-error-msg">Please enter a phone number</span>
+                                        </div>
+                                        <div class="input-wrap">
+                                            <label for="popup-email" class="label-text">Your email address (myemail@domain.com)</label>
+                                            <input type="text" id="popup-email" class="form-control" >
+                                            <span class="label">Don't worry, we'll never pass this on.</span>
+                                            <span class="error-message" id="popup-email-error-msg">Please enter a valid email address</span>
                                         </div>
                                     </div>
                                     <div class="form-group" id="check-box-div">
@@ -437,5 +464,17 @@
                     </div>
                 </div>
             </div>
+
+<div class="modal" id="progress-modal" tabindex="-1" role="dialog" aria-labelledby="progressModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="progress">
+                    <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" style="width: 25%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"><span id="progress-content">Progress ( 25% )</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <?php } ?>
 <?php get_footer(); ?>
