@@ -29,6 +29,7 @@ function save_candidate_data(){
 	$number = "";
 	$email = "";
 	$city = "";
+	$area = "";
 	$return_value = 0;
 	
 	$query = new WP_Query(array(
@@ -47,7 +48,10 @@ function save_candidate_data(){
 			$email = get_post_meta(get_the_ID(), '_verify_email_value_key', true);
 			$ipaddress = get_post_meta(get_the_ID(), '_verify_ip_value_key', true);
 			$details = json_decode(file_get_contents("http://ipinfo.io/{$ipaddress}"));
-			$city = $details->city;
+			$area = $details->city;
+			$res = file_get_contents('https://www.iplocate.io/api/lookup/' . $ipaddress);
+            $res = json_decode($res);
+            $city = $res->city;
 			update_post_meta(get_the_ID(), '_verify_verified_value_key', "Yes");
 		} else {
 			$return_value = $is_verified;
