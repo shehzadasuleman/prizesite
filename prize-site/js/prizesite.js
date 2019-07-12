@@ -90,9 +90,9 @@ jQuery(document).ready(function($) {
     $('#prizesite-lucky-form').on('submit', function(e) {
         e.preventDefault();
 
-        $('#progress-modal').modal('show');
         $("#error-msg").css({ "display": "none" });
         $("#email-error-msg").css({ "display": "none" });
+        $("#email-invalid-msg").css({ "display": "none" });
         $("#error-chk-box-msg").css({ "display": "none" });
         $("#no").css({ "border-color": "#387E1B", "background-color": "#F2F2F2" });
         $("#email").css({ "border-color": "#387E1B", "background-color": "#F2F2F2" });
@@ -105,8 +105,6 @@ jQuery(document).ready(function($) {
             ajaxurl = form.data('url');
 
         var isError = 0;
-        $("#progress-modal .progress-bar").css({ "width": "50%" });
-        $("#progress-content").text("Progress ( 50% )");
 
         if (phNumber === '') {
             $("#no").css({ "border-color": "#da6666" });
@@ -118,9 +116,26 @@ jQuery(document).ready(function($) {
             isError = 1;
         }
 
+        function IsValidEmail(emailAddress) {
+            var regex = /^([a-zA-Z0-9_\.\-\+])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+            if(!regex.test(emailAddress)) {
+              return 1;
+            }else{
+              return 0;
+            }
+        }
+
         if (emailAddress === '') {
             $("#email").css({ "border-color": "#da6666" });
             $("#email-error-msg").css({ "color": "#da6666", "background-color": "rgba(218, 102, 102, .3)",
+            "border-radius": "5px",
+            "display": "block",
+            "margin": "10px 0 0",
+            "padding": "7px 15px" });
+            isError = 1;
+        } else if(IsValidEmail(emailAddress)==1){
+            $("#email").css({ "border-color": "#da6666" });
+            $("#email-invalid-msg").css({ "color": "#da6666", "background-color": "rgba(218, 102, 102, .3)",
             "border-radius": "5px",
             "display": "block",
             "margin": "10px 0 0",
@@ -139,10 +154,17 @@ jQuery(document).ready(function($) {
             isError = 1;
         }
 
-        $("#progress-modal .progress-bar").css({ "width": "75%" });
-        $("#progress-content").text("Progress ( 75% )");
-
         if ( isError == 1 ) { return ; }
+
+        if ( window.location.pathname == "/wordpress/v1/faqs" || window.location.pathname == "/wordpress/v1/contact-us" || window.location.pathname == "/wordpress/v1/past-winners" || window.location.pathname == "/wordpress/v1/whats-the-catch" || window.location.pathname == "/wordpress/v1/winners" ) {
+            $('#popup-progress-bar').modal('show');
+            $("#registration-modal .progress-bar").css({ "width": "75%" });
+            $("#popup-progress-content").text("Progress ( 75% )");
+        } else {
+            $('#progress-modal').modal('show');
+            $("#progress-modal .progress-bar").css({ "width": "75%" });
+            $("#progress-content").text("Progress ( 75% )");
+        }
 
         $.ajax({
 
@@ -159,20 +181,21 @@ jQuery(document).ready(function($) {
                 console.log(response);
             },
             success: function(response) {
-                var respArray = response.split('-');
-                if (response == -100) {
+                if ( window.location.pathname == "/wordpress/v1/faqs" || window.location.pathname == "/wordpress/v1/contact-us" || window.location.pathname == "/wordpress/v1/past-winners" || window.location.pathname == "/wordpress/v1/whats-the-catch" || window.location.pathname == "/wordpress/v1/winners" ) {
+                    $("#registration-modal .progress-bar").css({ "width": "100%" });
+                    $("#popup-progress-content").text("Progress ( 100% )");
+                } else {
                     $("#progress-modal .progress-bar").css({ "width": "100%" });
                     $("#progress-content").val("Progress ( 100% )");
+                }
+                var respArray = response.split('-');
+                if (response == -100) {
                     window.location = origin + '/wordpress/v1/failure-confirmation-page';
                 } else if(respArray[0] == 0) {
-                    $("#progress-modal .progress-bar").css({ "width": "100%" });
-                    $("#progress-content").text("Progress ( 100% )");
                     $("#v1-danger-alert").fadeTo(2000, 500).slideUp(500, function() {
                         $("#v1-danger-alert").slideUp(500);
                     });
                 } else {
-                    $("#progress-modal .progress-bar").css({ "width": "100%" });
-                    $("#progress-content").text("Progress ( 100% )");
                     var hash = respArray[1];
                     window.location = origin + '/wordpress/v1/verification?hash=' + hash;
                 }
@@ -234,8 +257,8 @@ jQuery(document).ready(function($) {
     $('#prizesite-lucky-form-popup').on('submit', function(e) {
         e.preventDefault();
 
-        $("#popup-progress-bar").css({ "display": "block" });
         $("#popup-error-msg").css({ "display": "none" });
+        $("#popup-email-invalid-msg").css({ "display": "none" });
         $("#popup-email-error-msg").css({ "display": "none" });
         $("#popup-error-chk-box-msg").css({ "display": "none" });
         $("#popup-no").css({ "border-color": "#387E1B", "background-color": "#F2F2F2" });
@@ -249,8 +272,6 @@ jQuery(document).ready(function($) {
             ajaxurl = form.data('url');
 
         var isError = 0;
-        $("#popup-registration-modal .progress-bar").css({ "width": "50%" });
-        $("#popup-progress-content").text("Progress ( 50% )");
 
         if (phNumber === '') {
             $("#popup-no").css({ "border-color": "#da6666" });
@@ -262,9 +283,26 @@ jQuery(document).ready(function($) {
             isError = 1;
         }
 
+        function IsValidEmail(emailAddress) {
+            var regex = /^([a-zA-Z0-9_\.\-\+])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+            if(!regex.test(emailAddress)) {
+              return 1;
+            }else{
+              return 0;
+            }
+        }
+
         if (emailAddress === '') {
             $("#popup-email").css({ "border-color": "#da6666" });
             $("#popup-email-error-msg").css({ "color": "#da6666", "background-color": "rgba(218, 102, 102, .3)",
+            "border-radius": "5px",
+            "display": "block",
+            "margin": "10px 0 0",
+            "padding": "7px 15px" });
+            isError = 1;
+        } else if(IsValidEmail(emailAddress)==1){
+            $("#popup-email").css({ "border-color": "#da6666" });
+            $("#popup-email-invalid-msg").css({ "color": "#da6666", "background-color": "rgba(218, 102, 102, .3)",
             "border-radius": "5px",
             "display": "block",
             "margin": "10px 0 0",
@@ -283,10 +321,11 @@ jQuery(document).ready(function($) {
             isError = 1;
         }
 
+        if ( isError == 1 ) { return ; }
+
+        $('#popup-progress-bar').modal('show');
         $("#popup-registration-modal .progress-bar").css({ "width": "75%" });
         $("#popup-progress-content").text("Progress ( 75% )");
-
-        if ( isError == 1 ) { return ; }
 
         $.ajax({
 
@@ -303,20 +342,16 @@ jQuery(document).ready(function($) {
                 console.log(response);
             },
             success: function(response) {
+                $("#popup-registration-modal .progress-bar").css({ "width": "100%" });
+                $("#popup-progress-content").text("Progress ( 100% )");
                 var respArray = response.split('-');
                 if (response == -100) {
-                    $("#popup-registration-modal .progress-bar").css({ "width": "100%" });
-                    $("#popup-progress-content").text("Progress ( 100% )");
                     window.location = origin + '/wordpress/v1/failure-confirmation-page';
                 } else if(respArray[0] == 0) {
-                    $("#popup-registration-modal .progress-bar").css({ "width": "100%" });
-                    $("#popup-progress-content").text("Progress ( 100% )");
                     $("#v1-danger-alert").fadeTo(2000, 500).slideUp(500, function() {
                         $("#v1-danger-alert").slideUp(500);
                     });
                 } else {
-                    $("#popup-registration-modal .progress-bar").css({ "width": "100%" });
-                    $("#popup-progress-content").text("Progress ( 100% )");
                     var hash = respArray[1];
                     window.location = origin + '/wordpress/v1/verification?hash=' + hash;
                 }

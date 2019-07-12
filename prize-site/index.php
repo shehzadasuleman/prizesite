@@ -137,6 +137,7 @@
                                             <input type="text" id="email" class="form-control" >
                                             <span class="label">Don't worry, we'll never pass this on.</span>
                                             <span class="error-message" id="email-error-msg">Please enter a valid email address</span>
+									        <span class="error-message" id="email-invalid-msg">Email not in required format.<br>Format should be  myemail@domain.com.</span>
                                         </div>
                                     </div>
                                     <div class="form-group" id="check-box-div">
@@ -441,6 +442,7 @@
                                             <input type="text" id="popup-email" class="form-control" >
                                             <span class="label">Don't worry, we'll never pass this on.</span>
                                             <span class="error-message" id="popup-email-error-msg">Please enter a valid email address</span>
+                                            <span class="error-message" id="popup-email-invalid-msg">Email not in required format.<br>Format should be  myemail@domain.com.</span>
                                         </div>
                                     </div>
                                     <div class="form-group" id="check-box-div">
@@ -455,6 +457,7 @@
                                                 ) );
                                             ?>
                                             </label>
+                                            <span class="error-message" id="popup-error-chk-box-msg">Please agree to our Terms & Conditions</span>
                                     </div>
                                     </div>
                                     <button type="sumbit" class="btn">Enter daily lucky draw for free</button>

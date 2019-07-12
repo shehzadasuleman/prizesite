@@ -128,6 +128,9 @@ var urdu_questions_count = "<?= $urdu_post_count ?>";
       </div>
       <div class="modal-body">
 	  	<div class="col">
+		  	<div id="popup-progress-bar" class="progress">
+                <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" style="width: 25%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"><span id="popup-progress-content">Progress ( 25% )</span></div>
+            </div>
 			<h3>Register once, for a chance to win everyday!</h3>
 			<form id="prizesite-lucky-form" class="lucky-form" action="" method="post" data-url="<?php echo admin_url('admin-ajax.php'); ?>">
 				<div class="form-group">
@@ -142,6 +145,7 @@ var urdu_questions_count = "<?= $urdu_post_count ?>";
                         <input type="text" id="email" class="form-control" >
                         <span class="label">Don't worry, we'll never pass this on.</span>
                         <span class="error-message" id="email-error-msg">Please enter a valid email address</span>
+						<span class="error-message" id="email-invalid-msg">Email not in required format.<br>Format should be  myemail@domain.com.</span>
                     </div>
 				</div>
 				<div class="form-group" id="check-box-div">

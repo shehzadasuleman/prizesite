@@ -72,6 +72,7 @@ function save_candidate_data(){
 		update_post_meta( $postID, '_contact_ip_value_key', $ipaddress );
 		update_post_meta( $postID, '_contact_email_value_key', $email );
 		update_post_meta( $postID, '_contact_city_value_key', $city );
+		update_post_meta( $postID, '_contact_area_value_key', $area );
 		$return_value = $postID;
 	}
 
