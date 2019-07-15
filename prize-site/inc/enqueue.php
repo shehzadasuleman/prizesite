@@ -37,7 +37,6 @@ function prizesite_load_scripts() {
     // New Design - Start
     wp_enqueue_style( 'Sans-Pro', 'https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700,900' );
     wp_enqueue_style( 'Montserrat', 'https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700,800,900' );
-    wp_enqueue_style( 'Noto-Nastaliq-Urdu', 'https://fontlibrary.org/face/notourdu' );
     // New Design - End
     //wp_enqueue_style( 'prizesite-font-awesome', get_template_directory_uri() . '/css/font-awesome.min.css', array(), '1.0.0', 'all' );
     wp_enqueue_style( 'prizesite-font-awesome-4.7.0', 'https://use.fontawesome.com/releases/v5.0.7/css/all.css' );

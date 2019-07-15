@@ -1,3 +1,8 @@
+@font-face {
+    font-family: NotoNastaliqUrduDraft;
+    src: url('http://localhost/wordpress/wp-content/themes/prize-site/fonts/NotoNastaliqUrduDraft.ttf?ver=5.1.1');
+}
+    
 .check-label a {
     text-decoration: none;
     color: black;
@@ -189,7 +194,7 @@
 }
 
 #urdu-tab .panel-body {
-    font-family: 'NotoNastaliqUrduRegular';
+    font-family: NotoNastaliqUrduDraft;
     line-height: 40px;
 }
 
@@ -230,9 +235,9 @@
 
 #urdu-tab .panel-title span {
     text-align: end;
-    font-family: 'NotoNastaliqUrduRegular';
+    font-family: NotoNastaliqUrduDraft;
     font-weight: bolder;
-    font-size: 20px;
+    font-size: 22px;
 }
 
 .new-question-block {
