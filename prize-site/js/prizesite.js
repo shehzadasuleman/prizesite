@@ -93,6 +93,7 @@ jQuery(document).ready(function($) {
         $("#error-msg").css({ "display": "none" });
         $("#email-error-msg").css({ "display": "none" });
         $("#email-invalid-msg").css({ "display": "none" });
+        $("#number-invalid-msg").css({ "display": "none" });
         $("#error-chk-box-msg").css({ "display": "none" });
         $("#no").css({ "border-color": "#387E1B", "background-color": "#F2F2F2" });
         $("#email").css({ "border-color": "#387E1B", "background-color": "#F2F2F2" });
@@ -106,9 +107,26 @@ jQuery(document).ready(function($) {
 
         var isError = 0;
 
+        function IsValidPhone(phNumber) {
+            var regex = /^((\+92)|(0092))-{0,1}\d{3}-{0,1}\d{7}$|^\d{11}$|^\d{4}-\d{7}$/;
+            if(!regex.test(phNumber)) {
+              return 1;
+            }else{
+              return 0;
+            }
+        }
+
         if (phNumber === '') {
             $("#no").css({ "border-color": "#da6666" });
             $("#error-msg").css({ "color": "#da6666", "background-color": "rgba(218, 102, 102, .3)",
+            "border-radius": "5px",
+            "display": "block",
+            "margin": "10px 0 0",
+            "padding": "7px 15px" });
+            isError = 1;
+        } else if(IsValidPhone(phNumber)==1){
+            $("#no").css({ "border-color": "#da6666" });
+            $("#number-invalid-msg").css({ "color": "#da6666", "background-color": "rgba(218, 102, 102, .3)",
             "border-radius": "5px",
             "display": "block",
             "margin": "10px 0 0",
@@ -260,6 +278,7 @@ jQuery(document).ready(function($) {
         $("#popup-error-msg").css({ "display": "none" });
         $("#popup-email-invalid-msg").css({ "display": "none" });
         $("#popup-email-error-msg").css({ "display": "none" });
+        $("#popup-no-invalid-msg").css({ "display": "none" });
         $("#popup-error-chk-box-msg").css({ "display": "none" });
         $("#popup-no").css({ "border-color": "#387E1B", "background-color": "#F2F2F2" });
         $("#popup-email").css({ "border-color": "#387E1B", "background-color": "#F2F2F2" });
@@ -273,9 +292,26 @@ jQuery(document).ready(function($) {
 
         var isError = 0;
 
+        function IsValidPhone(phNumber) {
+            var regex = /^((\+92)|(0092))-{0,1}\d{3}-{0,1}\d{7}$|^\d{11}$|^\d{4}-\d{7}$/;
+            if(!regex.test(phNumber)) {
+              return 1;
+            }else{
+              return 0;
+            }
+        }
+
         if (phNumber === '') {
             $("#popup-no").css({ "border-color": "#da6666" });
             $("#popup-error-msg").css({ "color": "#da6666", "background-color": "rgba(218, 102, 102, .3)",
+            "border-radius": "5px",
+            "display": "block",
+            "margin": "10px 0 0",
+            "padding": "7px 15px" });
+            isError = 1;
+        } else if(IsValidPhone(phNumber)==1){
+            $("#popup-no").css({ "border-color": "#da6666" });
+            $("#popup-no-invalid-msg").css({ "color": "#da6666", "background-color": "rgba(218, 102, 102, .3)",
             "border-radius": "5px",
             "display": "block",
             "margin": "10px 0 0",
@@ -290,7 +326,7 @@ jQuery(document).ready(function($) {
             }else{
               return 0;
             }
-        }
+        } 
 
         if (emailAddress === '') {
             $("#popup-email").css({ "border-color": "#da6666" });

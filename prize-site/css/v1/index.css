@@ -537,6 +537,30 @@
     display: none;
 }
 
+.guarantee-message {
+    font-weight: 900;
+}
+
+#prizesite-lucky-form label {
+    color: #999999;
+}
+
+#prizesite-lucky-form-popup label {
+    color: #999999;
+}
+
+#registration-modal #prizesite-lucky-form h3 {
+    color: #333;
+}
+
+#registration-modal #prizesite-lucky-form .guarantee-message {
+    color: #333;
+}
+
+.clients-content {
+    color: #333;
+}
+
 @media screen and (min-width: 768px) {
     #past-winners-content {
         padding-right: 0%;

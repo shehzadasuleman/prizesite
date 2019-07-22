@@ -105,17 +105,17 @@ $cutoff_date = get_option( 'prizesite_past_winners_date' );
 				<div class="form-group">
 					<div class="input-wrap">
 						<label for="no" class="label-text">Your mobile number (ОЗххххххххх)</label>
-                        <input type="text" id="no" class="form-control" pattern="03[0-9]{2}(?!1234567)(?!1111111)(?!7654321)[0-9]{7}" >
-                        <span class="label">Don't worry, we'll never pass this on.</span>
+                        <input type="text" id="no" class="form-control" >
                         <span class="error-message" id="error-msg">Please enter a phone number</span>
+                        <span class="error-message" id="number-invalid-msg">Phone number not in required format.<br>Phone number must have eleven digit.<br>Phone number should be in (03XXXXXXXXX) format.</span>
 					</div>
                     <div class="input-wrap">
                         <label for="email" class="label-text">Your email address (myemail@domain.com)</label>
                         <input type="text" id="email" class="form-control" >
-                        <span class="label">Don't worry, we'll never pass this on.</span>
                         <span class="error-message" id="email-error-msg">Please enter a valid email address</span>
                         <span class="error-message" id="email-invalid-msg">Email not in required format.<br>Format should be  myemail@domain.com.</span>
                     </div>
+                    <span class="guarantee-message">We guarantee to never share your mobile number or email address</span>
 				</div>
 				<div class="form-group" id="check-box-div">
 					<div class="input-wrap">
