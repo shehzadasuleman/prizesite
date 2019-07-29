@@ -41,6 +41,7 @@ function prizesite_custom_settings() {
     register_setting( 'prizesite-theme-support', 'prizesite_onhold_notification' );
     register_setting( 'prizesite-theme-support', 'prizesite_onhold_page_enabler' );
     register_setting( 'prizesite-theme-support', 'prizesite_past_winners_date' );
+    register_setting( 'prizesite-theme-support', 'prizesite_winners_ad_timer' );
 	
 	add_settings_section( 'prizesite-theme-options', 'Theme Options', 'prizesite_theme_options', 'shahzada_prizesite_theme' );
 	
@@ -50,7 +51,7 @@ function prizesite_custom_settings() {
     add_settings_field( 'prizesite-onhold-notification', 'On-hold Notification Message', 'prizesite_onhold_notification_callback', 'shahzada_prizesite_theme', 'prizesite-theme-options' );
     add_settings_field( 'prizesite-onhold-page-enabler', 'Enable On-hold Page', 'prizesite_onhold_page_enabler_callback', 'shahzada_prizesite_theme', 'prizesite-theme-options' );
     add_settings_field( 'prizesite-past-winners-date', 'Past Winners Cut-off Date', 'prizesite_past_winners_date_callback', 'shahzada_prizesite_theme', 'prizesite-theme-options' );
-
+    add_settings_field( 'prizesite-winners-ad-timer', 'Winners Ads Timer', 'prizesite_winners_ad_timer_callback', 'shahzada_prizesite_theme', 'prizesite-theme-options' );
     //Contact Form Options
 	register_setting( 'prizesite-contact-options', 'ps_activate_contact' );
 	
@@ -104,4 +105,10 @@ function prizesite_onhold_page_enabler_callback() {
 function prizesite_past_winners_date_callback() {
     $date = get_option( 'prizesite_past_winners_date' );
     echo '<input type="date" id="prizesite_past_winners_date" name="prizesite_past_winners_date" value="' . esc_attr( $date ) . '" size="40" />';
+}
+
+function prizesite_winners_ad_timer_callback() {
+    $timer = get_option( 'prizesite_winners_ad_timer' );
+    echo '<input type="number" id="prizesite_winners_ad_timer" name="prizesite_winners_ad_timer" value="' . esc_attr( $timer ) . '" size="40" />msec<br>';
+    echo '<label>1000 msec= 1 sec</label>';
 }

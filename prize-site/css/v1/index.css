@@ -561,6 +561,27 @@
     color: #333;
 }
 
+.carousel-indicators li {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+}
+
+#winners-fb-review .fb-post {
+    max-width: 60%;
+}
+
+#winners-fb-mob-review {
+    display: none;
+    margin-top : 20px;
+}
+
+#winners-fb-mob-review p {
+    color: black;
+    text-align: left;
+}
+
+
 @media screen and (min-width: 768px) {
     #past-winners-content {
         padding-right: 0%;

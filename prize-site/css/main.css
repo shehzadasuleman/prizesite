@@ -2096,6 +2096,17 @@ a:focus {
     .query-form .input-wrap .label-text {
         top: 9px;
     }
+    .carousel-control-next-icon, .carousel-control-prev-icon {
+        width: 14px;
+        height: 14px;
+    }
+    .carousel-control-next-icon {
+        margin-right: 10px;
+    }
+
+    .carousel-control-prev-icon {
+        margin-left: 10px;
+    }
 }
 
 @media screen and (max-width: 350px) {
@@ -2230,6 +2241,20 @@ a:focus {
     }
     .past-winners-label {
         padding-left: 0px;
+    }
+    .recent-winners-content {
+        padding-left: 0%;
+        padding-right: 0%;
+    }
+
+    .remove-margin {
+        margin-left: 0%;
+        margin-right: 0%;
+    }
+
+    .input-content-mobile {
+        padding-left: 0%;
+        padding-right: 0%;
     }
 }
 
@@ -2371,5 +2396,15 @@ a:focus {
     }
     .logo {
         margin-left: 0%;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .check-prize-btn-box {
+        padding-left: 0%;
+        padding-right: 0%;
+    }
+    .carousel-indicators {
+        bottom: 0px;
     }
 }

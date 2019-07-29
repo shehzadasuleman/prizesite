@@ -13,6 +13,10 @@
     $onhold_notification_enabler = get_option( 'prizesite_onhold_notification_enabler' );
     $onhold_notification_message = get_option( 'prizesite_onhold_notification' );
     $onhold_page_enabler = get_option( 'prizesite_onhold_page_enabler' );
+    $ads_slide_timer = get_option( 'prizesite_winners_ad_timer' );
+    $ads_banner_1 = get_template_directory_uri() . '/img/Ads/Slider/Desktop/AdsBanner1.jpg';
+    $ads_banner_2 = get_template_directory_uri() . '/img/Ads/Slider/Desktop/AdsBanner2.jpg';
+    $ads_banner_3 = get_template_directory_uri() . '/img/Ads/Slider/Desktop/AdsBanner3.jpg';
 ?>
 <?php if ( $onhold_page_enabler == 1 ) { ?>
 <div id="onhold-page" class="container" >
@@ -59,38 +63,86 @@
         </div>
     <?php } ?>
 <div id="wrapper">
-    <header id="header" style="background-image: url(<?php print $background_url ?>);">
-        <div class="header-holder">
-            <div class="logo">
-                <a href="<?php print $domain ?>"><img src="<?php print $logo_url ?>" alt="image dscription"></a>
-            </div>
-            <a href="#" class="nav-opener">
-                <span class="menu">menu</span>
-                <span class="close"><img src="<?php print $close_url ?>" alt="image description"></span>
-            </a>
-            <div class="nav-holder">
-                <div class="nav-area">
-                    <?php
-                        wp_nav_menu( array(
-                            'theme_location' => 'v1-primary-menu',
-                            'container' => false,
-                            'menu_class' => 'main-navigation'
-                        ) );
-                    ?>
-                    <div class="btn-holder">
-                    <button type="sumbit" class="btn" data-toggle="modal" data-target="#popup-registration-modal">Enter daily lucky draw for free</button>
-                    </div>
-                    <div class="social-block">
-                        <strong class="title">Be our friend</strong>
-                        <ul class="social-networks">
-                            <li><a href="https://www.facebook.com/MuftPaise/" target="_blank"><img src="<?php print $facebook_url ?>" alt="image description"></a></li>
-                            <li><a href="https://www.instagram.com/muftpaise/" target="_blank"><img src="<?php print $instagram_url ?>" alt="image description"></a></li>
-                        </ul>
+    <?php if ( "/wordpress/v1/winners" == $current_uri || strpos($current_uri, "/wordpress/v1/winners") !== false ):?>
+        <header id="header" style="min-height:0px;">
+    <?php elseif ( "/wordpress/v1/winners" != $current_uri || strpos($current_uri, "/wordpress/v1/winners") !== true ):?>
+        <header id="header" style="background-image: url(<?php print $background_url ?>);">
+    <?php endif; ?>
+            <div class="header-holder">
+                <div class="logo">
+                    <a href="<?php print $domain ?>"><img src="<?php print $logo_url ?>" alt="image dscription"></a>
+                </div>
+                <a href="#" class="nav-opener">
+                    <span class="menu">menu</span>
+                    <span class="close"><img src="<?php print $close_url ?>" alt="image description"></span>
+                </a>
+                <div class="nav-holder">
+                    <div class="nav-area">
+                        <?php
+                            wp_nav_menu( array(
+                                'theme_location' => 'v1-primary-menu',
+                                'container' => false,
+                                'menu_class' => 'main-navigation'
+                            ) );
+                        ?>
+                        <div class="btn-holder">
+                        <button type="sumbit" class="btn" data-toggle="modal" data-target="#popup-registration-modal">Enter daily lucky draw for free</button>
+                        </div>
+                        <div class="social-block">
+                            <strong class="title">Be our friend</strong>
+                            <ul class="social-networks">
+                                <li><a href="https://www.facebook.com/MuftPaise/" target="_blank"><img src="<?php print $facebook_url ?>" alt="image description"></a></li>
+                                <li><a href="https://www.instagram.com/muftpaise/" target="_blank"><img src="<?php print $instagram_url ?>" alt="image description"></a></li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
+        </header>
+    <?php if ( "/wordpress/v1/winners" == $current_uri || strpos($current_uri, "/wordpress/v1/winners") !== false ):?>
+        <!--Carousel Wrapper-->
+        <div class="row">
+            <div id="carousel-example-1z" class="carousel slide carousel-fade col-xl-10 offset-xl-1 col-lg-10 offset-lg-1 col-md-10 offset-md-1 col-sm-10 offset-sm-1 col-10 offset-1" data-ride="carousel" data-interval="<?php echo $ads_slide_timer; ?>">
+                <!--Indicators -->
+                <ol class="carousel-indicators">
+                    <li data-target="#carousel-example-1z" data-slide-to="0" class="active"></li>
+                    <li data-target="#carousel-example-1z" data-slide-to="1"></li>
+                    <li data-target="#carousel-example-1z" data-slide-to="2"></li>
+                </ol>
+                <!--/.Indicators-->
+                <!--Slides-->
+                <div class="carousel-inner" role="listbox">
+                    <!--First slide-->
+                    <div class="carousel-item active">
+                        <a target="_blank" href="https://rider.foodpanda.pk/?utm_source=muftpaise&utm_medium=bannerad&utm_campaign=advertising&utm_content=awareness"><img id="carousel-slide-one" class="d-block w-100" src="<?php print $ads_banner_1 ?>" alt="First slide"></a>
+                    </div>
+                    <!--/First slide-->
+                    <!--Second slide-->
+                    <div class="carousel-item">
+                        <a target="_blank" href="https://www.youtube.com/watch?v=XsbnIpFBD54"><img id="carousel-slide-two" class="d-block w-100" src="<?php print $ads_banner_2 ?>" alt="Second slide"></a>
+                    </div>
+                    <!--/Second slide-->
+                    <!--Third slide-->
+                    <div class="carousel-item">
+                        <a target="_blank" href="https://www.servis.com/?utm_source=muftpaise&utm_medium=bannerad&utm_campaign=advertising&utm_content=awareness"><img id="carousel-slide-three" class="d-block w-100" src="<?php print $ads_banner_3 ?>" alt="Third slide"></a>
+                    </div>
+                    <!--/Third slide-->
+                </div>
+                <!--/.Slides-->
+                <!--Controls-->
+                <a class="carousel-control-prev" href="#carousel-example-1z" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carousel-example-1z" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+                <!--/.Controls-->
+            </div>
         </div>
-    </header>
+        <!--/.Carousel Wrapper-->
+    <?php endif; ?>
     <main id="main">
         <?php if ( "/wordpress/v1" == $current_uri || $current_page[0] == "/wordpress/v1" ):?>
                 <section class="info-block" id="infoblock">

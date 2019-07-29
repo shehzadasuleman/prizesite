@@ -33,8 +33,8 @@ jQuery(document).ready(function($) {
             $('#past-winners-register-content-lg').show();
         }
     }
-	
-	window.onload = function() {
+
+    window.onload = function() {
         $( "<span class='past-winners-label'>Enter your mobile number above</span>" ).insertBefore( "#winners-data" );
     }
     $(document).ready(function() {
