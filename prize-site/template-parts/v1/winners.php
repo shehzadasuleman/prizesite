@@ -58,25 +58,63 @@
                 <div class="col-xl-6 col-lg-6 col-md-8 col-sm-8 recent-winners-content">
                     <!-- New Changes -->
 
-                        <form id="prizesite-lucky-form-check" class="lucky-form" action="" method="post" data-url="<?php echo admin_url('admin-ajax.php'); ?>">
-                            <div class="row remove-margin">
-                                <div class="input-content-mobile">                                
-								    <h2>Enter your Number below to see if you won in today's draw!</h2><br/>
-                                </div><br/>
-								<div class="form-group col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 input-content-mobile">
-									<div class="input-wrap">
-										<label for="check-no" class="label-text">Your mobile number (ОЗххххххххх)</label>
-										<input type="text" id="check-no" class="form-control" placeholder="" pattern="03[0-9]{2}(?!1234567)(?!1111111)(?!7654321)[0-9]{7}">
-                                        <span class="error-message" id="check-error-msg">Please enter a phone number</span>
-                                    </div>
-								</div>
-						    	<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 check-prize-btn-box">
-                                    <button type="submit" class="check-prize-btn btn btn-primary">Check If I Won Today</button><br/><br/>
+                    <form id="prizesite-lucky-form-check" class="lucky-form" action="" method="post" data-url="<?php echo admin_url('admin-ajax.php'); ?>">
+                        <div class="row remove-margin">
+                            <div class="input-content-mobile">                                
+								<h2>Enter your Number below to see if you won in today's draw!</h2><br/>
+                            </div><br/>
+							<div class="form-group col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 input-content-mobile">
+								<div class="input-wrap">
+									<label for="check-no" class="label-text">Your mobile number (ОЗххххххххх)</label>
+									<input type="text" id="check-no" class="form-control" placeholder="" pattern="03[0-9]{2}(?!1234567)(?!1111111)(?!7654321)[0-9]{7}">
+                                    <span class="error-message" id="check-error-msg">Please enter a phone number</span>
                                 </div>
 							</div>
-								
-                        </form>
-										
+						    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 check-prize-btn-box">
+                                <button type="submit" class="check-prize-btn btn btn-primary">Check If I Won Today</button><br/><br/>
+                            </div>
+						</div>								
+                    </form>
+
+                    <div id="mob-carousel-right-ads" class="carousel slide carousel-fade" data-ride="carousel" data-interval="<?php echo $ads_slide_timer; ?>">
+                        <!--Indicators -->
+                        <ol class="carousel-indicators">
+                            <li data-target="#mob-carousel-right-ads" data-slide-to="0" class="active"></li>
+                            <li data-target="#mob-carousel-right-ads" data-slide-to="1"></li>
+                            <li data-target="#mob-carousel-right-ads" data-slide-to="2"></li>
+                        </ol>
+                        <!--/.Indicators-->
+                        <!--Slides-->
+                        <div class="carousel-inner" role="listbox">
+                            <!--First slide-->
+                            <div class="carousel-item active">
+                                <a target="_blank" href="https://rider.foodpanda.pk/?utm_source=muftpaise&utm_medium=bannerad&utm_campaign=advertising&utm_content=awareness"><img id="carousel-slide-one" class="d-block w-100" src="<?php print $right_ads_banner_1 ?>" alt="First right slide"></a>
+                            </div>
+                            <!--/First slide-->
+                            <!--Second slide-->
+                            <div class="carousel-item">
+                                <a target="_blank" href="https://www.youtube.com/watch?v=XsbnIpFBD54"><img id="carousel-slide-two" class="d-block w-100" src="<?php print $right_ads_banner_2 ?>" alt="Second right slide"></a>
+                            </div>
+                            <!--/Second slide-->
+                            <!--Third slide-->
+                            <div class="carousel-item">
+                                <a target="_blank" href="https://www.servis.com/?utm_source=muftpaise&utm_medium=bannerad&utm_campaign=advertising&utm_content=awareness"><img id="carousel-slide-three" class="d-block w-100" src="<?php print $right_ads_banner_3 ?>" alt="Third right slide"></a>
+                            </div>
+                            <!--/Third slide-->
+                        </div>
+                        <!--/.Slides-->
+                        <!--Controls-->
+                        <a id="mob-right-prev-btn" class="carousel-control-prev" href="#mob-carousel-right-ads" role="button" data-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a id="mob-right-next-btn" class="carousel-control-next" href="#mob-carousel-right-ads" role="button" data-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                        <!--/.Controls-->
+                    </div>
+
                    	<div>
                         <div class="col-xl-12 description">
                         <?php
@@ -88,55 +126,8 @@
                                     <?php the_content(); ?>
                                 </h5>
                         <?php } wp_reset_query(); ?>
-
-					
-					
-					
-                    <hr/>
-
-                        <!--a target="_blank"  href="https://www.daraz.pk/warehouse-clearance-sale/"><img src="/wp-content/themes/prize-site/img/darazsale.jpg"></a-->
-                    </div><br/><br/>
-				
-                    <!-- New Changes -->
-                    <h1>Recent Winners</h1>
-                    <div class="table-responsive">
-                        <table class="table table-striped table-bordered">
-                            <thead class="thead-dark">
-                                <tr>
-                                    <th>Date</th>
-                                    <th>Phone Number</th>
-                                    <!--th>Prize Amount</th>
-                                    <th>Prize Claimed</th-->
-                                </tr>
-                            </thead>
-                            <tbody>
-                            <?php 
-                                $query = new WP_Query(array(
-                                    'post_type' => 'prizesite-winners',
-                                    'post_status' => 'publish',
-                                    'orderby'   => 'date',
-                                    'order'     => 'DESC',
-                                    'post_per_page' => 20
-                                ));
-                                if($query->have_posts() ) : while ( $query->have_posts() ) : $query->the_post(); ?>
-                                    <tr>
-                                    <?php $post_date = get_the_date(); ?>
-                                        <?php if ($post_date != $curr_date) { ?>
-                                            <td><?php echo $post_date; ?></td>
-                                            <td><?php the_title(); 
-                                            ?></td>
-                                            <!--td><?php echo get_post_meta( get_the_ID(), '_winners_prizeamount_value_key', true); ?></td-->
-                                            <!--td><?php echo get_post_meta( get_the_ID(), '_winners_prizeclaimed_value_key', true); ?></td-->
-                                        <?php } ?>
-                                    </tr>
-                            <?php
-                            endwhile;
-                            endif;
-                            wp_reset_query();
-                            ?>
-                            </tbody>
-                        </table>
-                    </div>
+                        <hr/>
+                        </div>
                     </div>
                 </div>
 				<div id="winners-right-ad" class="col-xl-3 col-lg-3 col-md-2 col-sm-2 img-content">
@@ -168,11 +159,11 @@
                         </div>
                         <!--/.Slides-->
                         <!--Controls-->
-                        <a class="carousel-control-prev" href="#carousel-right-ads" role="button" data-slide="prev">
+                        <a id="right-prev-btn" class="carousel-control-prev" href="#carousel-right-ads" role="button" data-slide="prev">
                             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                             <span class="sr-only">Previous</span>
                         </a>
-                        <a class="carousel-control-next" href="#carousel-right-ads" role="button" data-slide="next">
+                        <a id="right-next-btn" class="carousel-control-next" href="#carousel-right-ads" role="button" data-slide="next">
                             <span class="carousel-control-next-icon" aria-hidden="true"></span>
                             <span class="sr-only">Next</span>
                         </a>

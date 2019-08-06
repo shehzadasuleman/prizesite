@@ -26,9 +26,11 @@ jQuery(document).ready(function($) {
             $("#winners-fb-mob-review").css("display","block");
             $("#winners-fb-review").css("display","none");
 
-            $("#carousel-right-ads #carousel-slide-one").attr("src", "/wordpress/wp-content/themes/prize-site/img/Ads/Slider/Mobile/right-mob-ad1.jpg");
-            $("#carousel-right-ads #carousel-slide-two").attr("src", "/wordpress/wp-content/themes/prize-site/img/Ads/Slider/Mobile/right-mob-ad2.jpg");
-            $("#carousel-right-ads #carousel-slide-three").attr("src", "/wordpress/wp-content/themes/prize-site/img/Ads/Slider/Mobile/right-mob-ad3.jpg");
+            $("#carousel-right-ads").css("display","none");
+            $("#mob-carousel-right-ads").css("display","block");
+            $("#mob-carousel-right-ads #carousel-slide-one").attr("src", "/wordpress/wp-content/themes/prize-site/img/Ads/Slider/Mobile/right-mob-ad1.jpg");
+            $("#mob-carousel-right-ads #carousel-slide-two").attr("src", "/wordpress/wp-content/themes/prize-site/img/Ads/Slider/Mobile/right-mob-ad2.jpg");
+            $("#mob-carousel-right-ads #carousel-slide-three").attr("src", "/wordpress/wp-content/themes/prize-site/img/Ads/Slider/Mobile/right-mob-ad3.jpg");
         } else {
             $("#winners-fb-mob-review").css("display","none");
             $("#winners-fb-review").css("display","block");
@@ -37,6 +39,8 @@ jQuery(document).ready(function($) {
             $("#carousel-example-1z #carousel-slide-two").attr("src", "/wordpress/wp-content/themes/prize-site/img/Ads/Slider/Desktop/AdsBanner2.jpg");
             $("#carousel-example-1z #carousel-slide-three").attr("src", "/wordpress/wp-content/themes/prize-site/img/Ads/Slider/Desktop/AdsBanner3.jpg");
             
+            $("#mob-carousel-right-ads").css("display","none");
+            $("#carousel-right-ads").css("display","block");
             $("#carousel-right-ads #carousel-slide-one").attr("src", "/wordpress/wp-content/themes/prize-site/img/Ads/Slider/Desktop/right-desktop-ad1.jpg");
             $("#carousel-right-ads #carousel-slide-two").attr("src", "/wordpress/wp-content/themes/prize-site/img/Ads/Slider/Desktop/right-desktop-ad2.jpg");
             $("#carousel-right-ads #carousel-slide-three").attr("src", "/wordpress/wp-content/themes/prize-site/img/Ads/Slider/Desktop/right-desktop-ad3.jpg");

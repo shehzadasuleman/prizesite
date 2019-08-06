@@ -2103,9 +2103,20 @@ a:focus {
     .carousel-control-next-icon {
         margin-right: 10px;
     }
-
     .carousel-control-prev-icon {
         margin-left: 10px;
+    }
+    #carousel-right-ads .carousel-control-next-icon {
+        margin-right: 0px;
+    }
+    #carousel-right-ads .carousel-control-prev-icon {
+        margin-left: 0px;
+    }
+    #mob-carousel-right-ads .carousel-control-next-icon {
+        margin-right: 0px;
+    }
+    #mob-carousel-right-ads .carousel-control-prev-icon {
+        margin-left: 0px;
     }
 }
 
@@ -2180,6 +2191,22 @@ a:focus {
     }
     .past-winners-label {
         padding-left: 290px;
+    }
+    #carousel-example-1z .carousel-control-next-icon, .carousel-control-prev-icon {
+        width: 14px;
+        height: 14px;
+    }
+    .carousel-indicators li {
+        width: 6px;
+        height: 6px;
+    }
+    #carousel-right-ads .carousel-control-next-icon, .carousel-control-prev-icon {
+        width: 12px;
+        height: 12px;
+    }
+    #mob-carousel-right-ads .carousel-control-next-icon, .carousel-control-prev-icon {
+        width: 12px;
+        height: 12px;
     }
 }
 
@@ -2256,6 +2283,24 @@ a:focus {
         padding-left: 0%;
         padding-right: 0%;
     }
+
+    .carousel-control-next-icon, .carousel-control-prev-icon {
+        width: 14px;
+        height: 14px;
+    }
+    #carousel-example-1z ol {
+        margin-bottom: 8px;
+    }
+    .carousel-indicators li {
+        width: 6px;
+        height: 6px;
+    }
+    #carousel-right-ads ol {
+        margin-bottom : 10px;
+    }
+    #mob-carousel-right-ads ol {
+        margin-bottom : 10px;
+    }
 }
 
 @media screen and (max-width: 400px) {
@@ -2305,6 +2350,24 @@ a:focus {
     }
     .past-winners-label {
         padding-left: 290px;
+    }
+
+    #carousel-example-1z .carousel-control-next-icon, .carousel-control-prev-icon {
+        width: 15px;
+        height: 15px;
+    }
+    .carousel-indicators li {
+        width: 7px;
+        height: 7px;
+    }
+
+    #carousel-right-ads .carousel-control-next-icon, .carousel-control-prev-icon {
+        width: 12px;
+        height: 12px;
+    }
+    #mob-carousel-right-ads .carousel-control-next-icon, .carousel-control-prev-icon {
+        width: 12px;
+        height: 12px;
     }
 }
 

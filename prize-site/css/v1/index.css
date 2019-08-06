@@ -581,6 +581,61 @@
     text-align: left;
 }
 
+#carousel-example-1z #prev-btn {
+    justify-content: start;
+    padding-left: 20px;
+}
+
+#carousel-example-1z #next-btn {
+    justify-content: flex-end;
+    padding-right: 20px;
+}
+
+#carousel-example-1z ol {
+    margin-bottom : 0px;
+}
+
+#carousel-right-ads #right-prev-btn {
+    justify-content: start;
+    padding-left: 5px;
+}
+
+#carousel-right-ads #right-next-btn {
+    justify-content: flex-end;
+    padding-right: 5px;
+}
+
+#carousel-right-ads ol {
+    margin-bottom : 0px;
+}
+
+#mob-carousel-right-ads {
+    display: none;
+}
+
+#mob-carousel-right-ads #mob-right-prev-btn {
+    justify-content: start;
+    padding-left: 5px;
+}
+
+#mob-carousel-right-ads #mob-right-next-btn {
+    justify-content: flex-end;
+    padding-right: 5px;
+}
+
+#mob-carousel-right-ads ol {
+    margin-bottom : 0px;
+}
+
+@media (max-width: 480px) {
+    #carousel-example-1z #prev-btn {
+        padding-left: 10px;
+    }
+    
+    #carousel-example-1z #next-btn {
+        padding-right: 10px;
+    }
+}
 
 @media screen and (min-width: 768px) {
     #past-winners-content {
@@ -618,7 +673,7 @@
     }
   }
 
-  @media screen and (min-width: 992px) and (max-width: 1200px) {
+@media screen and (min-width: 992px) and (max-width: 1200px) {
     
     #faqs-question-label {
         color: black;
@@ -632,5 +687,13 @@
     #new-question-yes {
         width: 80px;
         padding: .300rem .600rem;
+    }
+    #carousel-right-ads .carousel-control-next-icon, .carousel-control-prev-icon {
+        width: 14px;
+        height: 14px;
+    }
+    #mob-carousel-right-ads .carousel-control-next-icon, .carousel-control-prev-icon {
+        width: 14px;
+        height: 14px;
     }
 }
