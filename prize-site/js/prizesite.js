@@ -508,6 +508,7 @@ jQuery(document).ready(function($) {
         $('#prizesite-verification-email-resend').on('submit', function(e) {
         
             e.preventDefault();
+            
             var urlPath = window.location;
             var urlArray = String(urlPath).split('?');
             var hashArray = urlArray[1].split('=');
@@ -517,7 +518,7 @@ jQuery(document).ready(function($) {
                 ajaxurl = ajax_admin_url;
     
             $.ajax({
-    
+            
                 url: ajaxurl,
                 type: 'post',
                 data: {
@@ -538,10 +539,12 @@ jQuery(document).ready(function($) {
                         $("#verification-resend-email-failure").fadeTo(10000, 500).slideUp(500, function() {
                             $("#verification-resend-email-failure").slideUp(500);
                         });
-                    } else {
+                    } else if(response > 0) {
                         $("#verification-resend-email-success").fadeTo(10000, 500).slideUp(500, function() {
                             $("#verification-resend-email-success").slideUp(500);
                         });
+                    } else {
+                            alert(response);
                     }
                 }
             });

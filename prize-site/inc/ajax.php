@@ -24,7 +24,7 @@ add_action( 'wp_ajax_nopriv_prizesite_get_new_verification_data', 'get_verificat
 add_action( 'wp_ajax_prizesite_get_new_verification_data', 'get_verification_data' );
 
 add_action( 'wp_ajax_nopriv_prizesite_resend_new_email', 'resend_email' );
-add_action( 'wp_ajax_pprizesite_resend_new_email', 'resend_email' );
+add_action( 'wp_ajax_prizesite_resend_new_email', 'resend_email' );
 
 function save_candidate_data(){
 
@@ -328,31 +328,31 @@ function get_verification_data(){
 }
 
 function resend_email(){
-	$hash = wp_strip_all_tags($_POST["hash"]);
-	$verification_id = zlib_decode( hex2bin( $hash ) );
-	$email = "";
+    $hash = wp_strip_all_tags($_POST["hash"]);
+    $verification_id = zlib_decode( hex2bin( $hash ) );
+    $email = "";
 
-	$query = new WP_Query(array(
-		'post_type' => 'prizesite-verify',
-		'post_status' => 'publish',
-		'p'	=>	$verification_id,
-		'post_per_page' => 1
-	));
+    $query = new WP_Query(array(
+        'post_type' => 'prizesite-verify',
+        'post_status' => 'publish',
+        'p'    =>    $verification_id,
+        'post_per_page' => 1
+    ));
 
-	if( $query->have_posts() ) {
+    if( $query->have_posts() ) {
 
-		$query->the_post();
-		$email = get_post_meta(get_the_ID(), '_verify_email_value_key', true);
-		$passcode = mt_rand();
-		$to = $email;
-		$subject = "Muftpaise Verification Alert";
-		$message = "Hi there,\n\nThe details for your requested verification code are as follows, if you have not requested this verification code, please report it at contact@muftpaise.com.\n\nVerification Code: ".$passcode.".";
-		$return_value = wp_mail( $to, $subject, $message);
-		echo $return_value;
-	} else {
-		$return_value = -100;
-		echo $return_value;
-	}
+        $query->the_post();
+        $email = get_post_meta(get_the_ID(), '_verify_email_value_key', true);
+        $passcode = get_post_meta(get_the_ID(), '_verify_passcode_value_key', true);
+        $to = str_replace("0", "", $email);
+        $subject = "Muftpaise Verification Alert";
+        $message = "Hi there,\n\nThe details for your requested verification code are as follows, if you have not requested this verification code, please report it at contact@muftpaise.com.\n\nVerification Code: ".$passcode.".";
+        $return_value = wp_mail( $to, $subject, $message);
+        echo $return_value;
+    } else {
+        $return_value = -100;
+        echo $return_value;
+    }
 }
 
 
