@@ -627,6 +627,33 @@
     margin-bottom : 0px;
 }
 
+.recent-winners-content .description button {
+    border-bottom:1px solid #cf2e2e;
+}
+
+.recent-winners-content .description button:hover {
+    color:#358115;
+    border-bottom:1px solid #358115;
+}
+
+#verification-resend-email-failure,#verification-resend-email-success,#verification-resend-email-error {
+    display: none;
+}
+
+.description h5 {
+    color: #cf2e2e;
+}
+
+.description p {
+    display: inline;
+}
+
+.resend-email-btn {
+    background: none;
+    border: none;
+    padding: 0px;
+}
+
 @media (max-width: 480px) {
     #carousel-example-1z #prev-btn {
         padding-left: 10px;
