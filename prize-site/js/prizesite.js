@@ -29,13 +29,13 @@ jQuery(document).ready(function($) {
             },
             success: function(response) {
                 if (response == -100) {
-                    window.location = 'https://muftpaise.com/failure-confirmation-page/';
+                    $.redirect('http://localhost/wordpress/v1/failure-confirmation-page', {RegistrationPerformed: "True"}, "POST");
                 } else if (response == 0) {
                     $("#danger-alert").fadeTo(2000, 500).slideUp(500, function() {
                         $("#danger-alert").slideUp(500);
                     });
                 } else {
-                    window.location = 'https://muftpaise.com/success-confirmation-page/';
+                    $.redirect('http://localhost/wordpress/v1/success-confirmation-page/', {RegistrationPerformed: "True"}, "POST");
                 }
                 $('#phNumber').val('');
                 $("#customCheck1").prop("checked", false);
@@ -208,7 +208,7 @@ jQuery(document).ready(function($) {
                 }
                 var respArray = response.split('-');
                 if (response == -100) {
-                    window.location = origin + '/wordpress/v1/failure-confirmation-page';
+                    $.redirect('http://localhost/wordpress/v1/failure-confirmation-page', {RegistrationPerformed: "True"}, "POST");
                 } else if(respArray[0] == 0) {
                     $("#v1-danger-alert").fadeTo(2000, 500).slideUp(500, function() {
                         $("#v1-danger-alert").slideUp(500);
@@ -260,11 +260,11 @@ jQuery(document).ready(function($) {
             },
             success: function(response) {
                 if (response == -100) {
-                    window.location = origin + '/wordpress/v1/not-registered';
+                    $.redirect(origin + '/wordpress/v1/not-registered', {CheckPrizePerformed: "True"}, "POST");
                 } else if (response == -200) {
-                    window.location = origin + '/wordpress/v1/try-tomorrow';
+                    $.redirect(origin + '/wordpress/v1/try-tomorrow', {CheckPrizePerformed: "True"}, "POST");
                 } else if (response == -300) {
-                    window.location = origin + '/wordpress/v1/won';
+                   $.redirect(origin + '/wordpress/v1/won', {CheckPrizePerformed: "True"}, "POST");
                 }
                 $('#check-phNumber').val('');
             }
@@ -382,7 +382,7 @@ jQuery(document).ready(function($) {
                 $("#popup-progress-content").text("Progress ( 100% )");
                 var respArray = response.split('-');
                 if (response == -100) {
-                    window.location = origin + '/wordpress/v1/failure-confirmation-page';
+                    $.redirect('http://localhost/wordpress/v1/failure-confirmation-page', {RegistrationPerformed: "True"}, "POST");
                 } else if(respArray[0] == 0) {
                     $("#v1-danger-alert").fadeTo(2000, 500).slideUp(500, function() {
                         $("#v1-danger-alert").slideUp(500);
@@ -448,7 +448,7 @@ jQuery(document).ready(function($) {
                         $("#verification-failure-alert").slideUp(500);
                     });
                 } else if(response > 0){
-                    window.location = origin + '/wordpress/v1/success-confirmation-page';
+                    $.redirect('http://localhost/wordpress/v1/success-confirmation-page/', {RegistrationPerformed: "True"}, "POST");
                 }
                 $('#passcode-no').val('');
             }
