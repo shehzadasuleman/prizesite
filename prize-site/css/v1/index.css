@@ -29,6 +29,14 @@
     margin-bottom: 30px;
 }
 
+.Ads {
+    color: #999999;
+    margin-top: 30px;
+    padding-left: 30px;
+    padding-right: 30px;
+    margin-bottom: 30px;
+}
+
 .remove-padding {
     padding: 0px;
 }
@@ -76,6 +84,10 @@
     padding-left : 3%;
 }
 
+#Ads-content {
+    padding-left : 3%;
+}
+
 #past-winners-content h1 {
     font-family: "Montserrat", "Arial", "Helvetica Neue", "Helvetica", sans-serif;
     color: #06174f;
@@ -83,7 +95,20 @@
     line-height: 58px;
 }
 
+#Ads-content h1 {
+    font-family: "Montserrat", "Arial", "Helvetica Neue", "Helvetica", sans-serif;
+    color: #06174f;
+    font-size: 54px;
+    line-height: 58px;
+}
+
 #past-winners-content p {
+    font-family: "Source Sans Pro", Arial, "Helvetica Neue", Helvetica, sans-serif;
+    color: #333;
+    font-size: 16px;
+}
+
+#Ads-content p {
     font-family: "Source Sans Pro", Arial, "Helvetica Neue", Helvetica, sans-serif;
     color: #333;
     font-size: 16px;
@@ -654,6 +679,14 @@
     padding: 0px;
 }
 
+#ads-row {
+    margin-bottom: 30px;
+}
+
+#ads-register-btn .col {
+    padding-left: 3%;
+}
+
 @media (max-width: 480px) {
     #carousel-example-1z #prev-btn {
         padding-left: 10px;
@@ -668,6 +701,9 @@
     #past-winners-content {
         padding-right: 0%;
     }
+    #Ads-content {
+        padding-right: 0%;
+    }
 }
 
 @media screen and (max-width: 768px) {
@@ -676,11 +712,23 @@
         margin-top: 20px;
     }
 
+    #Ads-content {
+        margin-top: 20px;
+    }
+
     #past-winners-content h2 {
         text-align: justify;
     }
 
+    #Ads-content h2 {
+        text-align: justify;
+    }
+
     #past-winners-content p {
+        text-align: justify;
+    }
+
+    #Ads-content p {
         text-align: justify;
     }
 
@@ -697,6 +745,11 @@
     }
     #past-winners-content {
         padding-left: 15px;
+    }
+
+    #Ads-content {
+        padding-left: 0px;
+        padding-right: 0px;
     }
   }
 

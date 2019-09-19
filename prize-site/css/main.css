@@ -2063,6 +2063,9 @@ a:focus {
     .past-winners {
         padding : 15px;
     }
+    .Ads {
+        padding : 15px;
+    }
 }
 
 @media (max-width: 479px) {
@@ -2171,6 +2174,10 @@ a:focus {
         font-size: 42px;
         line-height: 44px;
     }
+    #Ads-content h1 {
+        font-size: 42px;
+        line-height: 44px;
+    }
     #new-question-no {
         margin-left: 18%;
         margin-top: 15px;
@@ -2237,6 +2244,10 @@ a:focus {
     }
 
     #past-winners-content h1 {
+        font-size: 42px;
+        line-height: 40px;
+    }
+    #Ads-content h1 {
         font-size: 42px;
         line-height: 40px;
     }
@@ -2326,6 +2337,10 @@ a:focus {
 
 @media screen and (min-width: 768px) and (max-width: 992px) {
     #past-winners-content h1 {
+        font-size: 42px;
+        line-height: 44px;
+    }
+    #Ads-content h1 {
         font-size: 42px;
         line-height: 44px;
     }

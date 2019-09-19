@@ -174,7 +174,7 @@ jQuery(document).ready(function($) {
 
         if ( isError == 1 ) { return ; }
 
-        if ( window.location.pathname == "/wordpress/v1/faqs" || window.location.pathname == "/wordpress/v1/contact-us" || window.location.pathname == "/wordpress/v1/past-winners" || window.location.pathname == "/wordpress/v1/whats-the-catch" || window.location.pathname == "/wordpress/v1/winners" ) {
+        if ( window.location.pathname == "/wordpress/v1/faqs" || window.location.pathname == "/wordpress/v1/contact-us" || window.location.pathname == "/wordpress/v1/past-winners" || window.location.pathname == "/wordpress/v1/whats-the-catch" || window.location.pathname == "/wordpress/v1/winners" || window.location.pathname == "/wordpress/v1/ads" ) {
             $('#popup-progress-bar').modal('show');
             $("#registration-modal .progress-bar").css({ "width": "75%" });
             $("#popup-progress-content").text("Progress ( 75% )");
@@ -199,7 +199,7 @@ jQuery(document).ready(function($) {
                 console.log(response);
             },
             success: function(response) {
-                if ( window.location.pathname == "/wordpress/v1/faqs" || window.location.pathname == "/wordpress/v1/contact-us" || window.location.pathname == "/wordpress/v1/past-winners" || window.location.pathname == "/wordpress/v1/whats-the-catch" || window.location.pathname == "/wordpress/v1/winners" ) {
+                if ( window.location.pathname == "/wordpress/v1/faqs" || window.location.pathname == "/wordpress/v1/contact-us" || window.location.pathname == "/wordpress/v1/past-winners" || window.location.pathname == "/wordpress/v1/whats-the-catch" || window.location.pathname == "/wordpress/v1/winners" || window.location.pathname == "/wordpress/v1/ads" ) {
                     $("#registration-modal .progress-bar").css({ "width": "100%" });
                     $("#popup-progress-content").text("Progress ( 100% )");
                 } else {

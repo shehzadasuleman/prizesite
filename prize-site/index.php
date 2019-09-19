@@ -449,6 +449,18 @@
                     endif;
                 ?>
             </div>
+        <?php elseif ( "/wordpress/v1/ads" == $current_uri || strpos($current_uri, "/wordpress/v1/ads") !== false ):?>
+            <div class="clients-content">
+                <?php
+                    if (have_posts() ):
+                        while( have_posts() ): the_post();
+
+                            get_template_part( 'template-parts/v1/ads', get_post_format() );
+
+                        endwhile;
+                    endif;
+                ?>
+            </div>
         <?php elseif ( "/wordpress/v1/404" == $current_uri || strpos($current_uri, "/wordpress/v1/404") !== false ):?>
             <div class="clients-content">
                 <?php
