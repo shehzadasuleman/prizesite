@@ -687,6 +687,10 @@
     padding-left: 3%;
 }
 
+#carousel-example-1z .carousel-control-next, #carousel-example-1z .carousel-control-prev {
+    width: unset;
+}
+
 @media (max-width: 480px) {
     #carousel-example-1z #prev-btn {
         padding-left: 10px;
