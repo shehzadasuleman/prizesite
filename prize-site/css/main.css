@@ -1992,6 +1992,9 @@ a:focus {
     .lucky-form {
         margin: 0 40px 0 0;
     }
+    #prizesite-signin-form.lucky-form, #prizesite-signup-form.lucky-form {
+        margin: 0px;
+    }
     .about-block h1 {
         font-size: 54px;
         line-height: 58px;
@@ -2121,6 +2124,18 @@ a:focus {
     #mob-carousel-right-ads .carousel-control-prev-icon {
         margin-left: 0px;
     }
+    #carousel-left-ads .carousel-control-next-icon {
+        margin-right: 0px;
+    }
+    #carousel-left-ads .carousel-control-prev-icon {
+        margin-left: 0px;
+    }
+    #mob-carousel-left-ads .carousel-control-next-icon {
+        margin-right: 0px;
+    }
+    #mob-carousel-left-ads .carousel-control-prev-icon {
+        margin-left: 0px;
+    }
 }
 
 @media screen and (max-width: 350px) {
@@ -2212,6 +2227,14 @@ a:focus {
         height: 12px;
     }
     #mob-carousel-right-ads .carousel-control-next-icon, .carousel-control-prev-icon {
+        width: 12px;
+        height: 12px;
+    }
+    #carousel-left-ads .carousel-control-next-icon, .carousel-control-prev-icon {
+        width: 12px;
+        height: 12px;
+    }
+    #mob-carousel-left-ads .carousel-control-next-icon, .carousel-control-prev-icon {
         width: 12px;
         height: 12px;
     }
@@ -2312,6 +2335,15 @@ a:focus {
     #mob-carousel-right-ads ol {
         margin-bottom : 10px;
     }
+    #carousel-left-ads ol {
+        margin-bottom : 10px;
+    }
+    #mob-carousel-left-ads ol {
+        margin-bottom : 10px;
+    }
+    .contest-block .live-content {
+        margin-left: 0px;
+    }
 }
 
 @media screen and (max-width: 400px) {
@@ -2381,6 +2413,14 @@ a:focus {
         height: 12px;
     }
     #mob-carousel-right-ads .carousel-control-next-icon, .carousel-control-prev-icon {
+        width: 12px;
+        height: 12px;
+    }
+    #carousel-left-ads .carousel-control-next-icon, .carousel-control-prev-icon {
+        width: 12px;
+        height: 12px;
+    }
+    #mob-carousel-left-ads .carousel-control-next-icon, .carousel-control-prev-icon {
         width: 12px;
         height: 12px;
     }

@@ -59,7 +59,4 @@ jQuery(document).ready(function($) {
 
     }
 
-    if ( window.location.pathname == "/wordpress/v1/won" ) {
-
-    }
 });

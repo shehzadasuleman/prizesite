@@ -18,9 +18,9 @@
 			<ul class="footer-links">
 				<li><a href="<?php print $domain; ?>">Home</a></li>
 				<li><a href="http://localhost/wordpress/v1/whats-the-catch">What's the catch</a></li>
-				<li><a href="http://localhost/wordpress/v1/winners">Winners</a></li>
+				<li><a href="http://localhost/wordpress/v1/winners">Daily Draw</a></li>
 				<li><a href="http://localhost/wordpress/v1/contact-us">Contact us</a></li>
-				<li><a href="http://localhost/wordpress/v1/past-winners">Past Winners</a></li>
+				<li><a href="http://localhost/wordpress/v1/muft-rewards">Muft Rewards</a></li>
 				<li><a href="http://localhost/wordpress/v1/faqs">FAQs</a></li>
 			</ul>
 			<div class="social-block">

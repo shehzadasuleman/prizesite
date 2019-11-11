@@ -465,44 +465,6 @@ jQuery(document).ready(function($) {
             $("#verification-retrieve-data-error").css({ "display": "none" });
             $("#verification-retrieve-data-failure").css({ "display": "none" });
             $("#error-msg").css({ "display": "none" });
-            var urlPath = window.location;
-            var urlArray = String(urlPath).split('?');
-            var hashArray = urlArray[1].split('=');
-
-            var form = $(this),
-                hash = hashArray[1],
-                ajaxurl = ajax_admin_url;
-
-            $.ajax({
-
-                url: ajaxurl,
-                type: 'post',
-                data: {
-        
-                    hash: hash,
-                    action: 'prizesite_get_new_verification_data'
-        
-                },
-                error: function(response) {
-                    console.log(response);
-                },
-                success: function(response) {
-                    var respArray = response.split('-');
-                    if(response == -100) {
-                        $("#verification-retrieve-data-failure").fadeTo(2000, 500).slideUp(500, function() {
-                            $("#verification-retrieve-data-failure").slideUp(500);
-                        });
-                    } else if(response == 0) {
-                        $("#verification-retrieve-data-error").fadeTo(2000, 500).slideUp(500, function() {
-                            $("#verification-retrieve-data-error").slideUp(500);
-                        });
-                    } else{
-                        var email = respArray[1].replace("0","");
-                        var title = $('#verification-title').html().replace("{email}", email);
-                        document.getElementById("verification-title").innerHTML = title;
-                    }
-                }
-            });
         }
 
         $('#prizesite-verification-email-resend').on('submit', function(e) {

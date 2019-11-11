@@ -42,6 +42,7 @@ function prizesite_custom_settings() {
     register_setting( 'prizesite-theme-support', 'prizesite_onhold_page_enabler' );
     register_setting( 'prizesite-theme-support', 'prizesite_past_winners_date' );
     register_setting( 'prizesite-theme-support', 'prizesite_winners_ad_timer' );
+    register_setting( 'prizesite-theme-support', 'prizesite_dailydraw_message' );
 	
 	add_settings_section( 'prizesite-theme-options', 'Theme Options', 'prizesite_theme_options', 'shahzada_prizesite_theme' );
 	
@@ -52,6 +53,8 @@ function prizesite_custom_settings() {
     add_settings_field( 'prizesite-onhold-page-enabler', 'Enable On-hold Page', 'prizesite_onhold_page_enabler_callback', 'shahzada_prizesite_theme', 'prizesite-theme-options' );
     add_settings_field( 'prizesite-past-winners-date', 'Past Winners Cut-off Date', 'prizesite_past_winners_date_callback', 'shahzada_prizesite_theme', 'prizesite-theme-options' );
     add_settings_field( 'prizesite-winners-ad-timer', 'Winners Ads Timer', 'prizesite_winners_ad_timer_callback', 'shahzada_prizesite_theme', 'prizesite-theme-options' );
+    add_settings_field( 'prizesite-dailydraw-message', 'Daily Draw Message', 'prizesite_dailydraw_message_callback', 'shahzada_prizesite_theme', 'prizesite-theme-options' );
+
     //Contact Form Options
 	register_setting( 'prizesite-contact-options', 'ps_activate_contact' );
 	
@@ -111,4 +114,9 @@ function prizesite_winners_ad_timer_callback() {
     $timer = get_option( 'prizesite_winners_ad_timer' );
     echo '<input type="number" id="prizesite_winners_ad_timer" name="prizesite_winners_ad_timer" value="' . esc_attr( $timer ) . '" size="40" />msec<br>';
     echo '<label>1000 msec= 1 sec</label>';
+}
+
+function prizesite_dailydraw_message_callback() {
+    $message = esc_attr(get_option('prizesite_dailydraw_message'));
+    echo '<textarea id="prizesite_dailydraw_message" name="prizesite_dailydraw_message" rows="4" cols="50">'.$message.'</textarea>';
 }

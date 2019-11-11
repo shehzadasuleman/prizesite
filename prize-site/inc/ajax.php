@@ -26,6 +26,15 @@ add_action( 'wp_ajax_prizesite_get_new_verification_data', 'get_verification_dat
 add_action( 'wp_ajax_nopriv_prizesite_resend_new_email', 'resend_email' );
 add_action( 'wp_ajax_prizesite_resend_new_email', 'resend_email' );
 
+add_action( 'wp_ajax_nopriv_prizesite_save_muftrewards_user_data', 'save_mr_user_data' );
+add_action( 'wp_ajax_prizesite_save_muftrewards_user_data', 'save_mr_user_data' );
+
+add_action( 'wp_ajax_nopriv_prizesite_verify_mr_user_data', 'verify_mr_user_data' );
+add_action( 'wp_ajax_prizesite_verify_mr_user_data', 'verify_mr_user_data' );
+
+add_action( 'wp_ajax_nopriv_prizesite_signin_muftrewards_user_data', 'signin_mr_user_data' );
+add_action( 'wp_ajax_prizesite_signin_muftrewards_user_data', 'signin_mr_user_data' );
+
 function save_candidate_data(){
 
 	$code = wp_strip_all_tags($_POST["passCode"]);
@@ -353,6 +362,208 @@ function resend_email(){
         $return_value = -100;
         echo $return_value;
     }
+}
+
+function save_mr_user_data(){
+
+	$fname = wp_strip_all_tags($_POST["fName"]);
+	$lname = wp_strip_all_tags($_POST["lName"]);
+	$number = wp_strip_all_tags($_POST["phNumber"]);
+	$email = wp_strip_all_tags($_POST["emailAddress"]);
+	$password = wp_strip_all_tags($_POST["password"]);
+	$dailydraw = wp_strip_all_tags($_POST["enterDraw"]);
+	$passcode = mt_rand();
+	$verified = 0;
+	$is_duplicate = 0;
+	$is_already_exists = 0;
+
+	global $wpdb;
+    $title_exists = $wpdb->get_results( 
+        "
+        SELECT ID
+        FROM $wpdb->posts
+        WHERE  
+            post_title = '" . $email . "'
+        AND
+            post_type = '" . 'prizesite-mrusers' .  "'    
+        "
+	);
+
+	if(count($title_exists) > 0){
+		$postID = -100;
+		$is_already_exists = 1;
+	}
+
+	if ( $is_already_exists != 1 ) {
+		$args = array(
+			'post_title' => $email,
+			'post_author' => 1,
+			'post_status' => 'publish',
+			'post_type' => 'prizesite-mrusers'
+		);
+	
+		$postID = wp_insert_post( $args );
+		update_post_meta( $postID, '_mrusers_fname_value_key', $fname );
+		update_post_meta( $postID, '_mrusers_lname_value_key', $lname );
+		update_post_meta( $postID, '_mrusers_password_value_key', $password );
+		update_post_meta( $postID, '_mrusers_phnumber_value_key', $number );
+		update_post_meta( $postID, '_mrusers_verificationcode_value_key', $passcode );
+		update_post_meta( $postID, '_mrusers_emailverified_value_key', $verified );
+		update_post_meta( $postID, '_mrusers_dailydraw_value_key', $dailydraw );
+
+		echo $postID.'-'.bin2hex(zlib_encode($postID, ZLIB_ENCODING_DEFLATE));
+
+	} else {
+		$is_verified = get_post_meta($title_exists[0]->ID,'_mrusers_emailverified_value_key',true);
+		if( $is_verified == 0 ) {
+			echo $title_exists[0]->ID.'-'.bin2hex(zlib_encode($title_exists[0]->ID, ZLIB_ENCODING_DEFLATE));
+		} elseif ( $is_verified == 1 ) {
+			echo $postID;
+		}
+	}
+
+	$to = $email;
+	$subject = "Muftpaise Forgot Password";
+	$message = "Hi there,\n\nThe verification code for your requested forgot password are as follows, if you have not requested this verification code, please report it at contact@muftpaise.com.\n\nVerification Code: ".$passcode.".";
+	wp_mail( $to, $subject, $message);
+
+	die();
+
+}
+
+function verify_mr_user_data(){
+
+	$code = wp_strip_all_tags($_POST["passCode"]);
+	$hash = wp_strip_all_tags($_POST["hash"]);
+	$verification_id = zlib_decode( hex2bin( $hash ) );
+	$is_verified = -100;
+	$return_value = 0;
+	
+	$query = new WP_Query(array(
+		'post_type' => 'prizesite-mrusers',
+		'post_status' => 'publish',
+		'p'	=>	$verification_id,
+		'post_per_page' => 1
+	));
+	
+	if( $query->have_posts() ) {
+		$query->the_post();
+		$passcode = get_post_meta(get_the_ID(), '_mrusers_verificationcode_value_key', true);
+		if( $code == $passcode ){
+			$is_verified = 1;
+			$daily_draw = get_post_meta(get_the_ID(), '_mrusers_dailydraw_value_key', true);
+			if ( $daily_draw == 1 ) {
+				$number = get_post_meta(get_the_ID(), '_mrusers_phnumber_value_key', true);
+				$email = get_the_title(get_the_ID());
+
+				$is_already_exists = 0;
+
+				$ipaddress = '';
+				if (isset($_SERVER['HTTP_CLIENT_IP']))
+					$ipaddress = $_SERVER['HTTP_CLIENT_IP'];
+				else if(isset($_SERVER['HTTP_X_FORWARDED_FOR']))
+					$ipaddress = $_SERVER['HTTP_X_FORWARDED_FOR'];
+				else if(isset($_SERVER['HTTP_X_FORWARDED']))
+					$ipaddress = $_SERVER['HTTP_X_FORWARDED'];
+				else if(isset($_SERVER['HTTP_FORWARDED_FOR']))
+					$ipaddress = $_SERVER['HTTP_FORWARDED_FOR'];
+				else if(isset($_SERVER['HTTP_FORWARDED']))
+					$ipaddress = $_SERVER['HTTP_FORWARDED'];
+				else if(isset($_SERVER['REMOTE_ADDR']))
+					$ipaddress = $_SERVER['REMOTE_ADDR'];
+				else
+					$ipaddress = 'UNKNOWN';
+
+				$details = json_decode(file_get_contents("http://ipinfo.io/{$ipaddress}"));
+				$area = $details->city;
+				$res = file_get_contents('https://www.iplocate.io/api/lookup/' . $ipaddress);
+				$res = json_decode($res);
+				$city = $res->city;
+					
+				global $wpdb;
+				$title_exists = $wpdb->get_results( 
+					"
+					SELECT ID
+					FROM $wpdb->posts
+					WHERE  
+						post_title = '" . $number . "'
+					AND
+						post_type = '" . 'prizesite-contact' .  "'    
+					"
+				);
+	
+				if(count($title_exists) > 0){
+					$is_already_exists = 1;
+				}
+
+				if ( $is_already_exists != 1 ) {
+						$args = array(
+							'post_title' => $number,
+							'post_author' => 1,
+							'post_status' => 'publish',
+							'post_type' => 'prizesite-contact'
+						);
+					
+						$postID = wp_insert_post( $args );
+						update_post_meta( $postID, '_contact_ip_value_key', $ipaddress );
+						update_post_meta( $postID, '_contact_email_value_key', $email );
+						update_post_meta( $postID, '_contact_city_value_key', $city );
+						update_post_meta( $postID, '_contact_area_value_key', $area );
+				}
+			}
+			update_post_meta(get_the_ID(), '_mrusers_emailverified_value_key', $is_verified);
+			$return_value = get_the_ID();
+		} else {
+			$return_value = $is_verified;
+		}
+	}
+
+	echo $return_value;
+
+	die();
+
+}
+
+function signin_mr_user_data(){
+
+	$email = wp_strip_all_tags($_POST["emailAddress"]);
+	$password = wp_strip_all_tags($_POST["password"]);
+	$postID = 0;
+
+	global $wpdb;
+    $title_exists = $wpdb->get_results( 
+        "
+        SELECT ID
+        FROM $wpdb->posts
+        WHERE  
+            post_title = '" . $email . "'
+        AND
+            post_type = '" . 'prizesite-mrusers' .  "'    
+        "
+	);
+
+	if(count($title_exists) == 0){
+		$postID = -100;
+	} elseif ( count($title_exists) == 1 ) {
+
+		$db_password = get_post_meta($title_exists[0]->ID,'_mrusers_password_value_key',true);
+		$db_fname = get_post_meta($title_exists[0]->ID,'_mrusers_fname_value_key',true);
+
+		if ( $db_password == $password ) {
+			$postID = $title_exists[0]->ID.'-'.bin2hex(zlib_encode($title_exists[0]->ID, ZLIB_ENCODING_DEFLATE));
+			$_SESSION["mr-user"] = $email;
+			$_SESSION["mr-user-fname"] = $db_fname;
+			$_SESSION["mr-user-hashcode"] = bin2hex(zlib_encode($title_exists[0]->ID, ZLIB_ENCODING_DEFLATE));
+		} else {
+			$postID = -200;
+		}
+
+	}
+
+	echo $postID;
+
+	die();
+
 }
 
 

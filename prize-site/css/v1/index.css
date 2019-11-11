@@ -652,6 +652,38 @@
     margin-bottom : 0px;
 }
 
+#carousel-left-ads #left-prev-btn {
+    justify-content: start;
+    padding-left: 5px;
+}
+
+#carousel-left-ads #left-next-btn {
+    justify-content: flex-end;
+    padding-right: 5px;
+}
+
+#carousel-left-ads ol {
+    margin-bottom : 0px;
+}
+
+#mob-carousel-left-ads {
+    display: none;
+}
+
+#mob-carousel-left-ads #mob-left-prev-btn {
+    justify-content: start;
+    padding-left: 5px;
+}
+
+#mob-carousel-left-ads #mob-left-next-btn {
+    justify-content: flex-end;
+    padding-right: 5px;
+}
+
+#mob-carousel-left-ads ol {
+    margin-bottom : 0px;
+}
+
 .recent-winners-content .description button {
     border-bottom:1px solid #cf2e2e;
 }
@@ -689,6 +721,143 @@
 
 #carousel-example-1z .carousel-control-next, #carousel-example-1z .carousel-control-prev {
     width: unset;
+}
+
+.contest-block {
+    padding: 0px;
+}
+
+.contest-block .live-content {
+    margin-left: 15px;
+}
+
+.contest-block h2 {
+    border-bottom: 1px solid #ced4da;
+}
+
+.contest-live-status {
+    padding: 5px;
+    font-size: 16px;
+    font-weight: 700;
+    position: absolute;
+    bottom: 50px;
+    right: 5px;
+    color: #cf2e2e;
+    border: 2px solid #cf2e2e;
+}
+
+.contest-block .previous-content {
+    margin-top: 25px;
+    margin-left: 15px;
+}
+
+.live-content .card-deck {
+    margin-top: 30px;
+}
+
+.previous-content nav {
+    margin-top: 25px;
+}
+
+.previous-content .card-deck {
+    margin-top: 30px;
+}
+
+.sign-remove-padding {
+    padding: 0%;
+}
+
+.sign-content {
+    padding-top: 5%;
+    padding-bottom: 5%;
+}
+
+.sign-content h1 {
+    text-align: center;
+    margin-bottom: 3%;
+    color: black;
+}
+
+.sign-content .description {
+    padding-left: 0px;
+    padding-right: 0px;
+    color: black;
+    padding-top: 20px;
+}
+
+#sign-in,#sign-up .card-header h2 {
+    margin-bottom: 0px;
+}
+
+#prizesite-signin-form,#prizesite-signup-form label {
+    color: #999999;
+}
+
+#prizesite-signup-form .guarantee-message {
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.sign-up-link,.sign-in-link {
+    margin-top: 10px;
+}
+
+#prizesite-signup-form .check-label {
+    margin-bottom: 0px;
+    color: black;
+}
+
+#prizesite-signup-form #check-enter-draw-label-box a {
+    text-decoration: underline;
+    font-weight: bold;
+}
+
+.forgot-password-block {
+    float: right;
+    margin-top: 5px;
+}
+
+#signup-popup-progress-bar {
+    display: none;
+}
+
+#mr-signup-danger-alert {
+    margin-top: 2%;
+    display: none;
+}
+
+#signup-daily-draw-info {
+    display: none;
+}
+
+#show-draw-detail {
+    background: none;
+    width: auto;
+    height: auto;
+    border: none;
+    font-weight: bold;
+    padding: unset;
+}
+
+#signin-popup-progress-bar {
+    display: none;
+}
+
+#mr-signin-danger-alert,#mr-signin-invalid-alert,#mr-signin-wrong-password-alert {
+    margin-top: 2%;
+    display: none;
+}
+
+#mr-user-signout {
+    background: none;
+    color: red;
+    border: none;
+    padding: 5px;
+    float: right;
+}
+
+#mr-user-dashboard h1 {
+    margin : 0px;
 }
 
 @media (max-width: 480px) {

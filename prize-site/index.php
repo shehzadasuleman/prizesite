@@ -461,6 +461,114 @@
                     endif;
                 ?>
             </div>
+        <?php elseif ( "/wordpress/v1/contests" == $current_uri || strpos($current_uri, "/wordpress/v1/contests") !== false ):?>
+            <div class="clients-content">
+                <?php
+                    if (have_posts() ):
+                        while( have_posts() ): the_post();
+
+                            get_template_part( 'template-parts/v1/contests', get_post_format() );
+
+                        endwhile;
+                    endif;
+                ?>
+            </div>
+        <?php elseif ( "/wordpress/v1/qrcode" == $current_uri || strpos($current_uri, "/wordpress/v1/qrcode") !== false ):?>
+            <div class="clients-content">
+                <?php
+                    if (have_posts() ):
+                        while( have_posts() ): the_post();
+
+                            get_template_part( 'template-parts/v1/qrcode', get_post_format() );
+
+                        endwhile;
+                    endif;
+                ?>
+            </div>
+        <?php elseif ( "/wordpress/v1/scan" == $current_uri || strpos($current_uri, "/wordpress/v1/scan") !== false ):?>
+            <div class="clients-content">
+                <?php
+                    if (have_posts() ):
+                        while( have_posts() ): the_post();
+
+                            get_template_part( 'template-parts/v1/scanner', get_post_format() );
+
+                        endwhile;
+                    endif;
+                ?>
+            </div>
+        <?php elseif ( "/wordpress/v1/sign-in" == $current_uri || strpos($current_uri, "/wordpress/v1/sign-in") !== false ):?>
+            <div class="clients-content">
+                <?php
+                    if (have_posts() ):
+                        while( have_posts() ): the_post();
+
+                            get_template_part( 'template-parts/v1/signin', get_post_format() );
+
+                        endwhile;
+                    endif;
+                ?>
+            </div>
+        <?php elseif ( "/wordpress/v1/sign-up" == $current_uri || strpos($current_uri, "/wordpress/v1/sign-up") !== false ):?>
+            <div class="clients-content">
+                <?php
+                    if (have_posts() ):
+                        while( have_posts() ): the_post();
+
+                            get_template_part( 'template-parts/v1/signup', get_post_format() );
+
+                        endwhile;
+                    endif;
+                ?>
+            </div>
+        <?php elseif ( "/wordpress/v1/muft-rewards" == $current_uri || strpos($current_uri, "/wordpress/v1/muft-rewards") !== false ):?>
+            <div class="clients-content">
+                <?php
+                    if (have_posts() ):
+                        while( have_posts() ): the_post();
+
+                            get_template_part( 'template-parts/v1/muft-rewards', get_post_format() );
+
+                        endwhile;
+                    endif;
+                ?>
+            </div>
+        <?php elseif ( "/wordpress/v1/mr-term-conditions" == $current_uri || strpos($current_uri, "/wordpress/v1/mr-term-conditions") !== false ):?>
+            <div class="clients-content">
+                <?php
+                    if (have_posts() ):
+                        while( have_posts() ): the_post();
+
+                            get_template_part( 'template-parts/v1/mr-termsconditions', get_post_format() );
+
+                        endwhile;
+                    endif;
+                ?>
+            </div>
+        <?php elseif ( "/wordpress/v1/mr-verification" == $current_uri || strpos($current_uri, "/wordpress/v1/mr-verification") !== false ):?>
+            <div class="clients-content">
+                <?php
+                    if (have_posts() ):
+                        while( have_posts() ): the_post();
+
+                            get_template_part( 'template-parts/v1/mr-verification', get_post_format() );
+
+                        endwhile;
+                    endif;
+                ?>
+            </div>
+        <?php elseif ( "/wordpress/v1/mr-user/dashboard" == $current_uri || strpos($current_uri, "/wordpress/v1/mr-user/dashboard") !== false ):?>
+            <div class="clients-content">
+                <?php
+                    if (have_posts() ):
+                        while( have_posts() ): the_post();
+
+                            get_template_part( 'template-parts/v1/mr-user-dashboard', get_post_format() );
+
+                        endwhile;
+                    endif;
+                ?>
+            </div>
         <?php elseif ( "/wordpress/v1/404" == $current_uri || strpos($current_uri, "/wordpress/v1/404") !== false ):?>
             <div class="clients-content">
                 <?php

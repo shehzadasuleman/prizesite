@@ -63,5 +63,10 @@ function prizesite_load_scripts() {
     wp_enqueue_script( 'faqs-js', get_template_directory_uri() . '/js/v1/faqs.js', array('jquery'), '1.0.0', 'all' );
     wp_enqueue_script( 'ads-js', get_template_directory_uri() . '/js/v1/ads.js', array('jquery'), '1.0.0', 'all' );
     wp_enqueue_script( 'redirect-js', get_template_directory_uri() . '/js/v1/jquery.redirect.js', array('jquery'), '1.1.3', 'all' );
+    wp_enqueue_script( 'contests-js', get_template_directory_uri() . '/js/v1/contests.js', array('jquery'), '1.0.0', 'all' );
+    wp_enqueue_script( 'jquery-qrcode-js', get_template_directory_uri() . '/js/v1/jquery-qrcode.js', array('jquery'), '0.17.0', 'all' );
+    wp_enqueue_script( 'qrcode-js', get_template_directory_uri() . '/js/v1/qrcode.js', array('jquery'), '1.0.0', 'all' );
+    wp_enqueue_script( 'scanner-js', get_template_directory_uri() . '/js/v1/scanner.js', array('jquery'), '1.0.0', 'all' );
+    wp_enqueue_script( 'muft-rewards-js', get_template_directory_uri() . '/js/v1/muft-rewards.js', array('jquery'), '1.0.0', 'all' );
 }
 add_action( 'wp_enqueue_scripts', 'prizesite_load_scripts' );

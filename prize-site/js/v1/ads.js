@@ -31,6 +31,12 @@ jQuery(document).ready(function($) {
             $("#mob-carousel-right-ads #carousel-slide-one").attr("src", "/wordpress/wp-content/themes/prize-site/img/Ads/Slider/Mobile/right-mob-ad1.jpg");
             $("#mob-carousel-right-ads #carousel-slide-two").attr("src", "/wordpress/wp-content/themes/prize-site/img/Ads/Slider/Mobile/right-mob-ad2.jpg");
             $("#mob-carousel-right-ads #carousel-slide-three").attr("src", "/wordpress/wp-content/themes/prize-site/img/Ads/Slider/Mobile/right-mob-ad3.jpg");
+        
+            $("#carousel-left-ads").css("display","none");
+            $("#mob-carousel-left-ads").css("display","block");
+            $("#mob-carousel-left-ads #carousel-slide-one").attr("src", "/wordpress/wp-content/themes/prize-site/img/Ads/Slider/Mobile/left-mob-ad1.jpg");
+            $("#mob-carousel-left-ads #carousel-slide-two").attr("src", "/wordpress/wp-content/themes/prize-site/img/Ads/Slider/Mobile/left-mob-ad2.jpg");
+            $("#mob-carousel-left-ads #carousel-slide-three").attr("src", "/wordpress/wp-content/themes/prize-site/img/Ads/Slider/Mobile/left-mob-ad3.jpg");
         } else {
             $("#winners-fb-mob-review").css("display","none");
             $("#winners-fb-review").css("display","block");
@@ -44,6 +50,12 @@ jQuery(document).ready(function($) {
             $("#carousel-right-ads #carousel-slide-one").attr("src", "/wordpress/wp-content/themes/prize-site/img/Ads/Slider/Desktop/right-desktop-ad1.jpg");
             $("#carousel-right-ads #carousel-slide-two").attr("src", "/wordpress/wp-content/themes/prize-site/img/Ads/Slider/Desktop/right-desktop-ad2.jpg");
             $("#carousel-right-ads #carousel-slide-three").attr("src", "/wordpress/wp-content/themes/prize-site/img/Ads/Slider/Desktop/right-desktop-ad3.jpg");
+
+            $("#mob-carousel-left-ads").css("display","none");
+            $("#carousel-left-ads").css("display","block");
+            $("#carousel-left-ads #carousel-slide-one").attr("src", "/wordpress/wp-content/themes/prize-site/img/Ads/Slider/Desktop/left-desktop-ad1.jpg");
+            $("#carousel-left-ads #carousel-slide-two").attr("src", "/wordpress/wp-content/themes/prize-site/img/Ads/Slider/Desktop/left-desktop-ad2.jpg");
+            $("#carousel-left-ads #carousel-slide-three").attr("src", "/wordpress/wp-content/themes/prize-site/img/Ads/Slider/Desktop/left-desktop-ad3.jpg");
         }
     }
 });
