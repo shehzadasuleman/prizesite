@@ -548,12 +548,17 @@ function signin_mr_user_data(){
 
 		$db_password = get_post_meta($title_exists[0]->ID,'_mrusers_password_value_key',true);
 		$db_fname = get_post_meta($title_exists[0]->ID,'_mrusers_fname_value_key',true);
+		$db_emailverified = get_post_meta($title_exists[0]->ID,'_mrusers_emailverified_value_key',true);
 
 		if ( $db_password == $password ) {
-			$postID = $title_exists[0]->ID.'-'.bin2hex(zlib_encode($title_exists[0]->ID, ZLIB_ENCODING_DEFLATE));
-			$_SESSION["mr-user"] = $email;
-			$_SESSION["mr-user-fname"] = $db_fname;
-			$_SESSION["mr-user-hashcode"] = bin2hex(zlib_encode($title_exists[0]->ID, ZLIB_ENCODING_DEFLATE));
+			if ( $db_emailverified == 1 ) {
+				$postID = $title_exists[0]->ID.'-'.bin2hex(zlib_encode($title_exists[0]->ID, ZLIB_ENCODING_DEFLATE));
+				$_SESSION["mr-user"] = $email;
+				$_SESSION["mr-user-fname"] = $db_fname;
+				$_SESSION["mr-user-hashcode"] = bin2hex(zlib_encode($title_exists[0]->ID, ZLIB_ENCODING_DEFLATE));
+			} else {
+				$postID = -300;
+			}
 		} else {
 			$postID = -200;
 		}

@@ -239,6 +239,10 @@ $message = esc_attr(get_option('prizesite_dailydraw_message'));
           <button type="button" class="close" data-dismiss="alert">x</button>
           <strong>Failure! </strong>Invalid Username.
       </div>
+      <div class="alert alert-danger hidden" id="mr-signin-not-verified-alert">
+          <button type="button" class="close" data-dismiss="alert">x</button>
+          <strong>Failure! </strong>Please verify your email before login.
+      </div>
 		</div>
       </div>
     </div>

@@ -329,6 +329,12 @@ jQuery(document).ready(function($) {
                         $("#mr-signin-wrong-password-alert").fadeTo(2000, 500).slideUp(500, function() {
                             $("#mr-signin-wrong-password-alert").slideUp(500);
                         });
+                    } else if (response == -300) {
+                        $('#signin-password').val('');
+                        $('#signin-username').val('');
+                        $("#mr-signin-not-verified-alert").fadeTo(2000, 500).slideUp(500, function() {
+                            $("#mr-signin-not-verified-alert").slideUp(500);
+                        });
                     } else if(respArray[0] == 0) {
                         $('#signin-password').val('');
                         $('#signin-username').val('');

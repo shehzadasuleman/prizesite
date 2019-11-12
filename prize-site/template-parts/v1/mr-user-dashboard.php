@@ -35,7 +35,6 @@ function signout() {
         <div class="col">
           <form method="post"> 
             <button id="mr-user-signout" type="submit" class="btn-outline-danger" name="mr-user-signout" ><img src="<?php print $signout_url; ?>" alt="Sign Out" title="Sign Out"/></button>
-            <!--<input id="mr-user-signout" type="submit" class="btn btn-outline-danger" name="mr-user-signout" value="Sign Out"/>-->
           </form>
         </div>
       </div>
