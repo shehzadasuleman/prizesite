@@ -63,9 +63,9 @@
         </div>
     <?php } ?>
 <div id="wrapper">
-    <?php if ( "/wordpress/v1/winners" == $current_uri || strpos($current_uri, "/wordpress/v1/winners") !== false ):?>
+    <?php if ( ("/wordpress/v1/winners" == $current_uri || strpos($current_uri, "/wordpress/v1/winners") !== false) || ( "/wordpress/v1/contests" == $current_uri || strpos($current_uri, "/wordpress/v1/contests") !== false) || ( "/wordpress/v1/whatsapp" == $current_uri || strpos($current_uri, "/wordpress/v1/whatsapp") !== false) ):?>
         <header id="header" style="min-height:0px;">
-    <?php elseif ( "/wordpress/v1/winners" != $current_uri || strpos($current_uri, "/wordpress/v1/winners") !== true ):?>
+    <?php elseif ( ( "/wordpress/v1/winners" != $current_uri || strpos($current_uri, "/wordpress/v1/winners") !== true ) && ( "/wordpress/v1/contests" != $current_uri || strpos($current_uri, "/wordpress/v1/contests") !== true) && ( "/wordpress/v1/whatsapp" != $current_uri || strpos($current_uri, "/wordpress/v1/whatsapp") !== true) ):?>
         <header id="header" style="background-image: url(<?php print $background_url ?>);">
     <?php endif; ?>
             <div class="header-holder">
@@ -99,7 +99,7 @@
                 </div>
             </div>
         </header>
-    <?php if ( "/wordpress/v1/winners" == $current_uri || strpos($current_uri, "/wordpress/v1/winners") !== false ):?>
+    <?php if ( ("/wordpress/v1/winners" == $current_uri || strpos($current_uri, "/wordpress/v1/winners") !== false ) || ( "/wordpress/v1/contests" == $current_uri || strpos($current_uri, "/wordpress/v1/contests") !== false) ):?>
         <!--Carousel Wrapper-->
         <div class="row">
             <div id="carousel-example-1z" class="carousel slide carousel-fade col-xl-10 offset-xl-1 col-lg-10 offset-lg-1 col-md-10 offset-md-1 col-sm-10 offset-sm-1 col-10 offset-1" data-ride="carousel" data-interval="<?php echo $ads_slide_timer; ?>">
@@ -139,6 +139,40 @@
                     <span class="sr-only">Next</span>
                 </a>
                 <!--/.Controls-->
+            </div>
+        </div>
+        <!--/.Carousel Wrapper-->
+    <?php endif; ?>
+    <?php if ( ("/wordpress/v1/whatsapp" == $current_uri || strpos($current_uri, "/wordpress/v1/whatsapp") !== false ) ):?>
+        <!--Carousel Wrapper-->
+        <div class="row">
+            <div id="carousel-example-1z" class="carousel slide carousel-fade col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12" data-ride="carousel" data-interval="<?php echo $ads_slide_timer; ?>">
+                <!--Indicators -->
+                <ol id="whatsapp-carousel-indicators" class="carousel-indicators">
+                    <li data-target="#carousel-example-1z" data-slide-to="0" class="active"></li>
+                    <li data-target="#carousel-example-1z" data-slide-to="1"></li>
+                    <li data-target="#carousel-example-1z" data-slide-to="2"></li>
+                </ol>
+                <!--/.Indicators-->
+                <!--Slides-->
+                <div class="carousel-inner" role="listbox">
+                    <!--First slide-->
+                    <div class="carousel-item whatsapp-carousel active">
+                        <p>Free UK delivery over £40</p>
+                    </div>
+                    <!--/First slide-->
+                    <!--Second slide-->
+                    <div class="carousel-item whatsapp-carousel">
+                        <p>World's No.1 Online Sports Nutrition Brand</p>
+                    </div>
+                    <!--/Second slide-->
+                    <!--Third slide-->
+                    <div class="carousel-item whatsapp-carousel">
+                        <p>Sign up to exclusive SMS offers</p>
+                    </div>
+                    <!--/Third slide-->
+                </div>
+                <!--/.Slides-->
             </div>
         </div>
         <!--/.Carousel Wrapper-->
@@ -564,6 +598,18 @@
                         while( have_posts() ): the_post();
 
                             get_template_part( 'template-parts/v1/mr-user-dashboard', get_post_format() );
+
+                        endwhile;
+                    endif;
+                ?>
+            </div>
+        <?php elseif ( "/wordpress/v1/whatsapp" == $current_uri || strpos($current_uri, "/wordpress/v1/whatsapp") !== false ):?>
+            <div class="clients-content">
+                <?php
+                    if (have_posts() ):
+                        while( have_posts() ): the_post();
+
+                            get_template_part( 'template-parts/v1/whatsapp', get_post_format() );
 
                         endwhile;
                     endif;

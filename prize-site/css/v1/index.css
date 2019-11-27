@@ -843,7 +843,7 @@
     display: none;
 }
 
-#mr-signin-danger-alert,#mr-signin-invalid-alert,#mr-signin-wrong-password-alert {
+#mr-signin-danger-alert,#mr-signin-invalid-alert,#mr-signin-wrong-password-alert,#mr-signin-not-verified-alert {
     margin-top: 2%;
     display: none;
 }
@@ -858,6 +858,32 @@
 
 #mr-user-dashboard h1 {
     margin : 0px;
+}
+
+.whatsapp-carousel {
+    background-color:#F2F2F1;
+    min-height:60px;
+}
+
+.whatsapp-carousel p {
+    text-align: center;
+    padding-top:10px;
+}
+
+#carousel-example-1z {
+    margin-left : 0px;
+}
+
+#whatsapp-carousel-indicators .active {
+    background-color: #0C9CB1;
+}
+
+#whatsapp-carousel-indicators li {
+    background: rgba(0,0,0,.1);
+}
+
+#whatsapp-cover .elementor-element-populated {
+    padding: 0%;
 }
 
 @media (max-width: 480px) {
