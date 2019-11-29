@@ -158,17 +158,17 @@
                 <div class="carousel-inner" role="listbox">
                     <!--First slide-->
                     <div class="carousel-item whatsapp-carousel active">
-                        <p>Free UK delivery over £40</p>
+                        <p>Pakistan's only FREE daily cash draw website</p>
                     </div>
                     <!--/First slide-->
                     <!--Second slide-->
                     <div class="carousel-item whatsapp-carousel">
-                        <p>World's No.1 Online Sports Nutrition Brand</p>
+                        <p>Never miss out on your prize</p>
                     </div>
                     <!--/Second slide-->
                     <!--Third slide-->
                     <div class="carousel-item whatsapp-carousel">
-                        <p>Sign up to exclusive SMS offers</p>
+                        <p>Join our WhatsApp group for daily reminders</p>
                     </div>
                     <!--/Third slide-->
                 </div>

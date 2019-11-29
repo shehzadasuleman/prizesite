@@ -875,7 +875,7 @@
 }
 
 #whatsapp-carousel-indicators .active {
-    background-color: #0C9CB1;
+    background-color: #387F16;
 }
 
 #whatsapp-carousel-indicators li {
@@ -884,6 +884,10 @@
 
 #whatsapp-cover .elementor-element-populated {
     padding: 0%;
+}
+
+#whatsapp-content .elementor-widget-text-editor {
+    margin-bottom : 0px;
 }
 
 @media (max-width: 480px) {
