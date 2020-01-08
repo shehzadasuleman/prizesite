@@ -2146,7 +2146,7 @@ a:focus {
         padding-left: 0px;
         padding-right: 0px;
     }
-	#verification-title {
+    #verification-title {
         font-size: 20px;
     }
     .whatsapp-carousel p {
@@ -2243,6 +2243,27 @@ a:focus {
     #mob-carousel-left-ads .carousel-control-next-icon, .carousel-control-prev-icon {
         width: 12px;
         height: 12px;
+    }
+    #live-contest-block .card {
+        max-width: 46%;
+        margin-right: 4%;
+    }
+    #previous-contest-block .card {
+        max-width: 46%;
+        margin-right: 4%;
+    }
+    #contest-header #claim-status h4 {
+        font-size: 13px;
+    }
+    .contest-block .view-content h2 {
+        font-size: 20px;
+    }
+    #contest-info .card-body {
+        font-size: 13px;
+    }
+    #contest-info .card-body .share-icon-link {
+        width: 18px;
+        height: 18px;
     }
 }
 
@@ -2350,6 +2371,37 @@ a:focus {
     .contest-block .live-content {
         margin-left: 0px;
     }
+    #live-contest-block .card {
+        max-width: 46%;
+        margin-right: 4%;
+    }
+    #live-contest-block {
+        margin-bottom: 25px;
+    }
+    #previous-contest-block .card {
+        max-width: 46%;
+        margin-right: 4%;
+    }
+    #previous-contest-block {
+        margin-bottom: 25px;
+    }
+    .contest-block #previous-content {
+        margin-left: 0px;
+    }
+    #contest-header #claim-status h4 {
+        font-size: 11px;
+    }
+    .contest-block .view-content h2 {
+        font-size: 17px;
+        padding-right: 0%;
+    }
+    #contest-info .card-body {
+        font-size: 13px;
+    }
+    #contest-info .card-body .share-icon-link {
+        width: 16px;
+        height: 16px;
+    }
 }
 
 @media screen and (max-width: 400px) {
@@ -2370,6 +2422,19 @@ a:focus {
     }
     .past-winners-label {
         padding-left: 0px;
+    }
+    #live-contest-block .card {
+        max-width: 100%;
+    }
+    #previous-contest-block .card {
+        max-width: 100%;
+    }
+    #contest-info .card-body {
+        font-size: 11px;
+    }
+    #contest-info .card-body .share-icon-link {
+        width: 14px;
+        height: 14px;
     }
 }
 
@@ -2429,6 +2494,16 @@ a:focus {
     #mob-carousel-left-ads .carousel-control-next-icon, .carousel-control-prev-icon {
         width: 12px;
         height: 12px;
+    }
+    #contest-header #claim-status h4 {
+        font-size: 18px;
+    }
+    #contest-info .card-body {
+        font-size: 14px;
+    }
+    #contest-info .card-body .share-icon-link {
+        width: 18px;
+        height: 18px;
     }
 }
 
@@ -2530,5 +2605,11 @@ a:focus {
     }
     .carousel-indicators {
         bottom: 0px;
+    }
+}
+
+@media screen and (max-width: 575px) {
+    .contest-block .view-content {
+        margin-left: 0px;
     }
 }

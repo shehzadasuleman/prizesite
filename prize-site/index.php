@@ -63,9 +63,9 @@
         </div>
     <?php } ?>
 <div id="wrapper">
-    <?php if ( ("/wordpress/v1/winners" == $current_uri || strpos($current_uri, "/wordpress/v1/winners") !== false) || ( "/wordpress/v1/contests" == $current_uri || strpos($current_uri, "/wordpress/v1/contests") !== false) || ( "/wordpress/v1/whatsapp" == $current_uri || strpos($current_uri, "/wordpress/v1/whatsapp") !== false) ):?>
+    <?php if ( ("/wordpress/v1/winners" == $current_uri || strpos($current_uri, "/wordpress/v1/winners") !== false) || ( "/wordpress/v1/contests" == $current_uri || strpos($current_uri, "/wordpress/v1/contests") !== false) || ( "/wordpress/v1/whatsapp" == $current_uri || strpos($current_uri, "/wordpress/v1/whatsapp") !== false) || ( "/wordpress/v1/success-confirmation-page" == $current_uri || strpos($current_uri, "/wordpress/v1/success-confirmation-page") !== false) || ( "/wordpress/v1/view-contests" == $current_uri || strpos($current_uri, "/wordpress/v1/view-contests") !== false) ):?>
         <header id="header" style="min-height:0px;">
-    <?php elseif ( ( "/wordpress/v1/winners" != $current_uri || strpos($current_uri, "/wordpress/v1/winners") !== true ) && ( "/wordpress/v1/contests" != $current_uri || strpos($current_uri, "/wordpress/v1/contests") !== true) && ( "/wordpress/v1/whatsapp" != $current_uri || strpos($current_uri, "/wordpress/v1/whatsapp") !== true) ):?>
+    <?php elseif ( ( "/wordpress/v1/winners" != $current_uri || strpos($current_uri, "/wordpress/v1/winners") !== true ) && ( "/wordpress/v1/contests" != $current_uri || strpos($current_uri, "/wordpress/v1/contests") !== true) && ( "/wordpress/v1/whatsapp" != $current_uri || strpos($current_uri, "/wordpress/v1/whatsapp") !== true) && ( "/wordpress/v1/success-confirmation-page" != $current_uri || strpos($current_uri, "/wordpress/v1/success-confirmation-page") !== true) && ( "/wordpress/v1/view-contests" != $current_uri || strpos($current_uri, "/wordpress/v1/view-contests") !== true) ):?>
         <header id="header" style="background-image: url(<?php print $background_url ?>);">
     <?php endif; ?>
             <div class="header-holder">
@@ -99,7 +99,7 @@
                 </div>
             </div>
         </header>
-    <?php if ( ("/wordpress/v1/winners" == $current_uri || strpos($current_uri, "/wordpress/v1/winners") !== false ) || ( "/wordpress/v1/contests" == $current_uri || strpos($current_uri, "/wordpress/v1/contests") !== false) ):?>
+    <?php if ( ("/wordpress/v1/winners" == $current_uri || strpos($current_uri, "/wordpress/v1/winners") !== false ) || ( "/wordpress/v1/contests" == $current_uri || strpos($current_uri, "/wordpress/v1/contests") !== false) || ( "/wordpress/v1/view-contests" == $current_uri || strpos($current_uri, "/wordpress/v1/view-contests") !== false) ):?>
         <!--Carousel Wrapper-->
         <div class="row">
             <div id="carousel-example-1z" class="carousel slide carousel-fade col-xl-10 offset-xl-1 col-lg-10 offset-lg-1 col-md-10 offset-md-1 col-sm-10 offset-sm-1 col-10 offset-1" data-ride="carousel" data-interval="<?php echo $ads_slide_timer; ?>">
@@ -158,7 +158,7 @@
                 <div class="carousel-inner" role="listbox">
                     <!--First slide-->
                     <div class="carousel-item whatsapp-carousel active">
-                        <p>Pakistan's only FREE daily cash draw website</p>
+                        <p>Pakistan's only FREE daily cash draw websit</p>
                     </div>
                     <!--/First slide-->
                     <!--Second slide-->
@@ -500,7 +500,6 @@
                 <?php
                     if (have_posts() ):
                         while( have_posts() ): the_post();
-
                             get_template_part( 'template-parts/v1/contests', get_post_format() );
 
                         endwhile;
@@ -611,6 +610,16 @@
 
                             get_template_part( 'template-parts/v1/whatsapp', get_post_format() );
 
+                        endwhile;
+                    endif;
+                ?>
+            </div>
+        <?php elseif ( "/wordpress/v1/view-contests" == $current_uri || strpos($current_uri, "/wordpress/v1/view-contests") !== false ):?>
+            <div class="clients-content">
+                <?php
+                    if (have_posts() ):
+                        while( have_posts() ): the_post();
+                            get_template_part( 'template-parts/v1/view-contests', get_post_format() );
                         endwhile;
                     endif;
                 ?>

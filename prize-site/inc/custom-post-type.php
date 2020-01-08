@@ -746,6 +746,7 @@ function prizesite_set_contests_columns( $columns ){
 	$newColumns['ContestEndDate'] = 'Contest End Date';
 	$newColumns['PrizeMoney'] = 'Prize Money';
 	$newColumns['WinnerChosen'] = 'Winner Chosen';
+	$newColumns['ShareCount'] = 'Share Count';
 	return $newColumns;
 }
 
@@ -766,6 +767,9 @@ function prizesite_contests_custom_column( $column, $post_id ){
 			$checked = ( $winnerchosen_value == 1 ? 'Yes' : 'No' );
 			echo $checked;
 			break;
+		case 'ShareCount' :
+			echo get_post_meta( $post_id, '_contests_sharecount_value_key', true);
+			break;
 	}
 	
 }
@@ -775,6 +779,7 @@ function prizesite_contests_add_meta_box() {
 	add_meta_box( 'contests_livedate', 'Contest Live Date', 'prizesite_contests_livedate_callback', 'prizesite-contests' );
 	add_meta_box( 'contests_enddate', 'Contest End Date', 'prizesite_contests_enddate_callback', 'prizesite-contests' );
 	add_meta_box( 'contests_prizemoney', 'Prize Money', 'prizesite_contests_prizemoney_callback', 'prizesite-contests' );
+	add_meta_box( 'contests_sharecount', 'Share Count', 'prizesite_contests_sharecount_callback', 'prizesite-contests' );
 	add_meta_box( 'contests_winnerchosen', 'Winner Chosen', 'prizesite_contests_winnerchosen_callback', 'prizesite-contests' );
 }
 
@@ -800,6 +805,14 @@ function prizesite_contests_prizemoney_callback( $post ) {
 	$prize_value = get_post_meta( $post->ID, '_contests_prizemoney_value_key', true );
 	
 	echo '<input type="text" id="prizesite_contests_prizemoney_field" name="prizesite_contests_prizemoney_field" value="' . esc_attr( $prize_value ) . '" size="40" />';
+}
+
+function prizesite_contests_sharecount_callback( $post ) {
+	wp_nonce_field( 'bulk_save_contests_sharecount_fields', 'prizesite_contests_sharecount_meta_box_nonce' );
+
+	$sharecount_value = get_post_meta( $post->ID, '_contests_sharecount_value_key', true );
+	
+	echo '<input type="text" id="prizesite_contests_sharecount_field" name="prizesite_contests_sharecount_field" value="' . esc_attr( $sharecount_value ) . '" size="40" />';
 }
 
 function prizesite_contests_winnerchosen_callback( $post ) {
@@ -832,6 +845,11 @@ function bulk_save_contests_custom_fields( $post_id ) {
 	if( isset( $_POST['prizesite_contests_prizemoney_meta_box_nonce'] ) && isset( $_POST['prizesite_contests_prizemoney_field']) ) {
 		$data = sanitize_text_field( $_POST['prizesite_contests_prizemoney_field'] );
 		update_post_meta( $post_id, '_contests_prizemoney_value_key', $data );
+	}
+
+	if( isset( $_POST['prizesite_contests_sharecount_meta_box_nonce'] ) && isset( $_POST['prizesite_contests_sharecount_field']) ) {
+		$data = sanitize_text_field( $_POST['prizesite_contests_sharecount_field'] );
+		update_post_meta( $post_id, '_contests_sharecount_value_key', $data );
 	}
 
 	update_post_meta( $post_id, '_contests_winnerchosen_value_key', $_POST['prizesite_contests_winnerchosen_field'] );
@@ -1259,6 +1277,7 @@ function prizesite_mrusers_add_meta_box() {
 	add_meta_box( 'mrusers_emailverified', 'Email Verified', 'prizesite_mrusers_emailverified_callback', 'prizesite-mrusers' );
 	add_meta_box( 'mrusers_verificationcode', 'Verification Code', 'prizesite_mrusers_verificationcode_callback', 'prizesite-mrusers' );
 	add_meta_box( 'mrusers_dailydraw', 'Enter Daily Draw', 'prizesite_mrusers_dailydraw_callback', 'prizesite-mrusers' );
+	add_meta_box( 'mrusers_usertype', 'Client User', 'prizesite_mrusers_usertype_callback', 'prizesite-mrusers' );
 }
 
 function prizesite_mrusers_fname_callback( $post ) {
@@ -1305,7 +1324,6 @@ function prizesite_mrusers_etzicode_callback( $post ) {
 	wp_nonce_field( 'bulk_save_mrusers_etzicode_fields', 'prizesite_mrusers_etzicode_meta_box_nonce' );
 
 	$etzicode_value = get_post_meta( $post->ID, '_mrusers_etzicode_value_key', true );
-	$etzicode_value = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMgAAADICAYAAACtWK6eAAAOAUlEQVR4Xu3d23IcQa5D0fb/f7ROTMyzanVoTzpbx/ArBRJEEsmqti5/Xq/X1+v/8b+vr+f2/vz5c7X70/yUvzZ/W7/KX/j/TMcMIpUOxjXAdQCVv7ZW+dX6p/EzyDZImrEZJMl3H6wb9PYBn+an/PWEbutX+Qu/DbINohl5jM8gSb77YN2gtw/4ND/lryd0W7/KX/htkG0Qzcg2SFLow8G6QW/fgKf5KX89vtv6Vf7Cc4OcFlgEFdcB3eYvfuqvxk/3r/5O16/6iP8MUhUGXgdwuPzr9ICqv9P1q37iP4NUhWeQRwVmkMMDpvS6AW4fkPipvxo/3b/6O12/6iP+2yBV4W2QbZDDM5TS6wa4fYOJX2r+DfDp/tXf6fpvSJA+pt4GqQpvg2yDHJ6hlP7TbzDxS82/AT59g6u/0/XfkODuBpFAtQEJrPrCi1/Nfxov/jUu/T69v8o/P2JJoE8/IPFTf/UAKl78a7zyq/jb/GeQ+A5RB6Di6wAJX/lVvPgpXuvPIDNIesk+vWFlAMVnEHw3rgSSwKcHQPxUX/xrvPKr+Nv8t0G2QbZBHhSYQWaQGWQG+fmi1iNOfYSo+J939h6y8qv491h+/1W1/jZIPAEZSOnrAQqv+jWu/sVP+Mqv1p9B4gnUA64HKHxsj3D1L37CkwC+oNafQeIJ1AOuByh8bI9w9S9+wpPADNJ+dagOqB5APWDxU37ha3/CV37Cq77i0kf1t0GkcPyUS+nrAQqv+jWuARM/4Su/Wn8GiSdQD7geoPCxPcLVv/gJTwJ7xNoj1tMMaADrgAmvARc/4VVf8Vp/G0QK7xHrUQENeB3QeDz8rS7iP4PEE5DAMX2G1wG9ja8CVP4zSDyBGeT5DxDVAY3Hsw2iAdUB1QNQ/Zq/4tW/+N/G3+5/GySegAYsps/w2wNe61cBav0ZJJ7ADLJHrPQpRpy//AypG6Tym0FmkBnkQYEZZAaZQWaQbxXQBaENLnzd8LV+fgepDVS8BJZAql/zV7z41XjlV/GVf8WL/wwChSWgDFjxdQCEr/wqXvxOx8V/BplBHhX47ReADDaDfD1/s2MV8LcPkAbkt/dXz3cbZBtkG+TpQ5jX6/V4xeoGkUNPx+sNKH41f8WLX41XfhVf+Ve8+G+DbINsg2yD/Pye0Q2jDVvxP2f+HrLyq/j3WJ77KvHnBjlH7e9kPj3AEvhfr/93TvlclRkk/vLrGeT5W03Oje7fyTyDzCBH30H+zhifqzKDzCAzSHlJP+fNv5P5X38HuN3/3znlc1W2QbZBtkG2Qb5XYC/Zn/3zHOd2w3uZt0G2QbZBnjbIlx5S3zPar/0qbRA1VuX79Pq1P+n36fE/M0j7HL8O0Azy2RaZQfCIpeObQaTQ747PIDNIegf53eNv9jPIDDKD7CX95x/z6o7ZI5YU+t3xbZBtkG2QbZBtkO8U0KdodUP+7v3xeuX/KJSAOgAJWPMLr/rifzu/+Km/2/zF73Rc+s0gOAEJeHvAxE8Ddpu/+J2OS78ZZAZJM6gBqwZM5N4Ai/8MMoO8MUY/f4ebQfCL2eRQnY4EVn7hVf/T84uf+vt0fcS/xqXfNsg2SJoxDVg1YCL3Blj8Z5AZ5I0x2iPWj0XSDSGHqnDNL7zqi//t/OKn/m7zF7/TcenH/0lXgtMCS6DT9ZX/tD7qX/HK7zRe/E/Heb76eZAqkBpUfuHVoPCqr/wVL341Xvmdxtf+Kp7nO4Oc/ZlsHUA9YOFPD7j6U33xPx0n/xlkBnkaQg04Byx+M+gMEgXUAUng0wNQ+Ym/4rf7U33xPx3X+ewl/fJvNTk9ABpQDshhfU73r/zsf49Ye8TaI9b3CmyDHL4hdUPphqvxbZBnBXU+2SD1AIVnA3HAVb8OWM0vfI1LX+WXPsKrvvILr/rKP4NAQQl4+oB0wDV+m7/q39Z/BplBksc0wEo+g0ghxD9dQPFT+3XAlF/x2/xVX/oIr/6VfxtkG0Qz9BjXgCm5Blz5hVd95Z9BZhDN0AzypIAcltR9A6wbQvyEF4Xb+cWvxk/rI36qf1v/bZBtEM3wv71BXq/X15MCcnhS9w1wvUGEF4Xb/Yvfp/cnftJXeOlT4/yRWzVQCQgvgcRPeNVXfuFPxz+9P/GTvsIf13cb5FliHeDpA1L+OkCn+xM/1Rde+tT4NggU1AHWA6j4OkCn+xM/1Re+6if8DDKDaEZSXAM+gyR5X6/bAusAY3sZLn1U4HR/4qf6wqu/Gt8G2QapM/SI14DPIFH+2wLrAGN7GS59VOB0f+Kn+sKrvxrPG6Q2IIHUoOorv/Cqr3itL7zq1/5UX/mFF//TcfGfQeIvjdABakB0QMKrvvILr/rKL7zqn46L/wwygzzOoAZcAyb8aQMov/jPIDPIDPKgwAwyg8wgM8j3CmjFakUrrkcM1Rde9ZVfeNVXfuFV/3Rc/LdBtkG2QbZBtkF+ehNrA+gGFv6nvP5XOPHnBvlfETmV5/QBSED1JX41v+qfjqs/1Vf/t/PPIDhBHaAGQAdc86v+6bj6U331fzv/DDKDaIbTO4qSzyBSKMbrDaPyOkDhxa/mV/3TcfWn+ur/dv5tkG0QzfA2SFLoMrjeMKKvG0548av5Vf90XP2pvvq/nX8bZBtEM7wNkhS6DK43jOjrhhNe/Gp+1T8dV3+qr/5v5//4DSKBPl1gDYji6k94xau+t/Orfo3PIPERSwOWD+jDvxVG/Umf0xeA+Ck+g8wgjwrUAZ5BZMEYrwILL3oakJq/1hdecfFX/7fzq36Nb4Nsg2yDPCgwg8wgM8gM8vNFq0cMPaL8vPJ/kapf84t/rX86f+1f+G2QbZBtkLJBbt8Aqs8bIP4d9XqDil/tT/lrXP2L/2m8+qv8uEFqATWguOoLf/uAxK/2p/w1flo/9a/66q/mn0G+Hv/A1vV3AA3A6bgGtA5gxav/mn8GmUHSO0gdwIqfQTDAEuj0Daj6imtAhD8dP62f+ld99V/zb4Nsg2yD7FOs7xWoN4xuMMVVX/jTcd3g4n8ar/4rv22QbZBtkJMbRA6uN8jt/Kpf49Kn5v/t+LoB1D/zn/4z0BoAEVSDp/Orfo2Lf83/2/Gaj6of888gd0eoHvBd9uerc4DjD5Qx/wxy/pCfKswgz/pzgGeQZwE1YBL4rj3Of7fu7f5qfZ2fzl/1mX8bRBKejdcDPsvufnYO8DbINsj9Mb3HYAa5/K0k947+v5W3QT78HeRLFr09QYfr1wGt8p2ufzp/PR7xk77Cix/zzyD/+WaCn/+TwMp8/IAPP6OrP8XVv/QVXvWZfwaZQZ6GSAOkAVRcA676wqs+888gM8gM8r0Cf2aQGWQGmUG+VeD0itaKP13/dH71p7j48RHo8DvWNshhgeuACH97gMRP8RlECl2O64BETwMq/On6p/OrP8XFT/oKr/rMr281UYFPj0uAyv/0AVV+wou/9LuNV3+Kiz9/olAFPj2uA678JbDyn+an+uIvfrfx6k9x8Z9BpCDiEljpNYDC17j4i99t/On+Z5CosAZE6TWAwte4+Ivfbfzp/meQqLAGROk1gMLXuPiL32386f5nkKiwBkTpNYDC17j4i99t/On+Z5CosAZE6TWAwte4+Ivfbfzp/meQqLAGROk1gMLXuPiL32386f5pEAlUCVZ8PSDVV37hq361vvgpXvkrv/o7XZ/89B+FtwmygfgHcmp+4at+GiDVr/HKX/XV3+n65DeDPEukA5TA9YBrffFTvPJXfvV3uj75zSAzyJMCpwd0BpFFY/y0wMov+nXAan3xU7zyV371d7o++W2DbINsg3yvwD7FwhWiG043UL0Ba33xU7zyV371d7o++W2DbINsgxzcILoB5FDFdYOofsWf5nc7v+rfjuv8TvPLj1ga0NqABFL9ihf/355f/d2OS9/T/GaQwz+TLgPrgDUgNb/q346r/9P8ZpAZ5PSMpfwzCOSTQLpBK16n+9vzq7/bcel7mt82yDbI6RlL+WeQbZBHBTQg2qBpOj8ArP5PU9wG2QY5PWMp/wzyj2+QOgCnN4j4qb7wyT1vgMVPKbZBLm+QOkB1ADQg4qf6wqt+jYuf8s8gM8jRd6AZJA6YHCyBdUNU/G1+qq/+hVe86ie86td41WcbJBpcA6ADEl4DovzCKy5+qi+86te4+Cn/DDKD7BHrQYEZZAaZQWaQ7xWoK1iPEMovPB8BosGVX/xO9yd+iosf8fUHpioBEfz0A6r91/5O61fzC1/1U/4a/+cfsbKA8QafQdofUa3nJ/wMIoUQrzfgDDKDpBGsAyR8Ivd6vWaQryRh1S8VfwO8DfKGSE9fUg9YBv7t+SVv7U/5a3wGiQrWA55B9oiVRrAOkPCJ3B6xXlXfesHU8xN+G0QK7SX9UYEZ5Ku9hMX5I1w3kA6w4knw8Bd8On/xkzz1/JRf8bxBVOB0XAdQBRb+dH/KX/tX/hoXP+WX/jW/6s8gh/8Ajw6gxjUgGrBaX3jxE178a37Vn0FmEM1IitcBnkGS/P6Puiqw8JF+hmsAb/MXPwkg/jW/6m+DbINoRlK8DvAMkuTfBtEAasCi/ISLnxKIf82v+tsg2yCakRSvA/zxBknqfAD4tMDKLwk0QDV/rS/8bX61vvTnBpFAnx6XgBJI/Sm/8Kpf89f6wt/mV+tL/xnk8A88acB0QHUAan3hb/Or9aX/DDKDyAOP8TqgKq4BrvWVfwaZQTSjM0hS6MPBumF0g6g95Rde9Wv+Wl/42/xqfem/DbINIg9sgySFPhysG0Y3iNpTfuFVv+av9YW/za/Wl/7/B9WweCs4YX6JAAAAAElFTkSuQmCC";
 	if ( $etzicode_value != "" ) {
 		echo '<img src="' . $etzicode_value . '" alt="Etzi Code" />';
 	}
@@ -1333,6 +1351,14 @@ function prizesite_mrusers_dailydraw_callback( $post ) {
 	$dailydraw_value = get_post_meta( $post->ID, '_mrusers_dailydraw_value_key', true );
 	$checked = ( $dailydraw_value == 1 ? 'checked' : '' );
 	echo '<label><input readonly type="checkbox" id="prizesite_mrusers_dailydraw_field" name="prizesite_mrusers_dailydraw_field" value="1" '.$checked.' /></label>';
+}
+
+function prizesite_mrusers_usertype_callback( $post ) {
+	wp_nonce_field( 'bulk_save_mrusers_usertype_fields', 'prizesite_mrusers_usertype_meta_box_nonce' );
+
+	$usertype_value = get_post_meta( $post->ID, '_mrusers_usertype_value_key', true );
+	$checked = ( $usertype_value == 1 ? 'checked' : '' );
+	echo '<label><input readonly type="checkbox" id="prizesite_mrusers_usertype_field" name="prizesite_mrusers_usertype_field" value="1" '.$checked.' /></label>';
 }
 
 function bulk_save_mrusers_custom_fields( $post_id ) {
@@ -1383,4 +1409,5 @@ function bulk_save_mrusers_custom_fields( $post_id ) {
 
 	update_post_meta( $post_id, '_mrusers_dailydraw_value_key', $_POST['prizesite_mrusers_dailydraw_field'] );
 
+	update_post_meta( $post_id, '_mrusers_usertype_value_key', $_POST['prizesite_mrusers_usertype_field'] );
 }

@@ -733,6 +733,7 @@
 
 .contest-block h2 {
     border-bottom: 1px solid #ced4da;
+    margin-bottom: 0px;
 }
 
 .contest-live-status {
@@ -746,7 +747,7 @@
     border: 2px solid #cf2e2e;
 }
 
-.contest-block .previous-content {
+.contest-block #previous-content {
     margin-top: 25px;
     margin-left: 15px;
 }
@@ -755,11 +756,11 @@
     margin-top: 30px;
 }
 
-.previous-content nav {
+#previous-content nav {
     margin-top: 25px;
 }
 
-.previous-content .card-deck {
+#previous-content .card-deck {
     margin-top: 30px;
 }
 
@@ -870,9 +871,9 @@
     padding-top:10px;
 }
 
-#carousel-example-1z {
+/*#carousel-example-1z {
     margin-left : 0px;
-}
+}*/
 
 #whatsapp-carousel-indicators .active {
     background-color: #387F16;
@@ -888,6 +889,168 @@
 
 #whatsapp-content .elementor-widget-text-editor {
     margin-bottom : 0px;
+}
+
+#success-confirmation-cover .elementor-element-populated {
+    padding: 0%;
+}
+
+#success-confirmation-cover .elementor-element-populated {
+    padding: 0%;
+}
+
+.remove-margin {
+    margin-left:0px;
+    margin-right:0px;
+}
+
+#live-contest-block .card {
+    margin-top: 15px;
+    max-width: 31.5%;
+    margin-right: 1.5%;
+    font-family: "Montserrat", "Arial", "Helvetica Neue", "Helvetica", sans-serif;
+}
+
+#live-contest-block .card .card-body a {
+    color: black;
+}
+
+#live-contest-block .card .card-body a:hover {
+    color: #358115;
+    text-decoration: underline;
+}
+
+#live-contest-block .card .contest-cover a img:hover {
+    opacity: 0.6;
+}
+
+#previous-contest-block .card {
+    margin-top: 15px;
+    max-width: 31.5%;
+    margin-right: 1.5%;
+    font-family: "Montserrat", "Arial", "Helvetica Neue", "Helvetica", sans-serif;
+}
+
+#previous-contest-block .card .card-body a {
+    color: black;
+}
+
+#previous-contest-block .card .card-body a:hover {
+    color: #358115;
+    text-decoration: underline;
+}
+
+#previous-contest-block .card .contest-cover a img:hover {
+    opacity: 0.6;
+}
+
+.contest-block .view-content {
+    margin-left: 15px;
+    font-family: "Montserrat", "Arial", "Helvetica Neue", "Helvetica", sans-serif;
+}
+
+.contest-block .view-content h2 {
+    color: #06174f;
+    border-bottom: none;
+    margin-bottom: 0px;
+}
+
+#contest-header #claim-status h4 {
+    color: white;
+    background-color: red;
+    padding: 5px;
+    text-align: center;
+}
+
+#contest-info {
+    margin-top: 10px;
+}
+
+#contest-info p {
+    color: black;
+    font: "Source Sans Pro", "Arial", "Helvetica Neue", "Helvetica", sans-serif;
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 1.4;
+}
+
+#contest-info .card-body .share-icon-link {
+    width: 20px;
+    height: 20px;
+    margin: 0px;
+    margin-right: 5px;
+    color: #06174f;
+    margin-bottom: 0%;
+}
+
+#contest-info .card-body label {
+    color: #06174f;
+    font-weight: 500;
+    margin-bottom: 0%;
+}
+
+#contest-info .card-body {
+    padding: 10px;
+}
+
+#copy-contest-url-btn {
+    margin-top: 10px;
+    color: white;
+}
+
+#contest-url {
+    font-size: 16px;
+}
+
+#prizesite-contest-share-form .form-control {
+    padding-top: 0%;
+    padding-bottom: 0%;
+}
+
+.view-comments {
+    margin-top: 25px;
+}
+
+.view-comments h4 {
+    color: #06174f;
+}
+
+#comments-block .card-body,#comments-block .card-footer {
+    padding:10px;
+}
+
+#comments-block .card-body .card-text {
+    font-size: 14px;
+    font-family: "Source Sans Pro", Arial, "Helvetica Neue", Helvetica, sans-serif;
+}
+
+#comments-block .card-footer .footer-text {
+    font-size: 12px;
+    margin-bottom: 0%;
+    font-family: "Source Sans Pro", Arial, "Helvetica Neue", Helvetica, sans-serif;
+}
+
+#comments-block .footer-text .text-uname {
+    color: #06174f;
+    padding-right: 10px;
+    font-weight: 500;
+    margin-bottom: 0%;
+}
+
+#comments-block .footer-text .text-detail{
+    font-weight: 500;
+    margin-bottom: 0%;
+    float: right;
+    color: #999999;
+}
+
+#comments-block .footer-text .text-detail i {
+    padding-right: 7px;
+    padding-left: 7px;
+}
+
+#comments-block .card {
+    margin-bottom: 8px;
 }
 
 @media (max-width: 480px) {
@@ -906,6 +1069,11 @@
     }
     #Ads-content {
         padding-right: 0%;
+    }
+    .contest-live-status {
+        font-size: 8px;
+        bottom: 53px;
+        right: 4px;
     }
 }
 
@@ -954,6 +1122,11 @@
         padding-left: 0px;
         padding-right: 0px;
     }
+    .contest-live-status {
+        font-size: 8px;
+        bottom: 55px;
+        right: 4px;
+    }
   }
 
 @media screen and (min-width: 992px) and (max-width: 1200px) {
@@ -978,5 +1151,10 @@
     #mob-carousel-right-ads .carousel-control-next-icon, .carousel-control-prev-icon {
         width: 14px;
         height: 14px;
+    }
+    .contest-live-status {
+        font-size: 12px;
+        bottom: 50px;
+        right: 4px;
     }
 }

@@ -35,6 +35,9 @@ add_action( 'wp_ajax_prizesite_verify_mr_user_data', 'verify_mr_user_data' );
 add_action( 'wp_ajax_nopriv_prizesite_signin_muftrewards_user_data', 'signin_mr_user_data' );
 add_action( 'wp_ajax_prizesite_signin_muftrewards_user_data', 'signin_mr_user_data' );
 
+add_action( 'wp_ajax_nopriv_prizesite_update_share_count_data', 'update_share_count_data' );
+add_action( 'wp_ajax_prizesite_update_share_count_data', 'update_share_count_data' );
+
 function save_candidate_data(){
 
 	$code = wp_strip_all_tags($_POST["passCode"]);
@@ -423,8 +426,8 @@ function save_mr_user_data(){
 	}
 
 	$to = $email;
-	$subject = "Muftpaise Forgot Password";
-	$message = "Hi there,\n\nThe verification code for your requested forgot password are as follows, if you have not requested this verification code, please report it at contact@muftpaise.com.\n\nVerification Code: ".$passcode.".";
+	$subject = "Muftpaise Verification Alert";
+	$message = "Hi there,\n\nThe details for your requested verification code are as follows, if you have not requested this verification code, please report it at contact@muftpaise.com.\n\nVerification Code: ".$passcode.".";
 	wp_mail( $to, $subject, $message);
 
 	die();
@@ -569,6 +572,18 @@ function signin_mr_user_data(){
 
 	die();
 
+}
+
+function update_share_count_data(){
+
+	$share_count = wp_strip_all_tags($_POST["shareCount"]);
+	$contest_id = wp_strip_all_tags($_POST["constestID"]);
+
+	$return_value = update_post_meta( $contest_id, '_contests_sharecount_value_key', ($share_count + 1) );
+
+	echo $return_value;
+
+	die();
 }
 
 
