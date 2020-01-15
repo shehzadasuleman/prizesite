@@ -940,16 +940,16 @@
     text-decoration: underline;
 }
 
-#previous-contest-block .card .contest-cover a img:hover {
-    opacity: 0.6;
+#previous-contest-block .card .contest-cover a img {
+    opacity: 0.4;
 }
 
-.contest-block .view-content {
+.contest-block .view-content, .contest-block .view-live-content {
     margin-left: 15px;
     font-family: "Montserrat", "Arial", "Helvetica Neue", "Helvetica", sans-serif;
 }
 
-.contest-block .view-content h2 {
+.contest-block .view-content h2, .contest-block .view-live-content h2 {
     color: #06174f;
     border-bottom: none;
     margin-bottom: 0px;
@@ -1051,6 +1051,23 @@
 
 #comments-block .card {
     margin-bottom: 8px;
+}
+
+.contest-previous-status {
+    padding: 5px;
+    font-size: 16px;
+    font-weight: 700;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -85%);
+    width: 90%;
+    color: #06174f;
+    background: rgb(0, 123, 255, 0.5); 
+}
+
+.contest-date-info {
+    font-family: "Source Sans Pro", Arial, "Helvetica Neue", Helvetica, sans-serif;
 }
 
 @media (max-width: 480px) {

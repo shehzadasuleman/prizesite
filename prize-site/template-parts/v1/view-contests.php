@@ -101,20 +101,20 @@ var contest_id = "<?= $contest_id ?>";
                                 $winner_choosen = get_post_meta(get_the_ID(),'_contests_winnerchosen_value_key',true);
                                 $winner_name = "";
                                 if ( $winner_choosen == 1 ) {
-                                    $title_exists = $wpdb->get_results( $wpdb->prepare(
+                                    $title_exists = $wpdb->get_results(
                                         "
                                         SELECT *
-                                        FROM wp_postmeta
+                                        FROM $wpdb->posts
                                         WHERE  
-                                            meta_key = '" . "_comments_contestid_value_key" . "'
-                                        AND
-                                            meta_value = '" . get_the_ID() .  "'
+                                            post_title = '" . $contest_id .  "'
                                         AND 
-                                            post_id = '" . $winner_comment_id . "'
+                                            ID = '" . $winner_comment_id . "'
+                                        AND
+                                            post_type = '" . 'prizesite-comments' .  "'
                                         "
-                                    ));
+                                    );
                                     if(count($title_exists) > 0){
-                                        $winner_name = get_post_meta($title_exists[0]->post_id,'_comments_name_value_key',true);
+                                        $winner_name = get_post_meta($title_exists[0]->ID,'_comments_name_value_key',true);
                                         $winner_message = "CONGRATULATIONS! <strong>". $winner_name ."</strong> for winning " . $prize_amount . "Rs.";
                                     }
                                 } else {
@@ -159,16 +159,16 @@ var contest_id = "<?= $contest_id ?>";
                                     <h4>Comments</h4>
                                     <div id="comments-block" class="col-xl-8 col-lg-8 col-md-10 col-sm-12 col-12 remove-padding">
                                             <?php
-                                                $title_exists = $wpdb->get_results( $wpdb->prepare(
+                                                $title_exists = $wpdb->get_results(
                                                 "
                                                 SELECT *
-                                                FROM wp_postmeta
+                                                FROM $wpdb->posts
                                                 WHERE  
-                                                    meta_key = '" . "_comments_contestid_value_key" . "'
+                                                    post_title = '" . $contest_id .  "'
                                                 AND
-                                                    meta_value = '" . $contest_id .  "'
+                                                    post_type = '" . 'prizesite-comments' .  "'
                                                 "
-                                            ));
+                                            );
                                             $comment_index = 0;
                                             if( count($title_exists) == 0 ) {
                                             ?>
@@ -180,10 +180,10 @@ var contest_id = "<?= $contest_id ?>";
                                             <?php
                                             }
                                             while( $comment_index < count($title_exists) ) {
-                                                $comment_name = get_post_meta($title_exists[$comment_index]->post_id,'_comments_name_value_key',true);
-                                                $comment_text = get_the_title($title_exists[$comment_index]->post_id);
-                                                $comment_date = get_the_date('d-m-Y', $title_exists[$comment_index]->post_id);
-                                                $comment_time = get_the_time('', $title_exists[$comment_index]->post_id);
+                                                $comment_name = get_post_meta($title_exists[$comment_index]->ID,'_comments_name_value_key',true);
+                                                $comment_text = get_post_meta($title_exists[$comment_index]->ID,'_comments_commenttext_value_key',true);
+                                                $comment_date = get_the_date('d-m-Y', $title_exists[$comment_index]->ID);
+                                                $comment_time = get_the_time('', $title_exists[$comment_index]->ID);
                                             ?>
                                                 <div class="card">
                                                     <div class="card-body">
@@ -200,7 +200,6 @@ var contest_id = "<?= $contest_id ?>";
                                     </div>
                                 </div>
                             </div>
-                        </div>
                         <div id="mob-carousel-left-ads" class="carousel slide carousel-fade" data-ride="carousel" data-interval="<?php echo $ads_slide_timer; ?>">
                             <!--Indicators -->
                             <ol class="carousel-indicators">

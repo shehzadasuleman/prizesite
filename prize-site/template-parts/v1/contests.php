@@ -99,26 +99,37 @@ var contests_per_page = "<?= $contests_per_page ?>";
                                 'post_status' => 'publish',
                                 'posts_per_page' => -1
                             ));
+                            $live_contest_shown = 0;
                             while( $query->have_posts() ) {
                                 $query->the_post();
                                 $end_date = get_post_meta(get_the_ID(),'_contests_enddate_value_key',true);
                                 $prize_amount = get_post_meta(get_the_ID(),'_contests_prizemoney_value_key',true);
                                 $thumbnail_url = get_the_post_thumbnail_url(get_the_ID());
                                 $contest_title = get_the_title( get_the_ID() );
+                                $live_contest_url = "http://localhost/wordpress/v1/live-contest?id=" . get_the_ID() . "&title=" . $contest_title;
                                 if ($end_date >= $today) { ?>
                                         <div class="card col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12 remove-padding">
                                             <div class="card-body">
                                                 <p class="card-text">WIN <strong><?php echo $prize_amount; ?> Rs.</strong></p>
                                             </div>
                                             <div class="contest-cover">
-                                                <a href=""><img src="<?php echo $thumbnail_url; ?>" alt="Card image"></a>
+                                                <a href="<?php echo $live_contest_url; ?>"><img src="<?php echo $thumbnail_url; ?>" alt="Card image"></a>
                                                 <p class="contest-live-status">LIVE</p>
                                             </div>
                                             <div class="card-body">
-                                                <a href=""><p class="card-text"><strong><?php echo $contest_title; ?></strong></p></a>
+                                                <a href="<?php echo $live_contest_url; ?>"><p class="card-text"><strong><?php echo $contest_title; ?></strong></p></a>
                                             </div>
                                         </div>
-                            <?php   }
+                            <?php
+                                    $live_contest_shown = 1;
+                                }
+                            }
+                            ?>
+                            <?php if ( $live_contest_shown == 0 ) { ?>
+                                <div class="card-body" style="text-align:center">
+                                        <p class="card-text"><strong>No Live Contest Exists</strong></p>
+                                </div>
+                            <?php
                             }
                             wp_reset_query();
                         ?>
@@ -174,46 +185,19 @@ var contests_per_page = "<?= $contests_per_page ?>";
                                 'post_status' => 'publish',
                                 'posts_per_page' => -1
                             ));
+                            $previous_contest_shown = 0;
                             while( $query->have_posts() ) {
                                 $query->the_post();
                                 $post_id = get_the_ID();
                                 $end_date = get_post_meta(get_the_ID(),'_contests_enddate_value_key',true);
-                                $claim_status = "Not Claimed";
-                                $title_exists = $wpdb->get_results( $wpdb->prepare(
-                                    "
-                                    SELECT *
-                                    FROM wp_postmeta
-                                    WHERE  
-                                        meta_key = '" . "_cwinners_contestid_value_key" . "'
-                                    AND
-                                        meta_value = '" . get_the_ID() .  "'
-                                    "
-                                ));
-                                if(count($title_exists) > 0){
-                                    $claim_value = get_post_meta($title_exists[0]->post_id,'_cwinners_claimed_value_key',true);
-                                    if ($claim_value == 1) { $claim_status = "Claimed"; }
-                                    $winner_comment_id = get_post_meta($title_exists[0]->post_id,'_cwinners_commentid_value_key',true);
-                                }
+                                $live_date = get_post_meta(get_the_ID(),'_contests_livedate_value_key',true);
                                 $winner_choosen = get_post_meta(get_the_ID(),'_contests_winnerchosen_value_key',true);
-                                $winner_name = "";
+                                $winner_text = get_post_meta(get_the_ID(),'_contests_winnerchosentext_value_key',true);
+                                $claim_alert = "";
                                 if ( $winner_choosen == 1 ) {
-                                    $title_exists = $wpdb->get_results( $wpdb->prepare(
-                                        "
-                                        SELECT *
-                                        FROM wp_postmeta
-                                        WHERE  
-                                            meta_key = '" . "_comments_contestid_value_key" . "'
-                                        AND
-                                            meta_value = '" . get_the_ID() .  "'
-                                        AND 
-                                            post_id = '" . $winner_comment_id . "'
-                                        "
-                                    ));
-                                    if(count($title_exists) > 0){
-                                        $winner_name = get_post_meta($title_exists[0]->post_id,'_comments_name_value_key',true);
-                                    }
+                                    $claim_alert = get_post_meta(get_the_ID(),'_contests_claimalert_value_key',true);
                                 } else {
-                                    $winner_name = "Not Announced Yet";
+                                    $claim_alert = "Winner(s) will be choosen by 12:00 PM on " . date('jS M',strtotime(' + 2 day', strtotime($end_date))); 
                                 }
                                 $thumbnail_url = get_the_post_thumbnail_url(get_the_ID());
                                 $contest_title = get_the_title( get_the_ID() );
@@ -225,14 +209,15 @@ var contests_per_page = "<?= $contests_per_page ?>";
                                     <?php } ?>
                                         <div class="card col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12 remove-padding">
                                             <div class="card-body">
-                                                <p class="card-text">WINNER : <strong><?php echo $winner_name; ?></strong></p>
+                                                <p class="card-text"><strong><?php echo $winner_text; ?></strong></p>
                                             </div>
                                             <div class="contest-cover">
                                                 <a href="<?php echo $view_contest_url; ?>" class="contest-link"><img src="<?php echo $thumbnail_url; ?>" alt="Card image"></a>
-                                                <p class="contest-live-status"><?php echo $claim_status; ?></p>
+                                                <p class="contest-previous-status"><?php echo $claim_alert; ?></p>
                                             </div>
                                             <div class="card-body">
                                                 <a href="<?php echo $view_contest_url; ?>" class="contest-link"><p class="card-text"><strong><?php echo $contest_title; ?></strong></p></a>
+                                                <p class="contest-date-info">( From <?php echo date('jS M',strtotime(' + 0 day', strtotime($live_date))); ?> to <?php echo date('jS M',strtotime(' + 0 day', strtotime($end_date))); ?> )</p>
                                             </div>
                                         </div>
                                     <?php if ( $contest_added_count == $contests_per_page ) { ?>
@@ -244,32 +229,44 @@ var contests_per_page = "<?= $contests_per_page ?>";
                                             $contest_added_count = $contest_added_count + 1;
                                         }
                                     }
+                                    $previous_contest_shown = 1;
                                 }
-                            } 
-                            wp_reset_query();
-                        ?>
+                            }
+                            ?>
+                            <?php if ( $previous_contest_shown == 0 ) { ?>
+                                <div class="card-body" style="text-align:center">
+                                        <p class="card-text"><strong>No Previous Contest Exists</strong></p>
+                                </div>
+                            <?php
+                                }
+                                wp_reset_query();
+                            ?>
                         </div>
-                        <nav aria-label="...">
-                            <ul class="pagination justify-content-start">
-                                <li class="page-item disabled">
-                                    <a class="page-link" href="#previous-content-block" tabindex="-1" aria-disabled="true">Previous</a>
-                                </li>
-                                <?php
-                                    $page_index = 1;
-                                    while ( $page_index <= $total_pages ) {
-                                ?>
-                                        <li id="page-number-<?php echo $page_index; ?>" class="page-item <?php if ( $page_index == 1 ) { echo "active"; } ?>">
-                                            <a class="page-link" href="#previous-content-block"><?php echo $page_index; ?></a>
-                                        </li>
-                                <?php
-                                        $page_index = $page_index + 1;
-                                    }
-                                ?>
-                                <li class="page-item">
-                                    <a class="page-link" href="#previous-content-block">Next</a>
-                                </li>
-                            </ul>
-                        </nav>
+                        <?php if ( $previous_contest_shown == 1 ) { ?>
+                            <nav aria-label="...">
+                                <ul class="pagination justify-content-start">
+                                    <li class="page-item disabled">
+                                        <a class="page-link" href="#previous-content-block" tabindex="-1" aria-disabled="true">Previous</a>
+                                    </li>
+                                    <?php
+                                        $page_index = 1;
+                                        while ( $page_index <= $total_pages ) {
+                                    ?>
+                                            <li id="page-number-<?php echo $page_index; ?>" class="page-item <?php if ( $page_index == 1 ) { echo "active"; } ?>">
+                                                <a class="page-link" href="#previous-content-block"><?php echo $page_index; ?></a>
+                                            </li>
+                                    <?php
+                                            $page_index = $page_index + 1;
+                                        }
+                                    ?>
+                                    <li class="page-item">
+                                        <a class="page-link" href="#previous-content-block">Next</a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        <?php
+                        }
+                        ?>
                     </div>
                 </div>			
             </div>

@@ -741,6 +741,7 @@ function prizesite_contests_custom_post_type() {
 
 function prizesite_set_contests_columns( $columns ){
 	$newColumns = array();
+	$newColumns['contestid'] = 'Contest ID';
 	$newColumns['title'] = 'Title';
 	$newColumns['ContestLiveDate'] = 'Contest Live Date';
 	$newColumns['ContestEndDate'] = 'Contest End Date';
@@ -753,6 +754,9 @@ function prizesite_set_contests_columns( $columns ){
 function prizesite_contests_custom_column( $column, $post_id ){
 	
 	switch( $column ){
+		case 'contestid' :
+			echo $post_id;
+			break;
 		case 'ContestLiveDate' :
 			echo implode(" ", get_post_meta( $post_id, '_contests_livedate_value_key'));
 			break;
@@ -781,6 +785,8 @@ function prizesite_contests_add_meta_box() {
 	add_meta_box( 'contests_prizemoney', 'Prize Money', 'prizesite_contests_prizemoney_callback', 'prizesite-contests' );
 	add_meta_box( 'contests_sharecount', 'Share Count', 'prizesite_contests_sharecount_callback', 'prizesite-contests' );
 	add_meta_box( 'contests_winnerchosen', 'Winner Chosen', 'prizesite_contests_winnerchosen_callback', 'prizesite-contests' );
+	add_meta_box( 'contests_winnerchosentext', 'Winner Chosen Text', 'prizesite_contests_winnerchosentext_callback', 'prizesite-contests' );
+	add_meta_box( 'contests_claimalert', 'Claim Alert', 'prizesite_contests_claimalert_callback', 'prizesite-contests' );
 }
 
 function prizesite_contests_livedate_callback( $post ) {
@@ -823,6 +829,20 @@ function prizesite_contests_winnerchosen_callback( $post ) {
 	echo '<label><input type="checkbox" id="prizesite_contests_winnerchosen_field" name="prizesite_contests_winnerchosen_field" value="1" '.$checked.' /></label>';
 }
 
+function prizesite_contests_winnerchosentext_callback( $post ) {
+	wp_nonce_field( 'bulk_save_contests_winnerchosentext_fields', 'prizesite_contests_winnerchosentext_meta_box_nonce' );
+
+	$chosentext_value = get_post_meta( $post->ID, '_contests_winnerchosentext_value_key', true );
+	echo '<input type="text" id="prizesite_contests_winnerchosentext_field" name="prizesite_contests_winnerchosentext_field" value="' . esc_attr( $chosentext_value ) . '" size="100" />';
+}
+
+function prizesite_contests_claimalert_callback( $post ) {
+	wp_nonce_field( 'bulk_save_contests_claimalert_fields', 'prizesite_contests_claimalert_meta_box_nonce' );
+
+	$chosentext_value = get_post_meta( $post->ID, '_contests_claimalert_value_key', true );
+	echo '<input type="text" id="prizesite_contests_claimalert_field" name="prizesite_contests_claimalert_field" value="' . esc_attr( $chosentext_value ) . '" size="100" />';
+}
+
 function bulk_save_contests_custom_fields( $post_id ) {
 	if( defined('DOING_AUTOSAVE') && DOING_AUTOSAVE ) {
 		return;
@@ -850,6 +870,16 @@ function bulk_save_contests_custom_fields( $post_id ) {
 	if( isset( $_POST['prizesite_contests_sharecount_meta_box_nonce'] ) && isset( $_POST['prizesite_contests_sharecount_field']) ) {
 		$data = sanitize_text_field( $_POST['prizesite_contests_sharecount_field'] );
 		update_post_meta( $post_id, '_contests_sharecount_value_key', $data );
+	}
+
+	if( isset( $_POST['prizesite_contests_winnerchosentext_meta_box_nonce'] ) && isset( $_POST['prizesite_contests_winnerchosentext_field']) ) {
+		$data = sanitize_text_field( $_POST['prizesite_contests_winnerchosentext_field'] );
+		update_post_meta( $post_id, '_contests_winnerchosentext_value_key', $data );
+	}
+
+	if( isset( $_POST['prizesite_contests_claimalert_meta_box_nonce'] ) && isset( $_POST['prizesite_contests_claimalert_field']) ) {
+		$data = sanitize_text_field( $_POST['prizesite_contests_claimalert_field'] );
+		update_post_meta( $post_id, '_contests_claimalert_value_key', $data );
 	}
 
 	update_post_meta( $post_id, '_contests_winnerchosen_value_key', $_POST['prizesite_contests_winnerchosen_field'] );
@@ -893,13 +923,11 @@ function prizesite_comments_custom_post_type() {
 function prizesite_set_comments_columns( $columns ){
 	$newColumns = array();
 	$newColumns['commentid'] = 'Comment ID';
-	$newColumns['title'] = 'Comment';
-	$newColumns['ContestTitle'] = 'Contest Title';
+	$newColumns['title'] = 'Contest ID';
+	$newColumns['commenttext'] = 'Comment';
 	$newColumns['name'] = 'Name';
 	$newColumns['PhoneNo'] = 'Phone Number';
-	$newColumns['city'] = 'City';
 	$newColumns['ipaddress'] = 'IP Address';
-	$newColumns['area'] = 'Area';
 	return $newColumns;
 }
 function prizesite_comments_custom_column( $column, $post_id ){
@@ -908,11 +936,8 @@ function prizesite_comments_custom_column( $column, $post_id ){
 		case 'commentid' :
 			echo $post_id;
 			break;
-		case 'ContestID' :
-			echo implode(" ", get_post_meta( $post_id, '_comments_contestid_value_key'));
-			break;
-		case 'ContestTitle' :
-			echo implode(" ", get_post_meta( $post_id, '_comments_contesttitle_value_key'));
+		case 'commenttext' :
+			echo implode(" ", get_post_meta( $post_id, '_comments_commenttext_value_key'));
 			break;
 		case 'name' :
 			echo get_post_meta( $post_id, '_comments_name_value_key', true);
@@ -920,14 +945,8 @@ function prizesite_comments_custom_column( $column, $post_id ){
 		case 'PhoneNo' :
 			echo get_post_meta( $post_id, '_comments_phoneno_value_key', true);
 			break;
-		case 'city' :
-			echo get_post_meta( $post_id, '_comments_city_value_key', true);
-			break;
 		case 'ipaddress' :
 			echo get_post_meta( $post_id, '_comments_ipaddress_value_key', true);
-			break;
-		case 'area' :
-			echo get_post_meta( $post_id, '_comments_area_value_key', true);
 			break;
 	}
 	
@@ -935,7 +954,7 @@ function prizesite_comments_custom_column( $column, $post_id ){
 
 /* Comments META BOXES */
 function prizesite_comments_add_meta_box() {
-	add_meta_box( 'comments_contestid', 'Contest ID', 'prizesite_comments_contestid_callback', 'prizesite-comments' );
+	add_meta_box( 'comments_commenttext', 'Comment', 'prizesite_comments_commenttext_callback', 'prizesite-comments' );
 	add_meta_box( 'comments_contesttitle', 'Contest Title', 'prizesite_comments_contesttitle_callback', 'prizesite-comments' );
 	add_meta_box( 'comments_name', 'Name', 'prizesite_comments_name_callback', 'prizesite-comments' );
 	add_meta_box( 'comments_phoneno', 'Phone Number', 'prizesite_comments_phoneno_callback', 'prizesite-comments' );
@@ -944,12 +963,12 @@ function prizesite_comments_add_meta_box() {
 	add_meta_box( 'comments_area', 'Area', 'prizesite_comments_area_callback', 'prizesite-comments' );
 }
 
-function prizesite_comments_contestid_callback( $post ) {
-	wp_nonce_field( 'bulk_save_comments_contestid_fields', 'prizesite_comments_contestid_meta_box_nonce' );
+function prizesite_comments_commenttext_callback( $post ) {
+	wp_nonce_field( 'bulk_save_comments_commenttext_fields', 'prizesite_comments_commenttext_meta_box_nonce' );
 
-	$id_value = get_post_meta( $post->ID, '_comments_contestid_value_key', true );
+	$id_value = get_post_meta( $post->ID, '_comments_commenttext_value_key', true );
 	
-	echo '<input type="text" id="prizesite_comments_contestid_field" name="prizesite_comments_contestid_field" value="' . esc_attr( $id_value ) . '" size="40" />';
+	echo '<input type="text" id="prizesite_comments_commenttext_field" name="prizesite_comments_commenttext_field" value="' . esc_attr( $id_value ) . '" size="100" />';
 }
 
 function prizesite_comments_contesttitle_callback( $post ) {
@@ -1009,9 +1028,9 @@ function bulk_save_comments_custom_fields( $post_id ) {
 		return;
 	}
 
-	if( isset( $_POST['prizesite_comments_contestid_meta_box_nonce'] ) && isset( $_POST['prizesite_comments_contestid_field']) ) {
-		$data = sanitize_text_field( $_POST['prizesite_comments_contestid_field'] );
-		update_post_meta( $post_id, '_comments_contestid_value_key', $data );
+	if( isset( $_POST['prizesite_comments_commenttext_meta_box_nonce'] ) && isset( $_POST['prizesite_comments_commenttext_field']) ) {
+		$data = sanitize_text_field( $_POST['prizesite_comments_commenttext_field'] );
+		update_post_meta( $post_id, '_comments_commenttext_value_key', $data );
 	}
 
 	if( isset( $_POST['prizesite_comments_contesttitle_meta_box_nonce'] ) && isset( $_POST['prizesite_comments_contesttitle_field']) ) {
@@ -1082,11 +1101,10 @@ function prizesite_cwinners_custom_post_type() {
 
 function prizesite_set_cwinners_columns( $columns ){
 	$newColumns = array();
+	$newColumns['contestwinnerid'] = 'Contest Winner ID';
 	$newColumns['title'] = 'Phone Number';
 	$newColumns['commentid'] = 'Comment ID';
-	$newColumns['comment'] = 'Comment';
 	$newColumns['contestid'] = 'Contest ID';
-	$newColumns['ContestTitle'] = 'Contest Title';
 	$newColumns['claimed'] = 'Claimed';
 	return $newColumns;
 }
@@ -1094,17 +1112,14 @@ function prizesite_set_cwinners_columns( $columns ){
 function prizesite_cwinners_custom_column( $column, $post_id ){
 	
 	switch( $column ){
+		case 'contestwinnerid' :
+			echo $post_id;
+			break;
 		case 'commentid' :
 			echo implode(" ", get_post_meta( $post_id, '_cwinners_commentid_value_key'));
 			break;
-		case 'comment' :
-			echo implode(" ", get_post_meta( $post_id, '_cwinners_comment_value_key'));
-			break;
 		case 'contestid' :
 			echo implode(" ", get_post_meta( $post_id, '_cwinners_contestid_value_key'));
-			break;
-		case 'ContestTitle' :
-			echo implode(" ", get_post_meta( $post_id, '_cwinners_contesttitle_value_key'));
 			break;
 		case 'claimed' :
 			$claimed_value = get_post_meta( $post_id, '_cwinners_claimed_value_key', true );
