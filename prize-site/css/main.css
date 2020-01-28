@@ -2265,6 +2265,12 @@ a:focus {
         width: 18px;
         height: 18px;
     }
+    #contest-info p{
+        font-size: 16px;
+    }
+    #contest-info .slogan {
+        font-size: 14px;
+    }
 }
 
 @media screen and (max-width: 576px) {
@@ -2402,6 +2408,12 @@ a:focus {
         width: 16px;
         height: 16px;
     }
+    #contest-info p{
+        font-size: 14px;
+    }
+    #contest-info .slogan {
+        font-size: 12px;
+    }
 }
 
 @media screen and (max-width: 400px) {
@@ -2435,6 +2447,12 @@ a:focus {
     #contest-info .card-body .share-icon-link {
         width: 14px;
         height: 14px;
+    }
+    #contest-info .slogan {
+        font-size: 10.5px;
+    }
+    #cwinner-info {
+        overflow-x: unset;
     }
 }
 
@@ -2504,6 +2522,12 @@ a:focus {
     #contest-info .card-body .share-icon-link {
         width: 18px;
         height: 18px;
+    }
+    #contest-info p{
+        font-size: 18px;
+    }
+    #contest-info .slogan {
+        font-size: 16px;
     }
 }
 

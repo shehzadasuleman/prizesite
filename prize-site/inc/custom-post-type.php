@@ -787,6 +787,7 @@ function prizesite_contests_add_meta_box() {
 	add_meta_box( 'contests_winnerchosen', 'Winner Chosen', 'prizesite_contests_winnerchosen_callback', 'prizesite-contests' );
 	add_meta_box( 'contests_winnerchosentext', 'Winner Chosen Text', 'prizesite_contests_winnerchosentext_callback', 'prizesite-contests' );
 	add_meta_box( 'contests_claimalert', 'Claim Alert', 'prizesite_contests_claimalert_callback', 'prizesite-contests' );
+	add_meta_box( 'contests_contestinstruction', 'Contest Instruction', 'prizesite_contests_contestinstruction_callback', 'prizesite-contests' );
 }
 
 function prizesite_contests_livedate_callback( $post ) {
@@ -843,6 +844,13 @@ function prizesite_contests_claimalert_callback( $post ) {
 	echo '<input type="text" id="prizesite_contests_claimalert_field" name="prizesite_contests_claimalert_field" value="' . esc_attr( $chosentext_value ) . '" size="100" />';
 }
 
+function prizesite_contests_contestinstruction_callback( $post ) {
+	wp_nonce_field( 'bulk_save_contests_contestinstruction_fields', 'prizesite_contests_contestinstruction_meta_box_nonce' );
+
+	$contestinstruction_value = get_post_meta( $post->ID, '_contests_contestinstruction_value_key', true );
+	echo '<textarea id="prizesite_contests_contestinstruction_field" name="prizesite_contests_contestinstruction_field" class="form-control" rows="5" cols="105">' . esc_attr( $contestinstruction_value ) . '</textarea>';
+}
+
 function bulk_save_contests_custom_fields( $post_id ) {
 	if( defined('DOING_AUTOSAVE') && DOING_AUTOSAVE ) {
 		return;
@@ -880,6 +888,11 @@ function bulk_save_contests_custom_fields( $post_id ) {
 	if( isset( $_POST['prizesite_contests_claimalert_meta_box_nonce'] ) && isset( $_POST['prizesite_contests_claimalert_field']) ) {
 		$data = sanitize_text_field( $_POST['prizesite_contests_claimalert_field'] );
 		update_post_meta( $post_id, '_contests_claimalert_value_key', $data );
+	}
+
+	if( isset( $_POST['prizesite_contests_contestinstruction_meta_box_nonce'] ) && isset( $_POST['prizesite_contests_contestinstruction_field']) ) {
+		$data = $_POST['prizesite_contests_contestinstruction_field'];
+		update_post_meta( $post_id, '_contests_contestinstruction_value_key', $data );
 	}
 
 	update_post_meta( $post_id, '_contests_winnerchosen_value_key', $_POST['prizesite_contests_winnerchosen_field'] );

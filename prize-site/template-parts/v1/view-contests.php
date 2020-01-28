@@ -80,71 +80,57 @@ var contest_id = "<?= $contest_id ?>";
                             <?php if( $query->have_posts() ) {
                                 $query->the_post();
                                 $contest_title = get_the_title( get_the_ID() );
-                                $prize_amount = get_post_meta(get_the_ID(),'_contests_prizemoney_value_key',true);
                                 $thumbnail_url = get_the_post_thumbnail_url(get_the_ID());
-                                $claim_status = "NOT CLAIMED";
-                                $title_exists = $wpdb->get_results( $wpdb->prepare(
-                                    "
-                                    SELECT *
-                                    FROM wp_postmeta
-                                    WHERE  
-                                        meta_key = '" . "_cwinners_contestid_value_key" . "'
-                                    AND
-                                        meta_value = '" . get_the_ID() .  "'
-                                    "
-                                ));
-                                if(count($title_exists) > 0){
-                                    $claim_value = get_post_meta($title_exists[0]->post_id,'_cwinners_claimed_value_key',true);
-                                    if ($claim_value == 1) { $claim_status = "CLAIMED"; }
-                                    $winner_comment_id = get_post_meta($title_exists[0]->post_id,'_cwinners_commentid_value_key',true);
-                                }
+                                $contest_content = get_the_content( get_the_ID() );
                                 $winner_choosen = get_post_meta(get_the_ID(),'_contests_winnerchosen_value_key',true);
-                                $winner_name = "";
-                                if ( $winner_choosen == 1 ) {
-                                    $title_exists = $wpdb->get_results(
-                                        "
-                                        SELECT *
-                                        FROM $wpdb->posts
-                                        WHERE  
-                                            post_title = '" . $contest_id .  "'
-                                        AND 
-                                            ID = '" . $winner_comment_id . "'
-                                        AND
-                                            post_type = '" . 'prizesite-comments' .  "'
-                                        "
-                                    );
-                                    if(count($title_exists) > 0){
-                                        $winner_name = get_post_meta($title_exists[0]->ID,'_comments_name_value_key',true);
-                                        $winner_message = "CONGRATULATIONS! <strong>". $winner_name ."</strong> for winning " . $prize_amount . "Rs.";
-                                    }
-                                } else {
-                                    $winner_message = "Winner Not Announced Yet!";
-                                }
-                                $title_exists = $wpdb->get_results( $wpdb->prepare(
-                                    "
-                                    SELECT *
-                                    FROM wp_postmeta
-                                    WHERE  
-                                        meta_key = '" . "_comments_contestid_value_key" . "'
-                                    AND
-                                        meta_value = '" . get_the_ID() .  "'
-                                    "
-                                ));
-                                $comment_count = count($title_exists);
-                                ?>
+                            ?>
                                 <div id="contest-header" class="row">
                                     <div class="col-xl-8 col-lg-8 col-md-7 col-sm-7 col-7">
                                         <h2><?php echo $contest_title; ?></h2>
                                     </div>
-                                    <div id="claim-status" class="col-xl-4 col-lg-4 col-md-5 col-sm-5 col-5">
-                                        <h4 style="background-color:<?php if ($claim_value == 1) { echo "#358115"; }?>"><?php echo $claim_status; ?></h4>
-                                    </div>
                                 </div>
                                 <div id="contest-info">
-                                    <p><?php echo $winner_message; ?></p>
-                                    <?php if ($claim_value == 0) { ?>
+                                    <?php
+                                        if ( $winner_choosen == 1 ) {
+                                            echo $contest_content;
+                                            $title_exists = $wpdb->get_results( $wpdb->prepare(
+                                                "
+                                                SELECT *
+                                                FROM wp_postmeta
+                                                WHERE  
+                                                    meta_key = '" . "_cwinners_contestid_value_key" . "'
+                                                AND
+                                                    meta_value = '" . get_the_ID() .  "'
+                                                "
+                                            ));
+                                            $winner_index = 0;
+                                            while ( $winner_index < count($title_exists) ) {
+                                                $claim_value = get_post_meta($title_exists[$winner_index]->post_id,'_cwinners_claimed_value_key',true);
+                                                if ($claim_value == 1) { $claim_status = "CLAIMED"; $claim_bg = "#358115"; } else { $claim_status = "NOT CLAIMED"; $claim_bg = "#ED1B24"; }
+                                                $cwinner_post = get_post( $title_exists[$winner_index]->post_id );
+                                                echo "<div class='cwinner-info row'><p class='col-xl-9 col-lg-9 col-md-8 col-sm-7 col-8'>" . $cwinner_post->post_content . "</p><span class='slogan col-xl-3 col-lg-3 col-md-4 col-sm-5 col-4' style='background-color:" . $claim_bg . "'>" . $claim_status . "</span></div>";
+                                                $winner_index = $winner_index + 1;
+                                            }
+                                        } else {
+                                    ?>
+                                    <div id="cwinner-not-choosen">
+                                        <p>Winner Not Announced Yet!</p>
+                                        <br>
                                         <p>If you are the winner, send us a text message saying <strong>"Winner <?php echo $contest_id; ?>"</strong> on 0309666660.</p>
-                                    <?php } ?>
+                                    </div>
+                                    <?php }
+                                        $title_exists = $wpdb->get_results(
+                                            "
+                                            SELECT *
+                                            FROM $wpdb->posts
+                                            WHERE  
+                                                post_title = '" . $contest_id .  "'
+                                            AND
+                                                post_type = '" . 'prizesite-comments' .  "'
+                                            "
+                                        );
+                                        $comment_count = count($title_exists);
+                                    ?>
                                     <div class="card col-xl-8 col-lg-8 col-md-10 col-sm-12 col-12 remove-padding">
                                         <img class="card-img-top" src="<?php echo $thumbnail_url; ?>" alt="<?php echo $contest_title . " Image"; ?>">
                                         <div class="card-body">
