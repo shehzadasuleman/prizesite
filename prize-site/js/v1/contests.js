@@ -129,46 +129,182 @@ jQuery(document).ready(function($) {
         }
     }
 
-    if ( window.location.pathname == "/wordpress/v1/view-contests" ) {
+    $('#prizesite-contest-share-form').on('submit', function(e) {
+        e.preventDefault();
 
-        $('#prizesite-contest-share-form').on('submit', function(e) {
+        $('#contest-url').select();
+        document.execCommand("copy");
+
+        var form = $(this),
+        ajaxurl = form.data('url');
+
+        $.ajax({
+
+            url: ajaxurl,
+            type: 'post',
+            data: {
+
+                shareCount: share_count,
+                constestID: contest_id,
+                action: 'prizesite_update_share_count_data'
+
+            },
+            error: function(response) {
+                console.log(response);
+            },
+            success: function(response) {
+                $('#share-contest-close').click();
+                var count_value = parseInt(share_count);
+                var label_text = (count_value + 1) + " Share";
+                if ( count_value > 1 ) {
+                    label_text = label_text + "s"
+                }
+                if (response > 0) {
+                    $("#share-counter").text(label_text);
+                }
+            }
+
+        });
+    });
+
+    if ( window.location.pathname == "/wordpress/v1/live-contest" ) {
+
+        // Set the date we're counting down to
+        var countDownDate = new Date(end_date).getTime();
+
+        // Update the count down every 1 second
+        var x = setInterval(function() {
+
+        // Get today's date and time
+        var now = new Date().getTime();
+            
+        // Find the distance between now and the count down date
+        var distance = countDownDate - now;
+            
+        // Time calculations for days, hours, minutes and seconds
+        var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        document.getElementById("countdown-days").innerHTML = days;
+
+        var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        document.getElementById("countdown-hours").innerHTML = hours;
+
+        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        document.getElementById("countdown-mins").innerHTML = minutes;
+
+        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        document.getElementById("countdown-secs").innerHTML = seconds;
+
+        }, 1000);
+
+        $("#success-modal-close-btn").click(function(){
+            location.reload(false);
+        });
+
+        $('#prizesite-contest-comment-form').on('submit', function(e) {
             e.preventDefault();
+    
+            $("#comment-name-error-msg").css({ "display": "none" });
+            $("#comment-name-invalid-msg").css({ "display": "none" });
+            $("#comment-no-error-msg").css({ "display": "none" });
+            $("#comment-number-invalid-msg").css({ "display": "none" });
+            $("#comment-text-error-msg").css({ "display": "none" });
+            $("#comment-name").css({ "border-color": "#387E1B", "background-color": "#F2F2F2" });
+            $("#comment-no").css({ "border-color": "#387E1B", "background-color": "#F2F2F2" });
+            $("#comment-text").css({ "border-color": "#387E1B", "background-color": "#F2F2F2" });
+    
+           var form = $(this),
+                name = form.find('#comment-name').val(),
+                phNumber = form.find('#comment-no').val(),
+                ctext = form.find('#comment-text').val(),
+                ajaxurl = form.data('url');
+    
+            var isError = 0;
+            
+            if (phNumber === '') {
+                $("#comment-no").css({ "border-color": "#da6666" });
+                $("#comment-no-error-msg").css({ "color": "#da6666", "background-color": "rgba(218, 102, 102, .3)",
+                "border-radius": "5px",
+                "display": "block",
+                "margin": "10px 0 0",
+                "padding": "7px 15px" });
+                $(".label").css({ "display": "none" });
+                isError = 1;
+            }
+    
+            if (name === '') {
+                $("#comment-name").css({ "border-color": "#da6666" });
+                $("#comment-name-error-msg").css({ "color": "#da6666", "background-color": "rgba(218, 102, 102, .3)",
+                "border-radius": "5px",
+                "display": "block",
+                "margin": "10px 0 0",
+                "padding": "7px 15px" });
+                $(".label").css({ "display": "none" });
+                isError = 1;
+            }
+    
+            if (ctext === '') {
+                $("#comment-text").css({ "border-color": "#da6666" });
+                $("#comment-text-error-msg").css({ "color": "#da6666", "background-color": "rgba(218, 102, 102, .3)",
+                "border-radius": "5px",
+                "display": "block",
+                "margin": "10px 0 0",
+                "padding": "7px 15px" });
+                $(".label").css({ "display": "none" });
+                isError = 1;
+            }
+    
+            if ( isError == 1 ) { return ; }
+    
+            function IsValidPhone(phNumber) {
+                var regex = /^((\+92)|(0092))-{0,1}\d{3}-{0,1}\d{7}$|^\d{11}$|^\d{4}-\d{7}$/;
+                if(!regex.test(phNumber)) {
+                  return 1;
+                }else{
+                  return 0;
+                }
+            }
 
-            $('#contest-url').select();
-            document.execCommand("copy");
-
-            var form = $(this),
-            ajaxurl = form.data('url');
-
+            if(IsValidPhone(phNumber)==1){
+                $("#comment-no").css({ "border-color": "#da6666" });
+                $("#comment-number-invalid-msg").css({ "color": "#da6666", "background-color": "rgba(218, 102, 102, .3)",
+                "border-radius": "5px",
+                "display": "block",
+                "margin": "10px 0 0",
+                "padding": "7px 15px" });
+                $(".label").css({ "display": "none" });
+                return ;
+            }
+    
             $.ajax({
-
+    
                 url: ajaxurl,
                 type: 'post',
                 data: {
     
-                    shareCount: share_count,
+                    name: name,
+                    phNumber: phNumber,
+                    comment: ctext,
                     constestID: contest_id,
-                    action: 'prizesite_update_share_count_data'
+                    action: 'prizesite_save_new_comment_data'
     
                 },
                 error: function(response) {
                     console.log(response);
                 },
                 success: function(response) {
-                    $('#share-contest-close').click();
-                    var count_value = parseInt(share_count);
-                    var label_text = (count_value + 1) + " Share";
-                    if ( count_value > 1 ) {
-                        label_text = label_text + "s"
+                    $('#comment-contest-close').click();
+                    if (response <= 0) {
+                        $('#failure-comment-modal').modal('show');
+                    } else if (response > 0) {
+                        $('#success-comment-modal').modal('show');
                     }
-                    if (response > 0) {
-                        $("#share-counter").text(label_text);
-                    }
+                    $('#comment-no').val('');
+                    $('#comment-name').val('');
+                    $('#comment-text').val('');
                 }
     
             });
         });
-
     }
 
 });

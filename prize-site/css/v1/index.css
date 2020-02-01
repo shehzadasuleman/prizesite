@@ -1105,6 +1105,7 @@
     color: #06174f;
     font-weight: 500;
     margin-bottom: 0%;
+    font-size: 14px;
 }
 
 #live-contest-info .card-body {
@@ -1116,11 +1117,12 @@
     border-top: 1px solid #ced4da;
 }
 
-#contest-status h5 {
-    color: white;
-    background-color: red;
+#live-contest-status p {
+    color: red;
     padding: 5px;
     text-align: center;
+    font-weight: 700;
+    margin: auto 0;
 }
 
 #contest-info .slogan {
@@ -1174,6 +1176,116 @@
     margin-top: 20px;
 }
 
+#live-contest-status {
+    border: 1px solid #999999;
+    margin: 5px 0px;
+}
+
+.vertical-line {
+    border-left: 1px solid #999999;
+}
+
+#live-countdown label {
+    color: #387F16;
+    font-weight: 600;
+    padding: 5px 0px;
+    margin-bottom: 0px;
+}
+
+#live-countdown span {
+    color: #BFC0BB;
+}
+
+#live-countdown {
+    text-align: center;
+    font-size: 18px;
+}
+
+.live-status {
+    display: inline;
+    margin: auto 0;
+    font-size: 18px;
+}
+
+#comments-block {
+    margin-bottom: 25px;
+    overflow-y: scroll;
+    padding-right: 20px;
+    max-height: 400px;
+}
+
+#comments-block .comment {
+    margin-bottom: 10px;
+}
+
+#comments-block .comment-header {
+    background-color: #F2F3F5;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+#comments-block .comment-header p {
+    margin-bottom: 0px;
+}
+
+#comments-block .comment-header .text-uname {
+    color: #06174f;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 0px;
+}
+
+#comments-block .comment-header .text-comment {
+    color : black;
+    font-size: 13px;
+    margin-left: 5px;
+    display: inline;
+}
+
+#comments-block .text-detail {
+    font-weight: 500;
+    margin-bottom: 0%;
+    color: #999999;
+    font-size: 12px;
+    font-family: "Source Sans Pro", Arial, "Helvetica Neue", Helvetica, sans-serif;
+}
+
+#comments-block .text-detail i {
+    padding-right: 7px;
+    padding-left: 7px;
+}
+
+#live-contest-info .info-footer .comment-icon-link {
+    width: 14px;
+    height: 14px;
+    margin: 0px;
+    margin-right: 5px;
+    color: #06174f;
+    margin-bottom: 0%;
+    margin-top: 3px;
+}
+
+#live-contest-info .info-footer p {
+    font-size: 14px;
+    margin-bottom: 0%;
+}
+
+#share-counter {
+    padding-left: 7px;
+}
+
+#comment-text {
+    min-height: 200px;
+}
+
+#success-comment-modal .col {
+    padding: 0%;
+}
+
+#failure-comment-modal .col {
+    padding: 0%;
+}
+
 @media (max-width: 480px) {
     #carousel-example-1z #prev-btn {
         padding-left: 10px;
@@ -1181,6 +1293,19 @@
     
     #carousel-example-1z #next-btn {
         padding-right: 10px;
+    }
+    #live-contest-info .info-footer label {
+        font-size: 11.25px;
+    }
+    #live-contest-info .info-footer .share-icon-link {
+        width: 12px;
+        height: 12px;
+        margin-top: 5px;
+    }
+    #live-contest-info .info-footer .comment-icon-link {
+        width: 12px;
+        height: 12px;
+        margin-top: 5px;
     }
 }
 

@@ -2152,6 +2152,19 @@ a:focus {
     .whatsapp-carousel p {
         font-size:14px;
     }
+    #live-contest-info .info-footer label {
+        font-size: 9px;
+    }
+    #live-contest-info .info-footer .share-icon-link {
+        width: 9px;
+        height: 9px;
+        margin-top: 8px;
+    }
+    #live-contest-info .info-footer .comment-icon-link {
+        width: 9px;
+        height: 9px;
+        margin-top: 8px;
+    }
 }
 
 @media screen and (min-width: 900px) and (max-width: 1024px) {
@@ -2171,15 +2184,18 @@ a:focus {
         font-size: 18px;
     }
 }
+*/
 
 @media screen and (min-width: 768px) and (max-width: 850px) {
-    .nav-holder .nav-area ul li {
-        padding-left: 20px;
+    #live-contest-info .info-footer label {
+        font-size: 13px;
     }
-    .nav-holder .nav-area ul li a {
-        font-size: 15px;
+    #live-contest-info .info-footer .share-icon-link {
+        width: 16px;
+        height: 16px;
+        margin-top: 2px;
     }
-}*/
+}
 
 @media screen and (min-width: 576px) and (max-width: 768px) {
     #winners-data_length {
@@ -2270,6 +2286,22 @@ a:focus {
     }
     #contest-info .slogan {
         font-size: 14px;
+    }
+    #live-countdown {
+        font-size: 17px;
+    }
+    #live-contest-info .info-footer label {
+        font-size: 10px;
+    }
+    #live-contest-info .info-footer .share-icon-link {
+        width: 12px;
+        height: 12px;
+        margin-top: 5px;
+    }
+    #live-contest-info .info-footer .comment-icon-link {
+        width: 12px;
+        height: 12px;
+        margin-top: 5px;
     }
 }
 
@@ -2414,6 +2446,12 @@ a:focus {
     #contest-info .slogan {
         font-size: 12px;
     }
+    #live-countdown {
+        font-size: 14.5px;
+    }
+    .live-status {
+        font-size: 15px;
+    }
 }
 
 @media screen and (max-width: 400px) {
@@ -2453,6 +2491,22 @@ a:focus {
     }
     #cwinner-info {
         overflow-x: unset;
+    }
+    #live-contest-info .info-footer label {
+        font-size: 9px;
+    }
+    #live-contest-info .info-footer .share-icon-link {
+        width: 9px;
+        height: 9px;
+        margin-top: 8px;
+    }
+    #live-contest-info .info-footer .comment-icon-link {
+        width: 9px;
+        height: 9px;
+        margin-top: 8px;
+    }
+    #live-contest-info .info-footer {
+        padding: 0px 10px 5px 10px;
     }
 }
 

@@ -38,6 +38,9 @@ add_action( 'wp_ajax_prizesite_signin_muftrewards_user_data', 'signin_mr_user_da
 add_action( 'wp_ajax_nopriv_prizesite_update_share_count_data', 'update_share_count_data' );
 add_action( 'wp_ajax_prizesite_update_share_count_data', 'update_share_count_data' );
 
+add_action( 'wp_ajax_nopriv_prizesite_save_new_comment_data', 'save_comment_data' );
+add_action( 'wp_ajax_prizesite_save_new_comment_data', 'save_comment_data' );
+
 function save_candidate_data(){
 
 	$code = wp_strip_all_tags($_POST["passCode"]);
@@ -584,6 +587,56 @@ function update_share_count_data(){
 	echo $return_value;
 
 	die();
+}
+
+function save_comment_data(){
+
+	$ipaddress = '';
+    if (isset($_SERVER['HTTP_CLIENT_IP']))
+        $ipaddress = $_SERVER['HTTP_CLIENT_IP'];
+    else if(isset($_SERVER['HTTP_X_FORWARDED_FOR']))
+        $ipaddress = $_SERVER['HTTP_X_FORWARDED_FOR'];
+    else if(isset($_SERVER['HTTP_X_FORWARDED']))
+        $ipaddress = $_SERVER['HTTP_X_FORWARDED'];
+    else if(isset($_SERVER['HTTP_FORWARDED_FOR']))
+        $ipaddress = $_SERVER['HTTP_FORWARDED_FOR'];
+    else if(isset($_SERVER['HTTP_FORWARDED']))
+        $ipaddress = $_SERVER['HTTP_FORWARDED'];
+    else if(isset($_SERVER['REMOTE_ADDR']))
+        $ipaddress = $_SERVER['REMOTE_ADDR'];
+    else
+		$ipaddress = 'UNKNOWN';
+		
+	$number = wp_strip_all_tags($_POST["phNumber"]);
+	$name = wp_strip_all_tags($_POST["name"]);
+	$comment = wp_strip_all_tags($_POST["comment"]);
+	$contest_id = wp_strip_all_tags($_POST["constestID"]);
+	$details = json_decode(file_get_contents("http://ipinfo.io/{$ipaddress}"));
+	$area = $details->city;
+	$res = file_get_contents('https://www.iplocate.io/api/lookup/' . $ipaddress);
+	$res = json_decode($res);
+	$city = $res->city;
+
+	$args = array(
+		'post_title' => $contest_id,
+		'post_author' => 1,
+		'post_status' => 'publish',
+		'post_type' => 'prizesite-comments'
+	);
+	
+	$postID = wp_insert_post( $args );
+	update_post_meta( $postID, '_comments_commenttext_value_key', $comment );
+	update_post_meta( $postID, '_comments_contesttitle_value_key', get_the_title($contest_id) );
+	update_post_meta( $postID, '_comments_phoneno_value_key', $number );
+	update_post_meta( $postID, '_comments_name_value_key', $name );
+	update_post_meta( $postID, '_comments_city_value_key', $city );
+	update_post_meta( $postID, '_comments_ipaddress_value_key', $ipaddress );
+	update_post_meta( $postID, '_comments_area_value_key', $area );
+
+	echo $postID;
+
+	die();
+
 }
 
 
