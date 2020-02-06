@@ -42,6 +42,7 @@
 ?>
 <script type="text/javascript">var previous_contests_count = "<?= $previous_contests_count ?>";
 var contests_per_page = "<?= $contests_per_page ?>";
+var screen_size = "<?= $screen_size ?>"
 </script>
 <div class="middle-content">
     <div class="row winners-middle-content-parent">

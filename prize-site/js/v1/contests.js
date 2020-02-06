@@ -1,13 +1,22 @@
 jQuery(document).ready(function($) {
 
+    var newWindowWidth = 0;
+
+    var newWindowWidth = window.innerWidth;
+    document.cookie = "windowWidth="+newWindowWidth;
+
     if ( window.location.pathname == "/wordpress/v1/contests" || window.location.pathname == "/wordpress/v1/contests#previous-content-block" ) {
 
         $(window).resize(function() {
             var newWindowWidth = window.innerWidth;
             document.cookie = "windowWidth="+newWindowWidth;
         });
+
+        if( screen_size == 0 ) {
+            location.reload(false);
+        }
         var total_pages = Math.ceil (previous_contests_count / contests_per_page);
-        
+        console.log("total_pages : " + total_pages);
         var index;
         for (index = 2; index <= total_pages; index++) {
             $("#previous-cards-page-"+index).css({ "display": "none" });
@@ -115,19 +124,20 @@ jQuery(document).ready(function($) {
         setTimeout(minimizePages, 50);
 
         function minimizePages(){
-            var newWindowWidth = $(window).width();
-            if (newWindowWidth <= 400) {
-                var page_index = 1;
-                while ( page_index <= total_pages ) {
-                    $("#page-number-"+page_index).css({ "display": "block" });
-                    if ( page_index != 1 && page_index != 2 && page_index != 3 ) {
-                        $("#page-number-"+page_index).css({ "display": "none" });
-                    }
-                    page_index = page_index + 1;
+            var page_index = 1;
+            while ( page_index <= total_pages ) {
+                $("#page-number-"+page_index).css({ "display": "block" });
+                if ( page_index != 1 && page_index != 2 && page_index != 3 ) {
+                    $("#page-number-"+page_index).css({ "display": "none" });
                 }
+                page_index = page_index + 1;
             }
         }
     }
+
+    $("#share-contest-close").click(function(){
+        location.reload(false);
+    });
 
     $('#prizesite-contest-share-form').on('submit', function(e) {
         e.preventDefault();

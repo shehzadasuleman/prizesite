@@ -120,14 +120,53 @@ var end_date = "<?= $end_date ?>" + " 23:59:59";
                                         <div class="card-body">
                                             <?php echo $contest_description; ?>
                                         </div>
-                                        <div class="info-footer">
-                                            <a class="share-link-btn col-xl-4 col-lg-3 col-md-3 col-sm-3 col-3 remove-padding" type="button" data-toggle="modal" data-target="#comment-contest-modal" title="Comment"><img class="comment-icon-link" src="<?php print $comment_url ?>" alt="comment icon"><label>Comment</label></a>
-                                            <a class="share-link-btn col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3 remove-padding" type="button" data-toggle="modal" data-target="#share-contest-modal" title="Share" href="<?php echo $share_link; ?>"><img class="share-icon-link" src="<?php print $share_url ?>" alt="share icon"><label>Share</label></a>
-                                            <p class="col-xl-4 col-lg-5 col-md-5 col-sm-5 col-5 remove-padding" style="float:right;"><label><?php echo $comment_count; ?> Comment<?php if( $comment_count > 1 ) { echo "s"; } ?></label><label id="share-counter"><?php echo $share_count; ?> Share<?php if( $share_count > 1 ) { echo "s"; } ?></label></p>
+                                        <div class="info-footer row remove-padding">
+                                            <div class="col-6 remove-padding"><a class="comment-link-btn" type="button" data-toggle="modal" data-target="#comment-contest-modal" title="Comment"><img class="comment-icon-link" src="<?php print $comment_url ?>" alt="comment icon"><label>Comment</label></a></div>
+                                            <div class="col-6 remove-padding"><a class="share-link-btn" type="button" data-toggle="modal" data-target="#share-contest-modal" title="Share" href="<?php echo $share_link; ?>"><img class="share-icon-link" src="<?php print $share_url ?>" alt="share icon"><label>Share</label></a></div>
+                                            <div class="col-6 remove-padding"><p><?php echo "(" . $comment_count; ?> Comment<?php if( $comment_count > 1 ) { echo "s"; } echo ")"; ?></p></div>
+                                            <div class="col-6 remove-padding"><p style="float:right"><?php echo "(" .  $share_count; ?> Share<?php if( $share_count > 1 ) { echo "s"; } echo ")"; ?></p></div>
                                         </div>
                                     </div>
                                 </div>
                             <?php } wp_reset_query(); ?>
+                                <div id="mob-carousel-left-ads" class="carousel slide carousel-fade" data-ride="carousel" data-interval="<?php echo $ads_slide_timer; ?>">
+                                    <!--Indicators -->
+                                    <ol class="carousel-indicators">
+                                        <li data-target="#mob-carousel-left-ads" data-slide-to="0" class="active"></li>
+                                        <li data-target="#mob-carousel-left-ads" data-slide-to="1"></li>
+                                        <li data-target="#mob-carousel-left-ads" data-slide-to="2"></li>
+                                    </ol>
+                                    <!--/.Indicators-->
+                                    <!--Slides-->
+                                    <div class="carousel-inner" role="listbox">
+                                        <!--First slide-->
+                                        <div class="carousel-item active">
+                                            <a target="_blank" href="https://rider.foodpanda.pk/?utm_source=muftpaise&utm_medium=bannerad&utm_campaign=advertising&utm_content=awareness"><img id="carousel-slide-one" class="d-block w-100" src="<?php print $right_ads_banner_1 ?>" alt="First right slide"></a>
+                                        </div>
+                                        <!--/First slide-->
+                                        <!--Second slide-->
+                                        <div class="carousel-item">
+                                            <a target="_blank" href="https://www.youtube.com/watch?v=XsbnIpFBD54"><img id="carousel-slide-two" class="d-block w-100" src="<?php print $right_ads_banner_2 ?>" alt="Second right slide"></a>
+                                        </div>
+                                        <!--/Second slide-->
+                                        <!--Third slide-->
+                                        <div class="carousel-item">
+                                            <a target="_blank" href="https://www.servis.com/?utm_source=muftpaise&utm_medium=bannerad&utm_campaign=advertising&utm_content=awareness"><img id="carousel-slide-three" class="d-block w-100" src="<?php print $right_ads_banner_3 ?>" alt="Third right slide"></a>
+                                        </div>
+                                        <!--/Third slide-->
+                                    </div>
+                                    <!--/.Slides-->
+                                    <!--Controls-->
+                                    <a id="mob-left-prev-btn" class="carousel-control-prev" href="#mob-carousel-left-ads" role="button" data-slide="prev">
+                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                        <span class="sr-only">Previous</span>
+                                    </a>
+                                    <a id="mob-left-next-btn" class="carousel-control-next" href="#mob-carousel-left-ads" role="button" data-slide="next">
+                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                        <span class="sr-only">Next</span>
+                                    </a>
+                                    <!--/.Controls-->
+                                </div>
                                 <div class="view-comments" class="row">
                                     <h4>Comments</h4>
                                     <div id="comments-block" class="col-xl-8 col-lg-8 col-md-11 col-sm-12 col-12 remove-padding">
@@ -140,6 +179,7 @@ var end_date = "<?= $end_date ?>" + " 23:59:59";
                                                     post_title = '" . $contest_id .  "'
                                                 AND
                                                     post_type = '" . 'prizesite-comments' .  "'
+                                                Order By ID DESC
                                                 "
                                             );
                                             $comment_index = 0;
@@ -162,7 +202,7 @@ var end_date = "<?= $end_date ?>" + " 23:59:59";
                                                     <div class="comment-header">
                                                         <p><label class="text-uname"><?php echo $comment_name; ?></label><label class="text-comment"><?php echo $comment_text; ?></label></p>
                                                     </div>
-                                                    <label class="text-detail"><i class="fas fa-calendar"></i><?php echo $comment_date; ?><i class="fas fa-clock"></i><?php echo $comment_time; ?></label>
+                                                    <label class="text-detail"><?php echo $comment_date . " " . $comment_time; ?></label>
                                                 </div>
                                             <?php
                                                 $comment_index = $comment_index + 1;
@@ -170,44 +210,6 @@ var end_date = "<?= $end_date ?>" + " 23:59:59";
                                             ?>
                                     </div>
                                 </div>
-                            </div>
-                        <div id="mob-carousel-left-ads" class="carousel slide carousel-fade" data-ride="carousel" data-interval="<?php echo $ads_slide_timer; ?>">
-                            <!--Indicators -->
-                            <ol class="carousel-indicators">
-                                <li data-target="#mob-carousel-left-ads" data-slide-to="0" class="active"></li>
-                                <li data-target="#mob-carousel-left-ads" data-slide-to="1"></li>
-                                <li data-target="#mob-carousel-left-ads" data-slide-to="2"></li>
-                            </ol>
-                            <!--/.Indicators-->
-                            <!--Slides-->
-                            <div class="carousel-inner" role="listbox">
-                                <!--First slide-->
-                                <div class="carousel-item active">
-                                    <a target="_blank" href="https://rider.foodpanda.pk/?utm_source=muftpaise&utm_medium=bannerad&utm_campaign=advertising&utm_content=awareness"><img id="carousel-slide-one" class="d-block w-100" src="<?php print $right_ads_banner_1 ?>" alt="First right slide"></a>
-                                </div>
-                                <!--/First slide-->
-                                <!--Second slide-->
-                                <div class="carousel-item">
-                                    <a target="_blank" href="https://www.youtube.com/watch?v=XsbnIpFBD54"><img id="carousel-slide-two" class="d-block w-100" src="<?php print $right_ads_banner_2 ?>" alt="Second right slide"></a>
-                                </div>
-                                <!--/Second slide-->
-                                <!--Third slide-->
-                                <div class="carousel-item">
-                                    <a target="_blank" href="https://www.servis.com/?utm_source=muftpaise&utm_medium=bannerad&utm_campaign=advertising&utm_content=awareness"><img id="carousel-slide-three" class="d-block w-100" src="<?php print $right_ads_banner_3 ?>" alt="Third right slide"></a>
-                                </div>
-                                <!--/Third slide-->
-                            </div>
-                            <!--/.Slides-->
-                            <!--Controls-->
-                            <a id="mob-left-prev-btn" class="carousel-control-prev" href="#mob-carousel-left-ads" role="button" data-slide="prev">
-                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                <span class="sr-only">Previous</span>
-                            </a>
-                            <a id="mob-left-next-btn" class="carousel-control-next" href="#mob-carousel-left-ads" role="button" data-slide="next">
-                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                <span class="sr-only">Next</span>
-                            </a>
-                            <!--/.Controls-->
                         </div>
                     </div>
                 <?php } ?>

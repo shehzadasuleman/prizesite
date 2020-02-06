@@ -1115,9 +1115,9 @@ function prizesite_cwinners_custom_post_type() {
 function prizesite_set_cwinners_columns( $columns ){
 	$newColumns = array();
 	$newColumns['contestwinnerid'] = 'Contest Winner ID';
-	$newColumns['title'] = 'Phone Number';
+	$newColumns['title'] = 'Contest ID';
 	$newColumns['commentid'] = 'Comment ID';
-	$newColumns['contestid'] = 'Contest ID';
+	$newColumns['PhoneNo'] = 'Phone Number';
 	$newColumns['claimed'] = 'Claimed';
 	return $newColumns;
 }
@@ -1128,11 +1128,11 @@ function prizesite_cwinners_custom_column( $column, $post_id ){
 		case 'contestwinnerid' :
 			echo $post_id;
 			break;
+		case 'PhoneNo' :
+			echo implode(" ", get_post_meta( $post_id, '_cwinners_phoneno_value_key'));
+			break;
 		case 'commentid' :
 			echo implode(" ", get_post_meta( $post_id, '_cwinners_commentid_value_key'));
-			break;
-		case 'contestid' :
-			echo implode(" ", get_post_meta( $post_id, '_cwinners_contestid_value_key'));
 			break;
 		case 'claimed' :
 			$claimed_value = get_post_meta( $post_id, '_cwinners_claimed_value_key', true );
@@ -1147,7 +1147,7 @@ function prizesite_cwinners_custom_column( $column, $post_id ){
 function prizesite_cwinners_add_meta_box() {
 	add_meta_box( 'cwinners_commentid', 'Comment ID', 'prizesite_cwinners_commentid_callback', 'prizesite-cwinners' );
 	add_meta_box( 'cwinners_comment', 'Comment', 'prizesite_cwinners_comment_callback', 'prizesite-cwinners' );
-	add_meta_box( 'cwinners_contestid', 'Contest ID', 'prizesite_cwinners_contestid_callback', 'prizesite-cwinners' );
+	add_meta_box( 'cwinners_phoneno', 'Phone Number', 'prizesite_cwinners_phoneno_callback', 'prizesite-cwinners' );
 	add_meta_box( 'cwinners_contesttitle', 'Contest Title', 'prizesite_cwinners_contesttitle_callback', 'prizesite-cwinners' );
 	add_meta_box( 'cwinners_claimed', 'Claimed', 'prizesite_cwinners_claimed_callback', 'prizesite-cwinners' );
 }
@@ -1168,12 +1168,12 @@ function prizesite_cwinners_comment_callback( $post ) {
 	echo '<input type="text" id="prizesite_cwinners_comment_field" name="prizesite_cwinners_comment_field" value="' . esc_attr( $comment_value ) . '" size="40" />';
 }
 
-function prizesite_cwinners_contestid_callback( $post ) {
-	wp_nonce_field( 'bulk_save_cwinners_contestid_fields', 'prizesite_cwinners_contestid_meta_box_nonce' );
+function prizesite_cwinners_phoneno_callback( $post ) {
+	wp_nonce_field( 'bulk_save_cwinners_phoneno_fields', 'prizesite_cwinners_phoneno_meta_box_nonce' );
 
-	$contestid_value = get_post_meta( $post->ID, '_cwinners_contestid_value_key', true );
+	$phoneno_value = get_post_meta( $post->ID, '_cwinners_phoneno_value_key', true );
 	
-	echo '<input type="text" id="prizesite_cwinners_contestid_field" name="prizesite_cwinners_contestid_field" value="' . esc_attr( $contestid_value ) . '" size="40" />';
+	echo '<input type="text" id="prizesite_cwinners_phoneno_field" name="prizesite_cwinners_phoneno_field" value="' . esc_attr( $contestid_value ) . '" size="40" />';
 }
 
 function prizesite_cwinners_contesttitle_callback( $post ) {
@@ -1211,9 +1211,9 @@ function bulk_save_cwinners_custom_fields( $post_id ) {
 		update_post_meta( $post_id, '_cwinners_comment_value_key', $data );
 	}
 
-	if( isset( $_POST['prizesite_cwinners_contestid_meta_box_nonce'] ) && isset( $_POST['prizesite_cwinners_contestid_field']) ) {
-		$data = sanitize_text_field( $_POST['prizesite_cwinners_contestid_field'] );
-		update_post_meta( $post_id, '_cwinners_contestid_value_key', $data );
+	if( isset( $_POST['prizesite_cwinners_phoneno_meta_box_nonce'] ) && isset( $_POST['prizesite_cwinners_phoneno_field']) ) {
+		$data = sanitize_text_field( $_POST['prizesite_cwinners_phoneno_field'] );
+		update_post_meta( $post_id, '_cwinners_phoneno_value_key', $data );
 	}
 
 	if( isset( $_POST['prizesite_cwinners_contesttitle_meta_box_nonce'] ) && isset( $_POST['prizesite_cwinners_contesttitle_field']) ) {

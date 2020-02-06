@@ -83,6 +83,8 @@ var contest_id = "<?= $contest_id ?>";
                                 $thumbnail_url = get_the_post_thumbnail_url(get_the_ID());
                                 $contest_content = get_the_content( get_the_ID() );
                                 $winner_choosen = get_post_meta(get_the_ID(),'_contests_winnerchosen_value_key',true);
+                                $end_date = get_post_meta(get_the_ID(),'_contests_enddate_value_key',true);
+                                $announcement_alert = "Winner(s) will be choosen by 12:00 PM on " . date('jS M',strtotime(' + 2 day', strtotime($end_date))) . "."; 
                             ?>
                                 <div id="contest-header" class="row">
                                     <div class="col-12">
@@ -93,21 +95,21 @@ var contest_id = "<?= $contest_id ?>";
                                     <?php
                                         if ( $winner_choosen == 1 ) {
                                             echo $contest_content;
-                                            $title_exists = $wpdb->get_results( $wpdb->prepare(
+                                            $title_exists = $wpdb->get_results(
                                                 "
                                                 SELECT *
-                                                FROM wp_postmeta
+                                                FROM $wpdb->posts
                                                 WHERE  
-                                                    meta_key = '" . "_cwinners_contestid_value_key" . "'
+                                                    post_title = '" . $contest_id .  "'
                                                 AND
-                                                    meta_value = '" . get_the_ID() .  "'
+                                                    post_type = '" . 'prizesite-cwinners' .  "'
                                                 "
-                                            ));
+                                            );
                                             $winner_index = 0;
                                             while ( $winner_index < count($title_exists) ) {
-                                                $claim_value = get_post_meta($title_exists[$winner_index]->post_id,'_cwinners_claimed_value_key',true);
+                                                $claim_value = get_post_meta($title_exists[$winner_index]->ID,'_cwinners_claimed_value_key',true);
                                                 if ($claim_value == 1) { $claim_status = "CLAIMED"; $claim_bg = "#358115"; } else { $claim_status = "NOT CLAIMED"; $claim_bg = "#ED1B24"; }
-                                                $cwinner_post = get_post( $title_exists[$winner_index]->post_id );
+                                                $cwinner_post = get_post( $title_exists[$winner_index]->ID );
                                                 echo "<div class='cwinner-info row'><p class='col-xl-9 col-lg-9 col-md-8 col-sm-7 col-8'>" . $cwinner_post->post_content . "</p><span class='slogan col-xl-3 col-lg-3 col-md-4 col-sm-5 col-4' style='background-color:" . $claim_bg . "'>" . $claim_status . "</span></div>";
                                                 $winner_index = $winner_index + 1;
                                             }
@@ -116,7 +118,7 @@ var contest_id = "<?= $contest_id ?>";
                                     <div id="cwinner-not-choosen">
                                         <p>Winner Not Announced Yet!</p>
                                         <br>
-                                        <p>If you are the winner, send us a text message saying <strong>"Winner <?php echo $contest_id; ?>"</strong> on 0309666660.</p>
+                                        <p><?php echo $announcement_alert; ?></p>
                                     </div>
                                     <?php }
                                         $title_exists = $wpdb->get_results(
@@ -141,6 +143,44 @@ var contest_id = "<?= $contest_id ?>";
                                     </div>
                                 </div>
                             <?php } wp_reset_query(); ?>
+                                <div id="mob-carousel-left-ads" class="carousel slide carousel-fade" data-ride="carousel" data-interval="<?php echo $ads_slide_timer; ?>">
+                                    <!--Indicators -->
+                                    <ol class="carousel-indicators">
+                                        <li data-target="#mob-carousel-left-ads" data-slide-to="0" class="active"></li>
+                                        <li data-target="#mob-carousel-left-ads" data-slide-to="1"></li>
+                                        <li data-target="#mob-carousel-left-ads" data-slide-to="2"></li>
+                                    </ol>
+                                    <!--/.Indicators-->
+                                    <!--Slides-->
+                                    <div class="carousel-inner" role="listbox">
+                                        <!--First slide-->
+                                        <div class="carousel-item active">
+                                            <a target="_blank" href="https://rider.foodpanda.pk/?utm_source=muftpaise&utm_medium=bannerad&utm_campaign=advertising&utm_content=awareness"><img id="carousel-slide-one" class="d-block w-100" src="<?php print $right_ads_banner_1 ?>" alt="First right slide"></a>
+                                        </div>
+                                        <!--/First slide-->
+                                        <!--Second slide-->
+                                        <div class="carousel-item">
+                                            <a target="_blank" href="https://www.youtube.com/watch?v=XsbnIpFBD54"><img id="carousel-slide-two" class="d-block w-100" src="<?php print $right_ads_banner_2 ?>" alt="Second right slide"></a>
+                                        </div>
+                                        <!--/Second slide-->
+                                        <!--Third slide-->
+                                        <div class="carousel-item">
+                                            <a target="_blank" href="https://www.servis.com/?utm_source=muftpaise&utm_medium=bannerad&utm_campaign=advertising&utm_content=awareness"><img id="carousel-slide-three" class="d-block w-100" src="<?php print $right_ads_banner_3 ?>" alt="Third right slide"></a>
+                                        </div>
+                                        <!--/Third slide-->
+                                    </div>
+                                    <!--/.Slides-->
+                                    <!--Controls-->
+                                    <a id="mob-left-prev-btn" class="carousel-control-prev" href="#mob-carousel-left-ads" role="button" data-slide="prev">
+                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                        <span class="sr-only">Previous</span>
+                                    </a>
+                                    <a id="mob-left-next-btn" class="carousel-control-next" href="#mob-carousel-left-ads" role="button" data-slide="next">
+                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                        <span class="sr-only">Next</span>
+                                    </a>
+                                    <!--/.Controls-->
+                                </div>
                                 <div class="view-comments" class="row">
                                     <h4>Comments</h4>
                                     <div id="comments-block" class="col-xl-8 col-lg-8 col-md-10 col-sm-12 col-12 remove-padding">
@@ -153,6 +193,7 @@ var contest_id = "<?= $contest_id ?>";
                                                     post_title = '" . $contest_id .  "'
                                                 AND
                                                     post_type = '" . 'prizesite-comments' .  "'
+                                                Order By ID DESC
                                                 "
                                             );
                                             $comment_index = 0;
@@ -171,13 +212,11 @@ var contest_id = "<?= $contest_id ?>";
                                                 $comment_date = get_the_date('d-m-Y', $title_exists[$comment_index]->ID);
                                                 $comment_time = get_the_time('', $title_exists[$comment_index]->ID);
                                             ?>
-                                                <div class="card">
-                                                    <div class="card-body">
-                                                        <p class="card-text"><?php echo $comment_text; ?></p>
+                                                <div class="comment">
+                                                    <div class="comment-header">
+                                                        <p><label class="text-uname"><?php echo $comment_name; ?></label><label class="text-comment"><?php echo $comment_text; ?></label></p>
                                                     </div>
-                                                    <div class="card-footer">
-                                                        <p class="footer-text"><label class="text-uname"><?php echo $comment_name; ?></label><label class="text-detail"><i class="fas fa-calendar"></i><?php echo $comment_date; ?><i class="fas fa-clock"></i><?php echo $comment_time; ?></label></p>
-                                                    </div>
+                                                    <label class="text-detail"><?php echo $comment_date . " " . $comment_time; ?></label>
                                                 </div>
                                             <?php
                                                 $comment_index = $comment_index + 1;
@@ -185,44 +224,6 @@ var contest_id = "<?= $contest_id ?>";
                                             ?>
                                     </div>
                                 </div>
-                            </div>
-                        <div id="mob-carousel-left-ads" class="carousel slide carousel-fade" data-ride="carousel" data-interval="<?php echo $ads_slide_timer; ?>">
-                            <!--Indicators -->
-                            <ol class="carousel-indicators">
-                                <li data-target="#mob-carousel-left-ads" data-slide-to="0" class="active"></li>
-                                <li data-target="#mob-carousel-left-ads" data-slide-to="1"></li>
-                                <li data-target="#mob-carousel-left-ads" data-slide-to="2"></li>
-                            </ol>
-                            <!--/.Indicators-->
-                            <!--Slides-->
-                            <div class="carousel-inner" role="listbox">
-                                <!--First slide-->
-                                <div class="carousel-item active">
-                                    <a target="_blank" href="https://rider.foodpanda.pk/?utm_source=muftpaise&utm_medium=bannerad&utm_campaign=advertising&utm_content=awareness"><img id="carousel-slide-one" class="d-block w-100" src="<?php print $right_ads_banner_1 ?>" alt="First right slide"></a>
-                                </div>
-                                <!--/First slide-->
-                                <!--Second slide-->
-                                <div class="carousel-item">
-                                    <a target="_blank" href="https://www.youtube.com/watch?v=XsbnIpFBD54"><img id="carousel-slide-two" class="d-block w-100" src="<?php print $right_ads_banner_2 ?>" alt="Second right slide"></a>
-                                </div>
-                                <!--/Second slide-->
-                                <!--Third slide-->
-                                <div class="carousel-item">
-                                    <a target="_blank" href="https://www.servis.com/?utm_source=muftpaise&utm_medium=bannerad&utm_campaign=advertising&utm_content=awareness"><img id="carousel-slide-three" class="d-block w-100" src="<?php print $right_ads_banner_3 ?>" alt="Third right slide"></a>
-                                </div>
-                                <!--/Third slide-->
-                            </div>
-                            <!--/.Slides-->
-                            <!--Controls-->
-                            <a id="mob-left-prev-btn" class="carousel-control-prev" href="#mob-carousel-left-ads" role="button" data-slide="prev">
-                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                <span class="sr-only">Previous</span>
-                            </a>
-                            <a id="mob-left-next-btn" class="carousel-control-next" href="#mob-carousel-left-ads" role="button" data-slide="next">
-                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                <span class="sr-only">Next</span>
-                            </a>
-                            <!--/.Controls-->
                         </div>
                     </div>
                 <?php } ?>

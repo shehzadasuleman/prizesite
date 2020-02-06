@@ -2152,19 +2152,6 @@ a:focus {
     .whatsapp-carousel p {
         font-size:14px;
     }
-    #live-contest-info .info-footer label {
-        font-size: 9px;
-    }
-    #live-contest-info .info-footer .share-icon-link {
-        width: 9px;
-        height: 9px;
-        margin-top: 8px;
-    }
-    #live-contest-info .info-footer .comment-icon-link {
-        width: 9px;
-        height: 9px;
-        margin-top: 8px;
-    }
 }
 
 @media screen and (min-width: 900px) and (max-width: 1024px) {
@@ -2184,7 +2171,6 @@ a:focus {
         font-size: 18px;
     }
 }
-*/
 
 @media screen and (min-width: 768px) and (max-width: 850px) {
     #live-contest-info .info-footer label {
@@ -2195,7 +2181,7 @@ a:focus {
         height: 16px;
         margin-top: 2px;
     }
-}
+}*/
 
 @media screen and (min-width: 576px) and (max-width: 768px) {
     #winners-data_length {
@@ -2289,19 +2275,6 @@ a:focus {
     }
     #live-countdown {
         font-size: 17px;
-    }
-    #live-contest-info .info-footer label {
-        font-size: 10px;
-    }
-    #live-contest-info .info-footer .share-icon-link {
-        width: 12px;
-        height: 12px;
-        margin-top: 5px;
-    }
-    #live-contest-info .info-footer .comment-icon-link {
-        width: 12px;
-        height: 12px;
-        margin-top: 5px;
     }
 }
 
@@ -2491,22 +2464,6 @@ a:focus {
     }
     #cwinner-info {
         overflow-x: unset;
-    }
-    #live-contest-info .info-footer label {
-        font-size: 9px;
-    }
-    #live-contest-info .info-footer .share-icon-link {
-        width: 9px;
-        height: 9px;
-        margin-top: 8px;
-    }
-    #live-contest-info .info-footer .comment-icon-link {
-        width: 9px;
-        height: 9px;
-        margin-top: 8px;
-    }
-    #live-contest-info .info-footer {
-        padding: 0px 10px 5px 10px;
     }
 }
 
