@@ -1303,6 +1303,10 @@
     float: right;
 }
 
+#live-contest-header {
+    margin-bottom: 15px;
+}
+
 @media (max-width: 480px) {
     #carousel-example-1z #prev-btn {
         padding-left: 10px;
@@ -1412,5 +1416,9 @@
 @media screen and (max-width: 575px) {
     #view-live-content {
         margin-left: 0px;
+    }
+    #live-contest-header {
+        margin-top: 15px;
+        margin-bottom: 15px;
     }
 }

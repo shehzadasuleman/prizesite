@@ -111,7 +111,7 @@ var screen_size = "<?= $screen_size ?>"
                                 if ($end_date >= $today) { ?>
                                         <div class="card col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12 remove-padding">
                                             <div class="card-body">
-                                                <p class="card-text">WIN <strong><?php echo $prize_amount; ?> Rs.</strong></p>
+                                                <p class="card-text"><strong><?php echo $prize_amount; ?></strong></p>
                                             </div>
                                             <div class="contest-cover">
                                                 <a href="<?php echo $live_contest_url; ?>"><img src="<?php echo $thumbnail_url; ?>" alt="Card image"></a>
@@ -214,7 +214,7 @@ var screen_size = "<?= $screen_size ?>"
                                             </div>
                                             <div class="contest-cover">
                                                 <a href="<?php echo $view_contest_url; ?>" class="contest-link"><img src="<?php echo $thumbnail_url; ?>" alt="Card image"></a>
-                                                <p class="contest-previous-status"><?php echo $claim_alert; ?></p>
+                                                <a href="<?php echo $view_contest_url; ?>" class="contest-previous-status"><?php echo $claim_alert; ?></a>
                                             </div>
                                             <div class="card-body">
                                                 <a href="<?php echo $view_contest_url; ?>" class="contest-link"><p class="card-text"><strong><?php echo $contest_title; ?></strong></p></a>

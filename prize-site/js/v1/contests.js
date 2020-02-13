@@ -12,11 +12,11 @@ jQuery(document).ready(function($) {
             document.cookie = "windowWidth="+newWindowWidth;
         });
 
+        console.log("screen_size : " + screen_size);
         if( screen_size == 0 ) {
             location.reload(false);
         }
         var total_pages = Math.ceil (previous_contests_count / contests_per_page);
-        console.log("total_pages : " + total_pages);
         var index;
         for (index = 2; index <= total_pages; index++) {
             $("#previous-cards-page-"+index).css({ "display": "none" });

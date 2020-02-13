@@ -121,10 +121,10 @@ var end_date = "<?= $end_date ?>" + " 23:59:59";
                                             <?php echo $contest_description; ?>
                                         </div>
                                         <div class="info-footer row remove-padding">
-                                            <div class="col-6 remove-padding"><a class="comment-link-btn" type="button" data-toggle="modal" data-target="#comment-contest-modal" title="Comment"><img class="comment-icon-link" src="<?php print $comment_url ?>" alt="comment icon"><label>Comment</label></a></div>
-                                            <div class="col-6 remove-padding"><a class="share-link-btn" type="button" data-toggle="modal" data-target="#share-contest-modal" title="Share" href="<?php echo $share_link; ?>"><img class="share-icon-link" src="<?php print $share_url ?>" alt="share icon"><label>Share</label></a></div>
-                                            <div class="col-6 remove-padding"><p><?php echo "(" . $comment_count; ?> Comment<?php if( $comment_count > 1 ) { echo "s"; } echo ")"; ?></p></div>
-                                            <div class="col-6 remove-padding"><p style="float:right"><?php echo "(" .  $share_count; ?> Share<?php if( $share_count > 1 ) { echo "s"; } echo ")"; ?></p></div>
+                                            <div class="col-sm-6 col-7 remove-padding"><a class="comment-link-btn" type="button" data-toggle="modal" data-target="#comment-contest-modal" title="Comment"><img class="comment-icon-link" src="<?php print $comment_url ?>" alt="comment icon"><label>Add Comment</label></a></div>
+                                            <div class="col-sm-6 col-5 remove-padding"><a class="share-link-btn" type="button" data-toggle="modal" data-target="#share-contest-modal" title="Share" href="<?php echo $share_link; ?>"><img class="share-icon-link" src="<?php print $share_url ?>" alt="share icon"><label>Share</label></a></div>
+                                            <div class="col-sm-6 col-7 remove-padding"><p><?php echo "(" . $comment_count; ?> Comment<?php if( $comment_count > 1 ) { echo "s"; } echo ")"; ?></p></div>
+                                            <div class="col-sm-6 col-5 remove-padding"><p style="float:right"><?php echo "(" .  $share_count; ?> Share<?php if( $share_count > 1 ) { echo "s"; } echo ")"; ?></p></div>
                                         </div>
                                     </div>
                                 </div>
