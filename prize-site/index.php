@@ -634,6 +634,16 @@
                     endif;
                 ?>
             </div>
+        <?php elseif ( "/wordpress/v1/partners" == $current_uri || strpos($current_uri, "/wordpress/v1/partners") !== false ):?>
+            <div class="clients-content">
+                <?php
+                    if (have_posts() ):
+                        while( have_posts() ): the_post();
+                            get_template_part( 'template-parts/v1/partners', get_post_format() );
+                        endwhile;
+                    endif;
+                ?>
+            </div>
         <?php elseif ( "/wordpress/v1/404" == $current_uri || strpos($current_uri, "/wordpress/v1/404") !== false ):?>
             <div class="clients-content">
                 <?php

@@ -22,6 +22,7 @@
 				<li><a href="http://localhost/wordpress/v1/contact-us">Contact us</a></li>
 				<li><a href="http://localhost/wordpress/v1/muft-rewards">Muft Rewards</a></li>
 				<li><a href="http://localhost/wordpress/v1/faqs">FAQs</a></li>
+				<li><a href="http://localhost/wordpress/v1/partners">Partners</a></li>
 			</ul>
 			<div class="social-block">
 				<strong class="title">Be our friend</strong>

@@ -59,4 +59,13 @@ jQuery(document).ready(function($) {
 
     }
 
+    if ( window.location.pathname == "/wordpress/v1/partners" ) {
+
+        $('#partners-register-btn').on('click', function(e) {
+            e.preventDefault();
+
+            $('#popup-registration-modal').modal('show');
+        });
+    }
+
 });
