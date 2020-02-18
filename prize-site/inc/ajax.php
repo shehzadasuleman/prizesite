@@ -616,22 +616,49 @@ function save_comment_data(){
 	$res = file_get_contents('https://www.iplocate.io/api/lookup/' . $ipaddress);
 	$res = json_decode($res);
 	$city = $res->city;
+	$is_already_exists = 0;
 
-	$args = array(
-		'post_title' => $contest_id,
-		'post_author' => 1,
-		'post_status' => 'publish',
-		'post_type' => 'prizesite-comments'
+	global $wpdb;
+	$title_exists = $wpdb->get_results( 
+		"
+		SELECT ID
+		FROM $wpdb->posts
+		WHERE  
+			post_title = '" . $contest_id . "'
+		AND
+			post_type = '" . 'prizesite-comments' .  "'    
+		"
 	);
-	
-	$postID = wp_insert_post( $args );
-	update_post_meta( $postID, '_comments_commenttext_value_key', $comment );
-	update_post_meta( $postID, '_comments_contesttitle_value_key', get_the_title($contest_id) );
-	update_post_meta( $postID, '_comments_phoneno_value_key', $number );
-	update_post_meta( $postID, '_comments_name_value_key', $name );
-	update_post_meta( $postID, '_comments_city_value_key', $city );
-	update_post_meta( $postID, '_comments_ipaddress_value_key', $ipaddress );
-	update_post_meta( $postID, '_comments_area_value_key', $area );
+
+	$comment_index = 0;
+	while( $comment_index < count($title_exists) ){
+		$record_number = get_post_meta($title_exists[$comment_index]->ID, '_comments_phoneno_value_key', true);
+		if( $number == $record_number ) {
+			$postID = -100;
+			$is_already_exists = 1;
+		}
+		$comment_index = $comment_index + 1;
+	}
+
+	if ( $is_already_exists != 1 ) {
+
+		$args = array(
+			'post_title' => $contest_id,
+			'post_author' => 1,
+			'post_status' => 'publish',
+			'post_type' => 'prizesite-comments'
+		);
+		
+		$postID = wp_insert_post( $args );
+		update_post_meta( $postID, '_comments_commenttext_value_key', $comment );
+		update_post_meta( $postID, '_comments_contesttitle_value_key', get_the_title($contest_id) );
+		update_post_meta( $postID, '_comments_phoneno_value_key', $number );
+		update_post_meta( $postID, '_comments_name_value_key', $name );
+		update_post_meta( $postID, '_comments_city_value_key', $city );
+		update_post_meta( $postID, '_comments_ipaddress_value_key', $ipaddress );
+		update_post_meta( $postID, '_comments_area_value_key', $area );
+		
+	}
 
 	echo $postID;
 

@@ -303,7 +303,9 @@ jQuery(document).ready(function($) {
                 },
                 success: function(response) {
                     $('#comment-contest-close').click();
-                    if (response <= 0) {
+                    if( response == -100 ) {
+                        $('#duplicate-comment-modal').modal('show');
+                    } else if (response <= 0) {
                         $('#failure-comment-modal').modal('show');
                     } else if (response > 0) {
                         $('#success-comment-modal').modal('show');

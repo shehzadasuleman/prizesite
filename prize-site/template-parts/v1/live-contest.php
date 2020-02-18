@@ -330,3 +330,27 @@ var end_date = "<?= $end_date ?>" + " 23:59:59";
     </div>
   </div>
 </div>
+
+<div class="modal" id="duplicate-comment-modal" tabindex="-1" role="dialog" aria-labelledby="duplicateCommentLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div>
+        <button id="duplicate-comment-close" type="button" class="close close-btn" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+				<?php $category_id = get_cat_ID('Comment Duplicate');
+    				query_posts("cat=$category_id&posts_per_page=1");
+    				if (have_posts()) {
+      			the_post(); ?>
+	  				<div class="col">
+							<h3><?php the_title() ?></h3>
+							<?php the_content() ?>
+						</div>
+				<?php } wp_reset_query(); ?>
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
