@@ -973,6 +973,7 @@ a:focus {
     font-size: 18px;
     left: 20px;
     top: 18px;
+    color: #999999;
 }
 
 .lucky-form .input-wrap .label-text.label-active {
@@ -1990,7 +1991,7 @@ a:focus {
         min-width: 120px;
     }
     .lucky-form {
-        margin: 0 40px 0 0;
+        margin: 0 0 0 0;
     }
     #prizesite-signin-form.lucky-form, #prizesite-signup-form.lucky-form {
         margin: 0px;
@@ -2425,6 +2426,9 @@ a:focus {
     .live-status {
         font-size: 15px;
     }
+    #prizesite-lucky-form-check {
+        padding: 10px;
+    }
 }
 
 @media screen and (max-width: 400px) {
@@ -2555,7 +2559,7 @@ a:focus {
 }
 
 .check-prize-btn-box {
-    padding-left: 2%;
+    padding-left: 10px;
     margin-top: -4%;
 }
 

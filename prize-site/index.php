@@ -102,6 +102,11 @@
     <?php if ( ("/wordpress/v1/winners" == $current_uri || strpos($current_uri, "/wordpress/v1/winners") !== false ) || ( "/wordpress/v1/contests" == $current_uri || strpos($current_uri, "/wordpress/v1/contests") !== false) || ( "/wordpress/v1/view-contests" == $current_uri || strpos($current_uri, "/wordpress/v1/view-contests") !== false) || ( "/wordpress/v1/live-contest" == $current_uri || strpos($current_uri, "/wordpress/v1/live-contest") !== false) ):?>
         <!--Carousel Wrapper-->
         <div class="row">
+            <?php if ( ("/wordpress/v1/winners" == $current_uri || strpos($current_uri, "/wordpress/v1/winners") !== false) ):?>
+                <div class="carousel-ad-info col-xl-10 offset-xl-1 col-lg-10 offset-lg-1 col-md-10 offset-md-1 col-sm-10 offset-sm-1 col-10 offset-1">
+                    <p>Advertisement</p>
+                </div>
+            <?php endif; ?>
             <div id="carousel-example-1z" class="carousel slide carousel-fade col-xl-10 offset-xl-1 col-lg-10 offset-lg-1 col-md-10 offset-md-1 col-sm-10 offset-sm-1 col-10 offset-1" data-ride="carousel" data-interval="<?php echo $ads_slide_timer; ?>">
                 <!--Indicators -->
                 <ol class="carousel-indicators">

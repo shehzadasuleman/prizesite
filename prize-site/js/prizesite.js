@@ -225,7 +225,13 @@ jQuery(document).ready(function($) {
         });
     });
 
+    // sleep time expects milliseconds
+    function sleep (time) {
+        return new Promise((resolve) => setTimeout(resolve, time));
+    }
+
     $('#prizesite-lucky-form-check').on('submit', function(e) {
+
         e.preventDefault();
         var form = $(this),
             phNumber = form.find('#check-no').val(),
@@ -245,6 +251,8 @@ jQuery(document).ready(function($) {
             return;
         }
 
+        $('#check-ad-modal').modal('show');
+
         $.ajax({
 
             url: ajaxurl,
@@ -259,14 +267,16 @@ jQuery(document).ready(function($) {
                 console.log(response);
             },
             success: function(response) {
-                if (response == -100) {
-                    $.redirect(origin + '/wordpress/v1/not-registered', {CheckPrizePerformed: "True"}, "POST");
-                } else if (response == -200) {
-                    $.redirect(origin + '/wordpress/v1/try-tomorrow', {CheckPrizePerformed: "True"}, "POST");
-                } else if (response == -300) {
-                   $.redirect(origin + '/wordpress/v1/won', {CheckPrizePerformed: "True"}, "POST");
-                }
-                $('#check-phNumber').val('');
+                sleep(ad_timer).then(() => {
+                    if (response == -100) {
+                        $.redirect(origin + '/wordpress/v1/not-registered', {CheckPrizePerformed: "True"}, "POST");
+                    } else if (response == -200) {
+                        $.redirect(origin + '/wordpress/v1/try-tomorrow', {CheckPrizePerformed: "True"}, "POST");
+                    } else if (response == -300) {
+                    $.redirect(origin + '/wordpress/v1/won', {CheckPrizePerformed: "True"}, "POST");
+                    }
+                    $('#check-phNumber').val('');
+                });
             }
 
         });
@@ -510,6 +520,14 @@ jQuery(document).ready(function($) {
                     }
                 }
             });
+        });
+    }
+
+    if ( window.location.pathname == "/wordpress/v1/winners" ) {
+        $("#carousel-example-1z").css({ "display": "none" });
+
+        sleep(5000).then(() => {
+            $( "#carousel-example-1z" ).toggle( "fade" );
         });
     }
 

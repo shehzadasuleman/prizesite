@@ -14,6 +14,7 @@ function prizesite_add_admin_page() {
     //Generate prizesite Admin Sub Pages
     add_submenu_page( 'shahzada_prizesite', 'Prizesite Theme Options', 'Theme Options', 'manage_options', 'shahzada_prizesite', 'prizesite_theme_create_page' );
     add_submenu_page( 'shahzada_prizesite', 'Prizesite Contact Form', 'Contact Form', 'manage_options', 'shahzada_prizesite_theme_contact', 'prizesite_contact_form_page' );
+    add_submenu_page( 'shahzada_prizesite', 'Prizesite Daily Draw Options', 'Daily Draw Options', 'manage_options', 'shahzada_prizesite_theme_dailydraw', 'prizesite_dailydraw_form_page' );
 
     //Activate Custom Settings
     add_action('admin_init', 'prizesite_custom_settings');
@@ -28,6 +29,10 @@ function prizesite_theme_create_page() {
 
 function prizesite_contact_form_page() {
 	require_once( get_template_directory() . '/inc/templates/prizesite-contact-form.php' );
+}
+
+function prizesite_dailydraw_form_page() {
+	require_once( get_template_directory() . '/inc/templates/prizesite-dailydraw-options.php' );
 }
 
 //Populating Custom Settings
@@ -61,6 +66,17 @@ function prizesite_custom_settings() {
 	add_settings_section( 'prizesite-contact-section', 'Contact Form', 'prizesite_contact_section', 'shahzada_prizesite_theme_contact');
 	
 	add_settings_field( 'activate-form', 'Activate Contact Form', 'prizesite_activate_contact', 'shahzada_prizesite_theme_contact', 'prizesite-contact-section' );
+
+    // Daily Draw Options
+    register_setting( 'prizesite-dailydraw-options', 'prizesite_next_draw_message' );
+    register_setting( 'prizesite-dailydraw-options', 'prizesite_current_draw_prize' );
+    register_setting( 'prizesite-dailydraw-options', 'prizesite_check_ad_timer' );
+
+    add_settings_section( 'prizesite-dailydraw-options', 'Draw Options', 'prizesite_dailydraw_options', 'shahzada_prizesite_theme_dailydraw' );
+
+    add_settings_field( 'prizesite-check-adtimer', 'Check Ad Timer', 'prizesite_check_adtimer_callback', 'shahzada_prizesite_theme_dailydraw', 'prizesite-dailydraw-options' );
+    add_settings_field( 'prizesite-nextdraw-message', 'Next Draw Message', 'prizesite_next_draw_message_callback', 'shahzada_prizesite_theme_dailydraw', 'prizesite-dailydraw-options' );
+    add_settings_field( 'prizesite-currentdraw-prize', 'Current Draw Prize', 'prizesite_current_draw_prize_callback', 'shahzada_prizesite_theme_dailydraw', 'prizesite-dailydraw-options' );
 }
 
 //Page Functions
@@ -69,6 +85,9 @@ function prizesite_theme_options() {
 }
 function prizesite_contact_section() {
 	echo 'Activate and Deactivate the Built-in Contact Form';
+}
+function prizesite_dailydraw_options() {
+	echo 'Activate and Deactivate specific Daily Draw Options';
 }
 
 //Theme Support Functions
@@ -119,4 +138,20 @@ function prizesite_winners_ad_timer_callback() {
 function prizesite_dailydraw_message_callback() {
     $message = esc_attr(get_option('prizesite_dailydraw_message'));
     echo '<textarea id="prizesite_dailydraw_message" name="prizesite_dailydraw_message" rows="4" cols="50">'.$message.'</textarea>';
+}
+
+function prizesite_check_adtimer_callback() {
+    $ad_timer = esc_attr(get_option('prizesite_check_ad_timer'));
+    echo '<input type="number" id="prizesite_check_ad_timer" name="prizesite_check_ad_timer" value="' . esc_attr( $ad_timer ) . '" size="40" />msec<br>';
+    echo '<label>1000 msec= 1 sec</label>';
+}
+
+function prizesite_next_draw_message_callback() {
+    $next_message = esc_attr(get_option('prizesite_next_draw_message'));
+    echo '<textarea id="prizesite_next_draw_message" name="prizesite_next_draw_message" rows="4" cols="50">'.$next_message.'</textarea>';
+}
+
+function prizesite_current_draw_prize_callback() {
+    $prize_amount = esc_attr(get_option('prizesite_current_draw_prize'));
+    echo '<input type="text" value="'.$prize_amount.'" id="prizesite_current_draw_prize" name="prizesite_current_draw_prize" style="width:330px;"/>';
 }

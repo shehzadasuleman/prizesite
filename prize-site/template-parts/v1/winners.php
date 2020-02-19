@@ -12,8 +12,12 @@
     $right_ads_banner_2 = get_template_directory_uri() . '/img/Ads/Slider/Desktop/right-desktop-ad2.jpg';
     $right_ads_banner_3 = get_template_directory_uri() . '/img/Ads/Slider/Desktop/right-desktop-ad3.jpg';
     $ads_slide_timer = get_option( 'prizesite_winners_ad_timer' );
+    $check_draw_ad_timer = get_option( 'prizesite_check_ad_timer' );
+    $next_draw_message = get_option( 'prizesite_next_draw_message' );
+    $current_draw_prize = get_option( 'prizesite_current_draw_prize' );
+    $mobile_ad = get_template_directory_uri() . '/img/Ads/Slider/Mobile/Check-MobAd.jpg';
 ?>
-
+<script type="text/javascript">var ad_timer = "<?= $check_draw_ad_timer ?>";</script>
 <!-- Facebook Plugin Starts-->
 
 <div id="fb-root"></div>
@@ -57,11 +61,13 @@
 				</div>
                 <div class="col-xl-6 col-lg-6 col-md-8 col-sm-8 recent-winners-content">
                     <!-- New Changes -->
-
+                    <div class="today-prize-block">
+                        <p>Today's Prize<span class="btn green"><?php echo $current_draw_prize; ?></span></p>
+                    </div>
                     <form id="prizesite-lucky-form-check" class="lucky-form" action="" method="post" data-url="<?php echo admin_url('admin-ajax.php'); ?>">
                         <div class="row remove-margin">
                             <div class="input-content-mobile">                                
-								<h2>Enter your Number below to see if you won in today's draw!</h2><br/>
+								<h2>Enter your Number below to see if you won in today's draw!</h2><?php echo $current_draw_message; ?><br/>
                             </div><br/>
 							<div class="form-group col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 input-content-mobile">
 								<div class="input-wrap">
@@ -73,9 +79,12 @@
 						    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 check-prize-btn-box">
                                 <button type="submit" class="check-prize-btn btn btn-primary">Check If I Won Today</button><br/><br/>
                             </div>
-						</div>								
+                        </div>
+                        <div class="next-draw-block">
+                            <p>Next Draw</p>
+                            <h3><?php echo $next_draw_message; ?></h3>
+                        </div>						
                     </form>
-
                     <div id="mob-carousel-right-ads" class="carousel slide carousel-fade" data-ride="carousel" data-interval="<?php echo $ads_slide_timer; ?>">
                         <!--Indicators -->
                         <ol class="carousel-indicators">
@@ -113,21 +122,6 @@
                             <span class="sr-only">Next</span>
                         </a>
                         <!--/.Controls-->
-                    </div>
-
-                   	<div>
-                        <div class="col-xl-12 description">
-                        <?php
-                            $category_id = get_cat_ID('Winner Description');
-                            query_posts("cat=$category_id&posts_per_page=1");
-                            if (have_posts()) {
-                                the_post(); ?>
-                                <h5>
-                                    <?php the_content(); ?>
-                                </h5>
-                        <?php } wp_reset_query(); ?>
-                        <hr/>
-                        </div>
                     </div>
                 </div>
 				<div id="winners-right-ad" class="col-xl-3 col-lg-3 col-md-2 col-sm-2 img-content">
@@ -244,6 +238,21 @@
 				</div>
 				<button type="sumbit" class="btn">Enter daily lucky draw for free</button>
             </form>
+		</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="check-ad-modal" tabindex="-1" role="dialog" aria-labelledby="checkAdModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-content-info">
+        <p>Please wait while we check</p>
+      </div>
+      <div class="modal-body">
+	  	<div class="col">
+          <a target="_blank" href="https://rider.foodpanda.pk/?utm_source=muftpaise&utm_medium=bannerad&utm_campaign=advertising&utm_content=awareness"><img id="carousel-slide-one" class="d-block w-100" src="<?php echo $mobile_ad ?>" alt="Check Ad"></a>
 		</div>
       </div>
     </div>
