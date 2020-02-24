@@ -251,7 +251,7 @@ jQuery(document).ready(function($) {
             return;
         }
 
-        $('#check-ad-modal').modal('show');
+        $('#check-ad-modal').modal({backdrop: true,backdrop: 'static'});
 
         $.ajax({
 
@@ -526,8 +526,9 @@ jQuery(document).ready(function($) {
     if ( window.location.pathname == "/wordpress/v1/winners" ) {
         $("#carousel-example-1z").css({ "display": "none" });
 
-        sleep(5000).then(() => {
-            $( "#carousel-example-1z" ).toggle( "fade" );
+        sleep(1000).then(() => {
+            //$( "#carousel-example-1z" ).toggle( "fade" );
+            $( "#carousel-example-1z" ).slideDown();
         });
     }
 

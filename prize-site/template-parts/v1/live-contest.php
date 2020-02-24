@@ -18,7 +18,16 @@
     $share_count = get_post_meta($contest_id,'_contests_sharecount_value_key',true);
     if ( $share_count == "" ) { $share_count = 0; }
     $end_date = get_post_meta($contest_id,'_contests_enddate_value_key',true);
+    $today = date("Y-m-d");
+    $expired_contest_url = "http://localhost/wordpress/v1/view-contests?id=". $contest_id . "&title=".get_the_title( get_the_ID() );
 ?>
+<?php if ($end_date < $today) { ?>
+    <script type="text/javascript">
+        var expired_contest_url = "<?= $expired_contest_url ?>";
+        window.location = expired_contest_url;
+    </script>
+<?php } ?>
+
 <script type="text/javascript">var share_count = "<?= $share_count ?>";
 var contest_id = "<?= $contest_id ?>";
 var end_date = "<?= $end_date ?>" + " 23:59:59"; 

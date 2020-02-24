@@ -1414,6 +1414,17 @@
     margin-bottom: 0px;
 }
 
+#check-ad-modal {
+    background-color: rgb(0,0,0,0.7);
+}
+
+.home-ad-container {
+    max-width: 1300px;
+    padding-left: 15px;
+    padding-right: 15px;
+    margin: 0 auto;
+}
+
 @media (max-width: 480px) {
     #carousel-example-1z #prev-btn {
         padding-left: 10px;

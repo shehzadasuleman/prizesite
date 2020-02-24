@@ -103,6 +103,8 @@ var contest_id = "<?= $contest_id ?>";
                                                     post_title = '" . $contest_id .  "'
                                                 AND
                                                     post_type = '" . 'prizesite-cwinners' .  "'
+                                                AND
+                                                    post_status = '" . 'publish' .  "'
                                                 "
                                             );
                                             $winner_index = 0;
