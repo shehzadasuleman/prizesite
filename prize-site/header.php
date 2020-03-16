@@ -57,7 +57,17 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <title>Muft Paise</title>
         <meta charset="<?php bloginfo( 'charset' ); ?>">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-		<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <script>
+            (function(ac) {
+              var d = document, s = 'script', id = 'adplugg-adjs';
+              var js, fjs = d.getElementsByTagName(s)[0];
+              if (d.getElementById(id)) return;
+              js = d.createElement(s); js.id = id; js.async = 1;
+              js.src = '//www.adplugg.com/serve/' + ac + '/js/1.1/ad.js';
+              fjs.parentNode.insertBefore(js, fjs);
+            }('A48217222'));
+        </script>
         <?php wp_head(); ?>
     </head>
 <body <?php body_class(); ?> <?php $onhold_page_enabler = get_option( 'prizesite_onhold_page_enabler' );

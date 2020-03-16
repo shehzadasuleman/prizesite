@@ -49,6 +49,9 @@ function save_candidate_data(){
 	$is_verified = -100;
 	$number = "";
 	$email = "";
+	$source = "";
+	$medium = "";
+	$campaign = "";
 	$city = "";
 	$area = "";
 	$return_value = 0;
@@ -68,6 +71,9 @@ function save_candidate_data(){
 			$number = get_the_title();
 			$email = get_post_meta(get_the_ID(), '_verify_email_value_key', true);
 			$ipaddress = get_post_meta(get_the_ID(), '_verify_ip_value_key', true);
+			$source = get_post_meta(get_the_ID(), '_verify_source_value_key', true);
+			$medium = get_post_meta(get_the_ID(), '_verify_medium_value_key', true);
+			$campaign = get_post_meta(get_the_ID(), '_verify_campaign_value_key', true);
 			$details = json_decode(file_get_contents("http://ipinfo.io/{$ipaddress}"));
 			$area = $details->city;
 			$res = file_get_contents('https://www.iplocate.io/api/lookup/' . $ipaddress);
@@ -92,6 +98,9 @@ function save_candidate_data(){
 		$postID = wp_insert_post( $args );
 		update_post_meta( $postID, '_contact_ip_value_key', $ipaddress );
 		update_post_meta( $postID, '_contact_email_value_key', $email );
+		update_post_meta( $postID, '_contact_source_value_key', $source );
+		update_post_meta( $postID, '_contact_medium_value_key', $medium );
+		update_post_meta( $postID, '_contact_campaign_value_key', $campaign );
 		update_post_meta( $postID, '_contact_city_value_key', $city );
 		update_post_meta( $postID, '_contact_area_value_key', $area );
 		$return_value = $postID;
@@ -227,6 +236,9 @@ function save_verification_data(){
 
 	$number = wp_strip_all_tags($_POST["phNumber"]);
 	$email = wp_strip_all_tags($_POST["emailAddress"]);
+	$source = wp_strip_all_tags($_POST["source"]);
+	$medium = wp_strip_all_tags($_POST["medium"]);
+	$campaign = wp_strip_all_tags($_POST["campaign"]);
 	$passcode = mt_rand();
 	$verified = "No";
 	$is_duplicate = 0;
@@ -294,6 +306,9 @@ function save_verification_data(){
 			$postID = wp_insert_post( $args );
 			update_post_meta( $postID, '_verify_ip_value_key', $ipaddress );
 			update_post_meta( $postID, '_verify_email_value_key', $email );
+			update_post_meta( $postID, '_verify_source_value_key', $source );
+			update_post_meta( $postID, '_verify_medium_value_key', $medium );
+			update_post_meta( $postID, '_verify_campaign_value_key', $campaign );
 			update_post_meta( $postID, '_verify_passcode_value_key', $passcode );
 			update_post_meta( $postID, '_verify_verified_value_key', $verified );
 		}

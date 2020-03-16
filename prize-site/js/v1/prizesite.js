@@ -1,5 +1,12 @@
 jQuery(document).ready(function($) {
 
+    $('.main-navigation li').on('click', function(e){
+        var link_text = $(this).find('a').slice(0,1).text();
+        if ( link_text == "About Us" ) {
+            $( ".sub-menu" ).toggle( "fade" );
+        }
+    });
+
     $('#urdu-tab .panel-collapse-urdu').on('show.bs.collapse', function () {
         $(this).siblings('.panel-heading-urdu').addClass('active');
     });

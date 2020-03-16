@@ -47,8 +47,9 @@ function prizesite_set_contact_columns( $columns ){
 	$newColumns['email'] = 'Email Address';
 	$newColumns['ip'] = 'IP Address';
 	$newColumns['city'] = 'City';
-	$newColumns['area'] = 'Area';
-	$newColumns['date'] = 'Date';
+	$newColumns['utmsource'] = 'Campaign Source';
+	$newColumns['utmmedium'] = 'Campaign Medium';
+	$newColumns['utmcampaign'] = 'Campaign Name';
 	return $newColumns;
 }
 
@@ -68,6 +69,15 @@ function prizesite_contact_custom_column( $column, $post_id ){
 		case 'area' :
 			echo get_post_meta( $post_id, '_contact_area_value_key', true);
 			break;
+		case 'utmsource' :
+			echo get_post_meta( $post_id, '_contact_source_value_key', true);
+			break;
+		case 'utmmedium' :
+			echo get_post_meta( $post_id, '_contact_medium_value_key', true);
+			break;
+		case 'utmcampaign' :
+			echo get_post_meta( $post_id, '_contact_campaign_value_key', true);
+			break;
 	}
 	
 }
@@ -78,8 +88,10 @@ function prizesite_contact_add_meta_box() {
 	add_meta_box( 'contact_email', 'Email Address', 'prizesite_contact_email_callback', 'prizesite-contact' );
 	add_meta_box( 'contact_city', 'City', 'prizesite_contact_city_callback', 'prizesite-contact' );
 	add_meta_box( 'contact_area', 'Area', 'prizesite_contact_area_callback', 'prizesite-contact' );
+	add_meta_box( 'contact_utmsource', 'Campaign Source', 'prizesite_contact_source_callback', 'prizesite-contact' );
+	add_meta_box( 'contact_utmmedium', 'Campaign Medium', 'prizesite_contact_medium_callback', 'prizesite-contact' );
+	add_meta_box( 'contact_utmcampaign', 'Campaign Name', 'prizesite_contact_campaign_callback', 'prizesite-contact' );
 }
-
 function prizesite_contact_ip_callback( $post ) {
 	wp_nonce_field( 'prizesite_save_contact_ip_data', 'prizesite_contact_ip_meta_box_nonce' );
 
@@ -88,7 +100,6 @@ function prizesite_contact_ip_callback( $post ) {
 	echo '<label for="prizesite_contact_ip_field">IP Address: </label>';
 	echo '<input type="text" id="prizesite_contact_ip_field" name="prizesite_contact_ip_field" value="' . esc_attr( $ip_value ) . '" size="25" />';
 }
-
 function prizesite_contact_email_callback( $post ) {
 	wp_nonce_field( 'prizesite_save_contact_email_data', 'prizesite_contact_email_meta_box_nonce' );
 
@@ -97,7 +108,6 @@ function prizesite_contact_email_callback( $post ) {
 	echo '<label for="prizesite_contact_email_field">Email Address: </label>';
 	echo '<input type="text" id="prizesite_contact_email_field" name="prizesite_contact_email_field" value="' . esc_attr( $email_value ) . '" size="25" />';
 }
-
 function prizesite_contact_city_callback( $post ) {
 	wp_nonce_field( 'prizesite_save_contact_city_data', 'prizesite_contact_city_meta_box_nonce' );
 
@@ -106,7 +116,6 @@ function prizesite_contact_city_callback( $post ) {
 	echo '<label for="prizesite_contact_city_field">City: </label>';
 	echo '<input type="text" id="prizesite_contact_city_field" name="prizesite_contact_city_field" value="' . esc_attr( $city_value ) . '" size="25" />';
 }
-
 function prizesite_contact_area_callback( $post ) {
 	wp_nonce_field( 'prizesite_save_contact_area_data', 'prizesite_contact_area_meta_box_nonce' );
 
@@ -115,39 +124,72 @@ function prizesite_contact_area_callback( $post ) {
 	echo '<label for="prizesite_contact_area_field">Area: </label>';
 	echo '<input type="text" id="prizesite_contact_area_field" name="prizesite_contact_area_field" value="' . esc_attr( $area_value ) . '" size="25" />';
 }
+function prizesite_contact_source_callback( $post ) {
+	wp_nonce_field( 'prizesite_save_contact_source_data', 'prizesite_contact_source_meta_box_nonce' );
 
+	$source_value = get_post_meta( $post->ID, '_contact_source_value_key', true );
+	
+	echo '<label for="prizesite_contact_source_field">Campaign Source: </label>';
+	echo '<input type="text" id="prizesite_contact_source_field" name="prizesite_contact_source_field" value="' . esc_attr( $source_value ) . '" size="25" />';
+}
+function prizesite_contact_medium_callback( $post ) {
+	wp_nonce_field( 'prizesite_save_contact_medium_data', 'prizesite_contact_medium_meta_box_nonce' );
+
+	$medium_value = get_post_meta( $post->ID, '_contact_medium_value_key', true );
+	
+	echo '<label for="prizesite_contact_medium_field">Campaign Medium: </label>';
+	echo '<input type="text" id="prizesite_contact_medium_field" name="prizesite_contact_medium_field" value="' . esc_attr( $medium_value ) . '" size="25" />';
+}
+function prizesite_contact_campaign_callback( $post ) {
+	wp_nonce_field( 'prizesite_save_contact_campaign_data', 'prizesite_contact_campaign_meta_box_nonce' );
+
+	$campaign_value = get_post_meta( $post->ID, '_contact_campaign_value_key', true );
+	
+	echo '<label for="prizesite_contact_campaign_field">Campaign Name: </label>';
+	echo '<input type="text" id="prizesite_contact_campaign_field" name="prizesite_contact_campaign_field" value="' . esc_attr( $campaign_value ) . '" size="25" />';
+}
 function prizesite_save_contact_bulk_data( $post_id ) {
 	
 	if( defined('DOING_AUTOSAVE') && DOING_AUTOSAVE ) {
 		return;
 	}
-
 	if( ! current_user_can( 'edit_post', $post_id )) {
 		return;
 	}
-
 	if( isset( $_POST['prizesite_contact_ip_meta_box_nonce'] ) && isset( $_POST['prizesite_contact_ip_field']) ) {
 		$my_data = sanitize_text_field( $_POST['prizesite_contact_ip_field'] );
 
 		update_post_meta( $post_id, '_contact_ip_value_key', $my_data );
 	}
-
 	if(isset( $_POST['prizesite_contact_email_meta_box_nonce'] ) && isset( $_POST['prizesite_contact_email_field']) ) {
 		$my_data = sanitize_text_field( $_POST['prizesite_contact_email_field'] );
 
 		update_post_meta( $post_id, '_contact_email_value_key', $my_data );
 	}
-
 	if(isset( $_POST['prizesite_contact_city_meta_box_nonce'] ) && isset( $_POST['prizesite_contact_city_field']) ) {
 		$my_data = sanitize_text_field( $_POST['prizesite_contact_city_field'] );
 
 		update_post_meta( $post_id, '_contact_city_value_key', $my_data );
 	}
-
 	if(isset( $_POST['prizesite_contact_area_meta_box_nonce'] ) && isset( $_POST['prizesite_contact_area_field']) ) {
 		$my_data = sanitize_text_field( $_POST['prizesite_contact_area_field'] );
 
 		update_post_meta( $post_id, '_contact_area_value_key', $my_data );
+	}
+	if(isset( $_POST['prizesite_contact_source_meta_box_nonce'] ) && isset( $_POST['prizesite_contact_source_field']) ) {
+		$my_data = sanitize_text_field( $_POST['prizesite_contact_source_field'] );
+
+		update_post_meta( $post_id, '_contact_source_value_key', $my_data );
+	}
+	if(isset( $_POST['prizesite_contact_medium_meta_box_nonce'] ) && isset( $_POST['prizesite_contact_medium_field']) ) {
+		$my_data = sanitize_text_field( $_POST['prizesite_contact_medium_field'] );
+
+		update_post_meta( $post_id, '_contact_medium_value_key', $my_data );
+	}
+	if(isset( $_POST['prizesite_contact_campaign_meta_box_nonce'] ) && isset( $_POST['prizesite_contact_campaign_field']) ) {
+		$my_data = sanitize_text_field( $_POST['prizesite_contact_campaign_field'] );
+
+		update_post_meta( $post_id, '_contact_campaign_value_key', $my_data );
 	}
 }
 
@@ -597,10 +639,11 @@ function prizesite_set_verify_columns( $columns ){
 	$newColumns = array();
 	$newColumns['title'] = 'Phone Number';
 	$newColumns['email'] = 'Email Address';
-	$newColumns['ip'] = 'IP Address';
 	$newColumns['passcode'] = 'Passcode';
 	$newColumns['verified'] = 'Verified';
-	$newColumns['date'] = 'Date';
+	$newColumns['utmsource'] = 'Campaign Source';
+	$newColumns['utmmedium'] = 'Campaign Medium';
+	$newColumns['utmcampaign'] = 'Campaign Name';
 	return $newColumns;
 }
 
@@ -620,6 +663,15 @@ function prizesite_verify_custom_column( $column, $post_id ){
 		case 'verified' :
 			echo get_post_meta( $post_id, '_verify_verified_value_key', true);
 			break;
+		case 'utmsource' :
+			echo get_post_meta( $post_id, '_verify_source_value_key', true);
+			break;
+		case 'utmmedium' :
+			echo get_post_meta( $post_id, '_verify_medium_value_key', true);
+			break;
+		case 'utmcampaign' :
+			echo get_post_meta( $post_id, '_verify_campaign_value_key', true);
+			break;
 	}
 	
 }
@@ -631,6 +683,9 @@ function prizesite_verify_add_meta_box() {
 	add_meta_box( 'verify_email', 'Email Address', 'prizesite_verify_email_callback', 'prizesite-verify' );
 	add_meta_box( 'verify_passcode', 'Passcode', 'prizesite_verify_passcode_callback', 'prizesite-verify' );
 	add_meta_box( 'verify_verified', 'Verified', 'prizesite_verify_verified_callback', 'prizesite-verify' );
+	add_meta_box( 'verify_utmsource', 'Campaign Source', 'prizesite_verify_source_callback', 'prizesite-verify' );
+	add_meta_box( 'verify_utmmedium', 'Campaign Medium', 'prizesite_verify_medium_callback', 'prizesite-verify' );
+	add_meta_box( 'verify_utmcampaign', 'Campaign Name', 'prizesite_verify_campaign_callback', 'prizesite-verify' );
 }
 
 function prizesite_verify_ip_callback( $post ) {
@@ -669,6 +724,33 @@ function prizesite_verify_verified_callback( $post ) {
 	echo '<input type="text" id="prizesite_verify_verified_field" name="prizesite_verify_verified_field" value="' . esc_attr( $verified_value ) . '" size="25" />';
 }
 
+function prizesite_verify_source_callback( $post ) {
+	wp_nonce_field( 'prizesite_save_verify_source_data', 'prizesite_verify_source_meta_box_nonce' );
+
+	$source_value = get_post_meta( $post->ID, '_verify_source_value_key', true );
+	
+	echo '<label for="prizesite_verify_source_field">Campaign Source: </label>';
+	echo '<input type="text" id="prizesite_verify_source_field" name="prizesite_verify_source_field" value="' . esc_attr( $source_value ) . '" size="25" />';
+}
+
+function prizesite_verify_medium_callback( $post ) {
+	wp_nonce_field( 'prizesite_save_verify_medium_data', 'prizesite_verify_medium_meta_box_nonce' );
+
+	$medium_value = get_post_meta( $post->ID, '_verify_medium_value_key', true );
+	
+	echo '<label for="prizesite_verify_medium_field">Campaign Medium: </label>';
+	echo '<input type="text" id="prizesite_verify_medium_field" name="prizesite_verify_medium_field" value="' . esc_attr( $medium_value ) . '" size="25" />';
+}
+
+function prizesite_verify_campaign_callback( $post ) {
+	wp_nonce_field( 'prizesite_save_verify_campaign_data', 'prizesite_verify_campaign_meta_box_nonce' );
+
+	$campaign_value = get_post_meta( $post->ID, '_verify_campaign_value_key', true );
+	
+	echo '<label for="prizesite_verify_campaign_field">Campaign Name: </label>';
+	echo '<input type="text" id="prizesite_verify_campaign_field" name="prizesite_verify_campaign_field" value="' . esc_attr( $campaign_value ) . '" size="25" />';
+}
+
 function prizesite_save_verify_bulk_data( $post_id ) {
 	
 	if( defined('DOING_AUTOSAVE') && DOING_AUTOSAVE ) {
@@ -701,6 +783,22 @@ function prizesite_save_verify_bulk_data( $post_id ) {
 		$my_data = sanitize_text_field( $_POST['prizesite_verify_verified_field'] );
 
 		update_post_meta( $post_id, '_verify_verified_value_key', $my_data );
+	}
+
+	if(isset( $_POST['prizesite_verify_source_meta_box_nonce'] ) && isset( $_POST['prizesite_verify_source_field']) ) {
+		$my_data = sanitize_text_field( $_POST['prizesite_verify_source_field'] );
+
+		update_post_meta( $post_id, '_verify_source_value_key', $my_data );
+	}
+	if(isset( $_POST['prizesite_verify_medium_meta_box_nonce'] ) && isset( $_POST['prizesite_verify_medium_field']) ) {
+		$my_data = sanitize_text_field( $_POST['prizesite_verify_medium_field'] );
+
+		update_post_meta( $post_id, '_verify_medium_value_key', $my_data );
+	}
+	if(isset( $_POST['prizesite_verify_campaign_meta_box_nonce'] ) && isset( $_POST['prizesite_verify_campaign_field']) ) {
+		$my_data = sanitize_text_field( $_POST['prizesite_verify_campaign_field'] );
+
+		update_post_meta( $post_id, '_verify_campaign_value_key', $my_data );
 	}
 }
 

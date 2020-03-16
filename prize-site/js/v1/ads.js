@@ -9,7 +9,7 @@ jQuery(document).ready(function($) {
         $("#winners-fb-mob-review .fb-post iframe").css("max-width",divMobWidth);
     }
     setTimeout(changeFacebookFrameSize, 5000);
-    setTimeout(changeAdsByScreenSize, 100);
+    /*setTimeout(changeAdsByScreenSize, 100);
 
     $(window).resize(function(){
         changeFacebookFrameSize();
@@ -57,5 +57,5 @@ jQuery(document).ready(function($) {
             $("#carousel-left-ads #carousel-slide-two").attr("src", "/wordpress/wp-content/themes/prize-site/img/Ads/Slider/Desktop/left-desktop-ad2.jpg");
             $("#carousel-left-ads #carousel-slide-three").attr("src", "/wordpress/wp-content/themes/prize-site/img/Ads/Slider/Desktop/left-desktop-ad3.jpg");
         }
-    }
+    }*/
 });

@@ -1,5 +1,32 @@
 jQuery(document).ready(function($) {
 
+    //var xmlText = "";
+    /*async function loadAndParseXml(url) {
+        text = await fetch(url);
+        //awaits for text.text() prop and then sends it to readText()
+        //readText(await text.text());
+
+        readText( await text.text() );
+    }
+    
+    function readText(text){
+        //here you can continue with your JS normal logic
+        //console.log(text);
+        xmlText = String(text);
+        console.log(xmlText);
+    }
+    
+    loadAndParseXml('/wordpress/wp-content/themes/prize-site/ads.xml');*/
+
+    //console.log(xmlText);
+    // var returnText = 
+    /*returnText.then(function(value) {
+        //console.log(value); // "Success"
+        window.value = value;
+    });
+
+    console.log(window.value);*/
+
     var newWindowWidth = 0;
 
     var newWindowWidth = window.innerWidth;

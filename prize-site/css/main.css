@@ -2043,6 +2043,10 @@ a:focus {
     .past-winners-label {
         padding-left: 395px;
     }
+    .main-navigation .sub-menu li a {
+        font-size: 18px;
+        font-weight: 600;
+    }
 }
 
 @media screen and (min-width: 992px) and (max-width: 1200px) {
@@ -2058,6 +2062,10 @@ a:focus {
     #winners-data_wrapper input[type="search"] {
         width: 60%;
     }
+    .main-navigation .sub-menu li a {
+        font-size: 14px;
+        font-weight: 600;
+    }
 }
 
 @media (max-width: 767px) {
@@ -2069,6 +2077,22 @@ a:focus {
     }
     .Ads {
         padding : 15px;
+    }
+    .main-navigation .sub-menu {
+        list-style: none;
+        padding-left: 0%;
+        display: none;
+    }
+    .main-navigation .sub-menu li {
+        list-style: none;
+        padding-left: 0%;
+        padding-left: 10px;
+        padding-top: 20px;
+        padding-bottom: 0px;
+    }
+    .main-navigation .sub-menu li a {
+        font-size: 20px;
+        font-weight: 700;
     }
 }
 
@@ -2137,6 +2161,12 @@ a:focus {
     #mob-carousel-left-ads .carousel-control-prev-icon {
         margin-left: 0px;
     }
+    #dailydraw-right-mobile-carousel-ads .carousel-control-prev-icon {
+        margin-left: 0px;
+    }
+    #dailydraw-right-mobile-carousel-ads .carousel-control-next-icon {
+        margin-right: 0px;
+    }
 }
 
 @media screen and (max-width: 350px) {
@@ -2156,11 +2186,15 @@ a:focus {
 }
 
 @media screen and (min-width: 900px) and (max-width: 1024px) {
-    .nav-holder .nav-area ul li {
-        padding-left: 25px;
+    .main-navigation .sub-menu li {
+        padding: 5px 10px;
     }
     .main-navigation li a {
         font-size: 20px;
+    }
+    .main-navigation .sub-menu li a {
+        font-size: 14px;
+        font-weight: 600;
     }
 }
 /*
@@ -2226,6 +2260,27 @@ a:focus {
     #carousel-example-1z .carousel-control-next-icon, .carousel-control-prev-icon {
         width: 14px;
         height: 14px;
+    }
+    #dailydraw-top-desktop-carousel-example-1z .carousel-control-next-icon, 
+    #dailydraw-top-desktop-carousel-example-1z .carousel-control-prev-icon {
+        width: 14px;
+        height: 14px;
+    }
+    #dailydraw-top-mobile-carousel-example-1z .carousel-control-next-icon, 
+    #dailydraw-top-mobile-carousel-example-1z .carousel-control-prev-icon {
+        width: 14px;
+        height: 14px;
+    }
+    #dailydraw-right-desktop-carousel-ads .carousel-control-next-icon, 
+    #dailydraw-right-desktop-carousel-ads .carousel-control-prev-icon {
+        width: 12px;
+        height: 12px;
+    }
+    #dailydraw-right-desktop-carousel-ads #right-prev-btn {
+        padding-left: 2px;
+    }
+    #dailydraw-right-desktop-carousel-ads #right-next-btn {
+        padding-right: 2px;
     }
     .carousel-indicators li {
         width: 6px;
@@ -2361,7 +2416,11 @@ a:focus {
         width: 14px;
         height: 14px;
     }
-    #carousel-example-1z ol {
+    #carousel-example-1z ol, #dailydraw-top-desktop-carousel-example-1z ol
+    , #dailydraw-top-mobile-carousel-example-1z ol, #dailydraw-right-desktop-carousel-ads ol
+    , #dailydraw-right-mobile-carousel-ads ol
+    , #home-top-desktop-carousel ol
+    , #home-top-mobile-carousel ol {
         margin-bottom: 8px;
     }
     .carousel-indicators li {
@@ -2507,6 +2566,27 @@ a:focus {
         width: 15px;
         height: 15px;
     }
+    #dailydraw-top-desktop-carousel-example-1z .carousel-control-next-icon
+    , #dailydraw-top-desktop-carousel-example-1z .carousel-control-prev-icon {
+        width: 15px;
+        height: 15px;
+    }
+    #dailydraw-top-mobile-carousel-example-1z .carousel-control-next-icon, 
+    #dailydraw-top-mobile-carousel-example-1z .carousel-control-prev-icon {
+        width: 15px;
+        height: 15px;
+    }
+    #dailydraw-right-desktop-carousel-ads .carousel-control-next-icon, 
+    #dailydraw-right-desktop-carousel-ads .carousel-control-prev-icon {
+        width: 12px;
+        height: 12px;
+    }
+    #dailydraw-right-desktop-carousel-ads #right-prev-btn {
+        padding-left: 2px;
+    }
+    #dailydraw-right-desktop-carousel-ads #right-next-btn {
+        padding-right: 2px;
+    }
     .carousel-indicators li {
         width: 7px;
         height: 7px;
@@ -2543,6 +2623,10 @@ a:focus {
     }
     #contest-info .slogan {
         font-size: 16px;
+    }
+    .main-navigation .sub-menu li a {
+        font-size: 12px;
+        font-weight: 600;
     }
 }
 
@@ -2634,6 +2718,13 @@ a:focus {
     }
     .logo {
         margin-left: 0%;
+    }
+    .main-navigation .sub-menu li {
+        padding: 5px 5px;
+    }
+    .main-navigation .sub-menu {
+        margin-right: 5px;
+        width: 80px;
     }
 }
 

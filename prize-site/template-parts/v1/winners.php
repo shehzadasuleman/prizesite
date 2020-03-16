@@ -15,7 +15,8 @@
     $check_draw_ad_timer = get_option( 'prizesite_check_ad_timer' );
     $next_draw_message = get_option( 'prizesite_next_draw_message' );
     $current_draw_prize = get_option( 'prizesite_current_draw_prize' );
-    $mobile_ad = get_template_directory_uri() . '/img/Ads/Slider/Mobile/Check-MobAd.jpg';
+    $mobile_ad = get_template_directory_uri() . '/img/Ads/Slider/Check-MobAd.jpg';
+    $ads_url_xml = get_template_directory_uri() . "/ads.xml";
 ?>
 <script type="text/javascript">var ad_timer = "<?= $check_draw_ad_timer ?>";</script>
 <!-- Facebook Plugin Starts-->
@@ -41,6 +42,15 @@
     </div>
 </div>
 -->
+<div class="row">
+    <div class="carousel-ad-info col-xl-10 offset-xl-1 col-lg-10 offset-lg-1 col-md-10 offset-md-1 col-sm-10 offset-sm-1 col-10 offset-1">
+        <p>Advertisement</p>
+    </div>
+    <div id="dailydraw-top-desktop-carousel" class="carousel slide carousel-fade col-xl-10 offset-xl-1 col-lg-10 offset-lg-1 col-md-10 offset-md-1 col-sm-10 offset-sm-1 col-10 offset-1" data-ride="carousel" data-interval="<?php echo $ads_slide_timer; ?>">
+        <div class="adplugg-tag" data-adplugg-zone="daily_draw_desktop_top_bar"></div>
+    </div>
+</div>
+<!--/.Carousel Wrapper-->
 
 <div class="middle-content">
     <div class="row winners-middle-content-parent">
@@ -85,84 +95,7 @@
                             <h3><?php echo $next_draw_message; ?></h3>
                         </div>						
                     </form>
-                    <div id="mob-carousel-right-ads" class="carousel slide carousel-fade" data-ride="carousel" data-interval="<?php echo $ads_slide_timer; ?>">
-                        <!--Indicators -->
-                        <ol class="carousel-indicators">
-                            <li data-target="#mob-carousel-right-ads" data-slide-to="0" class="active"></li>
-                            <li data-target="#mob-carousel-right-ads" data-slide-to="1"></li>
-                            <li data-target="#mob-carousel-right-ads" data-slide-to="2"></li>
-                        </ol>
-                        <!--/.Indicators-->
-                        <!--Slides-->
-                        <div class="carousel-inner" role="listbox">
-                            <!--First slide-->
-                            <div class="carousel-item active">
-                                <a target="_blank" href="https://rider.foodpanda.pk/?utm_source=muftpaise&utm_medium=bannerad&utm_campaign=advertising&utm_content=awareness"><img id="carousel-slide-one" class="d-block w-100" src="<?php print $right_ads_banner_1 ?>" alt="First right slide"></a>
-                            </div>
-                            <!--/First slide-->
-                            <!--Second slide-->
-                            <div class="carousel-item">
-                                <a target="_blank" href="https://www.youtube.com/watch?v=XsbnIpFBD54"><img id="carousel-slide-two" class="d-block w-100" src="<?php print $right_ads_banner_2 ?>" alt="Second right slide"></a>
-                            </div>
-                            <!--/Second slide-->
-                            <!--Third slide-->
-                            <div class="carousel-item">
-                                <a target="_blank" href="https://www.servis.com/?utm_source=muftpaise&utm_medium=bannerad&utm_campaign=advertising&utm_content=awareness"><img id="carousel-slide-three" class="d-block w-100" src="<?php print $right_ads_banner_3 ?>" alt="Third right slide"></a>
-                            </div>
-                            <!--/Third slide-->
-                        </div>
-                        <!--/.Slides-->
-                        <!--Controls-->
-                        <a id="mob-right-prev-btn" class="carousel-control-prev" href="#mob-carousel-right-ads" role="button" data-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="sr-only">Previous</span>
-                        </a>
-                        <a id="mob-right-next-btn" class="carousel-control-next" href="#mob-carousel-right-ads" role="button" data-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="sr-only">Next</span>
-                        </a>
-                        <!--/.Controls-->
-                    </div>
-                </div>
 				<div id="winners-right-ad" class="col-xl-3 col-lg-3 col-md-2 col-sm-2 img-content">
-                    <div id="carousel-right-ads" class="carousel slide carousel-fade" data-ride="carousel" data-interval="<?php echo $ads_slide_timer; ?>">
-                        <!--Indicators -->
-                        <ol class="carousel-indicators">
-                            <li data-target="#carousel-right-ads" data-slide-to="0" class="active"></li>
-                            <li data-target="#carousel-right-ads" data-slide-to="1"></li>
-                            <li data-target="#carousel-right-ads" data-slide-to="2"></li>
-                        </ol>
-                        <!--/.Indicators-->
-                        <!--Slides-->
-                        <div class="carousel-inner" role="listbox">
-                            <!--First slide-->
-                            <div class="carousel-item active">
-                                <a target="_blank" href="https://rider.foodpanda.pk/?utm_source=muftpaise&utm_medium=bannerad&utm_campaign=advertising&utm_content=awareness"><img id="carousel-slide-one" class="d-block w-100" src="<?php print $right_ads_banner_1 ?>" alt="First right slide"></a>
-                            </div>
-                            <!--/First slide-->
-                            <!--Second slide-->
-                            <div class="carousel-item">
-                                <a target="_blank" href="https://www.youtube.com/watch?v=XsbnIpFBD54"><img id="carousel-slide-two" class="d-block w-100" src="<?php print $right_ads_banner_2 ?>" alt="Second right slide"></a>
-                            </div>
-                            <!--/Second slide-->
-                            <!--Third slide-->
-                            <div class="carousel-item">
-                                <a target="_blank" href="https://www.servis.com/?utm_source=muftpaise&utm_medium=bannerad&utm_campaign=advertising&utm_content=awareness"><img id="carousel-slide-three" class="d-block w-100" src="<?php print $right_ads_banner_3 ?>" alt="Third right slide"></a>
-                            </div>
-                            <!--/Third slide-->
-                        </div>
-                        <!--/.Slides-->
-                        <!--Controls-->
-                        <a id="right-prev-btn" class="carousel-control-prev" href="#carousel-right-ads" role="button" data-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="sr-only">Previous</span>
-                        </a>
-                        <a id="right-next-btn" class="carousel-control-next" href="#carousel-right-ads" role="button" data-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="sr-only">Next</span>
-                        </a>
-                        <!--/.Controls-->
-                    </div>
                     <div id="winners-fb-mob-review">
                         <strong class="title">Facebook Reviews</strong>
                         <p>Here are some reviews left by some of our winners.</p>
@@ -185,7 +118,7 @@
 		<div class="text-holder">
 			<p>Thanks for reading all the way down. All that's left to do is sign up and see for yourself. Good Luck!</p>
 		</div>
-		<div class="btn-holder">
+		<div class="btn-holder left-right-padding">
         <button type="sumbit" class="btn" data-toggle="modal" data-target="#registration-modal">Enter daily lucky draw for free</button>
 		</div>
 	</div>

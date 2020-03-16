@@ -2,6 +2,38 @@ jQuery(document).ready(function($) {
 
     var origin = document.location.origin;
 
+    var urlPath = window.location;
+    var urlArray = String(urlPath).split('?');
+    if( urlArray.length > 1 ) {
+        var parameterArray = urlArray[1].split('&');
+        var sourceArray = parameterArray[0].split('=');
+        var mediumArray = parameterArray[1].split('=');
+        var campaignArray = parameterArray[2].split('=');
+
+        document.cookie = "UTM_SOURCE="+sourceArray[1];
+        document.cookie = "UTM_MEDIUM="+mediumArray[1];
+        document.cookie = "UTM_CAMPAIGN="+campaignArray[1];
+    }
+
+    function getCookie(cname) {
+        var name = cname + "=";
+        var decodedCookie = decodeURIComponent(document.cookie);
+        var ca = decodedCookie.split(';');
+        for(var i = 0; i <ca.length; i++) {
+            var c = ca[i];
+            while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+            }
+            if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+            }
+        }
+        return "";
+    }
+
+    //var source = getCookie("UTM_SOURCE");
+    //alert(source);
+
     /* Candidates form Submission */
     $('#prizesiteCandidatesForm').on('submit', function(e) {
         e.preventDefault();
@@ -100,6 +132,10 @@ jQuery(document).ready(function($) {
         $("#check-label-box").addClass("check-label");
         $("#check-label-box").removeClass("error-occured");
         
+        var source = getCookie("UTM_SOURCE");
+        var medium = getCookie("UTM_MEDIUM");
+        var campaign = getCookie("UTM_CAMPAIGN");
+
         var form = $(this),
             phNumber = form.find('#no').val(),
             emailAddress = form.find('#email').val(),
@@ -192,6 +228,9 @@ jQuery(document).ready(function($) {
 
                 phNumber: phNumber,
                 emailAddress: emailAddress,
+                source: source,
+                medium: medium,
+                campaign: campaign,
                 action: 'prizesite_save_new_verification_data'
 
             },
@@ -295,6 +334,10 @@ jQuery(document).ready(function($) {
         $("#popup-check-label-box").addClass("check-label");
         $("#popup-check-label-box").removeClass("error-occured");
 
+        var source = getCookie("UTM_SOURCE");
+        var medium = getCookie("UTM_MEDIUM");
+        var campaign = getCookie("UTM_CAMPAIGN");
+
         var form = $(this),
             phNumber = form.find('#popup-no').val(),
             emailAddress = form.find('#popup-email').val(),
@@ -381,6 +424,9 @@ jQuery(document).ready(function($) {
 
                 phNumber: phNumber,
                 emailAddress: emailAddress,
+                source: source,
+                medium: medium,
+                campaign: campaign,
                 action: 'prizesite_save_new_verification_data'
 
             },
@@ -524,11 +570,11 @@ jQuery(document).ready(function($) {
     }
 
     if ( window.location.pathname == "/wordpress/v1/winners" ) {
-        $("#carousel-example-1z").css({ "display": "none" });
+        $("#dailydraw-top-desktop-carousel").css({ "display": "none" });
 
         sleep(1000).then(() => {
             //$( "#carousel-example-1z" ).toggle( "fade" );
-            $( "#carousel-example-1z" ).slideDown();
+            $( "#dailydraw-top-desktop-carousel" ).slideDown(6000);
         });
     }
 
