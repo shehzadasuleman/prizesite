@@ -9,53 +9,28 @@ jQuery(document).ready(function($) {
         $("#winners-fb-mob-review .fb-post iframe").css("max-width",divMobWidth);
     }
     setTimeout(changeFacebookFrameSize, 5000);
-    /*setTimeout(changeAdsByScreenSize, 100);
 
     $(window).resize(function(){
         changeFacebookFrameSize();
-        changeAdsByScreenSize();
     });
+
+    // sleep time expects milliseconds
+    function sleep (time) {
+        return new Promise((resolve) => setTimeout(resolve, time));
+    }
     
-    function changeAdsByScreenSize(){
-        var newWindowWidth = $(window).width();
+    var newWindowWidth = $(window).width();
+    if ( window.location.pathname == "/wordpress/v1/winners" ) {
         if (newWindowWidth < 576) {
-            $("#carousel-example-1z #carousel-slide-one").attr("src", "/wordpress/wp-content/themes/prize-site/img/Ads/Slider/Mobile/MobAds1.jpg");
-            $("#carousel-example-1z #carousel-slide-two").attr("src", "/wordpress/wp-content/themes/prize-site/img/Ads/Slider/Mobile/MobAds2.jpg");
-            $("#carousel-example-1z #carousel-slide-three").attr("src", "/wordpress/wp-content/themes/prize-site/img/Ads/Slider/Mobile/MobAds3.jpg");
-            
-            $("#winners-fb-mob-review").css("display","block");
-            $("#winners-fb-review").css("display","none");
-
-            $("#carousel-right-ads").css("display","none");
-            $("#mob-carousel-right-ads").css("display","block");
-            $("#mob-carousel-right-ads #carousel-slide-one").attr("src", "/wordpress/wp-content/themes/prize-site/img/Ads/Slider/Mobile/right-mob-ad1.jpg");
-            $("#mob-carousel-right-ads #carousel-slide-two").attr("src", "/wordpress/wp-content/themes/prize-site/img/Ads/Slider/Mobile/right-mob-ad2.jpg");
-            $("#mob-carousel-right-ads #carousel-slide-three").attr("src", "/wordpress/wp-content/themes/prize-site/img/Ads/Slider/Mobile/right-mob-ad3.jpg");
-        
-            $("#carousel-left-ads").css("display","none");
-            $("#mob-carousel-left-ads").css("display","block");
-            $("#mob-carousel-left-ads #carousel-slide-one").attr("src", "/wordpress/wp-content/themes/prize-site/img/Ads/Slider/Mobile/left-mob-ad1.jpg");
-            $("#mob-carousel-left-ads #carousel-slide-two").attr("src", "/wordpress/wp-content/themes/prize-site/img/Ads/Slider/Mobile/left-mob-ad2.jpg");
-            $("#mob-carousel-left-ads #carousel-slide-three").attr("src", "/wordpress/wp-content/themes/prize-site/img/Ads/Slider/Mobile/left-mob-ad3.jpg");
+            $("#dailydraw-top-mobile-carousel").css({ "display": "none" });
+            sleep(1000).then(() => {
+                $( "#dailydraw-top-mobile-carousel" ).slideDown(6000);
+            });
         } else {
-            $("#winners-fb-mob-review").css("display","none");
-            $("#winners-fb-review").css("display","block");
-            
-            $("#carousel-example-1z #carousel-slide-one").attr("src", "/wordpress/wp-content/themes/prize-site/img/Ads/Slider/Desktop/AdsBanner1.jpg");
-            $("#carousel-example-1z #carousel-slide-two").attr("src", "/wordpress/wp-content/themes/prize-site/img/Ads/Slider/Desktop/AdsBanner2.jpg");
-            $("#carousel-example-1z #carousel-slide-three").attr("src", "/wordpress/wp-content/themes/prize-site/img/Ads/Slider/Desktop/AdsBanner3.jpg");
-            
-            $("#mob-carousel-right-ads").css("display","none");
-            $("#carousel-right-ads").css("display","block");
-            $("#carousel-right-ads #carousel-slide-one").attr("src", "/wordpress/wp-content/themes/prize-site/img/Ads/Slider/Desktop/right-desktop-ad1.jpg");
-            $("#carousel-right-ads #carousel-slide-two").attr("src", "/wordpress/wp-content/themes/prize-site/img/Ads/Slider/Desktop/right-desktop-ad2.jpg");
-            $("#carousel-right-ads #carousel-slide-three").attr("src", "/wordpress/wp-content/themes/prize-site/img/Ads/Slider/Desktop/right-desktop-ad3.jpg");
-
-            $("#mob-carousel-left-ads").css("display","none");
-            $("#carousel-left-ads").css("display","block");
-            $("#carousel-left-ads #carousel-slide-one").attr("src", "/wordpress/wp-content/themes/prize-site/img/Ads/Slider/Desktop/left-desktop-ad1.jpg");
-            $("#carousel-left-ads #carousel-slide-two").attr("src", "/wordpress/wp-content/themes/prize-site/img/Ads/Slider/Desktop/left-desktop-ad2.jpg");
-            $("#carousel-left-ads #carousel-slide-three").attr("src", "/wordpress/wp-content/themes/prize-site/img/Ads/Slider/Desktop/left-desktop-ad3.jpg");
+            $("#dailydraw-top-desktop-carousel").css({ "display": "none" });
+            sleep(1000).then(() => {
+                $( "#dailydraw-top-desktop-carousel" ).slideDown(6000);
+            });
         }
-    }*/
+    }
 });

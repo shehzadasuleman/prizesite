@@ -1390,6 +1390,10 @@
     padding: 0px 10px;
 }
 
+.adplugg-ad img {
+    width: 100%;
+}
+
 @keyframes dots {
     0%, 20% {
       color: rgba(0,0,0,0);
@@ -1586,6 +1590,12 @@
     #dailydraw-right-mobile-carousel-ads #right-next-btn {
         padding-right: 4px;
     }
+    #dailydraw-top-desktop-carousel {
+        display: none;
+    }
+    #dailydraw-right-mobile-carousel-ads {
+        width: 100%;
+    }
 }
 
 @media screen and (min-width: 576px) {
@@ -1598,6 +1608,9 @@
     }
     #dailydraw-top-mobile-carousel-example-1z, #dailydraw-right-mobile-carousel-ads
     , #winners-fb-mob-review, #home-top-mobile-carousel {
+        display: none;
+    }
+    #dailydraw-top-mobile-carousel {
         display: none;
     }
 }

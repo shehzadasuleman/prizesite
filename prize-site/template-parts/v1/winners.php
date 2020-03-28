@@ -46,8 +46,11 @@
     <div class="carousel-ad-info col-xl-10 offset-xl-1 col-lg-10 offset-lg-1 col-md-10 offset-md-1 col-sm-10 offset-sm-1 col-10 offset-1">
         <p>Advertisement</p>
     </div>
-    <div id="dailydraw-top-desktop-carousel" class="carousel slide carousel-fade col-xl-10 offset-xl-1 col-lg-10 offset-lg-1 col-md-10 offset-md-1 col-sm-10 offset-sm-1 col-10 offset-1" data-ride="carousel" data-interval="<?php echo $ads_slide_timer; ?>">
-        <div class="adplugg-tag" data-adplugg-zone="daily_draw_desktop_top_bar"></div>
+    <div id="dailydraw-top-desktop-carousel" class="carousel slide carousel-fade col-xl-10 offset-xl-1 col-lg-10 offset-lg-1 col-md-10 offset-md-1 col-sm-10 offset-sm-1 col-10 offset-1">
+        <div class="adplugg-tag" data-adplugg-zone="dd_desktop_top_bar_zone"></div>
+    </div>
+    <div id="dailydraw-top-mobile-carousel" class="carousel slide carousel-fade col-xl-10 offset-xl-1 col-lg-10 offset-lg-1 col-md-10 offset-md-1 col-sm-10 offset-sm-1 col-10 offset-1">
+        <div class="adplugg-tag" data-adplugg-zone="dd_mobile_top_bar_zone"></div>
     </div>
 </div>
 <!--/.Carousel Wrapper-->
@@ -95,7 +98,78 @@
                             <h3><?php echo $next_draw_message; ?></h3>
                         </div>						
                     </form>
+                </div>
+                <div id="dailydraw-right-mobile-carousel-ads" class="carousel slide carousel-fade" data-ride="carousel" data-interval="<?php echo $ads_slide_timer; ?>">
+                    <?php
+                        $xml=new SimpleXMLElement( $ads_url_xml, 0, 1);
+                        $dailydraw_mobile_right_xml = $xml->xpath('/SiteAds/DailyDraw/Mobile/RightBanner');
+                        $right_mobile_counter = 0;
+                    ?>
+                    <!--Indicators -->
+                    <ol class="carousel-indicators">
+                        <?php while( $right_mobile_counter < count($dailydraw_mobile_right_xml) ) { ?>
+                                <li data-target="#dailydraw-right-mobile-carousel-ads" data-slide-to="<?php echo $right_mobile_counter; ?>" class="<?php if( $right_mobile_counter == 0 ) { echo "active"; } ?>"></li>
+                        <?php $right_mobile_counter = $right_mobile_counter + 1; } ?>
+                    </ol>
+                    <!--/.Indicators-->
+                    <!--Slides-->
+                    <div class="carousel-inner" role="listbox">
+                        <?php
+                            $right_mobile_counter = 0;
+                            foreach ($dailydraw_mobile_right_xml as $right_banner) { 
+                        ?>
+                                <div class="carousel-item <?php if( $right_mobile_counter == 0 ) { echo "active"; } ?>">
+                                    <a id="<?php echo $right_banner->LinkId; ?>" target="_blank" href="<?php echo $right_banner->TargetUrl; ?>"><img class="d-block w-100" src="<?php echo $right_banner->ImageUrl; ?>" alt="<?php echo $right_banner->ImageTitle; ?>"></a>
+                                </div>
+                        <?php $right_mobile_counter = $right_mobile_counter + 1; } ?>
+                    </div>
+                    <!--Controls-->
+                    <a id="right-prev-btn" class="carousel-control-prev" href="#dailydraw-right-mobile-carousel-ads" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a id="right-next-btn" class="carousel-control-next" href="#dailydraw-right-mobile-carousel-ads" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                    <!--/.Controls-->
+                </div>
 				<div id="winners-right-ad" class="col-xl-3 col-lg-3 col-md-2 col-sm-2 img-content">
+                    <div id="dailydraw-right-desktop-carousel-ads" class="carousel slide carousel-fade" data-ride="carousel" data-interval="<?php echo $ads_slide_timer; ?>">
+                        <?php
+                            $xml=new SimpleXMLElement( $ads_url_xml, 0, 1);
+                            $dailydraw_desktop_right_xml = $xml->xpath('/SiteAds/DailyDraw/Desktop/RightBanner');
+                            $right_desktop_counter = 0;
+                        ?>
+                        <!--Indicators -->
+                        <ol class="carousel-indicators">
+                            <?php while( $right_desktop_counter < count($dailydraw_desktop_right_xml) ) { ?>
+                                    <li data-target="#dailydraw-right-desktop-carousel-ads" data-slide-to="<?php echo $right_desktop_counter; ?>" class="<?php if( $right_desktop_counter == 0 ) { echo "active"; } ?>"></li>
+                            <?php $right_desktop_counter = $right_desktop_counter + 1; } ?>
+                        </ol>
+                        <!--/.Indicators-->
+                        <!--Slides-->
+                        <div class="carousel-inner" role="listbox">
+                            <?php
+                                $right_desktop_counter = 0;
+                                foreach ($dailydraw_desktop_right_xml as $right_banner) { 
+                            ?>
+                                    <div class="carousel-item <?php if( $right_desktop_counter == 0 ) { echo "active"; } ?>">
+                                        <a id="<?php echo $right_banner->LinkId; ?>" target="_blank" href="<?php echo $right_banner->TargetUrl; ?>"><img class="d-block w-100" src="<?php echo $right_banner->ImageUrl; ?>" alt="<?php echo $right_banner->ImageTitle; ?>"></a>
+                                    </div>
+                            <?php $right_desktop_counter = $right_desktop_counter + 1; } ?>
+                        </div>
+                        <!--Controls-->
+                        <a id="right-prev-btn" class="carousel-control-prev" href="#dailydraw-right-desktop-carousel-ads" role="button" data-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a id="right-next-btn" class="carousel-control-next" href="#dailydraw-right-desktop-carousel-ads" role="button" data-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                        <!--/.Controls-->
+                    </div>
                     <div id="winners-fb-mob-review">
                         <strong class="title">Facebook Reviews</strong>
                         <p>Here are some reviews left by some of our winners.</p>

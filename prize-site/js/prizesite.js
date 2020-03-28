@@ -569,13 +569,4 @@ jQuery(document).ready(function($) {
         });
     }
 
-    if ( window.location.pathname == "/wordpress/v1/winners" ) {
-        $("#dailydraw-top-desktop-carousel").css({ "display": "none" });
-
-        sleep(1000).then(() => {
-            //$( "#carousel-example-1z" ).toggle( "fade" );
-            $( "#dailydraw-top-desktop-carousel" ).slideDown(6000);
-        });
-    }
-
 });
