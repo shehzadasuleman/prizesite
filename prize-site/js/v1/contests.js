@@ -206,8 +206,16 @@ jQuery(document).ready(function($) {
 
     if ( window.location.pathname == "/wordpress/v1/live-contest" ) {
 
+        var endDateArray = end_date.split("-");
+        var endDateYear = parseInt(endDateArray[0]);
+        var endDateMonth = parseInt(endDateArray[1]) - 1;
+        var endDateDay = parseInt(endDateArray[2]);
+        var endDateHours = 23;
+        var endDateMins = 59;
+        var endDateSecs = 59;
+        
         // Set the date we're counting down to
-        var countDownDate = new Date(end_date).getTime();
+        var countDownDate = new Date(endDateYear , endDateMonth , endDateDay, endDateHours, endDateMins, endDateSecs).getTime();
 
         // Update the count down every 1 second
         var x = setInterval(function() {

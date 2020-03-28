@@ -14,9 +14,9 @@
     $onhold_notification_message = get_option( 'prizesite_onhold_notification' );
     $onhold_page_enabler = get_option( 'prizesite_onhold_page_enabler' );
     $ads_slide_timer = get_option( 'prizesite_winners_ad_timer' );
-    $ads_banner_1 = get_template_directory_uri() . '/img/Ads/Slider/Desktop/AdsBanner1.jpg';
-    $ads_banner_2 = get_template_directory_uri() . '/img/Ads/Slider/Desktop/AdsBanner2.jpg';
-    $ads_banner_3 = get_template_directory_uri() . '/img/Ads/Slider/Desktop/AdsBanner3.jpg';
+    $ads_banner_1 = get_template_directory_uri() . '/img/Ads/Slider/AdsBanner1.jpg';
+    $ads_banner_2 = get_template_directory_uri() . '/img/Ads/Slider/AdsBanner2.jpg';
+    $ads_banner_3 = get_template_directory_uri() . '/img/Ads/Slider/AdsBanner3.jpg';
     $ads_url_xml = get_template_directory_uri() . "/ads.xml";
 ?>
 <?php if ( $onhold_page_enabler == 1 ) { ?>
@@ -64,9 +64,9 @@
         </div>
     <?php } ?>
 <div id="wrapper">
-    <?php if ( ("/wordpress/v1/winners" == $current_uri || strpos($current_uri, "/wordpress/v1/winners") !== false) || ( "/wordpress/v1/contests" == $current_uri || strpos($current_uri, "/wordpress/v1/contests") !== false) || ( "/wordpress/v1/whatsapp" == $current_uri || strpos($current_uri, "/wordpress/v1/whatsapp") !== false) || ( "/wordpress/v1/success-confirmation-page" == $current_uri || strpos($current_uri, "/wordpress/v1/success-confirmation-page") !== false) || ( "/wordpress/v1/view-contests" == $current_uri || strpos($current_uri, "/wordpress/v1/view-contests") !== false) || ( "/wordpress/v1/live-contest" == $current_uri || strpos($current_uri, "/wordpress/v1/live-contest") !== false) || ( "/wordpress/v1" == $current_uri || strpos($current_uri, "/wordpress/v1") !== false) ):?>
+    <?php if ( ("/wordpress/v1/winners" == $current_uri || strpos($current_uri, "/wordpress/v1/winners") !== false) || ( "/wordpress/v1/contests" == $current_uri || strpos($current_uri, "/wordpress/v1/contests") !== false) || ( "/wordpress/v1/whatsapp" == $current_uri || strpos($current_uri, "/wordpress/v1/whatsapp") !== false) || ( "/wordpress/v1/success-confirmation-page" == $current_uri || strpos($current_uri, "/wordpress/v1/success-confirmation-page") !== false) || ( "/wordpress/v1/view-contests" == $current_uri || strpos($current_uri, "/wordpress/v1/view-contests") !== false) || ( "/wordpress/v1/live-contest" == $current_uri || strpos($current_uri, "/wordpress/v1/live-contest") !== false) || ( "/wordpress/v1" == $current_uri) ):?>
         <header id="header" style="min-height:0px;">
-    <?php elseif ( ( "/wordpress/v1/winners" != $current_uri || strpos($current_uri, "/wordpress/v1/winners") !== true ) && ( "/wordpress/v1/contests" != $current_uri || strpos($current_uri, "/wordpress/v1/contests") !== true) && ( "/wordpress/v1/whatsapp" != $current_uri || strpos($current_uri, "/wordpress/v1/whatsapp") !== true) && ( "/wordpress/v1/success-confirmation-page" != $current_uri || strpos($current_uri, "/wordpress/v1/success-confirmation-page") !== true) && ( "/wordpress/v1/view-contests" != $current_uri || strpos($current_uri, "/wordpress/v1/view-contests") !== true) && ( "/wordpress/v1/live-contest" != $current_uri || strpos($current_uri, "/wordpress/v1/live-contest") !== true) && ( "/wordpress/v1" == $current_uri || strpos($current_uri, "/wordpress/v1") !== false) ):?>
+    <?php elseif ( ( "/wordpress/v1/winners" != $current_uri || strpos($current_uri, "/wordpress/v1/winners") !== true ) && ( "/wordpress/v1/contests" != $current_uri || strpos($current_uri, "/wordpress/v1/contests") !== true) && ( "/wordpress/v1/whatsapp" != $current_uri || strpos($current_uri, "/wordpress/v1/whatsapp") !== true) && ( "/wordpress/v1/success-confirmation-page" != $current_uri || strpos($current_uri, "/wordpress/v1/success-confirmation-page") !== true) && ( "/wordpress/v1/view-contests" != $current_uri || strpos($current_uri, "/wordpress/v1/view-contests") !== true) && ( "/wordpress/v1/live-contest" != $current_uri || strpos($current_uri, "/wordpress/v1/live-contest") !== true) ):?>
         <header id="header" style="background-image: url(<?php print $background_url ?>);">
     <?php endif; ?>
             <div class="header-holder">
