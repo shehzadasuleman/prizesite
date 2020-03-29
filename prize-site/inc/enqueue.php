@@ -56,13 +56,13 @@ function prizesite_load_scripts() {
     wp_enqueue_script( 'jquery-main', get_template_directory_uri() . '/js/jquery.main.js', array('jquery'), '1.0.0', true );
     wp_enqueue_script( 'jquery-plugin', get_template_directory_uri() . '/js/jquery.plugin.js', array('jquery'), '1.0.0', true );
     wp_enqueue_script( 'jquery-countdown', get_template_directory_uri() . '/js/jquery.countdown.js', array('jquery'), '2.0.2', true );
+    wp_enqueue_script( 'redirect-js', get_template_directory_uri() . '/js/v1/jquery.redirect.js', array('jquery'), '1.1.3', 'all' );
     
     // New Design - End
     wp_enqueue_script( 'prizesite-js', get_template_directory_uri() . '/js/prizesite.js', array('jquery'), '1.0.0', 'all' );
     wp_enqueue_script( 'prizesite-v1-js', get_template_directory_uri() . '/js/v1/prizesite.js', array('jquery'), '1.0.0', 'all' );
     wp_enqueue_script( 'faqs-js', get_template_directory_uri() . '/js/v1/faqs.js', array('jquery'), '1.0.0', 'all' );
     wp_enqueue_script( 'ads-js', get_template_directory_uri() . '/js/v1/ads.js', array('jquery'), '1.0.0', 'all' );
-    wp_enqueue_script( 'redirect-js', get_template_directory_uri() . '/js/v1/jquery.redirect.js', array('jquery'), '1.1.3', 'all' );
     wp_enqueue_script( 'contests-js', get_template_directory_uri() . '/js/v1/contests.js', array('jquery'), '1.0.0', 'all' );
     wp_enqueue_script( 'jquery-qrcode-js', get_template_directory_uri() . '/js/v1/jquery-qrcode.js', array('jquery'), '0.17.0', 'all' );
     wp_enqueue_script( 'qrcode-js', get_template_directory_uri() . '/js/v1/qrcode.js', array('jquery'), '1.0.0', 'all' );

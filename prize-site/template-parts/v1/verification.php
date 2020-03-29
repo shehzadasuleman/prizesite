@@ -27,7 +27,7 @@
             <div class="row winners-partitioned-actual-content">
                 <div class="col-xl-3 col-lg-3 col-md-2 col-sm-2 img-content">
 					<!-- Left Side Ad -->
-					<a target="_blank"  href="https://www.foodpanda.pk/contents/deals"><img alt="Food Panda Ad" src="/wp-content/themes/prize-site/img/foodpanda.jpg"></a><br/><br/>
+					<a target="_blank"  href="https://www.foodpanda.pk/contents/deals"><img alt="Food Panda Ad" src="/wordpress/wp-content/themes/prize-site/img/Ads/Slider/MobAds1.jpg"></a><br/><br/>
                 </div>
                 <div class="col-xl-6 col-lg-6 col-md-8 col-sm-8 recent-winners-content">
                     <?php
@@ -96,7 +96,7 @@
                     </div>
                 </div>
 				<div class="col-xl-3 col-lg-3 col-md-2 col-sm-2 img-content">
-                        <p><a target="_blank"  href="https://www.youtube.com/watch?v=xJyCU8WgQp8"><img src="/wp-content/themes/prize-site/img/bykea.jpg"></a></p>
+                        <p><a target="_blank"  href="https://www.youtube.com/watch?v=xJyCU8WgQp8"><img src="/wordpress/wp-content/themes/prize-site/img/Ads/Slider/MobAds2.jpg"></a></p>
                 </div>
             </div>
         </div>

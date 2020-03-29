@@ -3,16 +3,20 @@ jQuery(document).ready(function($) {
     var origin = document.location.origin;
 
     var urlPath = window.location;
-    var urlArray = String(urlPath).split('?');
-    if( urlArray.length > 1 ) {
-        var parameterArray = urlArray[1].split('&');
-        var sourceArray = parameterArray[0].split('=');
-        var mediumArray = parameterArray[1].split('=');
-        var campaignArray = parameterArray[2].split('=');
+    var urlPathString = String(urlPath);
+    if ( urlPathString.indexOf('utm_source') != -1 || urlPathString.indexOf('utm_medium') != -1 || urlPathString.indexOf('utm_campaign') != -1 ) {
+        alert("Split");
+        var urlArray = String(urlPath).split('?');
+        if( urlArray.length > 1 ) {
+            var parameterArray = urlArray[1].split('&');
+            var sourceArray = parameterArray[0].split('=');
+            var mediumArray = parameterArray[1].split('=');
+            var campaignArray = parameterArray[2].split('=');
 
-        document.cookie = "UTM_SOURCE="+sourceArray[1];
-        document.cookie = "UTM_MEDIUM="+mediumArray[1];
-        document.cookie = "UTM_CAMPAIGN="+campaignArray[1];
+            document.cookie = "UTM_SOURCE="+sourceArray[1];
+            document.cookie = "UTM_MEDIUM="+mediumArray[1];
+            document.cookie = "UTM_CAMPAIGN="+campaignArray[1];
+        }
     }
 
     function getCookie(cname) {
@@ -268,7 +272,7 @@ jQuery(document).ready(function($) {
     function sleep (time) {
         return new Promise((resolve) => setTimeout(resolve, time));
     }
-
+    
     $('#prizesite-lucky-form-check').on('submit', function(e) {
 
         e.preventDefault();
@@ -521,6 +525,45 @@ jQuery(document).ready(function($) {
             $("#verification-retrieve-data-error").css({ "display": "none" });
             $("#verification-retrieve-data-failure").css({ "display": "none" });
             $("#error-msg").css({ "display": "none" });
+
+            var urlPath = window.location;
+            var urlArray = String(urlPath).split('?');
+            var hashArray = urlArray[1].split('=');
+
+            var form = $(this),
+                hash = hashArray[1],
+                ajaxurl = ajax_admin_url;
+
+            $.ajax({
+
+                url: ajaxurl,
+                type: 'post',
+                data: {
+        
+                    hash: hash,
+                    action: 'prizesite_get_new_verification_data'
+        
+                },
+                error: function(response) {
+                    console.log(response);
+                },
+                success: function(response) {
+                    var respArray = response.split('-');
+                    if(response == -100) {
+                        $("#verification-retrieve-data-failure").fadeTo(2000, 500).slideUp(500, function() {
+                            $("#verification-retrieve-data-failure").slideUp(500);
+                        });
+                    } else if(response == 0) {
+                        $("#verification-retrieve-data-error").fadeTo(2000, 500).slideUp(500, function() {
+                            $("#verification-retrieve-data-error").slideUp(500);
+                        });
+                    } else{
+                        var email = respArray[1].replace("0","");
+                        var title = $('#verification-title').html().replace("{email}", email);
+                        document.getElementById("verification-title").innerHTML = title;
+                    }
+                }
+            });
         }
 
         $('#prizesite-verification-email-resend').on('submit', function(e) {

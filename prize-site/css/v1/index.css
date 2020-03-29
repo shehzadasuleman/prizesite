@@ -1394,6 +1394,10 @@
     width: 100%;
 }
 
+#prizesite-lucky-form-verification .input-content-mobile h2 {
+    color: black;
+}
+
 @keyframes dots {
     0%, 20% {
       color: rgba(0,0,0,0);
