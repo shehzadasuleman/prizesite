@@ -5,7 +5,6 @@ jQuery(document).ready(function($) {
     var urlPath = window.location;
     var urlPathString = String(urlPath);
     if ( urlPathString.indexOf('utm_source') != -1 || urlPathString.indexOf('utm_medium') != -1 || urlPathString.indexOf('utm_campaign') != -1 ) {
-        alert("Split");
         var urlArray = String(urlPath).split('?');
         if( urlArray.length > 1 ) {
             var parameterArray = urlArray[1].split('&');

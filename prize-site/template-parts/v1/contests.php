@@ -5,9 +5,9 @@
 ?>
 <?php
     date_default_timezone_set('Asia/Karachi');
-    $right_ads_banner_1 = get_template_directory_uri() . '/img/Ads/Slider/Desktop/right-desktop-ad1.jpg';
-    $right_ads_banner_2 = get_template_directory_uri() . '/img/Ads/Slider/Desktop/right-desktop-ad2.jpg';
-    $right_ads_banner_3 = get_template_directory_uri() . '/img/Ads/Slider/Desktop/right-desktop-ad3.jpg';
+    $right_ads_banner_1 = get_template_directory_uri() . '/img/Ads/Slider/right-desktop-ad1.jpg';
+    $right_ads_banner_2 = get_template_directory_uri() . '/img/Ads/Slider/right-desktop-ad2.jpg';
+    $right_ads_banner_3 = get_template_directory_uri() . '/img/Ads/Slider/right-desktop-ad3.jpg';
     $test_image = get_template_directory_uri() . '/img/Ads/travel-ad.jpg';
     $ads_slide_timer = get_option( 'prizesite_winners_ad_timer' );
     $previous_contests_count = 0;

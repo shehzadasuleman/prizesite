@@ -704,6 +704,36 @@
                     endif;
                 ?>
             </div>
+        <?php elseif ( "/wordpress/v1/register/" == $current_uri || strpos($current_uri, "/wordpress/v1/register/") !== false ):?>
+            <div class="clients-content">
+                <?php
+                    if (have_posts() ):
+                        while( have_posts() ): the_post();
+                            get_template_part( 'template-parts/v1/register', get_post_format() );
+                        endwhile;
+                    endif;
+                ?>
+            </div>
+        <?php elseif ( "/wordpress/v1/login/" == $current_uri || strpos($current_uri, "/wordpress/v1/login/") !== false ):?>
+            <div class="clients-content">
+                <?php
+                    if (have_posts() ):
+                        while( have_posts() ): the_post();
+                            get_template_part( 'template-parts/v1/login', get_post_format() );
+                        endwhile;
+                    endif;
+                ?>
+            </div>
+        <?php elseif ( "/wordpress/v1/password-reset/" == $current_uri || strpos($current_uri, "/wordpress/v1/password-reset/") !== false ):?>
+            <div class="clients-content">
+                <?php
+                    if (have_posts() ):
+                        while( have_posts() ): the_post();
+                            get_template_part( 'template-parts/v1/password-reset', get_post_format() );
+                        endwhile;
+                    endif;
+                ?>
+            </div>
         <?php elseif ( "/wordpress/v1/404" == $current_uri || strpos($current_uri, "/wordpress/v1/404") !== false ):?>
             <div class="clients-content">
                 <?php
@@ -717,7 +747,7 @@
                 ?>
             </div>
         <?php else: ?>
-        <script type="text/javascript">window.location = 'http://localhost/wordpress/v1/404';</script>
+            <script type="text/javascript">window.location = 'http://localhost/wordpress/v1/404';</script>
         <?php endif; ?>
     </main>
 </div>

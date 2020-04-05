@@ -248,44 +248,14 @@ jQuery(document).ready(function($) {
         $('#prizesite-contest-comment-form').on('submit', function(e) {
             e.preventDefault();
     
-            $("#comment-name-error-msg").css({ "display": "none" });
-            $("#comment-name-invalid-msg").css({ "display": "none" });
-            $("#comment-no-error-msg").css({ "display": "none" });
-            $("#comment-number-invalid-msg").css({ "display": "none" });
             $("#comment-text-error-msg").css({ "display": "none" });
-            $("#comment-name").css({ "border-color": "#387E1B", "background-color": "#F2F2F2" });
-            $("#comment-no").css({ "border-color": "#387E1B", "background-color": "#F2F2F2" });
             $("#comment-text").css({ "border-color": "#387E1B", "background-color": "#F2F2F2" });
     
            var form = $(this),
-                name = form.find('#comment-name').val(),
-                phNumber = form.find('#comment-no').val(),
                 ctext = form.find('#comment-text').val(),
                 ajaxurl = form.data('url');
     
             var isError = 0;
-            
-            if (phNumber === '') {
-                $("#comment-no").css({ "border-color": "#da6666" });
-                $("#comment-no-error-msg").css({ "color": "#da6666", "background-color": "rgba(218, 102, 102, .3)",
-                "border-radius": "5px",
-                "display": "block",
-                "margin": "10px 0 0",
-                "padding": "7px 15px" });
-                $(".label").css({ "display": "none" });
-                isError = 1;
-            }
-    
-            if (name === '') {
-                $("#comment-name").css({ "border-color": "#da6666" });
-                $("#comment-name-error-msg").css({ "color": "#da6666", "background-color": "rgba(218, 102, 102, .3)",
-                "border-radius": "5px",
-                "display": "block",
-                "margin": "10px 0 0",
-                "padding": "7px 15px" });
-                $(".label").css({ "display": "none" });
-                isError = 1;
-            }
     
             if (ctext === '') {
                 $("#comment-text").css({ "border-color": "#da6666" });
@@ -300,34 +270,11 @@ jQuery(document).ready(function($) {
     
             if ( isError == 1 ) { return ; }
     
-            function IsValidPhone(phNumber) {
-                var regex = /^((\+92)|(0092))-{0,1}\d{3}-{0,1}\d{7}$|^\d{11}$|^\d{4}-\d{7}$/;
-                if(!regex.test(phNumber)) {
-                  return 1;
-                }else{
-                  return 0;
-                }
-            }
-
-            if(IsValidPhone(phNumber)==1){
-                $("#comment-no").css({ "border-color": "#da6666" });
-                $("#comment-number-invalid-msg").css({ "color": "#da6666", "background-color": "rgba(218, 102, 102, .3)",
-                "border-radius": "5px",
-                "display": "block",
-                "margin": "10px 0 0",
-                "padding": "7px 15px" });
-                $(".label").css({ "display": "none" });
-                return ;
-            }
-    
             $.ajax({
     
                 url: ajaxurl,
                 type: 'post',
                 data: {
-    
-                    name: name,
-                    phNumber: phNumber,
                     comment: ctext,
                     constestID: contest_id,
                     action: 'prizesite_save_new_comment_data'

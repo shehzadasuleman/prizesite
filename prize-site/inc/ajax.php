@@ -41,8 +41,17 @@ add_action( 'wp_ajax_prizesite_update_share_count_data', 'update_share_count_dat
 add_action( 'wp_ajax_nopriv_prizesite_save_new_comment_data', 'save_comment_data' );
 add_action( 'wp_ajax_prizesite_save_new_comment_data', 'save_comment_data' );
 
+add_action( 'wp_ajax_nopriv_prizesite_save_contests_user_data', 'save_contests_user_data' );
+add_action( 'wp_ajax_prizesite_save_contests_user_data', 'save_contests_user_data' );
+
 function save_candidate_data(){
 
+	$userid = 0;
+	$user = wp_get_current_user();
+	if ( $user->ID > 0 )
+	{
+		$userid = $user->ID;
+	}
 	$code = wp_strip_all_tags($_POST["passCode"]);
 	$hash = wp_strip_all_tags($_POST["hash"]);
 	$verification_id = zlib_decode( hex2bin( $hash ) );
@@ -103,6 +112,7 @@ function save_candidate_data(){
 		update_post_meta( $postID, '_contact_campaign_value_key', $campaign );
 		update_post_meta( $postID, '_contact_city_value_key', $city );
 		update_post_meta( $postID, '_contact_area_value_key', $area );
+		update_post_meta( $postID, '_contact_userid_value_key', $userid );
 		$return_value = $postID;
 	}
 
@@ -128,8 +138,14 @@ function check_candidate_data(){
     else if(isset($_SERVER['REMOTE_ADDR']))
         $ipaddress = $_SERVER['REMOTE_ADDR'];
     else
-        $ipaddress = 'UNKNOWN';
-	
+		$ipaddress = 'UNKNOWN';
+		
+	$userid = 0;
+	$user = wp_get_current_user();
+	if ( $user->ID > 0 )
+	{
+		$userid = $user->ID;
+	}
 	$retrieve_date = getdate();
 
 	$number = wp_strip_all_tags($_POST["phNumber"]);
@@ -165,6 +181,7 @@ function check_candidate_data(){
 		$return_value = -200;
 		if($query->have_posts() ) : while ( $query->have_posts() ) : $query->the_post();
 			$title = get_post_meta(get_the_ID(), '_winners_actualnumber_value_key', true);
+			update_post_meta( get_the_ID(), '_winners_userid_value_key', $userid );
 			if($title == $number && $date_to_match == get_the_Date("j - n - Y")){
 				$return_value = -300;
 			}
@@ -188,6 +205,7 @@ function check_candidate_data(){
 		$postID = wp_insert_post( $args );
 		update_post_meta( $postID, '_prizecheck_status_value_key', $status );
 		update_post_meta( $postID, '_prizecheck_ip_value_key', $ipaddress );
+		update_post_meta( $postID, '_prizecheck_userid_value_key', $userid );
 	} else {
 		$args = array(
 			'post_title' => $number,
@@ -199,6 +217,7 @@ function check_candidate_data(){
 		$postID = wp_insert_post( $args );
 		update_post_meta( $postID, '_prizecheck_status_value_key', "NOT REGISTERED" );
 		update_post_meta( $postID, '_prizecheck_ip_value_key', $ipaddress );
+		update_post_meta( $postID, '_prizecheck_userid_value_key', $userid );
 	}
 
 	echo $return_value;
@@ -621,9 +640,17 @@ function save_comment_data(){
         $ipaddress = $_SERVER['REMOTE_ADDR'];
     else
 		$ipaddress = 'UNKNOWN';
-		
-	$number = wp_strip_all_tags($_POST["phNumber"]);
-	$name = wp_strip_all_tags($_POST["name"]);
+
+	$number = "";
+	$name = "";
+	$userid = 0;
+	$user = wp_get_current_user();
+	if ( $user->ID > 0 )
+	{
+		$number = get_user_meta($user->ID,'mobile_number',true);
+		$name = $user->user_login;
+		$userid = $user->ID;
+	}
 	$comment = wp_strip_all_tags($_POST["comment"]);
 	$contest_id = wp_strip_all_tags($_POST["constestID"]);
 	$details = json_decode(file_get_contents("http://ipinfo.io/{$ipaddress}"));
@@ -667,6 +694,7 @@ function save_comment_data(){
 		$postID = wp_insert_post( $args );
 		update_post_meta( $postID, '_comments_commenttext_value_key', $comment );
 		update_post_meta( $postID, '_comments_contesttitle_value_key', get_the_title($contest_id) );
+		update_post_meta( $postID, '_comments_userid_value_key', $userid );
 		update_post_meta( $postID, '_comments_phoneno_value_key', $number );
 		update_post_meta( $postID, '_comments_name_value_key', $name );
 		update_post_meta( $postID, '_comments_city_value_key', $city );
@@ -681,6 +709,60 @@ function save_comment_data(){
 
 }
 
+function save_contests_user_data(){
+	$uname = wp_strip_all_tags($_POST["uName"]);
+	$number = wp_strip_all_tags($_POST["phNumber"]);
+	$email = wp_strip_all_tags($_POST["emailAddress"]);
+	$password = wp_strip_all_tags($_POST["password"]);
+	$verified = 0;
+	$is_duplicate = 0;
+	$is_already_exists = 0;
+
+	global $wpdb;
+    $title_exists = $wpdb->get_results( 
+        "
+        SELECT ID
+        FROM $wpdb->posts
+        WHERE  
+            post_title = '" . $email . "'
+        AND
+            post_type = '" . 'prizesite-cusers' .  "'    
+        "
+	);
+
+	if(count($title_exists) > 0){
+		$postID = -100;
+		$is_already_exists = 1;
+	}
+
+	if ( $is_already_exists != 1 ) {
+		$args = array(
+			'post_title' => $email,
+			'post_author' => 1,
+			'post_status' => 'publish',
+			'post_type' => 'prizesite-cusers'
+		);
+	
+		$postID = wp_insert_post( $args );
+		update_post_meta( $postID, '_cusers_uname_value_key', $uname );
+		update_post_meta( $postID, '_cusers_password_value_key', $password );
+		update_post_meta( $postID, '_cusers_phnumber_value_key', $number );
+		update_post_meta( $postID, '_cusers_emailverified_value_key', $verified );
+
+		$postID = $postID.'-'.bin2hex(zlib_encode($postID, ZLIB_ENCODING_DEFLATE));
+		
+		/*$to = $email;
+		$subject = "Muftpaise Email Verification";
+		$message = "Hi there,\n\nThe details for your requested verification code are as follows, if you have not requested this verification code, please report it at contact@muftpaise.com.\n\nVerification Code: ".$passcode.".";
+		wp_mail( $to, $subject, $message);*/
+	} else {
+		$postID = -200;
+	}
+
+	echo $postID;
+
+	die();
+}
 
 
 

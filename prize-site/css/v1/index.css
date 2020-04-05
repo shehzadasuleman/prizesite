@@ -1398,6 +1398,29 @@
     color: black;
 }
 
+#register-link-block a {
+    color: #06174f;
+    font-weight: 500;
+    margin-bottom: 0%;
+    font-size: 16px;
+}
+
+#register-form-title {
+    color: #06174f;
+    max-width: 450px;
+    margin: auto;
+    text-align: justify;
+    margin-top: 30px;
+}
+
+#signin-form-title {
+    color: #06174f;
+    max-width: 450px;
+    margin: auto;
+    text-align: justify;
+    margin-top: 30px;
+}
+
 @keyframes dots {
     0%, 20% {
       color: rgba(0,0,0,0);

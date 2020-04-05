@@ -2167,6 +2167,18 @@ a:focus {
     #dailydraw-right-mobile-carousel-ads .carousel-control-next-icon {
         margin-right: 0px;
     }
+    .clients-content #register-form-title, .clients-content #user-registration-form {
+        margin-left: 15px;
+        margin-right: 15px;
+    }
+    .clients-content #signin-form-title, .clients-content #user-signin-form {
+        margin-left: 15px;
+        margin-right: 15px;
+    }
+    .clients-content #user-password-reset-form {
+        margin-left: 15px;
+        margin-right: 15px;
+    }
 }
 
 @media screen and (max-width: 350px) {

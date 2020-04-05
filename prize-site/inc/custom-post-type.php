@@ -50,13 +50,13 @@ function prizesite_set_contact_columns( $columns ){
 	$newColumns['utmsource'] = 'Campaign Source';
 	$newColumns['utmmedium'] = 'Campaign Medium';
 	$newColumns['utmcampaign'] = 'Campaign Name';
+	$newColumns['userid'] = 'User Id';
 	return $newColumns;
 }
 
 function prizesite_contact_custom_column( $column, $post_id ){
 	
 	switch( $column ){
-			
 		case 'ip' :
 			echo get_post_meta( $post_id, '_contact_ip_value_key', true);
 			break;
@@ -78,6 +78,9 @@ function prizesite_contact_custom_column( $column, $post_id ){
 		case 'utmcampaign' :
 			echo get_post_meta( $post_id, '_contact_campaign_value_key', true);
 			break;
+		case 'userid' :
+			echo get_post_meta( $post_id, '_contact_userid_value_key', true);
+			break;
 	}
 	
 }
@@ -91,6 +94,7 @@ function prizesite_contact_add_meta_box() {
 	add_meta_box( 'contact_utmsource', 'Campaign Source', 'prizesite_contact_source_callback', 'prizesite-contact' );
 	add_meta_box( 'contact_utmmedium', 'Campaign Medium', 'prizesite_contact_medium_callback', 'prizesite-contact' );
 	add_meta_box( 'contact_utmcampaign', 'Campaign Name', 'prizesite_contact_campaign_callback', 'prizesite-contact' );
+	add_meta_box( 'contact_userid', 'User Id', 'prizesite_contact_userid_callback', 'prizesite-contact' );
 }
 function prizesite_contact_ip_callback( $post ) {
 	wp_nonce_field( 'prizesite_save_contact_ip_data', 'prizesite_contact_ip_meta_box_nonce' );
@@ -148,8 +152,15 @@ function prizesite_contact_campaign_callback( $post ) {
 	echo '<label for="prizesite_contact_campaign_field">Campaign Name: </label>';
 	echo '<input type="text" id="prizesite_contact_campaign_field" name="prizesite_contact_campaign_field" value="' . esc_attr( $campaign_value ) . '" size="25" />';
 }
-function prizesite_save_contact_bulk_data( $post_id ) {
+function prizesite_contact_userid_callback( $post ) {
+	wp_nonce_field( 'prizesite_save_contact_userid_data', 'prizesite_contact_userid_meta_box_nonce' );
+
+	$userid_value = get_post_meta( $post->ID, '_contact_userid_value_key', true );
 	
+	echo '<label for="prizesite_contact_userid_field">User Id: </label>';
+	echo '<input type="text" id="prizesite_contact_userid_field" name="prizesite_contact_userid_field" value="' . esc_attr( $userid_value ) . '" size="25" />';
+}
+function prizesite_save_contact_bulk_data( $post_id ) {
 	if( defined('DOING_AUTOSAVE') && DOING_AUTOSAVE ) {
 		return;
 	}
@@ -190,6 +201,11 @@ function prizesite_save_contact_bulk_data( $post_id ) {
 		$my_data = sanitize_text_field( $_POST['prizesite_contact_campaign_field'] );
 
 		update_post_meta( $post_id, '_contact_campaign_value_key', $my_data );
+	}
+	if(isset( $_POST['prizesite_contact_userid_meta_box_nonce'] ) && isset( $_POST['prizesite_contact_userid_field']) ) {
+		$my_data = sanitize_text_field( $_POST['prizesite_contact_userid_field'] );
+
+		update_post_meta( $post_id, '_contact_userid_value_key', $my_data );
 	}
 }
 
@@ -233,6 +249,7 @@ function prizesite_set_winners_columns( $columns ){
 	$newColumns['prizeamount'] = 'Prize Amount';
 	$newColumns['prizeclaimed'] = 'Prize Claimed';
 	$newColumns['actualnumber'] = 'Actual Number';
+	$newColumns['userid'] = 'User Id';
 	$newColumns['date'] = 'Date';
 	return $newColumns;
 }
@@ -249,6 +266,9 @@ function prizesite_winners_custom_column( $column, $post_id ){
 		case 'actualnumber' :
 			echo get_post_meta( $post_id, '_winners_actualnumber_value_key', true);
 			break;
+		case 'userid' :
+			echo get_post_meta( $post_id, '_winners_userid_value_key', true);
+			break;
 	}
 	
 }
@@ -258,6 +278,7 @@ function prizesite_winners_add_meta_box() {
 	add_meta_box( 'winners_prizeamount', 'Prize Amount', 'prizesite_winners_prizeamount_callback', 'prizesite-winners' );
 	add_meta_box( 'winners_prizeclaimed', 'Prize Claimed', 'prizesite_winners_prizeclaimed_callback', 'prizesite-winners' );
 	add_meta_box( 'winners_actualnumber', 'Actual Number', 'prizesite_winners_actualnumber_callback', 'prizesite-winners' );
+	add_meta_box( 'winners_userid', 'User Id', 'prizesite_winners_userid_callback', 'prizesite-winners' );
 }
 
 function prizesite_winners_prizeamount_callback( $post ) {
@@ -287,6 +308,15 @@ function prizesite_winners_actualnumber_callback( $post ) {
 	echo '<input type="text" id="prizesite_winners_actualnumber_field" name="prizesite_winners_actualnumber_field" value="' . esc_attr( $actual_value ) . '" size="25" />';
 }
 
+function prizesite_winners_userid_callback( $post ) {
+	wp_nonce_field( 'bulk_save_winners_custom_fields', 'prizesite_winners_userid_meta_box_nonce' );
+
+	$userid_value = get_post_meta( $post->ID, '_winners_userid_value_key', true );
+	
+	echo '<label for="prizesite_winners_userid_field">User Id: </label>';
+	echo '<input type="text" id="prizesite_winners_userid_field" name="prizesite_winners_userid_field" value="' . esc_attr( $userid_value ) . '" size="25" />';
+}
+
 function bulk_save_winners_custom_fields( $post_id ) {
 	if( defined('DOING_AUTOSAVE') && DOING_AUTOSAVE ) {
 		return;
@@ -312,6 +342,12 @@ function bulk_save_winners_custom_fields( $post_id ) {
 		$my_data = sanitize_text_field( $_POST['prizesite_winners_actualnumber_field'] );
 
 		update_post_meta( $post_id, '_winners_actualnumber_value_key', $my_data );
+	}
+
+	if(isset( $_POST['prizesite_winners_userid_meta_box_nonce'] ) && isset( $_POST['prizesite_winners_userid_field']) ) {
+		$my_data = sanitize_text_field( $_POST['prizesite_winners_userid_field'] );
+
+		update_post_meta( $post_id, '_winners_userid_value_key', $my_data );
 	}
 }
 
@@ -355,6 +391,7 @@ function prizesite_set_prizecheck_columns( $columns ){
 	$newColumns['title'] = 'Phone Number';
 	$newColumns['status'] = 'Status';
 	$newColumns['ipaddress'] = 'IP Address';
+	$newColumns['userid'] = 'User Id';
 	$newColumns['date'] = 'Date';
 	return $newColumns;
 }
@@ -367,6 +404,9 @@ function prizesite_prizecheck_custom_column( $column, $post_id ){
 		case 'ipaddress' :
 			echo get_post_meta( $post_id, '_prizecheck_ip_value_key', true);
 			break;
+		case 'userid' :
+			echo get_post_meta( $post_id, '_prizecheck_userid_value_key', true);
+			break;
 	}
 }
 
@@ -374,6 +414,7 @@ function prizesite_prizecheck_custom_column( $column, $post_id ){
 function prizesite_prizecheck_add_meta_box() {
 	add_meta_box( 'prizecheck_status', 'Status', 'prizesite_prizecheck_status_callback', 'prizesite-prizecheck' );
 	add_meta_box( 'prizecheck_ip', 'IP Address', 'prizesite_prizecheck_ip_callback', 'prizesite-prizecheck' );
+	add_meta_box( 'prizecheck_userid', 'User Id', 'prizesite_prizecheck_userid_callback', 'prizesite-prizecheck' );
 }
 
 function prizesite_prizecheck_status_callback( $post ) {
@@ -408,6 +449,15 @@ function prizesite_save_prizecheck_status_data( $post_id ) {
 	update_post_meta( $post_id, '_prizecheck_status_value_key', $my_data );
 }
 
+function prizesite_prizecheck_userid_callback( $post ) {
+	wp_nonce_field( 'prizesite_save_prizecheck_userid_data', 'prizesite_prizecheck_userid_meta_box_nonce' );
+
+	$userid_value = get_post_meta( $post->ID, '_prizecheck_userid_value_key', true );
+	
+	echo '<label for="prizesite_prizecheck_userid_field">User Id: </label>';
+	echo '<input type="text" id="prizesite_prizecheck_userid_field" name="prizesite_prizecheck_userid_field" value="' . esc_attr( $userid_value ) . '" size="25" />';
+}
+
 function bulk_save_prizecheck_custom_fields( $post_id ) {
 	if( defined('DOING_AUTOSAVE') && DOING_AUTOSAVE ) {
 		return;
@@ -425,6 +475,11 @@ function bulk_save_prizecheck_custom_fields( $post_id ) {
 	if( isset( $_POST['prizesite_prizecheck_ip_meta_box_nonce'] ) && isset( $_POST['prizesite_prizecheck_ip_field']) ) {
 		$my_data = sanitize_text_field( $_POST['prizesite_prizecheck_ip_field'] );
 		update_post_meta( $post_id, '_prizecheck_ip_value_key', $my_data );
+	}
+
+	if( isset( $_POST['prizesite_prizecheck_userid_meta_box_nonce'] ) && isset( $_POST['prizesite_prizecheck_userid_field']) ) {
+		$my_data = sanitize_text_field( $_POST['prizesite_prizecheck_userid_field'] );
+		update_post_meta( $post_id, '_prizecheck_userid_value_key', $my_data );
 	}
 }
 
@@ -1039,6 +1094,7 @@ function prizesite_set_comments_columns( $columns ){
 	$newColumns['name'] = 'Name';
 	$newColumns['PhoneNo'] = 'Phone Number';
 	$newColumns['ipaddress'] = 'IP Address';
+	$newColumns['userid'] = 'User Id';
 	return $newColumns;
 }
 function prizesite_comments_custom_column( $column, $post_id ){
@@ -1059,6 +1115,9 @@ function prizesite_comments_custom_column( $column, $post_id ){
 		case 'ipaddress' :
 			echo get_post_meta( $post_id, '_comments_ipaddress_value_key', true);
 			break;
+		case 'userid' :
+			echo get_post_meta( $post_id, '_comments_userid_value_key', true);
+			break;
 	}
 	
 }
@@ -1072,6 +1131,7 @@ function prizesite_comments_add_meta_box() {
 	add_meta_box( 'comments_city', 'City', 'prizesite_comments_city_callback', 'prizesite-comments' );
 	add_meta_box( 'comments_ipaddress', 'IP Address', 'prizesite_comments_ipaddress_callback', 'prizesite-comments' );
 	add_meta_box( 'comments_area', 'Area', 'prizesite_comments_area_callback', 'prizesite-comments' );
+	add_meta_box( 'comments_userid', 'User Id', 'prizesite_comments_userid_callback', 'prizesite-comments' );
 }
 
 function prizesite_comments_commenttext_callback( $post ) {
@@ -1130,6 +1190,14 @@ function prizesite_comments_area_callback( $post ) {
 	echo '<input type="text" id="prizesite_comments_area_field" name="prizesite_comments_area_field" value="' . esc_attr( $area_value ) . '" size="40" />';
 }
 
+function prizesite_comments_userid_callback( $post ) {
+	wp_nonce_field( 'bulk_save_comments_userid_fields', 'prizesite_comments_userid_meta_box_nonce' );
+
+	$userid_value = get_post_meta( $post->ID, '_comments_userid_value_key', true );
+	
+	echo '<input type="text" id="prizesite_comments_userid_field" name="prizesite_comments_userid_field" value="' . esc_attr( $userid_value ) . '" size="40" />';
+}
+
 function bulk_save_comments_custom_fields( $post_id ) {
 	if( defined('DOING_AUTOSAVE') && DOING_AUTOSAVE ) {
 		return;
@@ -1172,6 +1240,11 @@ function bulk_save_comments_custom_fields( $post_id ) {
 	if( isset( $_POST['prizesite_comments_area_meta_box_nonce'] ) && isset( $_POST['prizesite_comments_area_field']) ) {
 		$data = sanitize_text_field( $_POST['prizesite_comments_area_field'] );
 		update_post_meta( $post_id, '_comments_area_value_key', $data );
+	}
+
+	if( isset( $_POST['prizesite_comments_userid_meta_box_nonce'] ) && isset( $_POST['prizesite_comments_userid_field']) ) {
+		$data = sanitize_text_field( $_POST['prizesite_comments_userid_field'] );
+		update_post_meta( $post_id, '_comments_userid_value_key', $data );
 	}
 }
 
@@ -1217,6 +1290,7 @@ function prizesite_set_cwinners_columns( $columns ){
 	$newColumns['commentid'] = 'Comment ID';
 	$newColumns['PhoneNo'] = 'Phone Number';
 	$newColumns['claimed'] = 'Claimed';
+	$newColumns['userid'] = 'User Id';
 	return $newColumns;
 }
 
@@ -1237,6 +1311,9 @@ function prizesite_cwinners_custom_column( $column, $post_id ){
 			$checked = ( $claimed_value == 1 ? 'Yes' : 'No' );
 			echo $checked;
 			break;
+		case 'userid' :
+			echo implode(" ", get_post_meta( $post_id, '_cwinners_userid_value_key'));
+			break;
 	}
 	
 }
@@ -1248,6 +1325,7 @@ function prizesite_cwinners_add_meta_box() {
 	add_meta_box( 'cwinners_phoneno', 'Phone Number', 'prizesite_cwinners_phoneno_callback', 'prizesite-cwinners' );
 	add_meta_box( 'cwinners_contesttitle', 'Contest Title', 'prizesite_cwinners_contesttitle_callback', 'prizesite-cwinners' );
 	add_meta_box( 'cwinners_claimed', 'Claimed', 'prizesite_cwinners_claimed_callback', 'prizesite-cwinners' );
+	add_meta_box( 'cwinners_userid', 'User Id', 'prizesite_cwinners_userid_callback', 'prizesite-cwinners' );
 }
 
 function prizesite_cwinners_commentid_callback( $post ) {
@@ -1290,6 +1368,14 @@ function prizesite_cwinners_claimed_callback( $post ) {
 	echo '<label><input type="checkbox" id="prizesite_cwinners_claimed_field" name="prizesite_cwinners_claimed_field" value="1" '.$checked.' /></label>';
 }
 
+function prizesite_cwinners_userid_callback( $post ) {
+	wp_nonce_field( 'bulk_save_cwinners_userid_fields', 'prizesite_cwinners_userid_meta_box_nonce' );
+
+	$userid_value = get_post_meta( $post->ID, '_cwinners_userid_value_key', true );
+	
+	echo '<input type="text" id="prizesite_cwinners_userid_field" name="prizesite_cwinners_userid_field" value="' . esc_attr( $userid_value ) . '" size="40" />';
+}
+
 function bulk_save_cwinners_custom_fields( $post_id ) {
 	if( defined('DOING_AUTOSAVE') && DOING_AUTOSAVE ) {
 		return;
@@ -1320,6 +1406,11 @@ function bulk_save_cwinners_custom_fields( $post_id ) {
 	}
 
 	update_post_meta( $post_id, '_cwinners_claimed_value_key', $_POST['prizesite_cwinners_claimed_field'] );
+
+	if( isset( $_POST['prizesite_cwinners_userid_meta_box_nonce'] ) && isset( $_POST['prizesite_cwinners_userid_field']) ) {
+		$data = sanitize_text_field( $_POST['prizesite_cwinners_userid_field'] );
+		update_post_meta( $post_id, '_cwinners_userid_value_key', $data );
+	}
 }
 
 /*

@@ -20,6 +20,7 @@
     $end_date = get_post_meta($contest_id,'_contests_enddate_value_key',true);
     $today = date("Y-m-d");
     $expired_contest_url = "http://localhost/wordpress/v1/view-contests?id=". $contest_id . "&title=".get_the_title( get_the_ID() );
+    $user = wp_get_current_user();
 ?>
 <?php if ($end_date < $today) { ?>
     <script type="text/javascript">
@@ -130,7 +131,11 @@ var end_date = "<?= $end_date ?>";
                                             <?php echo $contest_description; ?>
                                         </div>
                                         <div class="info-footer row remove-padding">
-                                            <div class="col-sm-6 col-7 remove-padding"><a class="comment-link-btn" type="button" data-toggle="modal" data-target="#comment-contest-modal" title="Comment"><img class="comment-icon-link" src="<?php print $comment_url ?>" alt="comment icon"><label>Add Comment</label></a></div>
+                                            <?php if ( $user->ID > 0 ) { ?>
+                                                <div class="col-sm-6 col-7 remove-padding"><a class="comment-link-btn" type="button" data-toggle="modal" data-target="#comment-contest-modal" title="Comment"><img class="comment-icon-link" src="<?php print $comment_url ?>" alt="comment icon"><label>Add Comment</label></a></div>
+                                            <?php } else { ?>
+                                                <div id="register-link-block" class="col-sm-6 col-7 remove-padding"><a href="http://localhost/wordpress/v1/login/" target="_blank">Signin</a> or <a href="http://localhost/wordpress/v1/register/" target="_blank">Signup</a></div>
+                                            <?php } ?>
                                             <div class="col-sm-6 col-5 remove-padding"><a class="share-link-btn" type="button" data-toggle="modal" data-target="#share-contest-modal" title="Share" href="<?php echo $share_link; ?>"><img class="share-icon-link" src="<?php print $share_url ?>" alt="share icon"><label>Share</label></a></div>
                                             <div class="col-sm-6 col-7 remove-padding"><p><?php echo "(" . $comment_count; ?> Comment<?php if( $comment_count > 1 ) { echo "s"; } echo ")"; ?></p></div>
                                             <div class="col-sm-6 col-5 remove-padding"><p style="float:right"><?php echo "(" .  $share_count; ?> Share<?php if( $share_count > 1 ) { echo "s"; } echo ")"; ?></p></div>
@@ -265,19 +270,6 @@ var end_date = "<?= $end_date ?>";
                 <h3>Add Comment to Enter Lucky Draw</h3>
                 <form id="prizesite-contest-comment-form" class="query-form" action="" method="post" data-url="<?php echo admin_url('admin-ajax.php'); ?>">
                     <div class="form-group">
-                        <div class="input-wrap">
-                            <label for="comment-name" class="label-text">Name</label>
-                            <input type="text" id="comment-name" class="form-control" >
-                            <span class="error-message" id="comment-name-error-msg">Please enter your name.</span>
-                            <span class="error-message" id="comment-name-invalid-msg">Name must contain only letters.</span>
-                        </div>
-                        <div class="input-wrap">
-                            <label for="comment-no" class="label-text">Your mobile number (ОЗххххххххх)</label>
-                            <input type="text" id="comment-no" class="form-control" >
-                            <span class="label">You will not be able to claim the prize if number is not correct.</span>
-                            <span class="error-message" id="comment-no-error-msg">Please enter a phone number</span>
-                            <span class="error-message" id="comment-number-invalid-msg">Phone number not in required format.<br>Phone number must have eleven digit.<br>Phone number should be in (03XXXXXXXXX) format.</span>
-                        </div>
                         <div class="input-wrap">
                             <label for="comment-text" class="label-text">Your Comment</label>
                             <textarea id="comment-text" class="form-control" rows="5" cols="20"></textarea>
