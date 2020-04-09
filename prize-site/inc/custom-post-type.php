@@ -1628,3 +1628,290 @@ function bulk_save_mrusers_custom_fields( $post_id ) {
 
 	update_post_meta( $post_id, '_mrusers_usertype_value_key', $_POST['prizesite_mrusers_usertype_field'] );
 }
+
+/*
+=========================================================================================================
+*/
+
+/* Contest Users CPT */
+
+add_action( 'init', 'prizesite_cusers_custom_post_type' );
+add_filter( 'manage_prizesite-cusers_posts_columns', 'prizesite_set_cusers_columns' );
+add_action( 'manage_prizesite-cusers_posts_custom_column', 'prizesite_cusers_custom_column', 10, 2 );
+add_action( 'add_meta_boxes', 'prizesite_cusers_add_meta_box' );
+add_action( 'save_post', 'bulk_save_cusers_custom_fields', 10, 2);
+
+function prizesite_cusers_custom_post_type() {
+	$labels = array(
+		'name' 				=> 'Contest Users',
+		'singular_name' 	=> 'Contest User',
+		'menu_name'			=> 'Contest Users',
+		'name_admin_bar'	=> 'Contest User'
+	);
+	
+	$args = array(
+		'labels'			=> $labels,
+		'show_ui'			=> true,
+		'show_in_menu'		=> true,
+		'capability_type'	=> 'post',
+		'hierarchical'		=> false,
+		'menu_position'		=> 27,
+		'menu_icon'			=> get_template_directory_uri() . '/img/mr-user.png',
+		'supports'			=> array('title')
+	);
+	
+	register_post_type( 'prizesite-cusers', $args );
+	
+}
+
+function prizesite_set_cusers_columns( $columns ){
+	$newColumns = array();
+	$newColumns['title'] = 'Email Address';
+	$newColumns['uname'] = 'User Name';
+	$newColumns['phnumber'] = 'Phone Number';
+	$newColumns['emailverified'] = 'Email Verified';
+	return $newColumns;
+}
+
+function prizesite_cusers_custom_column( $column, $post_id ){
+	
+	switch( $column ){
+		case 'uname' :
+			echo implode(" ", get_post_meta( $post_id, '_cusers_uname_value_key'));
+			break;
+		case 'phnumber' :
+			echo implode(" ", get_post_meta( $post_id, '_cusers_phnumber_value_key'));
+			break;
+		case 'emailverified' :
+			$emailverified_value = get_post_meta( $post_id, '_cusers_emailverified_value_key', true );
+			$checked = ( $emailverified_value == 1 ? 'Yes' : 'No' );
+			echo $checked;
+			break;
+	}
+	
+}
+
+function prizesite_cusers_add_meta_box() {
+	add_meta_box( 'cusers_uname', 'User Name', 'prizesite_cusers_uname_callback', 'prizesite-cusers' );
+	add_meta_box( 'cusers_password', 'Password', 'prizesite_cusers_password_callback', 'prizesite-cusers' );
+	add_meta_box( 'cusers_phnumber', 'Phone Number', 'prizesite_cusers_phnumber_callback', 'prizesite-cusers' );
+	add_meta_box( 'cusers_emailverified', 'Email Verified', 'prizesite_cusers_emailverified_callback', 'prizesite-cusers' );
+}
+
+function prizesite_cusers_uname_callback( $post ) {
+	wp_nonce_field( 'bulk_save_cusers_uname_fields', 'prizesite_cusers_uname_meta_box_nonce' );
+
+	$uname_value = get_post_meta( $post->ID, '_cusers_uname_value_key', true );
+	
+	echo '<input type="text" id="prizesite_cusers_uname_field" name="prizesite_cusers_uname_field" value="' . esc_attr( $uname_value ) . '" size="40" />';
+}
+
+function prizesite_cusers_password_callback( $post ) {
+	wp_nonce_field( 'bulk_save_cusers_password_fields', 'prizesite_cusers_password_meta_box_nonce' );
+
+	$password_value = get_post_meta( $post->ID, '_cusers_password_value_key', true );
+	
+	echo '<input readonly type="password" id="prizesite_cusers_password_field" name="prizesite_cusers_password_field" value="' . esc_attr( $password_value ) . '" size="40" />';
+}
+
+function prizesite_cusers_phnumber_callback( $post ) {
+	wp_nonce_field( 'bulk_save_cusers_phnumber_fields', 'prizesite_cusers_phnumber_meta_box_nonce' );
+
+	$phnumber_value = get_post_meta( $post->ID, '_cusers_phnumber_value_key', true );
+	
+	echo '<input type="text" id="prizesite_cusers_phnumber_field" name="prizesite_cusers_phnumber_field" value="' . esc_attr( $phnumber_value ) . '" size="40" />';
+}
+
+function prizesite_cusers_emailverified_callback( $post ) {
+	wp_nonce_field( 'bulk_save_cusers_emailverified_fields', 'prizesite_cusers_emailverified_meta_box_nonce' );
+
+	$emailverified_value = get_post_meta( $post->ID, '_cusers_emailverified_value_key', true );
+	$checked = ( $emailverified_value == 1 ? 'checked' : '' );
+	echo '<label><input type="checkbox" id="prizesite_cusers_emailverified_field" name="prizesite_cusers_emailverified_field" value="1" '.$checked.' /></label>';
+}
+
+function bulk_save_cusers_custom_fields( $post_id ) {
+	if( defined('DOING_AUTOSAVE') && DOING_AUTOSAVE ) {
+		return;
+	}
+
+	if( ! current_user_can( 'edit_post', $post_id )) {
+		return;
+	}
+
+	if( isset( $_POST['prizesite_cusers_uname_meta_box_nonce'] ) && isset( $_POST['prizesite_cusers_uname_field']) ) {
+		$data = sanitize_text_field( $_POST['prizesite_cusers_uname_field'] );
+		update_post_meta( $post_id, '_cusers_uname_value_key', $data );
+	}
+
+	if( isset( $_POST['prizesite_cusers_password_meta_box_nonce'] ) && isset( $_POST['prizesite_cusers_password_field']) ) {
+		$data = sanitize_text_field( $_POST['prizesite_cusers_password_field'] );
+		update_post_meta( $post_id, '_cusers_password_value_key', $data );
+	}
+
+	if( isset( $_POST['prizesite_cusers_phnumber_meta_box_nonce'] ) && isset( $_POST['prizesite_cusers_phnumber_field']) ) {
+		$data = sanitize_text_field( $_POST['prizesite_cusers_phnumber_field'] );
+		update_post_meta( $post_id, '_cusers_phnumber_value_key', $data );
+	}
+
+	update_post_meta( $post_id, '_cusers_emailverified_value_key', $_POST['prizesite_cusers_emailverified_field'] );
+
+}
+
+/*
+=========================================================================================================
+*/
+
+/* Etzi Rewards CPT */
+
+add_action( 'init', 'prizesite_etzireward_custom_post_type' );
+add_filter( 'manage_prizesite-etzireward_posts_columns', 'prizesite_set_etzireward_columns' );
+add_action( 'manage_prizesite-etzireward_posts_custom_column', 'prizesite_etzireward_custom_column', 10, 2 );
+add_action( 'add_meta_boxes', 'prizesite_etzireward_add_meta_box' );
+add_action( 'save_post', 'bulk_save_etzireward_custom_fields', 10, 2);
+
+function prizesite_etzireward_custom_post_type() {
+	$labels = array(
+		'name' 				=> 'Etzi Rewards',
+		'singular_name' 	=> 'Etzi Reward',
+		'menu_name'			=> 'Etzi Rewards',
+		'name_admin_bar'	=> 'Etzi Reward'
+	);
+	
+	$args = array(
+		'labels'			=> $labels,
+		'show_ui'			=> true,
+		'show_in_menu'		=> true,
+		'capability_type'	=> 'post',
+		'hierarchical'		=> false,
+		'menu_position'		=> 27,
+		'menu_icon'			=> get_template_directory_uri() . '/img/reward.png',
+		'supports'			=> array('title')
+	);
+	
+	register_post_type( 'prizesite-etzireward', $args );
+	
+}
+
+function prizesite_set_etzireward_columns( $columns ){
+	$newColumns = array();
+	$newColumns['userid'] = 'User ID';
+	$newColumns['title'] = 'Phone Number';
+	$newColumns['firstname'] = 'First Name';
+	$newColumns['lastname'] = 'Last Name';
+	$newColumns['email'] = 'Email Address';
+	$newColumns['orders'] = 'No. of Orders';
+	$newColumns['customercode'] = 'Customer Code';
+	$newColumns['customerurl'] = 'Customer URL';
+	return $newColumns;
+}
+
+function prizesite_etzireward_custom_column( $column, $post_id ){
+	
+	switch( $column ){
+		case 'userid' :
+			echo $post_id;
+			break;
+		case 'firstname' :
+			echo implode(" ", get_post_meta( $post_id, '_etzireward_firstname_value_key'));
+			break;
+		case 'lastname' :
+			echo implode(" ", get_post_meta( $post_id, '_etzireward_lastname_value_key'));
+			break;
+		case 'email' :
+			echo implode(" ", get_post_meta( $post_id, '_etzireward_email_value_key'));
+			break;
+		case 'orders' :
+			echo implode(" ", get_post_meta( $post_id, '_etzireward_orders_value_key'));
+			break;
+		case 'customercode' :
+			echo implode(" ", get_post_meta( $post_id, '_etzireward_customercode_value_key'));
+			break;
+		case 'customerurl' :
+			echo "https://www.muftpaise.com/eatzii/rewards?customercode=" . implode(" ", get_post_meta( $post_id, '_etzireward_customercode_value_key'));
+			break;
+	}
+	
+}
+
+function prizesite_etzireward_add_meta_box() {
+	add_meta_box( 'etzireward_firstname', 'FirstName', 'prizesite_etzireward_firstname_callback', 'prizesite-etzireward' );
+	add_meta_box( 'etzireward_lastname', 'Last Name', 'prizesite_etzireward_lastname_callback', 'prizesite-etzireward' );
+	add_meta_box( 'etzireward_email', 'Email Address', 'prizesite_etzireward_email_callback', 'prizesite-etzireward' );
+	add_meta_box( 'etzireward_orders', 'No. of Orders', 'prizesite_etzireward_orders_callback', 'prizesite-etzireward' );
+	add_meta_box( 'etzireward_customercode', 'Customer Code', 'prizesite_etzireward_customercode_callback', 'prizesite-etzireward' );
+}
+
+function prizesite_etzireward_firstname_callback( $post ) {
+	wp_nonce_field( 'bulk_save_etzireward_firstname_fields', 'prizesite_etzireward_firstname_meta_box_nonce' );
+
+	$firstname_value = get_post_meta( $post->ID, '_etzireward_firstname_value_key', true );
+	
+	echo '<input type="text" id="prizesite_etzireward_firstname_field" name="prizesite_etzireward_firstname_field" value="' . esc_attr( $firstname_value ) . '" size="40" />';
+}
+
+function prizesite_etzireward_lastname_callback( $post ) {
+	wp_nonce_field( 'bulk_save_etzireward_lastname_fields', 'prizesite_etzireward_lastname_meta_box_nonce' );
+
+	$lastname_value = get_post_meta( $post->ID, '_etzireward_lastname_value_key', true );
+	
+	echo '<input type="text" id="prizesite_etzireward_lastname_field" name="prizesite_etzireward_lastname_field" value="' . esc_attr( $lastname_value ) . '" size="40" />';
+}
+
+function prizesite_etzireward_email_callback( $post ) {
+	wp_nonce_field( 'prizesite_save_etzireward_email_data', 'prizesite_etzireward_email_meta_box_nonce' );
+
+	$email_value = get_post_meta( $post->ID, '_etzireward_email_value_key', true );
+	
+	echo '<label for="prizesite_etzireward_email_field">Email Address: </label>';
+	echo '<input type="text" id="prizesite_etzireward_email_field" name="prizesite_etzireward_email_field" value="' . esc_attr( $email_value ) . '" size="25" />';
+}
+
+function prizesite_etzireward_orders_callback( $post ) {
+	wp_nonce_field( 'prizesite_save_etzireward_orders_data', 'prizesite_etzireward_orders_meta_box_nonce' );
+
+	$orders_value = get_post_meta( $post->ID, '_etzireward_orders_value_key', true );
+	
+	echo '<label for="prizesite_etzireward_orders_field">No. of Orders: </label>';
+	echo '<input type="number" id="prizesite_etzireward_orders_field" name="prizesite_etzireward_orders_field" value="' . esc_attr( $orders_value ) . '" size="25" />';
+}
+
+function prizesite_etzireward_customercode_callback( $post ) {
+	wp_nonce_field( 'prizesite_save_etzireward_customercode_data', 'prizesite_etzireward_customercode_meta_box_nonce' );
+
+	$customercode_value = get_post_meta( $post->ID, '_etzireward_customercode_value_key', true );
+	
+	echo '<label for="prizesite_etzireward_customercode_field">Customer Code: </label>';
+	echo '<input readonly type="text" id="prizesite_etzireward_customercode_field" name="prizesite_etzireward_customercode_field" value="' . esc_attr( $customercode_value ) . '" size="25" />';
+}
+
+function bulk_save_etzireward_custom_fields( $post_id ) {
+	if( defined('DOING_AUTOSAVE') && DOING_AUTOSAVE ) {
+		return;
+	}
+
+	if( ! current_user_can( 'edit_post', $post_id )) {
+		return;
+	}
+
+	if( isset( $_POST['prizesite_etzireward_firstname_meta_box_nonce'] ) && isset( $_POST['prizesite_etzireward_firstname_field']) ) {
+		$data = sanitize_text_field( $_POST['prizesite_etzireward_firstname_field'] );
+		update_post_meta( $post_id, '_etzireward_firstname_value_key', $data );
+		update_post_meta( $post_id, '_etzireward_customercode_value_key', bin2hex(zlib_encode($post_id, ZLIB_ENCODING_DEFLATE)) . substr( get_the_title($post_id), -3) . implode(" ", get_post_meta( $post_id, '_etzireward_firstname_value_key')));
+	}
+
+	if( isset( $_POST['prizesite_etzireward_lastname_meta_box_nonce'] ) && isset( $_POST['prizesite_etzireward_lastname_field']) ) {
+		$data = sanitize_text_field( $_POST['prizesite_etzireward_lastname_field'] );
+		update_post_meta( $post_id, '_etzireward_lastname_value_key', $data );
+	}
+
+	if( isset( $_POST['prizesite_etzireward_email_meta_box_nonce'] ) && isset( $_POST['prizesite_etzireward_email_field']) ) {
+		$data = sanitize_text_field( $_POST['prizesite_etzireward_email_field'] );
+		update_post_meta( $post_id, '_etzireward_email_value_key', $data );
+	}
+
+	if( isset( $_POST['prizesite_etzireward_orders_meta_box_nonce'] ) && isset( $_POST['prizesite_etzireward_orders_field']) ) {
+		$data = sanitize_text_field( $_POST['prizesite_etzireward_orders_field'] );
+		update_post_meta( $post_id, '_etzireward_orders_value_key', $data );
+	}
+}

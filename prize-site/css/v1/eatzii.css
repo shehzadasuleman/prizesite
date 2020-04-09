@@ -1,0 +1,211 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins');
+
+#eatzi-rewards-section {
+    font-family: Poppins,sans-serif;
+    margin: 0;
+    color: #000;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+    text-align: left;
+    background-color: #fff;
+}
+#eatzi-rewards-section .banner {
+    background-color: #f7f8fa;
+    text-align: center;
+}
+
+#eatzi-rewards-section .container {
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+#eatzi-rewards-section .font-weight-semibold {
+    font-weight: bolder;
+    margin-bottom: 0.5rem;
+}
+
+#eatzi-rewards-section .text-muted {
+    color: #6e6e6e !important;
+}
+
+#eatzi-rewards-section .pb-3{
+    padding-bottom: 1rem !important;
+}
+
+#eatzi-rewards-section .font-weight-normal {
+    font-weight: 400 !important;
+  }
+
+#eatzi-rewards-section h1, #eatzi-rewards-section h2, #eatzi-rewards-section h3, #eatzi-rewards-section h4, #eatzi-rewards-section h5, #eatzi-rewards-section h6 {
+margin-top: 0;
+margin-bottom: 0.5rem;
+}
+
+#eatzi-rewards-section h1, #eatzi-rewards-section h2, #eatzi-rewards-section h3, #eatzi-rewards-section h4, #eatzi-rewards-section h5, #eatzi-rewards-section h6,
+#eatzi-rewards-section .h1, #eatzi-rewards-section .h2, #eatzi-rewards-section .h3, #eatzi-rewards-section .h4, #eatzi-rewards-section .h5, #eatzi-rewards-section .h6 {
+margin-bottom: 0.5rem;
+font-weight: 500;
+line-height: 1.2;
+}
+
+#eatzi-rewards-section h1, #eatzi-rewards-section .h1 {
+    font-size: 2.5rem;
+}
+
+#eatzi-rewards-section h1 {
+  font-family: Poppins,sans-serif;
+  font-size: 40px;
+}
+
+#eatzi-rewards-section h6 {
+  font-family: Poppins,sans-serif;
+  font-size: 17px;
+}
+
+#eatzi-rewards-section h5 {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+#eatzi-rewards-section img {
+vertical-align: middle;
+border-style: none;
+}
+
+#eatzi-rewards-section .img-fluid {
+max-width: 100%;
+height: auto;
+}
+
+#eatzi-rewards-section .contact-details .mdi {
+font-size: 14px;
+color: #6e6e6e;
+border-radius: 50px;
+border: 1px solid rgba(151, 151, 151, 0.24);
+padding: 7px 10px;
+margin-right: 10px;
+transition: all 0.6s ease-in-out;
+}
+
+#eatzi-rewards-section .contact-details .mdi:hover {
+background: #a6a6a6;
+color: white;
+}
+
+#eatzi-rewards-section .contact-details a {
+color: #6e6e6e;
+transition: all 0.6s ease-in-out;
+}
+
+#eatzi-rewards-section .contact-details a:hover {
+color: #ff0000;
+}
+
+#eatzi-rewards-section .text-center {
+text-align: center !important;
+}
+
+#eatzi-rewards-section .grid-margin {
+margin-bottom: 100px;
+}
+
+#eatzi-rewards-section .pb-2 {
+  padding-bottom: 0.5rem !important;
+}
+
+#eatzi-rewards-section .text-muted {
+    color: #6e6e6e !important;
+}
+
+#eatzi-rewards-section .m-0 {
+    margin: 0 !important;
+}
+#eatzi-rewards-section .d-flex {
+    display: flex !important;
+}
+
+#eatzi-rewards-section .justify-content-center {
+    justify-content: center !important;
+}
+  
+#eatzi-rewards-section .contact-details .mdi:hover {
+    background: #a6a6a6;
+    color: white;
+}
+
+#eatzi-rewards-section .border-top {
+    border-top: 1px solid #dee2e6 !important;
+}
+
+#eatzi-rewards-section .pt-4 {
+  padding-top: 1.5rem !important;
+}
+
+#eatzi-rewards-section .px-1 {
+    padding-right: 0.25rem !important;
+}
+
+#eatzi-rewards-section .contact-details a:hover, footer a {
+    color: red;
+}
+
+#eatzi-rewards-section footer p, #eatzi-rewards-section .contact-details p {
+  font-size: 15px;
+}
+
+#eatzi-rewards-section #contact-details-section {
+  text-align: center;
+}
+
+@media (max-width: 575px) {
+    #eatzi-rewards-section .container {
+      padding: 0px 30px;
+    }
+  }
+
+  @media (min-width: 576px) {
+    #eatzi-rewards-section .container {
+      max-width: 540px;
+    }
+  }
+  
+  @media (min-width: 768px) {
+    #eatzi-rewards-section .container {
+      max-width: 720px;
+    }
+    #eatzi-rewards-section .justify-content-md-start {
+        justify-content: flex-start !important;
+    }
+  }
+  
+  @media (min-width: 992px) {
+    #eatzi-rewards-section .container {
+      max-width: 960px;
+    }
+  }
+  
+  @media (min-width: 1200px) {
+    #eatzi-rewards-section .container {
+      max-width: 1140px;
+    }
+  }
+
+  @media (max-width: 756px) {
+    #eatzi-rewards-section h1 {
+      font-size: 35px;
+    }
+    #eatzi-rewards-section .grid-margin {
+        margin-bottom: 60px;
+      }
+  }
+
+  @media (max-width: 992px) {
+    #eatzi-rewards-section .grid-margin {
+      margin-bottom: 75px;
+    }
+  }

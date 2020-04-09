@@ -18,6 +18,7 @@
     $ads_banner_2 = get_template_directory_uri() . '/img/Ads/Slider/AdsBanner2.jpg';
     $ads_banner_3 = get_template_directory_uri() . '/img/Ads/Slider/AdsBanner3.jpg';
     $ads_url_xml = get_template_directory_uri() . "/ads.xml";
+    //echo $current_uri;
 ?>
 <?php if ( $onhold_page_enabler == 1 ) { ?>
 <div id="onhold-page" class="container" >
@@ -66,9 +67,11 @@
 <div id="wrapper">
     <?php if ( ("/wordpress/v1/winners" == $current_uri || strpos($current_uri, "/wordpress/v1/winners") !== false) || ( "/wordpress/v1/contests" == $current_uri || strpos($current_uri, "/wordpress/v1/contests") !== false) || ( "/wordpress/v1/whatsapp" == $current_uri || strpos($current_uri, "/wordpress/v1/whatsapp") !== false) || ( "/wordpress/v1/success-confirmation-page" == $current_uri || strpos($current_uri, "/wordpress/v1/success-confirmation-page") !== false) || ( "/wordpress/v1/view-contests" == $current_uri || strpos($current_uri, "/wordpress/v1/view-contests") !== false) || ( "/wordpress/v1/live-contest" == $current_uri || strpos($current_uri, "/wordpress/v1/live-contest") !== false) || ( ( "/wordpress/v1" == $current_uri ) || ( strpos($current_uri, "utm_source") !== false || strpos($current_uri, "utm_medium") !== false || strpos($current_uri, "utm_campaign") !== false ) ) ):?>
         <header id="header" style="min-height:0px;">
-    <?php elseif ( ( "/wordpress/v1/winners" != $current_uri || strpos($current_uri, "/wordpress/v1/winners") !== true ) && ( "/wordpress/v1/contests" != $current_uri || strpos($current_uri, "/wordpress/v1/contests") !== true) && ( "/wordpress/v1/whatsapp" != $current_uri || strpos($current_uri, "/wordpress/v1/whatsapp") !== true) && ( "/wordpress/v1/success-confirmation-page" != $current_uri || strpos($current_uri, "/wordpress/v1/success-confirmation-page") !== true) && ( "/wordpress/v1/view-contests" != $current_uri || strpos($current_uri, "/wordpress/v1/view-contests") !== true) && ( "/wordpress/v1/live-contest" != $current_uri || strpos($current_uri, "/wordpress/v1/live-contest") !== true) ):?>
+    <?php elseif ( ( "/wordpress/v1/winners" != $current_uri || strpos($current_uri, "/wordpress/v1/winners") !== true ) && ( "/wordpress/v1/contests" != $current_uri || strpos($current_uri, "/wordpress/v1/contests") !== true) && ( "/wordpress/v1/whatsapp" != $current_uri || strpos($current_uri, "/wordpress/v1/whatsapp") !== true) && ( "/wordpress/v1/success-confirmation-page" != $current_uri || strpos($current_uri, "/wordpress/v1/success-confirmation-page") !== true) && ( "/wordpress/v1/view-contests" != $current_uri || strpos($current_uri, "/wordpress/v1/view-contests") !== true) && ( "/wordpress/v1/live-contest" != $current_uri || strpos($current_uri, "/wordpress/v1/live-contest") !== true) && ( "/wordpress/v1/eatzii/rewards" !== $current_uri && strpos($current_uri, "/wordpress/v1/eatzii/rewards") !== true && strpos($current_uri, "customercode") === "" ) ):?>
         <header id="header" style="background-image: url(<?php print $background_url ?>);">
     <?php endif; ?>
+        <?php if ( ("/wordpress/v1/eatzii/rewards" !== $current_uri && strpos($current_uri, "/wordpress/v1/eatzii/rewards") !== true && strpos($current_uri, "customercode") === "" ) ):?>
+            <?php echo "Hello"; ?>
             <div class="header-holder">
                 <div class="logo">
                     <a href="<?php print $domain ?>"><img src="<?php print $logo_url ?>" alt="image dscription"></a>
@@ -100,6 +103,7 @@
                 </div>
             </div>
         </header>
+        <?php endif; ?>
     <?php if ( ( "/wordpress/v1/contests" == $current_uri || strpos($current_uri, "/wordpress/v1/contests") !== false) || ( "/wordpress/v1/view-contests" == $current_uri || strpos($current_uri, "/wordpress/v1/view-contests") !== false) || ( "/wordpress/v1/live-contest" == $current_uri || strpos($current_uri, "/wordpress/v1/live-contest") !== false) ):?>
         <!--Carousel Wrapper-->
         <div class="row <?php if ( "/wordpress/v1" == $current_uri ) { echo "unset-margin"; } ?>">
@@ -730,6 +734,16 @@
                     if (have_posts() ):
                         while( have_posts() ): the_post();
                             get_template_part( 'template-parts/v1/password-reset', get_post_format() );
+                        endwhile;
+                    endif;
+                ?>
+            </div>
+        <?php elseif ( "/wordpress/v1/eatzii/rewards" == $current_uri || strpos($current_uri, "/wordpress/v1/eatzii/rewards") !== false ):?>
+            <div class="clients-content">
+                <?php
+                    if (have_posts() ):
+                        while( have_posts() ): the_post();
+                            get_template_part( 'template-parts/v1/eatzii-rewards', get_post_format() );
                         endwhile;
                     endif;
                 ?>

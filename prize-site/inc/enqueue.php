@@ -44,6 +44,7 @@ function prizesite_load_scripts() {
     // New Design - Start
     wp_enqueue_style( 'prizesite-v1-index', get_template_directory_uri() . '/css/v1/index.css', array(), '1.0.0', 'all' );
     wp_enqueue_style( 'prizesite-main', get_template_directory_uri() . '/css/main.css', array(), '3.0.3', 'all' );
+    wp_enqueue_style( 'prizesite-eatzii-rewards', get_template_directory_uri() . '/css/v1/eatzii.css', array(), '1.0.0', 'all' );
     // New Design - End
 	
 	wp_deregister_script( 'jquery' );
