@@ -1772,10 +1772,10 @@ add_action( 'save_post', 'bulk_save_etzireward_custom_fields', 10, 2);
 
 function prizesite_etzireward_custom_post_type() {
 	$labels = array(
-		'name' 				=> 'Etzi Rewards',
-		'singular_name' 	=> 'Etzi Reward',
-		'menu_name'			=> 'Etzi Rewards',
-		'name_admin_bar'	=> 'Etzi Reward'
+		'name' 				=> 'Etzii Rewards',
+		'singular_name' 	=> 'Etzii Reward',
+		'menu_name'			=> 'Etzii Rewards',
+		'name_admin_bar'	=> 'Etzii Reward'
 	);
 	
 	$args = array(
@@ -1786,7 +1786,7 @@ function prizesite_etzireward_custom_post_type() {
 		'hierarchical'		=> false,
 		'menu_position'		=> 27,
 		'menu_icon'			=> get_template_directory_uri() . '/img/reward.png',
-		'supports'			=> array('title')
+		'supports'			=> array('title','editor')
 	);
 	
 	register_post_type( 'prizesite-etzireward', $args );

@@ -11,7 +11,7 @@
 	$instagram_url = get_template_directory_uri() . '/img/instagram.svg';
 	$onhold_page_enabler = get_option( 'prizesite_onhold_page_enabler' );
 ?>
-<?php if ( ( $onhold_page_enabler != 1 ) && ("/wordpress/v1/eatzii/rewards" !== $current_uri && strpos($current_uri, "/wordpress/v1/eatzii/rewards") !== true && strpos($current_uri, "customercode") === "" ) ) { ?>
+<?php if ( ( $onhold_page_enabler != 1 ) && (!is_page('eatzii-rewards')) ) { ?>
 <footer id="footer">
 	<div class="container">
 		<div class="footer-wrapper">

@@ -15,7 +15,7 @@ $eatzii_reward4_url = get_template_directory_uri() . "/img/eatzii/fourth-order.j
 $eatzii_reward5_url = get_template_directory_uri() . "/img/eatzii/fifth-order.jpg";
 $eatzii_reward6_url = get_template_directory_uri() . "/img/eatzii/sixth-order.jpg";
 $eatzii_reward7_url = get_template_directory_uri() . "/img/eatzii/seventh-order.jpg";
-$eatzii_reward8_url = get_template_directory_uri() . "/img/eatzii/eight-order.jpg";
+$eatzii_reward8_url = get_template_directory_uri() . "/img/eatzii/eigth-order.jpg";
 $eatzii_reward9_url = get_template_directory_uri() . "/img/eatzii/nineth-order.jpg";
 $eatzii_reward10_url = get_template_directory_uri() . "/img/eatzii/tenth-order.jpg";
 ?>
@@ -43,7 +43,8 @@ $eatzii_reward10_url = get_template_directory_uri() . "/img/eatzii/tenth-order.j
                         <h6 class="font-weight-normal text-muted pb-3">Order away and get free burgers on 5th and 10th order.</h6>
                         <img src="<?php echo $eatzii_reward0_url ?>" alt="" class="img-fluid">
                     <?php } elseif ( $orders % 10 === 0 ) { ?>
-                        <h6 class="font-weight-normal text-muted pb-3">We hope you enjoyed your Free Zinger Burger :) Now your card will be reset on the next order you will get another free Street burger on just 5 more orders. Enjoy!</h6>
+                        <h6 class="font-weight-normal text-muted pb-3">We hope you enjoyed your Free Zinger Burger :) Your
+                        card will be reset on the next order so you can get another free Street burger on just 5 more orders. Enjoy!</h6>
                         <img src="<?php echo $eatzii_reward10_url ?>" alt="" class="img-fluid">
                         <?php update_post_meta( $title_exists[0]->post_id, '_etzireward_orders_value_key', 0 ); ?>
                     <?php } elseif ( $orders % 10 === 1 ) { ?>
@@ -56,7 +57,7 @@ $eatzii_reward10_url = get_template_directory_uri() . "/img/eatzii/tenth-order.j
                         <h6 class="font-weight-normal text-muted pb-3">Amazing! You are now just 2 orders away from free Street Burger.</h6>
                         <img src="<?php echo $eatzii_reward3_url ?>" alt="" class="img-fluid">
                     <?php } elseif ( $orders % 10 === 4 ) { ?>
-                        <h6 class="font-weight-normal text-muted pb-3">Almost there! One your next order get a Free Street Burder on us :)</h6>
+                        <h6 class="font-weight-normal text-muted pb-3">Almost there! One your next order get a Free Street Burger on us :)</h6>
                         <img src="<?php echo $eatzii_reward4_url ?>" alt="" class="img-fluid">
                     <?php } elseif ( $orders % 10 === 5 ) { ?>
                         <h6 class="font-weight-normal text-muted pb-3">We hope you enjoyed your Free Street Burger :) Now you are on your way to get Free Zinger after just 5 more orders.</h6>
@@ -84,8 +85,9 @@ $eatzii_reward10_url = get_template_directory_uri() . "/img/eatzii/tenth-order.j
         <div class="row text-center">
             <div class="col-12 col-md-12 col-lg-12 grid-margin">
                 <h5 class="pb-2">Our Details</h5>
-                <p class="text-muted m-0">Timings: 3:00 pm till 1:00 am</p>
-                <p class="text-muted m-0">Call Now for Delivery: 0320-4717764</p>
+                <p class="text-muted m-0">Timings: 3:00 pm till 1:00 am</p>  
+                <p class="text-muted m-0">Call Now for Delivery: <a style="text-decoration: underline; font-weight: bold;" href="tel:03204717764">0320-4717764</a></p>
+                <p class="text-muted m-0">Menu: <a style="text-decoration: underline; font-weight: bold;" download="eatzii-menu.jpg" href="http://uat.muftpaise.com/wp-content/themes/prize-site/img/eatzii/full-menu.jpg">Click here to download</a></p><br/>
                 <p class="text-muted">43 Alamgir Road<br> near Krishan Nagar Bazar<br> Lahore, Pakistan</p>
                 <div class="d-flex justify-content-center">
                     <a href="https://www.facebook.com/eatziifoods/" target="_blank"><i class="fab fa-facebook-f mdi"></i></a>
