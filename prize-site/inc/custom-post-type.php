@@ -1349,7 +1349,7 @@ function prizesite_cwinners_phoneno_callback( $post ) {
 
 	$phoneno_value = get_post_meta( $post->ID, '_cwinners_phoneno_value_key', true );
 	
-	echo '<input type="text" id="prizesite_cwinners_phoneno_field" name="prizesite_cwinners_phoneno_field" value="' . esc_attr( $contestid_value ) . '" size="40" />';
+	echo '<input type="text" id="prizesite_cwinners_phoneno_field" name="prizesite_cwinners_phoneno_field" value="' . esc_attr( $phoneno_value ) . '" size="40" />';
 }
 
 function prizesite_cwinners_contesttitle_callback( $post ) {
@@ -1897,7 +1897,7 @@ function bulk_save_etzireward_custom_fields( $post_id ) {
 	if( isset( $_POST['prizesite_etzireward_firstname_meta_box_nonce'] ) && isset( $_POST['prizesite_etzireward_firstname_field']) ) {
 		$data = sanitize_text_field( $_POST['prizesite_etzireward_firstname_field'] );
 		update_post_meta( $post_id, '_etzireward_firstname_value_key', $data );
-		update_post_meta( $post_id, '_etzireward_customercode_value_key', bin2hex(zlib_encode($post_id, ZLIB_ENCODING_DEFLATE)) . substr( get_the_title($post_id), -3) . implode(" ", get_post_meta( $post_id, '_etzireward_firstname_value_key')));
+		update_post_meta( $post_id, '_etzireward_customercode_value_key', bin2hex(zlib_encode($post_id, ZLIB_ENCODING_DEFLATE)) . substr( get_the_title($post_id), -3) );
 	}
 
 	if( isset( $_POST['prizesite_etzireward_lastname_meta_box_nonce'] ) && isset( $_POST['prizesite_etzireward_lastname_field']) ) {
