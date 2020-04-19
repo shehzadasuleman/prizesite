@@ -65,7 +65,7 @@
         </div>
     <?php } ?>
 <div id="wrapper">
-    <?php if ( ("/wordpress/v1/winners" == $current_uri || strpos($current_uri, "/wordpress/v1/winners") !== false) || ( "/wordpress/v1/contests" == $current_uri || strpos($current_uri, "/wordpress/v1/contests") !== false) || ( "/wordpress/v1/whatsapp" == $current_uri || strpos($current_uri, "/wordpress/v1/whatsapp") !== false) || ( "/wordpress/v1/success-confirmation-page" == $current_uri || strpos($current_uri, "/wordpress/v1/success-confirmation-page") !== false) || ( "/wordpress/v1/view-contests" == $current_uri || strpos($current_uri, "/wordpress/v1/view-contests") !== false) || ( "/wordpress/v1/live-contest" == $current_uri || strpos($current_uri, "/wordpress/v1/live-contest") !== false) || ( ( "/wordpress/v1" == $current_uri ) || ( strpos($current_uri, "utm_source") !== false || strpos($current_uri, "utm_medium") !== false || strpos($current_uri, "utm_campaign") !== false ) ) || ("/wordpress/v1/whats-the-catch" != $current_uri && strpos($current_uri, "/wordpress/v1/whats-the-catch") == "") && ("/wordpress/v1/faqs" != $current_uri && strpos($current_uri, "/wordpress/v1/faqs") == "") && ("/wordpress/v1/contact-us" != $current_uri && strpos($current_uri, "/wordpress/v1/contact-us") == "") && ("/wordpress/v1/partners" != $current_uri && strpos($current_uri, "/wordpress/v1/partners") == "") && ( "/wordpress/v1/eatzii/rewards" !== $current_uri && strpos($current_uri, "/wordpress/v1/eatzii/rewards") == "" && strpos($current_uri, "customercode") == "" ) ):?>
+    <?php if ( ("/wordpress/v1/winners" == $current_uri || strpos($current_uri, "/wordpress/v1/winners") !== false) || ( "/wordpress/v1/contests" == $current_uri || strpos($current_uri, "/wordpress/v1/contests") !== false) || ( "/wordpress/v1/whatsapp" == $current_uri || strpos($current_uri, "/wordpress/v1/whatsapp") !== false) || ( "/wordpress/v1/success-confirmation-page" == $current_uri || strpos($current_uri, "/wordpress/v1/success-confirmation-page") !== false) || ( "/wordpress/v1/view-contests" == $current_uri || strpos($current_uri, "/wordpress/v1/view-contests") !== false) || ( "/wordpress/v1/live-contest" == $current_uri || strpos($current_uri, "/wordpress/v1/live-contest") !== false) || ( ( "/wordpress/v1" == $current_uri ) || ( strpos($current_uri, "utm_source") !== false || strpos($current_uri, "utm_medium") !== false || strpos($current_uri, "utm_campaign") !== false ) ) || ("/wordpress/v1/whats-the-catch" != $current_uri && strpos($current_uri, "/wordpress/v1/whats-the-catch") == "") && ("/wordpress/v1/faqs" != $current_uri && strpos($current_uri, "/wordpress/v1/faqs") == "") && ("/wordpress/v1/contact-us" != $current_uri && strpos($current_uri, "/wordpress/v1/contact-us") == "") && ("/wordpress/v1/partners" != $current_uri && strpos($current_uri, "/wordpress/v1/partners") == "") && ( "/wordpress/v1/eatzii/rewards" !== $current_uri && strpos($current_uri, "/wordpress/v1/eatzii/rewards") == "" && strpos($current_uri, "customercode") == "" ) || is_page('register') || is_page('login') ):?>
         <header id="header" style="min-height:0px;">
     <?php elseif ( ( "/wordpress/v1/winners" != $current_uri || strpos($current_uri, "/wordpress/v1/winners") !== true ) && ( "/wordpress/v1/contests" != $current_uri || strpos($current_uri, "/wordpress/v1/contests") !== true) && ( "/wordpress/v1/whatsapp" != $current_uri || strpos($current_uri, "/wordpress/v1/whatsapp") !== true) && ( "/wordpress/v1/success-confirmation-page" != $current_uri || strpos($current_uri, "/wordpress/v1/success-confirmation-page") !== true) && ( "/wordpress/v1/view-contests" != $current_uri || strpos($current_uri, "/wordpress/v1/view-contests") !== true) && ( "/wordpress/v1/live-contest" != $current_uri || strpos($current_uri, "/wordpress/v1/live-contest") !== true) || ( ("/wordpress/v1/whats-the-catch" == $current_uri || strpos($current_uri, "/wordpress/v1/whats-the-catch") >= 0) || ("/wordpress/v1/faqs" == $current_uri || strpos($current_uri, "/wordpress/v1/faqs") >= 0) || ("/wordpress/v1/contact-us" == $current_uri || strpos($current_uri, "/wordpress/v1/contact-us") >= 0) || ("/wordpress/v1/partners" == $current_uri || strpos($current_uri, "/wordpress/v1/partners") >= 0) ) ):?>
         <?php if ( strpos($current_uri, "/wordpress/v1/eatzii/rewards") == "" && strpos($current_uri, "customercode") == "" ):?>
@@ -725,6 +725,16 @@
                     if (have_posts() ):
                         while( have_posts() ): the_post();
                             get_template_part( 'template-parts/v1/login', get_post_format() );
+                        endwhile;
+                    endif;
+                ?>
+            </div>
+        <?php elseif ( "/wordpress/v1/account/" == $current_uri || strpos($current_uri, "/wordpress/v1/account/") !== false ):?>
+            <div class="clients-content">
+                <?php
+                    if (have_posts() ):
+                        while( have_posts() ): the_post();
+                            get_template_part( 'template-parts/v1/account', get_post_format() );
                         endwhile;
                     endif;
                 ?>

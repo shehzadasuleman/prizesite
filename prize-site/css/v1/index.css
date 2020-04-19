@@ -624,7 +624,13 @@
 , #dailydraw-right-desktop-carousel-ads ol
 , #dailydraw-right-mobile-carousel-ads ol
 , #home-top-desktop-carousel ol
-, #home-top-mobile-carousel ol {
+, #home-top-mobile-carousel ol
+, #register-top-desktop-carousel ol
+, #register-top-mobile-carousel ol
+, #login-top-desktop-carousel ol
+, #login-top-mobile-carousel ol
+, #account-top-desktop-carousel ol
+, #account-top-mobile-carousel ol {
     margin-bottom : 0px;
 }
 
@@ -1421,6 +1427,10 @@
     margin-top: 30px;
 }
 
+.clients-content #user-account-form {
+    margin-top: 30px;
+}
+
 @keyframes dots {
     0%, 20% {
       color: rgba(0,0,0,0);
@@ -1608,7 +1618,8 @@
         margin-left: auto;
     }
     #dailydraw-top-desktop-carousel-example-1z, #dailydraw-right-desktop-carousel-ads
-    , #winners-fb-review, #home-top-desktop-carousel{
+    , #winners-fb-review, #home-top-desktop-carousel, #register-top-desktop-carousel
+    , #login-top-desktop-carousel, #account-top-desktop-carousel{
         display: none;
     }
     #dailydraw-right-mobile-carousel-ads #right-prev-btn {
@@ -1634,7 +1645,8 @@
         padding-top: 0%;
     }
     #dailydraw-top-mobile-carousel-example-1z, #dailydraw-right-mobile-carousel-ads
-    , #winners-fb-mob-review, #home-top-mobile-carousel {
+    , #winners-fb-mob-review, #home-top-mobile-carousel, #register-top-mobile-carousel
+    , #login-top-mobile-carousel, #account-top-mobile-carousel {
         display: none;
     }
     #dailydraw-top-mobile-carousel {

@@ -9,10 +9,10 @@ $ads_slide_timer = get_option( 'prizesite_winners_ad_timer' );
 <?php 
     //if ( $user->ID === 0 ) {
 ?>
-<div id="login-top-desktop-carousel" class="carousel slide carousel-fade" data-ride="carousel" data-interval="<?php echo $ads_slide_timer; ?>">
+<div id="account-top-desktop-carousel" class="carousel slide carousel-fade" data-ride="carousel" data-interval="<?php echo $ads_slide_timer; ?>">
     <?php
         $xml=new SimpleXMLElement( $ads_url_xml, 0, 1);
-        $home_desktop_top_xml = $xml->xpath('/SiteAds/Login/Desktop/TopBanner');
+        $home_desktop_top_xml = $xml->xpath('/SiteAds/Account/Desktop/TopBanner');
         $top_desktop_counter = 0;
     ?>
     <!--Indicators -->
@@ -34,10 +34,10 @@ $ads_slide_timer = get_option( 'prizesite_winners_ad_timer' );
         <?php $top_desktop_counter = $top_desktop_counter + 1; } ?>
     </div>
 </div>
-<div id="login-top-mobile-carousel" class="carousel slide carousel-fade" data-ride="carousel" data-interval="<?php echo $ads_slide_timer; ?>">
+<div id="account-top-mobile-carousel" class="carousel slide carousel-fade" data-ride="carousel" data-interval="<?php echo $ads_slide_timer; ?>">
     <?php
         $xml=new SimpleXMLElement( $ads_url_xml, 0, 1);
-        $home_mobile_top_xml = $xml->xpath('/SiteAds/Login/Mobile/TopBanner');
+        $home_mobile_top_xml = $xml->xpath('/SiteAds/Account/Mobile/TopBanner');
         $top_mobile_counter = 0;
     ?>
     <!--Indicators -->
@@ -59,12 +59,7 @@ $ads_slide_timer = get_option( 'prizesite_winners_ad_timer' );
         <?php $top_mobile_counter = $top_mobile_counter + 1; } ?>
     </div>
 </div>
-<div id="signin-form-title" class="row">
-    <!--<div class="col-xl-4 col-lg-6 col-md-6 offset-xl-4 offset-lg-3 offset-md-3">-->
-        <h3><?php the_title(); ?></h3>
-    <!--</div>-->
-</div>
-<div id="user-signin-form">
+<div id="user-account-form">
     <?php the_content(); ?>
 </div>
 <?php

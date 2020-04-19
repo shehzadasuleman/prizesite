@@ -85,6 +85,96 @@
             </RightBanner>
         </Mobile>
     </DailyDraw>
+    <Register>
+		<Desktop>
+            <TopBanner>
+                <ImageUrl>/wordpress/wp-content/themes/prize-site/img/Ads/Slider/Desktop/RegisterTopNDure.jpg</ImageUrl>
+                <ImageTitle>NDURE</ImageTitle>
+                <LinkId>DDTopNDure</LinkId>
+                <TargetUrl>https://muftpaise.com/</TargetUrl>
+            </TopBanner>
+            <TopBanner>
+                <ImageUrl>/wordpress/wp-content/themes/prize-site/img/Ads/Slider/Desktop/RegisterTopPepsi.jpg</ImageUrl>
+                <ImageTitle>Pepsi Black</ImageTitle>
+                <LinkId>DDTopPepsi</LinkId>
+                <TargetUrl>https://muftpaise.com/partners</TargetUrl>
+            </TopBanner>
+        </Desktop>
+        <Mobile>
+            <TopBanner>
+                <ImageUrl>/wordpress/wp-content/themes/prize-site/img/Ads/Slider/Mobile/RegisterTopFoodPanda.jpg</ImageUrl>
+                <ImageTitle>Food Panda</ImageTitle>
+                <LinkId>DDTopFoodPanda</LinkId>
+                <TargetUrl>https://muftpaise.com/contests</TargetUrl>
+            </TopBanner>
+            <TopBanner>
+                <ImageUrl>/wordpress/wp-content/themes/prize-site/img/Ads/Slider/Mobile/RegisterTopPepsi.jpg</ImageUrl>
+                <ImageTitle>Pepsi Black</ImageTitle>
+                <LinkId>DDTopPepsi</LinkId>
+                <TargetUrl>https://muftpaise.com/winners</TargetUrl>
+            </TopBanner>
+        </Mobile>
+    </Register>
+    <Login>
+		<Desktop>
+            <TopBanner>
+                <ImageUrl>/wordpress/wp-content/themes/prize-site/img/Ads/Slider/Desktop/LoginTopNDure.jpg</ImageUrl>
+                <ImageTitle>NDURE</ImageTitle>
+                <LinkId>DDTopNDure</LinkId>
+                <TargetUrl>https://muftpaise.com/</TargetUrl>
+            </TopBanner>
+            <TopBanner>
+                <ImageUrl>/wordpress/wp-content/themes/prize-site/img/Ads/Slider/Desktop/LoginTopPepsi.jpg</ImageUrl>
+                <ImageTitle>Pepsi Black</ImageTitle>
+                <LinkId>DDTopPepsi</LinkId>
+                <TargetUrl>https://muftpaise.com/partners</TargetUrl>
+            </TopBanner>
+        </Desktop>
+        <Mobile>
+            <TopBanner>
+                <ImageUrl>/wordpress/wp-content/themes/prize-site/img/Ads/Slider/Mobile/LoginTopFoodPanda.jpg</ImageUrl>
+                <ImageTitle>Food Panda</ImageTitle>
+                <LinkId>DDTopFoodPanda</LinkId>
+                <TargetUrl>https://muftpaise.com/contests</TargetUrl>
+            </TopBanner>
+            <TopBanner>
+                <ImageUrl>/wordpress/wp-content/themes/prize-site/img/Ads/Slider/Mobile/LoginTopPepsi.jpg</ImageUrl>
+                <ImageTitle>Pepsi Black</ImageTitle>
+                <LinkId>DDTopPepsi</LinkId>
+                <TargetUrl>https://muftpaise.com/winners</TargetUrl>
+            </TopBanner>
+        </Mobile>
+    </Login>
+    <Account>
+		<Desktop>
+            <TopBanner>
+                <ImageUrl>/wordpress/wp-content/themes/prize-site/img/Ads/Slider/Desktop/AccountTopNDure.jpg</ImageUrl>
+                <ImageTitle>NDURE</ImageTitle>
+                <LinkId>DDTopNDure</LinkId>
+                <TargetUrl>https://muftpaise.com/</TargetUrl>
+            </TopBanner>
+            <TopBanner>
+                <ImageUrl>/wordpress/wp-content/themes/prize-site/img/Ads/Slider/Desktop/AccountTopPepsi.jpg</ImageUrl>
+                <ImageTitle>Pepsi Black</ImageTitle>
+                <LinkId>DDTopPepsi</LinkId>
+                <TargetUrl>https://muftpaise.com/partners</TargetUrl>
+            </TopBanner>
+        </Desktop>
+        <Mobile>
+            <TopBanner>
+                <ImageUrl>/wordpress/wp-content/themes/prize-site/img/Ads/Slider/Mobile/AccountTopFoodPanda.jpg</ImageUrl>
+                <ImageTitle>Food Panda</ImageTitle>
+                <LinkId>DDTopFoodPanda</LinkId>
+                <TargetUrl>https://muftpaise.com/contests</TargetUrl>
+            </TopBanner>
+            <TopBanner>
+                <ImageUrl>/wordpress/wp-content/themes/prize-site/img/Ads/Slider/Mobile/AccountTopPepsi.jpg</ImageUrl>
+                <ImageTitle>Pepsi Black</ImageTitle>
+                <LinkId>DDTopPepsi</LinkId>
+                <TargetUrl>https://muftpaise.com/winners</TargetUrl>
+            </TopBanner>
+        </Mobile>
+    </Account>
     <Contest>
 		<Desktop>
             <TopBanner>
