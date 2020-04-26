@@ -7,7 +7,7 @@ $ads_url_xml = get_template_directory_uri() . "/ads.xml";
 $ads_slide_timer = get_option( 'prizesite_winners_ad_timer' );
 ?>
 <?php 
-    //if ( $user->ID === 0 ) {
+    if ( $user->ID === 0 ) {
 ?>
 <div id="account-top-desktop-carousel" class="carousel slide carousel-fade" data-ride="carousel" data-interval="<?php echo $ads_slide_timer; ?>">
     <?php
@@ -63,7 +63,7 @@ $ads_slide_timer = get_option( 'prizesite_winners_ad_timer' );
     <?php the_content(); ?>
 </div>
 <?php
-//} else {
+} else {
 ?>
-    <!--<script type="text/javascript">window.location = 'http://localhost/wordpress/v1';</script>-->
-<?php //} ?>
+    <script type="text/javascript">window.location = 'http://localhost/wordpress/v1';</script>
+<?php } ?>
