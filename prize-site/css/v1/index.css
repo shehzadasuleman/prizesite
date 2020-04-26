@@ -1396,6 +1396,28 @@
     padding: 0px 10px;
 }
 
+#contests-signin-popup-progress-bar, #contests-signup-popup-progress-bar {
+    display: none;
+}
+
+#contests-signin-danger-alert,#contests-signin-invalid-alert,#contests-signin-wrong-password-alert,#contests-signin-not-verified-alert {
+    margin-top: 2%;
+    display: none;
+}
+
+#contests-signin-registration-modal h6 {
+    float: right;
+    margin-top: 2%;
+}
+
+#contests-signup-daily-draw-info, #contests-signup-danger-alert {
+    display: none;
+}
+
+#contests-check-signup-label-box {
+    margin-bottom: 0px;
+}
+
 .adplugg-ad img {
     width: 100%;
 }
@@ -1634,6 +1656,15 @@
     #dailydraw-right-mobile-carousel-ads {
         width: 100%;
     }
+    #um-form form .um-account-side {
+        width: 20% !important;
+    }
+    #um-form form .um-account-main {
+        width: 80% !important;
+    }
+    #um-form form .um-account-side .um-account-meta {
+        margin-bottom: 0px;
+    }
 }
 
 @media screen and (min-width: 576px) {
@@ -1658,5 +1689,55 @@
     .unset-margin {
         margin-left: unset;
         margin-right: unset;
+    }
+}
+@media screen and (min-width: 501px) and (max-width: 575px) {
+    #um-form form {
+        width: 90% !important;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    #um-form form .um-account-meta {
+        display: block;
+    }
+    #um-form form .um-account-side {
+        width: 25% !important;
+    }
+    #um-form form .um-account-main {
+        width: 75% !important;
+    }
+    #um-form form .um-account-side .um-account-meta {
+        margin-bottom: 0px;
+    }
+    #um-form form .um-account-main {
+        padding-right: 0px;
+    }
+    #um-form form .um-account-meta .um-account-name a {
+        border: 0px;
+    }
+}
+@media screen and (min-width: 576px) and (max-width: 800px) {
+    #um-form form {
+        max-width: 80%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    #um-form form .um-account-side {
+        width: 30%;
+    }
+    #um-form form .um-account-main {
+        width: 70%;
+    }
+    #um-form form .um-account-meta {
+        display: block;
+    }
+    #um-form form .um-account-side .um-account-meta {
+        margin-bottom: 0px;
+    }
+    #um-form form .um-account-meta .um-account-name a {
+        border: 0px;
+    }
+    #um-form form .um-account-main {
+        padding-right: 0px;
     }
 }

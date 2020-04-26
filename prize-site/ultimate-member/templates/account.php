@@ -1,8 +1,49 @@
 <?php if ( ! defined( 'ABSPATH' ) ) exit; ?>
 
+<?php
+add_action('um_after_account_general', 'showExtraFields', 100);
+function showExtraFields()
+{
+	$custom_fields = [
+		"mobile_number" => "Mobile Number",
+	];
+
+	foreach ($custom_fields as $key => $value) {
+
+		$fields[ $key ] = array(
+				'title' => $value,
+				'metakey' => $key,
+				'type' => 'select',
+				'label' => $value,
+		);
+
+		apply_filters('um_account_secure_fields', $fields, 'general' );
+
+		$field_value = get_user_meta(um_user('ID'), $key, true) ? : '';
+
+		$html = '<div class="um-field um-field-'.$key.'" data-key="'.$key.'">
+		<div class="um-field-label">
+		<label for="'.$key.'">'.$value.'</label>
+		<div class="um-clear"></div>
+		</div>
+		<div class="um-field-area">
+		<input class="um-form-field valid "
+		type="text" name="'.$key.'"
+		id="'.$key.'" value="'.$field_value.'"
+		placeholder=""
+		data-validate="" data-key="'.$key.'">
+		</div>
+		</div>';
+
+		echo $html;
+
+	}
+}
+?>
+
 <div class="um <?php echo esc_attr( $this->get_class( $mode ) ); ?> um-<?php echo esc_attr( $form_id ); ?>">
 
-	<div class="um-form">
+	<div id="um-form" class="um-form">
 	
 		<form method="post" action="">
 			
@@ -31,7 +72,9 @@
 			<div class="um-account-meta radius-<?php echo esc_attr( UM()->options()->get( 'profile_photocorner' ) ); ?> uimob340-show uimob500-show">
 
 				<div class="um-account-name">
-					<?php echo esc_html( um_user( 'display_name' ) ); ?>
+					<a href="<?php //echo esc_url( um_user_profile_url() ); ?>">
+						<?php echo esc_html( um_user( 'display_name' ) ); ?>
+					</a>
 				</div>
 
 			</div>
@@ -40,39 +83,39 @@
 
 				<div class="um-account-meta radius-<?php echo esc_attr( UM()->options()->get( 'profile_photocorner' ) ); ?>">
 
-					<div class="um-account-meta-img uimob800-hide">
-						<a href="<?php echo esc_url( um_user_profile_url() ); ?>">
-							<?php echo get_avatar( um_user( 'ID' ), 120 ); ?>
+					<!--<div class="um-account-meta-img uimob800-hide">
+						<a href="<?php //echo esc_url( um_user_profile_url() ); ?>">
+							<?php //echo get_avatar( um_user( 'ID' ), 120 ); ?>
 						</a>
-					</div>
+					</div>-->
 
 					<?php if ( UM()->mobile()->isMobile() ) { ?>
 
-						<div class="um-account-meta-img-b uimob800-show" title="<?php echo esc_attr( um_user( 'display_name' ) ); ?>">
-							<a href="<?php echo esc_url( um_user_profile_url() ); ?>">
-								<?php echo get_avatar( um_user( 'ID' ), 120 ); ?>
+						<!--<div class="um-account-meta-img-b uimob800-show" title="<?php //echo esc_attr( um_user( 'display_name' ) ); ?>">
+							<a href="<?php //echo esc_url( um_user_profile_url() ); ?>">
+								<?php //echo get_avatar( um_user( 'ID' ), 120 ); ?>
 							</a>
-						</div>
+						</div>-->
 
 					<?php } else { ?>
 
-						<div class="um-account-meta-img-b uimob800-show um-tip-<?php echo is_rtl() ? 'e' : 'w'; ?>" title="<?php echo esc_attr( um_user( 'display_name' ) ); ?>">
-							<a href="<?php echo esc_url( um_user_profile_url() ); ?>">
-								<?php echo get_avatar( um_user( 'ID' ), 120 ); ?>
+						<!--<div class="um-account-meta-img-b uimob800-show um-tip-<?php //echo is_rtl() ? 'e' : 'w'; ?>" title="<?php //echo esc_attr( um_user( 'display_name' ) ); ?>">
+							<a href="<?php //echo esc_url( um_user_profile_url() ); ?>">
+								<?php //echo get_avatar( um_user( 'ID' ), 120 ); ?>
 							</a>
-						</div>
+						</div>-->
 
 					<?php } ?>
 
 					<div class="um-account-name uimob800-hide">
-						<a href="<?php echo esc_url( um_user_profile_url() ); ?>">
+						<a href="<?php //echo esc_url( um_user_profile_url() ); ?>">
 							<?php echo um_user( 'display_name', 'html' ); ?>
 						</a>
-						<div class="um-account-profile-link">
-							<a href="<?php echo esc_url( um_user_profile_url() ); ?>" class="um-link">
-								<?php _e( 'View profile', 'ultimate-member' ); ?>
+						<!--<div class="um-account-profile-link">
+							<a href="<?php //echo esc_url( um_user_profile_url() ); ?>" class="um-link">
+								<?php //_e( 'View profile', 'ultimate-member' ); ?>
 							</a>
-						</div>
+						</div>-->
 					</div>
 
 				</div>

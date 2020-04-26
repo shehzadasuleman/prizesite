@@ -214,7 +214,7 @@
                         foreach ($home_desktop_top_xml as $top_banner) { 
                     ?>
                             <div class="carousel-item <?php if( $top_desktop_counter == 0 ) { echo "active"; } ?>">
-                                <a id="<?php echo $top_banner->LinkId; ?>" target="_blank" href="<?php echo $top_banner->TargetUrl; ?>"><img class="d-block w-100" src="<?php echo $top_banner->ImageUrl; ?>" alt="<?php echo $top_banner->ImageTitle; ?>"></a>
+                                <a id="<?php echo $top_banner->LinkId; ?>" href="<?php echo $top_banner->TargetUrl; ?>"><img class="d-block w-100" src="<?php echo $top_banner->ImageUrl; ?>" alt="<?php echo $top_banner->ImageTitle; ?>"></a>
                             </div>
                     <?php $top_desktop_counter = $top_desktop_counter + 1; } ?>
                 </div>
@@ -239,7 +239,7 @@
                         foreach ($home_mobile_top_xml as $top_banner) { 
                     ?>
                             <div class="carousel-item <?php if( $top_mobile_counter == 0 ) { echo "active"; } ?>">
-                                <a id="<?php echo $top_banner->LinkId; ?>" target="_blank" href="<?php echo $top_banner->TargetUrl; ?>"><img class="d-block w-100" src="<?php echo $top_banner->ImageUrl; ?>" alt="<?php echo $top_banner->ImageTitle; ?>"></a>
+                                <a id="<?php echo $top_banner->LinkId; ?>" href="<?php echo $top_banner->TargetUrl; ?>"><img class="d-block w-100" src="<?php echo $top_banner->ImageUrl; ?>" alt="<?php echo $top_banner->ImageTitle; ?>"></a>
                             </div>
                     <?php $top_mobile_counter = $top_mobile_counter + 1; } ?>
                 </div>
