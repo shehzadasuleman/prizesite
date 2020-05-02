@@ -2380,6 +2380,19 @@ a:focus {
     #live-countdown {
         font-size: 17px;
     }
+    #live-contest-info .info-footer label {
+        font-size: 14px;
+        margin-top: 2px;
+    }
+    #register-link-block{
+        font-size: 14px;
+    }
+    #register-link-block a {
+        font-size: 14px;
+    }
+    #live-contest-info .info-footer p {
+        font-size: 12px;
+    }
 }
 
 @media screen and (max-width: 576px) {
@@ -2581,6 +2594,19 @@ a:focus {
     }
     #cwinner-info {
         overflow-x: unset;
+    }
+    #live-contest-info .info-footer label {
+        font-size: 14px;
+        margin-top: 2px;
+    }
+    #register-link-block{
+        font-size: 14px;
+    }
+    #register-link-block a {
+        font-size: 14px;
+    }
+    #live-contest-info .info-footer p {
+        font-size: 12px;
     }
 }
 
@@ -2789,7 +2815,6 @@ a:focus {
     }
     .main-navigation .sub-menu {
         margin-right: 5px;
-        width: 80px;
     }
 }
 

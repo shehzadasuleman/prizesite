@@ -32,12 +32,16 @@ function prizesite_v1_register_term_menu() {
 function prizesite_v1_register_muftrewards_term_menu() {
 	register_nav_menu( 'v1-muftrewards-secondary-menu', 'Muft Rewards Terms Navigation Menu' );
 }
+function prizesite_v1_primary_nav_loggedin_menu() {
+	register_nav_menu( 'v1-primary-menu-loggedin', 'Prizesite v1 Header Navigation Menu Loggedin' );
+}
 
 add_action( 'after_setup_theme', 'prizesite_register_nav_menu' );
 add_action( 'after_setup_theme', 'prizesite_register_term_menu' );
 add_action( 'after_setup_theme', 'prizesite_v1_primary_nav_menu' );
 add_action( 'after_setup_theme', 'prizesite_v1_register_term_menu' );
 add_action( 'after_setup_theme', 'prizesite_v1_register_muftrewards_term_menu' );
+add_action( 'after_setup_theme', 'prizesite_v1_primary_nav_loggedin_menu' );
 
 /*
 	==================================

@@ -2,8 +2,9 @@ jQuery(document).ready(function($) {
 
     $('.main-navigation li').on('click', function(e){
         var link_text = $(this).find('a').slice(0,1).text();
-        if ( link_text == "About Us" ) {
-            $( ".sub-menu" ).toggle( "fade" );
+        if ( link_text == "About Us" || link_text == "Profile" ) {
+            $(this).find('ul').toggle( "fade" );
+            //$( ".sub-menu" ).toggle( "fade" );
         }
     });
 
