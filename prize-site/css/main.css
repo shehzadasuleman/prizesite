@@ -2487,7 +2487,9 @@ a:focus {
     , #login-top-desktop-carousel ol
     , #login-top-mobile-carousel ol
     , #account-top-desktop-carousel ol
-    , #account-top-mobile-carousel ol {
+    , #account-top-mobile-carousel ol 
+    , #passwordreset-top-desktop-carousel ol
+    , #passwordreset-top-mobile-carousel ol{
         margin-bottom: 8px;
     }
     .carousel-indicators li {

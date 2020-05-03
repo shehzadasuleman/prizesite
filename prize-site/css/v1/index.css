@@ -630,7 +630,9 @@
 , #login-top-desktop-carousel ol
 , #login-top-mobile-carousel ol
 , #account-top-desktop-carousel ol
-, #account-top-mobile-carousel ol {
+, #account-top-mobile-carousel ol
+, #passwordreset-top-desktop-carousel ol
+, #passwordreset-top-mobile-carousel ol {
     margin-bottom : 0px;
 }
 
@@ -1453,6 +1455,10 @@
     margin-top: 30px;
 }
 
+#user-password-reset-form {
+    margin-top: 10px;
+}
+
 @keyframes dots {
     0%, 20% {
       color: rgba(0,0,0,0);
@@ -1641,7 +1647,7 @@
     }
     #dailydraw-top-desktop-carousel-example-1z, #dailydraw-right-desktop-carousel-ads
     , #winners-fb-review, #home-top-desktop-carousel, #register-top-desktop-carousel
-    , #login-top-desktop-carousel, #account-top-desktop-carousel{
+    , #login-top-desktop-carousel, #account-top-desktop-carousel, #passwordreset-top-desktop-carousel{
         display: none;
     }
     #dailydraw-right-mobile-carousel-ads #right-prev-btn {
@@ -1677,7 +1683,7 @@
     }
     #dailydraw-top-mobile-carousel-example-1z, #dailydraw-right-mobile-carousel-ads
     , #winners-fb-mob-review, #home-top-mobile-carousel, #register-top-mobile-carousel
-    , #login-top-mobile-carousel, #account-top-mobile-carousel {
+    , #login-top-mobile-carousel, #account-top-mobile-carousel, #passwordreset-top-mobile-carousel {
         display: none;
     }
     #dailydraw-top-mobile-carousel {

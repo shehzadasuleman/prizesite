@@ -71,7 +71,8 @@
     || is_page('privacy-policy-2') || is_page('404-2') || is_page('you-number-is-already-part-of-the-prize-pool') 
     || is_page('verification') ) { ?>
         <header id="header" style="min-height:0px;">
-    <?php } elseif ( is_page('whats-the-catch') || is_page('v1-faqs') || is_page('contact-us-2') || is_page('partners') ) { ?>
+    <?php } elseif ( is_page('whats-the-catch') || is_page('v1-faqs') || is_page('contact-us-2') || is_page('partners') 
+    || is_page('not-registered') || is_page('did-not-won') || is_page('won') || is_page('v1-past-winners') || is_page('v1-ads') ) { ?>
         <header id="header" style="background-image: url(<?php print $background_url ?>);">
     <?php } ?>
         <?php if ( !is_page('eatzii-rewards') ) { ?>

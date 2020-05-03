@@ -1,46 +1,5 @@
 <?php if ( ! defined( 'ABSPATH' ) ) exit; ?>
 
-<?php
-add_action('um_after_account_general', 'showExtraFields', 100);
-function showExtraFields()
-{
-	$custom_fields = [
-		"mobile_number" => "Mobile Number",
-	];
-
-	foreach ($custom_fields as $key => $value) {
-
-		$fields[ $key ] = array(
-				'title' => $value,
-				'metakey' => $key,
-				'type' => 'select',
-				'label' => $value,
-		);
-
-		apply_filters('um_account_secure_fields', $fields, 'general' );
-
-		$field_value = get_user_meta(um_user('ID'), $key, true) ? : '';
-
-		$html = '<div class="um-field um-field-'.$key.'" data-key="'.$key.'">
-		<div class="um-field-label">
-		<label for="'.$key.'">'.$value.'</label>
-		<div class="um-clear"></div>
-		</div>
-		<div class="um-field-area">
-		<input class="um-form-field valid "
-		type="text" name="'.$key.'"
-		id="'.$key.'" value="'.$field_value.'"
-		placeholder=""
-		data-validate="" data-key="'.$key.'">
-		</div>
-		</div>';
-
-		echo $html;
-
-	}
-}
-?>
-
 <div class="um <?php echo esc_attr( $this->get_class( $mode ) ); ?> um-<?php echo esc_attr( $form_id ); ?>">
 
 	<div id="um-form" class="um-form">

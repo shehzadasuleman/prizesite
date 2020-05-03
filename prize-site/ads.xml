@@ -175,6 +175,36 @@
             </TopBanner>
         </Mobile>
     </Account>
+    <PasswordReset>
+		<Desktop>
+            <TopBanner>
+                <ImageUrl>/wordpress/wp-content/themes/prize-site/img/Ads/Slider/Desktop/PasswordResetTopNDure.jpg</ImageUrl>
+                <ImageTitle>NDURE</ImageTitle>
+                <LinkId>DDTopNDure</LinkId>
+                <TargetUrl>https://muftpaise.com/</TargetUrl>
+            </TopBanner>
+            <TopBanner>
+                <ImageUrl>/wordpress/wp-content/themes/prize-site/img/Ads/Slider/Desktop/PasswordResetTopPepsi.jpg</ImageUrl>
+                <ImageTitle>Pepsi Black</ImageTitle>
+                <LinkId>DDTopPepsi</LinkId>
+                <TargetUrl>https://muftpaise.com/partners</TargetUrl>
+            </TopBanner>
+        </Desktop>
+        <Mobile>
+            <TopBanner>
+                <ImageUrl>/wordpress/wp-content/themes/prize-site/img/Ads/Slider/Mobile/PasswordResetTopFoodPanda.jpg</ImageUrl>
+                <ImageTitle>Food Panda</ImageTitle>
+                <LinkId>DDTopFoodPanda</LinkId>
+                <TargetUrl>https://muftpaise.com/contests</TargetUrl>
+            </TopBanner>
+            <TopBanner>
+                <ImageUrl>/wordpress/wp-content/themes/prize-site/img/Ads/Slider/Mobile/PasswordResetTopPepsi.jpg</ImageUrl>
+                <ImageTitle>Pepsi Black</ImageTitle>
+                <LinkId>DDTopPepsi</LinkId>
+                <TargetUrl>https://muftpaise.com/winners</TargetUrl>
+            </TopBanner>
+        </Mobile>
+    </PasswordReset>
     <Contest>
 		<Desktop>
             <TopBanner>
