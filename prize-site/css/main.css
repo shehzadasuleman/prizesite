@@ -2187,10 +2187,10 @@ a:focus {
     #carousel-left-ads .carousel-control-prev-icon {
         margin-left: 0px;
     }
-    #mob-carousel-left-ads .carousel-control-next-icon {
+    #contests-mob-carousel-left-ads .carousel-control-next-icon {
         margin-right: 0px;
     }
-    #mob-carousel-left-ads .carousel-control-prev-icon {
+    #contests-mob-carousel-left-ads .carousel-control-prev-icon {
         margin-left: 0px;
     }
     #dailydraw-right-mobile-carousel-ads .carousel-control-prev-icon {
@@ -2346,7 +2346,7 @@ a:focus {
         width: 12px;
         height: 12px;
     }
-    #mob-carousel-left-ads .carousel-control-next-icon, .carousel-control-prev-icon {
+    #contests-mob-carousel-left-ads .carousel-control-next-icon, .carousel-control-prev-icon {
         width: 12px;
         height: 12px;
     }
@@ -2505,7 +2505,7 @@ a:focus {
     #carousel-left-ads ol {
         margin-bottom : 10px;
     }
-    #mob-carousel-left-ads ol {
+    #contests-mob-carousel-left-ads ol {
         margin-bottom : 10px;
     }
     .contest-block .live-content {
@@ -2686,7 +2686,7 @@ a:focus {
         width: 12px;
         height: 12px;
     }
-    #mob-carousel-left-ads .carousel-control-next-icon, .carousel-control-prev-icon {
+    #contests-mob-carousel-left-ads .carousel-control-next-icon, .carousel-control-prev-icon {
         width: 12px;
         height: 12px;
     }

@@ -49,7 +49,7 @@ var screen_size = "<?= $screen_size ?>"
         <div class="col-xl-10 offset-xl-1 col-lg-10 offset-lg-1 col-md-10 offset-md-1 col-sm-10 offset-sm-1 col-10 offset-1 winners-actual-content">
             <div class="row winners-partitioned-actual-content">
 
-                <div id="winners-left-ad" class="col-xl-3 col-lg-3 col-md-4 col-sm-4 img-content">
+                <div id="contests-left-ad" class="col-xl-3 col-lg-3 col-md-4 col-sm-4 img-content">
                     <div id="carousel-left-ads" class="carousel slide carousel-fade" data-ride="carousel" data-interval="<?php echo $ads_slide_timer; ?>">
                         <!--Indicators -->
                         <ol class="carousel-indicators">
@@ -136,7 +136,7 @@ var screen_size = "<?= $screen_size ?>"
                         ?>
                         </div>
                     </div>
-                    <div id="mob-carousel-left-ads" class="carousel slide carousel-fade" data-ride="carousel" data-interval="<?php echo $ads_slide_timer; ?>">
+                    <div id="contests-mob-carousel-left-ads" class="carousel slide carousel-fade" data-ride="carousel" data-interval="<?php echo $ads_slide_timer; ?>">
                         <!--Indicators -->
                         <ol class="carousel-indicators">
                             <li data-target="#mob-carousel-left-ads" data-slide-to="0" class="active"></li>

@@ -680,22 +680,21 @@
     margin-bottom : 0px;
 }
 
-#mob-carousel-left-ads {
-    display: none;
+#contests-mob-carousel-left-ads {
     margin-top: 25px;
 }
 
-#mob-carousel-left-ads #mob-left-prev-btn {
+#contests-mob-carousel-left-ads #mob-left-prev-btn {
     justify-content: start;
     padding-left: 5px;
 }
 
-#mob-carousel-left-ads #mob-left-next-btn {
+#contests-mob-carousel-left-ads #mob-left-next-btn {
     justify-content: flex-end;
     padding-right: 5px;
 }
 
-#mob-carousel-left-ads ol {
+#contests-mob-carousel-left-ads ol {
     margin-bottom : 0px;
 }
 
@@ -1647,7 +1646,8 @@
     }
     #dailydraw-top-desktop-carousel-example-1z, #dailydraw-right-desktop-carousel-ads
     , #winners-fb-review, #home-top-desktop-carousel, #register-top-desktop-carousel
-    , #login-top-desktop-carousel, #account-top-desktop-carousel, #passwordreset-top-desktop-carousel{
+    , #login-top-desktop-carousel, #account-top-desktop-carousel, #passwordreset-top-desktop-carousel
+    , #contests-left-ad{
         display: none;
     }
     #dailydraw-right-mobile-carousel-ads #right-prev-btn {
@@ -1683,7 +1683,8 @@
     }
     #dailydraw-top-mobile-carousel-example-1z, #dailydraw-right-mobile-carousel-ads
     , #winners-fb-mob-review, #home-top-mobile-carousel, #register-top-mobile-carousel
-    , #login-top-mobile-carousel, #account-top-mobile-carousel, #passwordreset-top-mobile-carousel {
+    , #login-top-mobile-carousel, #account-top-mobile-carousel, #passwordreset-top-mobile-carousel 
+    , #contests-mob-carousel-left-ads {
         display: none;
     }
     #dailydraw-top-mobile-carousel {

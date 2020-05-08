@@ -5,9 +5,9 @@
 ?>
 <?php
     date_default_timezone_set('Asia/Karachi');
-    $right_ads_banner_1 = get_template_directory_uri() . '/img/Ads/Slider/Desktop/right-desktop-ad1.jpg';
-    $right_ads_banner_2 = get_template_directory_uri() . '/img/Ads/Slider/Desktop/right-desktop-ad2.jpg';
-    $right_ads_banner_3 = get_template_directory_uri() . '/img/Ads/Slider/Desktop/right-desktop-ad3.jpg';
+    $right_ads_banner_1 = get_template_directory_uri() . '/img/Ads/Slider/right-desktop-ad1.jpg';
+    $right_ads_banner_2 = get_template_directory_uri() . '/img/Ads/Slider/right-desktop-ad2.jpg';
+    $right_ads_banner_3 = get_template_directory_uri() . '/img/Ads/Slider/right-desktop-ad3.jpg';
     $share_url = get_template_directory_uri() . '/img/share.png';
     $ads_slide_timer = get_option( 'prizesite_winners_ad_timer' );
     $url = $protocol . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
@@ -24,7 +24,7 @@ var contest_id = "<?= $contest_id ?>";
     <div class="row winners-middle-content-parent">
         <div class="col-xl-10 offset-xl-1 col-lg-10 offset-lg-1 col-md-10 offset-md-1 col-sm-10 offset-sm-1 col-10 offset-1 winners-actual-content">
             <div class="row winners-partitioned-actual-content">
-                <div id="winners-left-ad" class="col-xl-3 col-lg-3 col-md-4 col-sm-4 img-content">
+                <div id="contests-left-ad" class="col-xl-3 col-lg-3 col-md-4 col-sm-4 img-content">
                     <div id="carousel-left-ads" class="carousel slide carousel-fade" data-ride="carousel" data-interval="<?php echo $ads_slide_timer; ?>">
                         <!--Indicators -->
                         <ol class="carousel-indicators">
@@ -145,7 +145,7 @@ var contest_id = "<?= $contest_id ?>";
                                     </div>
                                 </div>
                             <?php } wp_reset_query(); ?>
-                                <div id="mob-carousel-left-ads" class="carousel slide carousel-fade" data-ride="carousel" data-interval="<?php echo $ads_slide_timer; ?>">
+                                <div id="contests-mob-carousel-left-ads" class="carousel slide carousel-fade" data-ride="carousel" data-interval="<?php echo $ads_slide_timer; ?>">
                                     <!--Indicators -->
                                     <ol class="carousel-indicators">
                                         <li data-target="#mob-carousel-left-ads" data-slide-to="0" class="active"></li>
