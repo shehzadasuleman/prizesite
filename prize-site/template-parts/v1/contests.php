@@ -44,6 +44,17 @@
 var contests_per_page = "<?= $contests_per_page ?>";
 var screen_size = "<?= $screen_size ?>"
 </script>
+<div class="row">
+    <div class="carousel-ad-info col-xl-10 offset-xl-1 col-lg-10 offset-lg-1 col-md-10 offset-md-1 col-sm-10 offset-sm-1 col-10 offset-1">
+        <p>Advertisement</p>
+    </div>
+    <div id="contests-top-desktop-carousel" class="carousel slide carousel-fade col-xl-10 offset-xl-1 col-lg-10 offset-lg-1 col-md-10 offset-md-1 col-sm-10 offset-sm-1 col-10 offset-1">
+        <div class="adplugg-tag" data-adplugg-zone="uat_contests_desktop_top_bar_zone"></div>
+    </div>
+    <div id="contests-top-mobile-carousel" class="carousel slide carousel-fade col-xl-10 offset-xl-1 col-lg-10 offset-lg-1 col-md-10 offset-md-1 col-sm-10 offset-sm-1 col-10 offset-1">
+        <div class="adplugg-tag" data-adplugg-zone="uat_contests_mobile_top_bar_zone"></div>
+    </div>
+</div>
 <div class="middle-content">
     <div class="row winners-middle-content-parent">
         <div class="col-xl-10 offset-xl-1 col-lg-10 offset-lg-1 col-md-10 offset-md-1 col-sm-10 offset-sm-1 col-10 offset-1 winners-actual-content">

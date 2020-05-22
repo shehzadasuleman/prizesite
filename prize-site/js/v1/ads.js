@@ -33,4 +33,17 @@ jQuery(document).ready(function($) {
             });
         }
     }
+    if ( window.location.pathname == "/wordpress/v1/contests" ) {
+        if (newWindowWidth < 576) {
+            $("#contests-top-mobile-carousel").css({ "display": "none" });
+            sleep(1000).then(() => {
+                $( "#contests-top-mobile-carousel" ).slideDown(6000);
+            });
+        } else {
+            $("#contests-top-desktop-carousel").css({ "display": "none" });
+            sleep(1000).then(() => {
+                $( "#contests-top-desktop-carousel" ).slideDown(6000);
+            });
+        }
+    }
 });

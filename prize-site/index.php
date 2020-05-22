@@ -116,7 +116,7 @@
             </div>
         </header>
         <?php } ?>
-    <?php if ( is_page('v1-contests') || is_page('view-contest') || is_page('live-contest') ) { ?>
+    <?php if ( is_page('view-contest') || is_page('live-contest') ) { ?>
         <!--Carousel Wrapper-->
         <div class="row">
             <div id="carousel-example-1z" class="carousel slide carousel-fade col-xl-10 offset-xl-1 col-lg-10 offset-lg-1 col-md-10 offset-md-1 col-sm-10 offset-sm-1 col-10 offset-1" data-ride="carousel" data-interval="<?php echo $ads_slide_timer; ?>">

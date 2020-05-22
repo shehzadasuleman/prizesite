@@ -259,8 +259,8 @@
       </div>
       <div class="modal-body">
 	  	<div class="col">
-          <a target="_blank" href="https://rider.foodpanda.pk/?utm_source=muftpaise&utm_medium=bannerad&utm_campaign=advertising&utm_content=awareness"><img id="carousel-slide-one" class="d-block w-100" src="<?php echo $mobile_ad ?>" alt="Check Ad"></a>
-		</div>
+          <div class="adplugg-tag" data-adplugg-zone="uat_daily_draw_prize_check"></div>
+        </div>
       </div>
     </div>
   </div>

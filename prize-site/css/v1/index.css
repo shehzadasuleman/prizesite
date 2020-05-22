@@ -1671,6 +1671,9 @@
     #um-form form .um-account-side .um-account-meta {
         margin-bottom: 0px;
     }
+    #contests-top-desktop-carousel {
+        display: none;
+    }
 }
 
 @media screen and (min-width: 576px) {
@@ -1688,6 +1691,9 @@
         display: none;
     }
     #dailydraw-top-mobile-carousel {
+        display: none;
+    }
+    #contests-top-mobile-carousel {
         display: none;
     }
 }
